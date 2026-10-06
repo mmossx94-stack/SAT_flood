@@ -981,9 +981,36 @@
             </div>
           </div>
 
-          <!-- News Headlines -->
+          <!-- News Headlines with Urgency & Province Filters -->
           <div class="modern-card p-3 shadow-sm border-0">
-            <h6 class="fw-bold mb-3"><i class="bi bi-rss-fill text-danger"></i> พาดหัวข่าวน้ำท่วมล่าสุด</h6>
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+              <h6 class="fw-bold mb-0"><i class="bi bi-rss-fill text-danger me-1"></i> พาดหัวข่าวน้ำท่วมล่าสุด (Flash News & Province Matrix)</h6>
+              
+              <!-- Filter Controls -->
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <!-- Urgency Filter Pills -->
+                <div class="btn-group btn-group-sm" role="group" id="newsUrgencyFilterGroup">
+                  <button type="button" class="btn btn-primary active" onclick="setNewsUrgencyFilter('all', this)">🌐 ทั้งหมด</button>
+                  <button type="button" class="btn btn-outline-danger" onclick="setNewsUrgencyFilter('critical', this)">🔴 วิกฤตฉุกเฉิน</button>
+                  <button type="button" class="btn btn-outline-warning" onclick="setNewsUrgencyFilter('warning', this)">🟡 เฝ้าระวัง</button>
+                  <button type="button" class="btn btn-outline-success" onclick="setNewsUrgencyFilter('recovery', this)">🟢 ฟื้นฟู/ทั่วไป</button>
+                </div>
+
+                <!-- Province Filter Select -->
+                <select id="newsProvinceFilterSelect" class="form-select form-select-sm filter-select ms-1" style="width: auto; font-size:0.85rem;" onchange="filterNewsHeadlines()">
+                  <option value="all">📍 ทุกจังหวัด</option>
+                </select>
+
+                <!-- Row Limit Select -->
+                <select id="newsRowLimitSelect" class="form-select form-select-sm filter-select ms-1" style="width: auto; font-size:0.85rem;" onchange="filterNewsHeadlines()">
+                  <option value="10" selected>🔢 แสดง 10 ข่าว</option>
+                  <option value="50">🔢 แสดง 50 ข่าว</option>
+                  <option value="100">🔢 แสดง 100 ข่าว</option>
+                  <option value="all">🌐 แสดงทั้งหมด</option>
+                </select>
+              </div>
+            </div>
+
             <div id="newsHeadlinesList">
               <div class="text-center text-muted py-3">
                 <div class="spinner-border spinner-border-sm text-danger"></div> กำลังโหลดข่าว...
@@ -3576,14 +3603,132 @@ ${type !== 'bkk' ? `
     }
 
 
-    // ─── Headlines ───────────────────────────────────────────
-    function drawHeadlines(articles) {
+    // ─── Headlines Matrix & Urgency Filters ─────────────────
+    let currentNewsUrgencyFilter = 'all';
+    let allArticlesPreview = [];
+
+    const THAI_PROVINCES_LIST = [
+      "กรุงเทพฯ", "เชียงใหม่", "เชียงราย", "น่าน", "พะเยา", "แพร่", "ลำปาง", "ลำพูน", "แม่ฮ่องสอน",
+      "อุตรดิตถ์", "ตาก", "สุโขทัย", "พิษณุโลก", "พิจิตร", "กำแพงเพชร", "เพชรบูรณ์", "นครสวรรค์",
+      "อุทัยธานี", "ชัยนาท", "สิงห์บุรี", "ลพบุรี", "อ่างทอง", "สระบุรี", "อยุธยา", "ปทุมธานี",
+      "นนทบุรี", "นครปฐม", "สมุทรปราการ", "สมุทรสาคร", "สมุทรสงคราม", "ราชบุรี", "กาญจนบุรี",
+      "สุพรรณบุรี", "เพชรบุรี", "ประจวบคีรีขันธ์", "นครนายก", "ปราจีนบุรี", "สระแก้ว", "ฉะเชิงเทรา",
+      "ชลบุรี", "ระยอง", "จันทบุรี", "ตราด", "หนองคาย", "บึงกาฬ", "หนองบัวลำภู", "อุดรธานี",
+      "เลย", "สกลนคร", "นครพนม", "ขอนแก่น", "กาฬสินธุ์", "มุกดาหาร", "มหาสารคาม", "ร้อยเอ็ด",
+      "ยโสธร", "อำนาจเจริญ", "ชัยภูมิ", "นครราชสีมา", "บุรีรัมย์", "สุรินทร์", "ศรีสะเกษ",
+      "อุบลราชธานี", "นครศรีธรรมราช", "กระบี่", "พังงา", "ภูเก็ต", "สุราษฎร์ธานี", "ระนอง",
+      "ชุมพร", "สงขลา", "สตูล", "ตรัง", "พัทลุง", "ปัตตานี", "ยะลา", "นราธิวาส"
+    ];
+
+    function extractProvinceJS(title) {
+      if (!title) return "ภาพรวมประเทศ";
+      if (title.includes("กรุงเทพ") || title.includes("กทม")) return "กรุงเทพฯ";
+      if (title.includes("อยุธยา") || title.includes("พระนครศรีอยุธยา")) return "อยุธยา";
+      if (title.includes("อุบล")) return "อุบลราชธานี";
+      if (title.includes("โคราช")) return "นครราชสีมา";
+      for (const p of THAI_PROVINCES_LIST) {
+        if (title.includes(p)) return p;
+      }
+      return "ภาพรวมประเทศ";
+    }
+
+    function classifyUrgencyJS(title) {
+      if (!title) return "warning";
+      const t = title;
+      if (/วิกฤต|ทะลัก|อพยพ|ด่วน|เสียชีวิต|จม|ทะลุคัน|ตัดขาด|ดินถล่ม|จมมิด|ท่วมสูง|ฉุกเฉิน|ติดค้าง|ขอความช่วยเหลือ/i.test(t)) {
+        return "critical";
+      }
+      if (/เฝ้าระวัง|เตือน|เสี่ยง|เพิ่มขึ้น|ระดับน้ำสูง|เตรียมพร้อม|ฝนตกหนัก|น้ำขึ้น|เร่งระบาย|เอ่อล้น|ยกของขึ้นที่สูง|เตรียมยก|มรสุม|พายุ|จับตา|น้ำหลาก/i.test(t)) {
+        return "warning";
+      }
+      if (/ฟื้นฟู|เยียวยา|บริจาค|แจก|ทำความสะอาด|บรรเทา|ลดลง|เข้าสู่ภาวะปกติ|ช่วยเหลือ|ถุงยังชีพ|ซ่อมแซม|คลี่คลาย|เงินเยียวยา/i.test(t)) {
+        return "recovery";
+      }
+      return "warning";
+    }
+
+    function setNewsUrgencyFilter(filter, btnEl) {
+      currentNewsUrgencyFilter = filter;
+      const group = document.getElementById('newsUrgencyFilterGroup');
+      if (group) {
+        group.querySelectorAll('.btn').forEach(b => {
+          b.classList.remove('active');
+          if (b.classList.contains('btn-primary')) b.className = 'btn btn-outline-primary';
+          if (b.classList.contains('btn-danger')) b.className = 'btn btn-outline-danger';
+          if (b.classList.contains('btn-warning')) b.className = 'btn btn-outline-warning';
+          if (b.classList.contains('btn-success')) b.className = 'btn btn-outline-success';
+        });
+      }
+      if (btnEl) {
+        btnEl.classList.add('active');
+        if (filter === 'all') btnEl.className = 'btn btn-primary active';
+        if (filter === 'critical') btnEl.className = 'btn btn-danger active';
+        if (filter === 'warning') btnEl.className = 'btn btn-warning active text-dark';
+        if (filter === 'recovery') btnEl.className = 'btn btn-success active';
+      }
+      filterNewsHeadlines();
+    }
+
+    function populateProvinceDropdown(articles) {
+      const select = document.getElementById('newsProvinceFilterSelect');
+      if (!select) return;
+      const currentVal = select.value;
+      const counts = {};
+      articles.forEach(a => {
+        const prov = a.province || extractProvinceJS(a.title);
+        counts[prov] = (counts[prov] || 0) + 1;
+      });
+
+      let html = '<option value="all">📍 ทุกจังหวัด (' + articles.length + ')</option>';
+      const sortedProvinces = Object.keys(counts).sort((a, b) => {
+        if (a === 'ภาพรวมประเทศ') return 1;
+        if (b === 'ภาพรวมประเทศ') return -1;
+        return counts[b] - counts[a];
+      });
+
+      sortedProvinces.forEach(p => {
+        html += `<option value="${p}">${p === 'ภาพรวมประเทศ' ? '🌐' : '📍'} ${p} (${counts[p]})</option>`;
+      });
+      select.innerHTML = html;
+      if (counts[currentVal]) select.value = currentVal;
+    }
+
+    function filterNewsHeadlines() {
+      if (!allArticlesPreview || allArticlesPreview.length === 0) return;
+      const selectedProv = document.getElementById('newsProvinceFilterSelect')?.value || 'all';
+      const limitVal = document.getElementById('newsRowLimitSelect')?.value || '10';
+
+      const filtered = allArticlesPreview.filter(a => {
+        const urgency = a.urgency || classifyUrgencyJS(a.title);
+        const prov = a.province || extractProvinceJS(a.title);
+
+        if (currentNewsUrgencyFilter !== 'all' && urgency !== currentNewsUrgencyFilter) return false;
+        if (selectedProv !== 'all' && prov !== selectedProv) return false;
+        return true;
+      });
+
+      let sliced = filtered;
+      if (limitVal !== 'all') {
+        const limitNum = parseInt(limitVal, 10) || 10;
+        sliced = filtered.slice(0, limitNum);
+      }
+
+      renderHeadlinesList(sliced, filtered.length);
+    }
+
+    function renderHeadlinesList(articles, totalCount) {
       const el = document.getElementById('newsHeadlinesList');
       if (!el) return;
       if (!articles || articles.length === 0) {
-        el.innerHTML = '<div class="text-muted text-center py-3">ไม่มีข้อมูลพาดหัวข่าว</div>';
+        el.innerHTML = '<div class="text-muted text-center py-4"><i class="bi bi-inbox fs-4 d-block mb-1"></i>ไม่พบข่าวสารตรงตามเงื่อนไขตัวกรอง</div>';
         return;
       }
+
+      const urgencyBadgeMap = {
+        'critical': '<span class="badge bg-danger text-white"><i class="bi bi-exclamation-triangle-fill me-1"></i>🔴 วิกฤตฉุกเฉิน</span>',
+        'warning': '<span class="badge bg-warning text-dark"><i class="bi bi-bell-fill me-1"></i>🟡 เฝ้าระวัง</span>',
+        'recovery': '<span class="badge bg-success text-white"><i class="bi bi-check-circle-fill me-1"></i>🟢 ฟื้นฟู/ทั่วไป</span>',
+      };
 
       const sourceIcons = {
         'Google': 'bi-google', 'Thai': 'bi-globe-asia-australia',
@@ -3598,21 +3743,46 @@ ${type !== 'bkk' ? `
         return 'bi-newspaper';
       }
 
-      el.innerHTML = `<div class="row g-2">` +
-        articles.map(a => `
-        <div class="col-md-6">
-          <div class="d-flex gap-2 p-2 rounded border bg-white align-items-start" style="font-size:13px;">
-            <i class="bi ${getIcon(a.source)} text-primary mt-1 flex-shrink-0"></i>
-            <div>
-              ${a.url ?
-                `<a href="${a.url}" target="_blank" class="text-decoration-none text-dark fw-bold">
-                  ${a.title || '(ไม่มีหัวข้อ)'}
-                </a>` :
-                `<span class="fw-bold">${a.title || '(ไม่มีหัวข้อ)'}</span>`}
-              <div class="text-muted mt-1"><i class="bi bi-broadcast"></i> ${a.source || 'ไม่ระบุแหล่ง'}</div>
+      const countInfo = totalCount !== undefined
+        ? `<div class="mb-2 small text-muted"><i class="bi bi-list-check me-1"></i>แสดง <strong>${articles.length}</strong> จากทั้งหมด <strong>${totalCount}</strong> ข่าวตรงเงื่อนไข</div>`
+        : '';
+
+      el.innerHTML = countInfo + `<div class="row g-2">` +
+        articles.map(a => {
+          const urgency = a.urgency || classifyUrgencyJS(a.title);
+          const prov = a.province || extractProvinceJS(a.title);
+          const uBadge = urgencyBadgeMap[urgency] || urgencyBadgeMap['warning'];
+          const provBadge = `<span class="badge bg-light text-dark border"><i class="bi bi-geo-alt-fill text-danger me-1"></i>${prov}</span>`;
+          const timeStr = a.published_at ? ` | <i class="bi bi-clock me-1"></i>${a.published_at}` : '';
+
+          return `
+          <div class="col-md-6">
+            <div class="d-flex gap-2 p-3 rounded-3 border bg-white align-items-start h-100 shadow-sm" style="transition: all 0.2s;">
+              <i class="bi ${getIcon(a.source)} text-primary fs-5 mt-1 flex-shrink-0"></i>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center gap-1 flex-wrap mb-1" style="font-size:0.8rem;">
+                  ${uBadge}
+                  ${provBadge}
+                </div>
+                ${a.url ?
+                  `<a href="${a.url}" target="_blank" class="text-decoration-none text-dark fw-semibold lh-base d-block mb-1">
+                    ${a.title || '(ไม่มีหัวข้อ)'} <i class="bi bi-box-arrow-up-right small text-muted ms-1" style="font-size:0.75rem;"></i>
+                  </a>` :
+                  `<span class="fw-semibold lh-base d-block mb-1">${a.title || '(ไม่มีหัวข้อ)'}</span>`}
+                <div class="text-muted small d-flex align-items-center gap-1 flex-wrap" style="font-size:0.78rem;">
+                  <span><i class="bi bi-broadcast me-1"></i>${a.source || 'ไม่ระบุแหล่ง'}</span>
+                  <span>${timeStr}</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>`).join('') + `</div>`;
+          </div>`;
+        }).join('') + `</div>`;
+    }
+
+    function drawHeadlines(articles) {
+      allArticlesPreview = articles || [];
+      populateProvinceDropdown(allArticlesPreview);
+      filterNewsHeadlines();
     }
 
     // ─── Language switch listener ─────────────────────────────
