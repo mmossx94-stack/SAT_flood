@@ -1,0 +1,20 @@
+                    </div>
+                    <div class="progress mt-2 bg-white" style="height: 6px;">
+                       <div class="progress-bar bg-danger" role="progressbar" style="width: ${fullPct}%;" aria-valuenow="${fullPct}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        let container = document.getElementById('shelterSummaryArea');
+        if (container) container.innerHTML = summaryHtml;
+      }
+
+      function findMyLocation(tabType) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              let lat = position.coords.latitude;
+              let lng = position.coords.longitude;

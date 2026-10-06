@@ -1,0 +1,20 @@
+            if (echartsInstance) echartsInstance.resize();
+            if (vulChartInstance) vulChartInstance.resize();
+            if (trendChartInstance) trendChartInstance.resize();
+          });
+
+          if (currentFilteredData.length > 0) {
+            drawMap(currentFilteredData);
+          }
+        })
+        .catch(error => {
+          console.error('Error loading map data:', error);
+          document.getElementById('mapSpinner').innerHTML = '<span class="text-danger">ไม่สามารถโหลดแผนที่ได้</span>';
+        });
+
+      function parseCustomDate(dStr) {
+        if(!dStr) return 0;
+        
+        let parts = dStr.split(' ');
+        
+        // Date with time (DD/MM/YYYY HH:mm)

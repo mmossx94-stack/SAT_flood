@@ -1,0 +1,30 @@
+              },
+              data: [1.2, 1.5, 2.1, 3.5, 4.0, 3.8, 3.5]
+            }
+          ]
+        };
+        trendChartInstance.setOption(option);
+      }
+
+      function updateHealthZoneTable(floodData, allVulData) {
+        // Create Province -> Health Zone mapping from allVulData
+        let provToHz = {};
+        allVulData.forEach(item => {
+          if (item['จังหวัด'] && item['เขตสุขภาพ']) {
+            provToHz[item['จังหวัด']] = item['เขตสุขภาพ'];
+          }
+        });
+
+        // Group data by Health Zone
+        let hzMap = {};
+        floodData.forEach(item => {
+          let p = item.Province;
+          if (!p) return;
+          let hz = provToHz[p] || 'ไม่ระบุเขตสุขภาพ';
+          if (!hzMap[hz]) {
+            hzMap[hz] = {
+              provinces: new Set(),
+              households: 0,
+              child: 0, preg: 0, elderly: 0, totalVul: 0
+            };
+          }

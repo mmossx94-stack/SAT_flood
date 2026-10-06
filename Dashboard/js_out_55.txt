@@ -1,0 +1,50 @@
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="stat-card bg-gradient-orange shadow-sm">
+                <i class="bi bi-geo-alt-fill stat-icon"></i>
+                <div class="stat-title">อำเภอที่ได้รับผลกระทบ</div>
+                <div class="stat-value" id="totalDistricts">0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Grid Layout (Map + Tables) -->
+          <div class="row g-4 dashboard-row" style="height: auto;">
+
+            <!-- Left Column: Geo Map -->
+            <div class="col-lg-5 col-map">
+              <div class="modern-card h-100">
+                <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                  <i class="bi bi-map text-primary fs-5"></i> แผนที่ความรุนแรง (ครัวเรือน)
+                </h6>
+                <div id="map_canvas"
+                  class="flex-grow-1 d-flex justify-content-center align-items-center bg-light rounded"
+                  style="min-height: 450px;">
+                  <div class="spinner-border text-primary" role="status" id="mapSpinner"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Summary Tables -->
+            <div class="col-lg-7 d-flex flex-column gap-4">
+
+              <!-- Top Provinces Table -->
+              <div class="modern-card flex-grow-1 p-0 overflow-hidden shadow-sm d-flex flex-column">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-bar-chart-line-fill text-danger fs-5"></i> จังหวัดที่ได้รับผลกระทบสูงสุด
+                  </h6>
+                </div>
+                <div class="table-responsive flex-grow-1">
+                  <table class="table table-borderless table-striped m-0" id="topProvinceTable"
+                    style="white-space: nowrap;">
+                    <thead>
+                      <tr>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อันดับ</th>
+                        <th class="text-white" style="background-color: #3b82f6 !important;">จังหวัด</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อำเภอ</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">ตำบล</th>
+                        <th class="text-end fw-bold text-white" style="background-color: #3b82f6 !important;">
+                          ครัวเรือนเดือดร้อน</th>
+                        <th class="text-end text-white" style="background-color: #2563eb !important;">กลุ่มเปราะบางรวม

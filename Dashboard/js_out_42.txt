@@ -1,0 +1,25 @@
+
+          <!-- All Shelters Table (Bottom) -->
+          <div class="modern-card p-3 shadow-sm border-0">
+            <h5 class="fw-bold mb-3 text-primary" id="shelterAllTableTitle"><i class="bi bi-list-columns-reverse"></i> รายชื่อศูนย์พักพิงชั่วคราวทั้งหมด</h5>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered text-center align-middle text-nowrap" id="shelterAllTable">
+                <thead class="table-primary">
+                  <tr>
+                    <th>ลำดับ</th>
+                    <th>เขต</th>
+                    <th>ชื่อสถานที่ / ศูนย์</th>
+                    <th>ความจุ (คน)</th>
+                    <th>ผู้เข้าพัก (คน)</th>
+                    <th>สถานะ</th>
+                    <th>อัปเดตข้อมูลเมื่อ</th>
+                  </tr>
+                </thead>
+                <tbody id="shelterAllTableBody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+

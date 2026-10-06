@@ -1,0 +1,3 @@
+                <div class="table-responsive">
+                  <table class="table table-borderless table-striped m-0" id="healthZoneTable">
+                    <thead>

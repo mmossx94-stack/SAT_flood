@@ -1,0 +1,2 @@
+function householdColor(n){return n===undefined||n===null?null:n>=100000?'#dc2626':n>=10000?'#f97316':n>=1000?'#facc15':'#22c55e'}
+const assert=require('node:assert/strict'); for(const [n,c] of [[null,null],[undefined,null],[0,'#22c55e'],[999,'#22c55e'],[1000,'#facc15'],[9999,'#facc15'],[10000,'#f97316'],[99999,'#f97316'],[100000,'#dc2626']]) assert.equal(householdColor(n),c); console.log('9 threshold checks passed');

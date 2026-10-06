@@ -1,0 +1,50 @@
+          });
+        }
+      };
+
+      function initDashboard(response) {
+
+        function filterToLatestDay(data, dateField) {
+          if (!data || data.length === 0) return data;
+          let maxTime = -1;
+          let maxDateStr = null;
+          data.forEach(item => {
+             let ms = parseCustomDate(item[dateField]);
+             if (ms > maxTime) {
+               maxTime = ms;
+               maxDateStr = new Date(ms).toLocaleDateString('th-TH');
+             }
+          });
+          if (maxTime === -1 || !maxDateStr) return data;
+          return data.filter(item => {
+             let ms = parseCustomDate(item[dateField]);
+             if (ms === 0) return false;
+             return new Date(ms).toLocaleDateString('th-TH') === maxDateStr;
+          });
+        }
+
+        let tempFlood = response.floodData || [];
+        let tempBkk = response.bkkWaterData || [];
+        let tempThai = response.thaiWaterData || [];
+        let tempShelter = response.shelterData || [];
+
+        rawFloodData = filterToLatestDay(tempFlood, 'Report_Date');
+        rawVulData = response.vulData || [];
+        rawBkkWaterData = filterToLatestDay(tempBkk, 'observed_at_th');
+        rawThaiWaterData = filterToLatestDay(tempThai, 'observed_at_th');
+        rawShelterData = filterToLatestDay(tempShelter, 'fetched_at_th');
+
+        populateDropdowns();
+        applyFilters();
+
+        initMaps();
+        renderBkkMap(rawBkkWaterData);
+        drawTrendChartMock();
+        initNewFilters();
+        renderThaiMap(rawThaiWaterData);
+        updateThaiRanking(rawThaiWaterData);
+        applyShelterFilters(); // This renders shelter map and populates the summary cards/table
+
+        let maxDate = 0;
+        rawThaiWaterData.forEach(d => { let ms = parseCustomDate(d.fetched_at_th); if(ms > maxDate) maxDate = ms; });
+        rawBkkWaterData.forEach(d => { let ms = parseCustomDate(d.fetched_at_th); if(ms > maxDate) maxDate = ms; });

@@ -1,0 +1,51 @@
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run.withSuccessHandler(initDashboard).getDashboardData();
+        } else {
+          // โหมดดึงข้อมูลตรงจาก Google Sheets (ไม่ต้องใช้ Server)
+          const SHEET_ID = '1RQDU83exQhNpVYjp9JyD5UdocA6JB6GpJeXA-Qe8Pr4';
+
+          function fetchSheetData(sheetName) {
+             return fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${sheetName}`)
+               .then(res => res.text())
+               .then(text => {
+                  let jsonString = text.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\);/)[1];
+                  let json = JSON.parse(jsonString);
+                  let cols = json.table.cols.map(c => c ? c.label : '');
+                  return json.table.rows.map(r => {
+                     let obj = {};
+                     r.c.forEach((cell, i) => {
+                        if (!cols[i]) return;
+                        let val = cell ? (cell.f !== undefined ? cell.f : cell.v) : null;
+                        obj[cols[i]] = val;
+                     });
+                     return obj;
+                  });
+               });
+          }
+
+          Promise.all([
+             fetchSheetData('Disaster_DB'),
+             fetchSheetData('Vulnerable_group'),
+             fetchSheetData('BKK_water_DB'),
+             fetchSheetData('thai_water_DB'),
+             fetchSheetData('shelter_DB')
+          ]).then(results => {
+             initDashboard({
+                floodData: results[0],
+                vulData: results[1],
+                bkkWaterData: results[2],
+                thaiWaterData: results[3],
+                shelterData: results[4]
+             });
+          }).catch(err => {
+             console.error("Error fetching live sheets data", err);
+             // Fallback to mock_data.js
+             const script = document.createElement('script');
+             script.src = 'mock_data.js';
+             script.onload = () => {
+                if (typeof MOCK_DATA !== 'undefined') initDashboard(MOCK_DATA);
+             };
+             document.head.appendChild(script);
+          });
+        }
+        }

@@ -1,0 +1,42 @@
+
+      <!-- Tab 4: Shelter -->
+      <div class="tab-pane fade" id="pills-shelter" role="tabpanel">
+        <div class="main-content">
+          <div class="filter-wrapper mb-3">
+            <div class="fw-bold text-muted me-2"><i class="bi bi-funnel-fill"></i> ค้นหาศูนย์พักพิง:</div>
+            <div class="row g-2 flex-grow-1">
+              <div class="col-md-6">
+                <select id="shelterDistrictFilter" class="form-select filter-select" onchange="applyShelterFilters()">
+                  <option value="all">📍 ทุกเขต</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <select id="shelterStatusFilter" class="form-select filter-select" onchange="applyShelterFilters()">
+                  <option value="all">🟢 ทุกสถานะ</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="findMyLocation('shelter')"
+              class="btn btn-outline-primary ms-auto rounded-pill fw-semibold">
+              <i class="bi bi-geo-alt"></i> ค้นหาใกล้ฉัน
+            </button>
+          </div>
+
+          <!-- Shelter Summary -->
+          <div class="row mb-3 gx-2 gy-2" id="shelterSummaryArea">
+             <!-- Javascript will populate this -->
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="modern-card p-2">
+                <h6 class="fw-bold px-3 pt-2 mb-3"><i class="bi bi-house-heart text-success"></i> แผนที่ศูนย์พักพิง</h6>
+                <div id="shelter-map" class="map-container"></div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="details-panel" id="shelter-details-panel">
+                <div class="text-center text-muted mt-5">
+                  <i class="bi bi-hand-index-thumb fs-1"></i>
+                  <p class="mt-2">คลิกที่จุดศูนย์พักพิงบนแผนที่เพื่อดูข้อมูล</p>
+                </div>

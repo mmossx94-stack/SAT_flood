@@ -1,0 +1,10 @@
+ds": 3,
+      "Casualties_Deaths": "-",
+      "Water_Level_Trend": "ลดลง",
+      "Current_Status": "กำลังประสบภัย",
+      "Remarks": "ปภ. รายงาน 549/2569 วันที่ 2 ต.ค. 2569 เวลา 06.00 น. ตารางหน้า 1; บาดเจ็บ: -; สูญหาย: -; คงเครื่องหมาย - และช่องว่างตามต้นฉบับ ปภ.",
+      "Ingested_At": "02/10/2026 09:55",
+      "Source_URL": "https://direct.disaster.go.th/directing/home"
+    },
+    {
+      "Recor

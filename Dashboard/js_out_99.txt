@@ -1,0 +1,25 @@
+            <td>${item.district_or_area || '-'}</td>
+            <td class="text-end fw-bold">${wl}</td>
+            <td class="text-center"><span class="badge" style="background-color: ${color}">${stat}</span></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+
+
+
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
+        tabEls.forEach(function (tabEl) {
+          tabEl.addEventListener('shown.bs.tab', function (event) {
+            var target = event.target.getAttribute('data-bs-target');
+            if (target === '#pills-bkk' && bkkMap) {
+              bkkMap.invalidateSize();
+              if (bkkMarkers.length > 0) {
+                var group = new L.featureGroup(bkkMarkers);
+                bkkMap.fitBounds(group.getBounds(), { padding: [50, 50] });
+              }
+            } else if (target === '#pills-thai' && thaiMap) {
+              thaiMap.invalidateSize();

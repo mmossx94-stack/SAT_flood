@@ -1,0 +1,4 @@
+909:       let shelterMap = null;
+1755:         shelterMap = L.map('shelter-map', {
+1761:         const shelterBaseMaps = {
+1766:         L.control.layers(shelterBaseMaps).addTo(shelterMap);

@@ -1,0 +1,20 @@
+                  <table class="table table-borderless table-hover m-0" id="vulTable">
+                    <thead style="position: sticky; top: 0; z-index: 1;">
+                      <tr>
+                        <th class="text-white" style="background-color: #8b5cf6 !important;">จังหวัด</th>
+                        <th class="text-end text-white" style="background-color: #8b5cf6 !important;">เด็ก 0-4 ปี</th>
+                        <th class="text-end text-white" style="background-color: #8b5cf6 !important;">หญิงตั้งครรภ์</th>
+                        <th class="text-end text-white" style="background-color: #8b5cf6 !important;">ผู้สูงอายุ (60+)
+                        </th>
+                        <th class="text-end fw-bold text-white" style="background-color: #7c3aed !important;">รวมทั้งหมด
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="vulTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>

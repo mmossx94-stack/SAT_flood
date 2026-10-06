@@ -1,0 +1,20 @@
+        let provVulMap = {};
+        rawVulData.forEach(item => {
+          if (item['จังหวัด']) {
+            provVulMap[item['จังหวัด']] = {
+              child: parseFloat(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0,
+              preg: parseFloat(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0,
+              elderly: parseFloat(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0,
+              total: parseFloat(item['รวมทั้งหมด']) || 0,
+              healthZone: item['เขตสุขภาพ'] || ''
+            };
+          }
+        });
+
+        let mapName = 'Thailand';
+
+        if (hzFilter !== 'all' && originalGeoJson) {
+          let allowedProvinces = new Set();
+          for (let p in provVulMap) {
+            if (provVulMap[p].healthZone === hzFilter) allowedProvinces.add(provinceEngMap[p]);
+          }

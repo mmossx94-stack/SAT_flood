@@ -1,0 +1,65 @@
+          tbody.appendChild(tr);
+        });
+      }
+
+      function renderThaiMap(data) {
+        thaiMarkers.forEach(m => thaiMap.removeLayer(m));
+        thaiMarkers = [];
+
+        let bounds = [];
+
+        // Sort data so Normal is rendered first, Critical is rendered last (on top)
+        let sortedData = [...data].sort((a, b) => {
+           let getWeight = (s) => {
+              if(!s) return 0;
+              if (s.includes('ล้นตลิ่ง') || s.includes('วิกฤต')) return 3;
+              if (s.includes('น้ำมาก') || s.includes('เฝ้าระวัง')) return 2;
+              return 1;
+           };
+           return getWeight(a.flood_status_source) - getWeight(b.flood_status_source);
+        });
+
+        sortedData.forEach(item => {
+          let lat = parseFloat(item.latitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.tele_station_lat : null));
+          let lng = parseFloat(item.longitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.tele_station_long : null));
+
+          if (!isNaN(lat) && !isNaN(lng)) {
+            let status = item.flood_status_source || 'ไม่ระบุ';
+            let color = getStatusColor(status);
+            
+            // Custom SVG blurred circle creates a non-additive heatmap effect
+            let marker = L.circleMarker([lat, lng], {
+                radius: 12,
+                color: 'transparent',
+                weight: 0,
+                fillColor: color,
+                fillOpacity: 0.7,
+                className: 'status-glow'
+            }).addTo(thaiMap);
+            
+            let tooltipContent = `<b>${item.station_name || item.canal || '-'}</b><br>สถานะ: ${status}`;
+            marker.bindTooltip(tooltipContent, { direction: 'top' });
+
+            marker.on('click', function () {
+              showDetailsPanel('thai-details-panel', item, 'thai');
+            });
+            
+            thaiMarkers.push(marker);
+            bounds.push([lat, lng]);
+          }
+        });
+
+        if (bounds.length > 0) thaiMap.fitBounds(bounds);
+        updateDefaultSummary("thai", data);
+      }
+
+      function updateThaiRanking(data) {
+        const tbody = document.getElementById('thaiRankingTableBody');
+        if (!tbody) return;
+
+        // Sort by water level (naively assuming higher is worse)
+        let sorted = [...data].filter(d => !isNaN(parseFloat(d.water_in_m_msl)))
+          .sort((a, b) => parseFloat(b.water_in_m_msl) - parseFloat(a.water_in_m_msl))
+          .slice(0, 10);
+
+        tbody.innerHTML = '';

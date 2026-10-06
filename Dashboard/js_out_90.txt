@@ -1,0 +1,40 @@
+            hzMap[hz].child += (parseFloat(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0);
+            hzMap[hz].preg += (parseFloat(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0);
+            hzMap[hz].elderly += (parseFloat(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0);
+            hzMap[hz].totalVul += (parseFloat(item['รวมทั้งหมด']) || 0);
+          }
+        });
+
+        const tbody = document.getElementById('healthZoneTableBody');
+        tbody.innerHTML = '';
+
+        let hzKeys = Object.keys(hzMap);
+        if (hzKeys.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-3">ไม่พบข้อมูล</td></tr>';
+          return;
+        }
+
+        // Sort by Number of Households descending
+        let sortedHz = hzKeys.map(k => ({ name: k, ...hzMap[k] })).sort((a, b) => b.households - a.households);
+
+        sortedHz.forEach(hz => {
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+          <td class="fw-semibold text-success">${hz.name}</td>
+          <td class="text-center">${hz.provinces.size}</td>
+          <td class="text-end fw-bold text-danger">${hz.households.toLocaleString()}</td>
+          <td class="text-end" style="background-color: rgba(0,0,0,0.02);">${hz.child.toLocaleString()}</td>
+          <td class="text-end" style="background-color: rgba(0,0,0,0.02);">${hz.preg.toLocaleString()}</td>
+          <td class="text-end" style="background-color: rgba(0,0,0,0.02);">${hz.elderly.toLocaleString()}</td>
+          <td class="text-end fw-bold text-purple" style="background-color: rgba(0,0,0,0.05);">${hz.totalVul.toLocaleString()}</td>
+        `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function drawVulnerableChart(vulData) {
+        if (!vulChartInstance) return;
+
+        let sumChild = 0;
+        let sumPreg = 0;
+        let sumElderly = 0;

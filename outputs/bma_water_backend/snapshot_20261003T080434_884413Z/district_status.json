@@ -1,0 +1,1205 @@
+[
+  {
+    "district_code": "1001",
+    "district_name": "พระนคร",
+    "source_district_ids": [
+      1
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 6,
+    "usable_station_count": 6,
+    "excluded_station_count": 0,
+    "normal_count": 6,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.PKG.01",
+      "WL.KLD.02",
+      "WL.KLD.01",
+      "WL.BLP.02",
+      "WL.KKS.01",
+      "WL.OAG.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1002",
+    "district_name": "ดุสิต",
+    "source_district_ids": [
+      2
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 5,
+    "usable_station_count": 5,
+    "excluded_station_count": 0,
+    "normal_count": 5,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.BKB.01",
+      "WL.KKS.02",
+      "WL.BSU.01",
+      "WL.SSN.02",
+      "WL.SSN.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1003",
+    "district_name": "หนองจอก",
+    "source_district_ids": [
+      3
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 11,
+    "usable_station_count": 9,
+    "excluded_station_count": 2,
+    "normal_count": 0,
+    "warning_count": 3,
+    "critical_count": 6,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.SSM.01",
+      "WL.SSB.12",
+      "WL.LPT.01",
+      "WL.LPC.01",
+      "WL.LPG.02",
+      "WL.LPG.03"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1004",
+    "district_name": "บางรัก",
+    "source_district_ids": [
+      4
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 2,
+    "usable_station_count": 2,
+    "excluded_station_count": 0,
+    "normal_count": 2,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.KKS.04",
+      "WL.STR.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1005",
+    "district_name": "บางเขน",
+    "source_district_ids": [
+      5
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 6,
+    "usable_station_count": 5,
+    "excluded_station_count": 1,
+    "normal_count": 2,
+    "warning_count": 1,
+    "critical_count": 2,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.KSG.01",
+      "WL.LOA.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1006",
+    "district_name": "บางกะปิ",
+    "source_district_ids": [
+      6
+    ],
+    "status": "warning",
+    "color": "#f4b05b",
+    "station_count": 12,
+    "usable_station_count": 10,
+    "excluded_station_count": 2,
+    "normal_count": 9,
+    "warning_count": 1,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.KJA.02"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1007",
+    "district_name": "ปทุมวัน",
+    "source_district_ids": [
+      7
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 3,
+    "usable_station_count": 2,
+    "excluded_station_count": 1,
+    "normal_count": 2,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.KKS.03",
+      "WL.ORC.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1008",
+    "district_name": "ป้อมปราบศัตรูพ่าย",
+    "source_district_ids": [
+      8
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 1,
+    "usable_station_count": 1,
+    "excluded_station_count": 0,
+    "normal_count": 1,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.SSB.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1009",
+    "district_name": "พระโขนง",
+    "source_district_ids": [
+      9
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 15,
+    "usable_station_count": 13,
+    "excluded_station_count": 2,
+    "normal_count": 13,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.BLY.01",
+      "WL.BLY.02",
+      "WL.KKD.02",
+      "WL.BNJ.03",
+      "WL.BNJ.01",
+      "WL.BOA.02",
+      "WL.BNJ.04",
+      "WL.BOA.01",
+      "WL.KJK.02",
+      "WL.BON.01",
+      "WL.BOA.03",
+      "WL.KJK.01",
+      "WL.BJK.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1010",
+    "district_name": "มีนบุรี",
+    "source_district_ids": [
+      10
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 7,
+    "usable_station_count": 5,
+    "excluded_station_count": 2,
+    "normal_count": 0,
+    "warning_count": 1,
+    "critical_count": 4,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.BYI.01",
+      "WL.KSI.01",
+      "WL.BKG.01",
+      "WL.SSB.10"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1011",
+    "district_name": "ลาดกระบัง",
+    "source_district_ids": [
+      11
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 11,
+    "usable_station_count": 9,
+    "excluded_station_count": 2,
+    "normal_count": 0,
+    "warning_count": 0,
+    "critical_count": 9,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.KSM.01",
+      "WL.KSM.02",
+      "WL.PWT.06",
+      "WL.KSI.02",
+      "WL.LKB.01",
+      "WL.STN.03",
+      "WL.PWT.04",
+      "WL.STN.02",
+      "WL.TPK.03"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1012",
+    "district_name": "ยานนาวา",
+    "source_district_ids": [
+      12
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 2,
+    "usable_station_count": 2,
+    "excluded_station_count": 0,
+    "normal_count": 2,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.KDN.01",
+      "WL.CNS.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1013",
+    "district_name": "สัมพันธวงศ์",
+    "source_district_ids": [],
+    "status": "unknown",
+    "color": "#676b6b",
+    "station_count": 0,
+    "usable_station_count": 0,
+    "excluded_station_count": 0,
+    "normal_count": 0,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "no_station",
+    "trigger_station_codes": [],
+    "latest_observed_at": null,
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1014",
+    "district_name": "พญาไท",
+    "source_district_ids": [
+      14
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 3,
+    "usable_station_count": 2,
+    "excluded_station_count": 1,
+    "normal_count": 2,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.VPD.02",
+      "WL.VPD.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1015",
+    "district_name": "ธนบุรี",
+    "source_district_ids": [
+      15
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 3,
+    "usable_station_count": 3,
+    "excluded_station_count": 0,
+    "normal_count": 3,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.BKY.01",
+      "WL.WSV.01",
+      "WL.SRE.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1016",
+    "district_name": "บางกอกใหญ่",
+    "source_district_ids": [],
+    "status": "unknown",
+    "color": "#676b6b",
+    "station_count": 0,
+    "usable_station_count": 0,
+    "excluded_station_count": 0,
+    "normal_count": 0,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "no_station",
+    "trigger_station_codes": [],
+    "latest_observed_at": null,
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1017",
+    "district_name": "ห้วยขวาง",
+    "source_district_ids": [
+      17
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 14,
+    "usable_station_count": 10,
+    "excluded_station_count": 4,
+    "normal_count": 10,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.BSU.07",
+      "WL.NKW.02",
+      "WL.CYI.02",
+      "WL.LPW.05",
+      "WL.CYI.01",
+      "WL.SSN.10",
+      "WL.SSN.08",
+      "WL.HKG.02",
+      "WL.SSN.07",
+      "WL.YSN.02"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1018",
+    "district_name": "คลองสาน",
+    "source_district_ids": [
+      18
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 1,
+    "usable_station_count": 1,
+    "excluded_station_count": 0,
+    "normal_count": 1,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.BSK.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1019",
+    "district_name": "ตลิ่งชัน",
+    "source_district_ids": [
+      19
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 10,
+    "usable_station_count": 9,
+    "excluded_station_count": 1,
+    "normal_count": 9,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.MSW.01",
+      "WL.KBU.02",
+      "WL.BPM.02",
+      "WL.KBU.01",
+      "WL.BPM.01",
+      "WL.CPA.01",
+      "WL.SCO.01",
+      "WL.WKT.01",
+      "WL.KJU.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1020",
+    "district_name": "บางกอกน้อย",
+    "source_district_ids": [
+      20
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 2,
+    "usable_station_count": 2,
+    "excluded_station_count": 0,
+    "normal_count": 2,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.KMN.01",
+      "WL.BBR.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1021",
+    "district_name": "บางขุนเทียน",
+    "source_district_ids": [
+      21
+    ],
+    "status": "warning",
+    "color": "#f4b05b",
+    "station_count": 11,
+    "usable_station_count": 9,
+    "excluded_station_count": 2,
+    "normal_count": 6,
+    "warning_count": 3,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.WHK.01",
+      "WL.SNC.01",
+      "WL.LPN.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1022",
+    "district_name": "ภาษีเจริญ",
+    "source_district_ids": [
+      22
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 10,
+    "usable_station_count": 10,
+    "excluded_station_count": 0,
+    "normal_count": 10,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.BWK.02",
+      "WL.BCN.02",
+      "WL.BJK.03",
+      "WL.BKY.02",
+      "WL.YPE.01",
+      "WL.BWK.01",
+      "WL.PSC.01",
+      "WL.PSC.03",
+      "WL.CPA.02",
+      "WL.PSC.02"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1023",
+    "district_name": "หนองแขม",
+    "source_district_ids": [
+      23
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 2,
+    "usable_station_count": 1,
+    "excluded_station_count": 1,
+    "normal_count": 1,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.PSC.05"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1024",
+    "district_name": "ราษฎร์บูรณะ",
+    "source_district_ids": [
+      24
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 3,
+    "usable_station_count": 3,
+    "excluded_station_count": 0,
+    "normal_count": 3,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.DKN.01",
+      "WL.BPK.01",
+      "WL.JRN.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1025",
+    "district_name": "บางพลัด",
+    "source_district_ids": [
+      25
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 3,
+    "usable_station_count": 3,
+    "excluded_station_count": 0,
+    "normal_count": 3,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.BYK.02",
+      "WL.BYK.01",
+      "WL.BBR.02"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1026",
+    "district_name": "ดินแดง",
+    "source_district_ids": [
+      26
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 4,
+    "usable_station_count": 4,
+    "excluded_station_count": 0,
+    "normal_count": 4,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.HKG.01",
+      "WL.FTM.01",
+      "WL.SSN.06",
+      "WL.NSG.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1027",
+    "district_name": "บึงกุ่ม",
+    "source_district_ids": [
+      27
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 6,
+    "usable_station_count": 4,
+    "excluded_station_count": 2,
+    "normal_count": 2,
+    "warning_count": 1,
+    "critical_count": 1,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.SSB.08"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1028",
+    "district_name": "สาทร",
+    "source_district_ids": [],
+    "status": "unknown",
+    "color": "#676b6b",
+    "station_count": 0,
+    "usable_station_count": 0,
+    "excluded_station_count": 0,
+    "normal_count": 0,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "no_station",
+    "trigger_station_codes": [],
+    "latest_observed_at": null,
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1029",
+    "district_name": "บางซื่อ",
+    "source_district_ids": [
+      29
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 6,
+    "usable_station_count": 5,
+    "excluded_station_count": 1,
+    "normal_count": 5,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.BKA.03",
+      "WL.KPM.01",
+      "WL.BKA.02",
+      "WL.BSU.02",
+      "WL.BKA.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1030",
+    "district_name": "จตุจักร",
+    "source_district_ids": [
+      30
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 10,
+    "usable_station_count": 9,
+    "excluded_station_count": 1,
+    "normal_count": 8,
+    "warning_count": 0,
+    "critical_count": 1,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.KPM.03"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1031",
+    "district_name": "บางคอแหลม",
+    "source_district_ids": [
+      31
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 1,
+    "usable_station_count": 1,
+    "excluded_station_count": 0,
+    "normal_count": 1,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.WSI.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1032",
+    "district_name": "ประเวศ",
+    "source_district_ids": [
+      32
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 14,
+    "usable_station_count": 12,
+    "excluded_station_count": 2,
+    "normal_count": 9,
+    "warning_count": 0,
+    "critical_count": 3,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.TPK.02",
+      "WL.PNM.01",
+      "WL.PWT.03"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1033",
+    "district_name": "คลองเตย",
+    "source_district_ids": [
+      33
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 2,
+    "usable_station_count": 2,
+    "excluded_station_count": 0,
+    "normal_count": 2,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.PKN.01",
+      "WL.KTY.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1034",
+    "district_name": "สวนหลวง",
+    "source_district_ids": [
+      34
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 11,
+    "usable_station_count": 11,
+    "excluded_station_count": 0,
+    "normal_count": 8,
+    "warning_count": 1,
+    "critical_count": 2,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.PWT.02",
+      "WL.HMK.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1035",
+    "district_name": "จอมทอง",
+    "source_district_ids": [
+      35
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 2,
+    "usable_station_count": 1,
+    "excluded_station_count": 1,
+    "normal_count": 1,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.SNC.02"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1036",
+    "district_name": "ดอนเมือง",
+    "source_district_ids": [
+      36
+    ],
+    "status": "warning",
+    "color": "#f4b05b",
+    "station_count": 8,
+    "usable_station_count": 7,
+    "excluded_station_count": 1,
+    "normal_count": 4,
+    "warning_count": 3,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.KPM.08",
+      "WL.KPM.05",
+      "WL.KPM.06"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1037",
+    "district_name": "ราชเทวี",
+    "source_district_ids": [
+      37
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 2,
+    "usable_station_count": 2,
+    "excluded_station_count": 0,
+    "normal_count": 2,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.SSB.03",
+      "WL.SSN.04"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1038",
+    "district_name": "ลาดพร้าว",
+    "source_district_ids": [
+      38
+    ],
+    "status": "warning",
+    "color": "#f4b05b",
+    "station_count": 5,
+    "usable_station_count": 4,
+    "excluded_station_count": 1,
+    "normal_count": 3,
+    "warning_count": 1,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.LPW.03"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1039",
+    "district_name": "วัฒนา",
+    "source_district_ids": [
+      39
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 7,
+    "usable_station_count": 7,
+    "excluded_station_count": 0,
+    "normal_count": 7,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.SSB.04",
+      "WL.WTN.02",
+      "WL.PSI.01",
+      "WL.SWU.01",
+      "WL.KPG.01",
+      "WL.BMK.01",
+      "WL.TSK.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1040",
+    "district_name": "บางแค",
+    "source_district_ids": [
+      40
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 9,
+    "usable_station_count": 7,
+    "excluded_station_count": 2,
+    "normal_count": 6,
+    "warning_count": 0,
+    "critical_count": 1,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.TWW.03"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1041",
+    "district_name": "หลักสี่",
+    "source_district_ids": [
+      41
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 11,
+    "usable_station_count": 4,
+    "excluded_station_count": 7,
+    "normal_count": 3,
+    "warning_count": 0,
+    "critical_count": 1,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.WLS.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1042",
+    "district_name": "สายไหม",
+    "source_district_ids": [
+      42
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 4,
+    "usable_station_count": 3,
+    "excluded_station_count": 1,
+    "normal_count": 1,
+    "warning_count": 0,
+    "critical_count": 2,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.PSR.01",
+      "WL.SST.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1043",
+    "district_name": "คันนายาว",
+    "source_district_ids": [
+      43
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 3,
+    "usable_station_count": 2,
+    "excluded_station_count": 1,
+    "normal_count": 0,
+    "warning_count": 1,
+    "critical_count": 1,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.SSB.09"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1044",
+    "district_name": "สะพานสูง",
+    "source_district_ids": [
+      44
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 4,
+    "usable_station_count": 3,
+    "excluded_station_count": 1,
+    "normal_count": 1,
+    "warning_count": 0,
+    "critical_count": 2,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.LBK.02",
+      "WL.LBK.03"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1045",
+    "district_name": "วังทองหลาง",
+    "source_district_ids": [
+      45
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 8,
+    "usable_station_count": 7,
+    "excluded_station_count": 1,
+    "normal_count": 7,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.LPW.01",
+      "WL.LPW.04",
+      "WL.WTK.01",
+      "WL.CKS.02",
+      "WL.KJT.01",
+      "WL.CKS.03",
+      "WL.CKS.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1046",
+    "district_name": "คลองสามวา",
+    "source_district_ids": [
+      46
+    ],
+    "status": "critical",
+    "color": "#e85965",
+    "station_count": 5,
+    "usable_station_count": 5,
+    "excluded_station_count": 0,
+    "normal_count": 1,
+    "warning_count": 0,
+    "critical_count": 4,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.PSR.02",
+      "WL.PSR.03",
+      "WL.PSR.05",
+      "WL.SWA.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1047",
+    "district_name": "บางนา",
+    "source_district_ids": [
+      47
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 7,
+    "usable_station_count": 7,
+    "excluded_station_count": 0,
+    "normal_count": 7,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.BNA.04",
+      "WL.BNA.03",
+      "WL.LSM.01",
+      "WL.BNA.02",
+      "WL.LSG.01",
+      "WL.BNA.01",
+      "WL.BNJ.02"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1048",
+    "district_name": "ทวีวัฒนา",
+    "source_district_ids": [
+      48
+    ],
+    "status": "warning",
+    "color": "#f4b05b",
+    "station_count": 14,
+    "usable_station_count": 14,
+    "excluded_station_count": 0,
+    "normal_count": 12,
+    "warning_count": 2,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.BPM.03",
+      "WL.BPM.04"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1049",
+    "district_name": "ทุ่งครุ",
+    "source_district_ids": [
+      49
+    ],
+    "status": "normal",
+    "color": "#24b295",
+    "station_count": 1,
+    "usable_station_count": 1,
+    "excluded_station_count": 0,
+    "normal_count": 1,
+    "warning_count": 0,
+    "critical_count": 0,
+    "partial_data": false,
+    "coverage": "complete",
+    "trigger_station_codes": [
+      "WL.RJK.01"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  },
+  {
+    "district_code": "1050",
+    "district_name": "บางบอน",
+    "source_district_ids": [
+      50
+    ],
+    "status": "warning",
+    "color": "#f4b05b",
+    "station_count": 5,
+    "usable_station_count": 4,
+    "excluded_station_count": 1,
+    "normal_count": 3,
+    "warning_count": 1,
+    "critical_count": 0,
+    "partial_data": true,
+    "coverage": "partial",
+    "trigger_station_codes": [
+      "WL.BBN.03"
+    ],
+    "latest_observed_at": "2026-10-03T15:00:00+07:00",
+    "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00"
+  }
+]

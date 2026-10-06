@@ -1,0 +1,100 @@
+        if (type === 'bkk') {
+          let warning = parseFloat(item.warning_in_source);
+          let crit = parseFloat(item.critical_in_source);
+          statText = getBkkStatusText(wl, warning, crit);
+          statColor = getBkkColor(wl, warning, crit);
+
+          let thresHtml = '';
+          if (!isNaN(warning)) thresHtml += `เตือนภัย: ${warning} ม.<br>`;
+          if (!isNaN(crit)) thresHtml += `วิกฤต: ${crit} ม.`;
+
+          statBadge = `<span class="badge" style="background-color: ${statColor}; font-size: 14px;">${statText}</span>
+                      <div class="text-muted small mt-2">${thresHtml}</div>`;
+        } else {
+          statText = item.flood_status_source || 'ไม่ระบุ';
+          statColor = getStatusColor(statText);
+          statBadge = `<span class="badge" style="background-color: ${statColor}; font-size: 14px;">${statText}</span>`;
+        }
+
+        let matchedVul = rawVulData.filter(v => (v['จังหวัด'] || '').includes(prov) || (v['อำเภอ'] || '').includes(area));
+        let vulTotal = matchedVul.reduce((sum, v) => sum + (parseFloat(v['รวมทั้งหมด']) || 0), 0);
+        let child = matchedVul.reduce((sum, v) => sum + (parseFloat(v['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0), 0);
+        let preg = matchedVul.reduce((sum, v) => sum + (parseFloat(v['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0), 0);
+        let elderly = matchedVul.reduce((sum, v) => sum + (parseFloat(v['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0), 0);
+
+        let matchedShelters = rawShelterData.filter(s => (s.district || '').includes(area) || (s.shelter_name || '').includes(prov));
+
+        let html = `
+        <h5 class="fw-bold mb-3 border-bottom pb-2 text-primary">
+           <i class="bi bi-geo-alt-fill"></i> จุดตรวจวัด: ${item.station_name || item.canal || 'ไม่ทราบชื่อ'}
+        </h5>
+        
+        <div class="row mb-3 bg-light p-2 rounded">
+          <div class="col-6">
+            <div class="text-muted small">พื้นที่ (เขต/อำเภอ)</div>
+            <div class="fw-bold">${area}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">ระดับน้ำปัจจุบัน</div>
+            <div class="fw-bold text-dark fs-5">${wlText}</div>
+          </div>
+        </div>
+        
+        <div class="mb-4">
+          <div class="text-muted small mb-1">สถานะการณ์น้ำ</div>
+          ${statBadge}
+        </div>
+
+        <div class="mb-4 bg-white border rounded p-2 border-warning">
+          <div class="text-muted small mb-1"><i class="bi bi-clock-history"></i> ความสดของข้อมูล (อัปเดตล่าสุด)</div>
+          <div class="fw-bold fs-6">${item.observed_at_th || 'ไม่ระบุ'}</div>
+          ${item.age_minutes_at_fetch ? `<div class="text-secondary small mt-1">อัปเดตเมื่อ: ${parseFloat(item.age_minutes_at_fetch).toFixed(0)} นาทีที่แล้ว</div>` : ''}
+          ${item.freshness_at_fetch ? `<div class="${item.freshness_at_fetch.includes('เกิน') ? 'text-danger fw-bold' : 'text-success'} small">${item.freshness_at_fetch}</div>` : ''}
+        </div>
+        
+        
+        ${type !== 'bkk' ? `
+        <h6 class="fw-bold mb-2 border-bottom pb-2" style="color: #8b5cf6;"><i class="bi bi-people-fill"></i> ผู้ที่ต้องดูแลพิเศษ (ประเมินในพื้นที่)</h6>
+        <div class="mb-3">
+           <div class="fs-4 fw-bold text-danger">${vulTotal.toLocaleString()} <span class="fs-6 text-muted fw-normal">คน</span></div>
+           <div class="row text-muted small mt-1">
+             <div class="col-4">เด็กเล็ก: <br><strong class="text-dark">${child.toLocaleString()}</strong></div>
+             <div class="col-4">คนท้อง: <br><strong class="text-dark">${preg.toLocaleString()}</strong></div>
+             <div class="col-4">ผู้สูงอายุ: <br><strong class="text-dark">${elderly.toLocaleString()}</strong></div>
+           </div>
+        </div>` : ''}
+        
+        <h6 class="fw-bold mb-2 border-bottom pb-2 text-success"><i class="bi bi-house-heart-fill"></i> ศูนย์พักพิงที่เปิดรับใกล้เคียง</h6>
+        <div class="mb-2" style="max-height: 180px; overflow-y: auto;">
+      `;
+
+        if (matchedShelters.length > 0) {
+          html += '<ul class="list-group list-group-flush">';
+          matchedShelters.slice(0, 5).forEach(s => {
+            let cap = s.capacity || 'ไม่ระบุ';
+            let sStat = s.status_source || 'ไม่ทราบ';
+            html += `<li class="list-group-item px-0 py-2 border-0 bg-transparent">
+                      <div class="fw-bold text-dark"><i class="bi bi-pin-map text-success"></i> ${s.shelter_name}</div>
+                      <div class="small text-muted ms-3 mt-1">
+                         รับได้: <strong class="text-dark">${cap}</strong> คน | 
+                         สถานะ: <strong class="${sStat.includes('ปิด') ? 'text-danger' : 'text-success'}">${sStat}</strong>
+                      </div>
+                    </li>`;
+          });
+          html += '</ul>';
+        } else {
+          html += '<div class="text-muted small p-2 bg-light rounded text-center">ยังไม่มีข้อมูลศูนย์พักพิงในเขตนี้</div>';
+        }
+
+        html += `</div>`;
+
+        panel.innerHTML = html;
+      }
+
+      function updateBkkRanking(data) {
+        const tbody = document.getElementById('bkkRankingTableBody');
+        if (!tbody) return;
+
+        let sorted = [...data].filter(d => !isNaN(parseFloat(d.water_in_m_msl)))
+          .sort((a, b) => parseFloat(b.water_in_m_msl) - parseFloat(a.water_in_m_msl))
+          .slice(0, 10);

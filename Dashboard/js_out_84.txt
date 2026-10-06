@@ -1,0 +1,35 @@
+                  </h6>
+                </div>
+                <div id="vulnerable_chart" style="height: 300px;" class="p-2 w-100"></div>
+              </div>
+            </div>
+            <!-- Vulnerable Table -->
+            <div class="col-lg-8">
+              <div class="modern-card h-100 p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-people-fill" style="color: #8b5cf6;"></i>
+                    ข้อมูลกลุ่มเปราะบางในพื้นที่ประสบภัยรายจังหวัด
+                  </h6>
+                </div>
+                <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                  <table class="table table-borderless table-hover m-0" id="vulTable">
+                    <thead style="position: sticky; top: 0; z-index: 1;">
+                      <tr>
+                        <th class="text-white" style="background-color: #8b5cf6 !important;">จังหวัด</th>
+                        <th class="text-end text-white" style="background-color: #8b5cf6 !important;">เด็ก 0-4 ปี</th>
+                        <th class="text-end text-white" style="background-color: #8b5cf6 !important;">หญิงตั้งครรภ์</th>
+                        <th class="text-end text-white" style="background-color: #8b5cf6 !important;">ผู้สูงอายุ (60+)
+                        </th>
+                        <th class="text-end fw-bold text-white" style="background-color: #7c3aed !important;">รวมทั้งหมด
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="vulTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>

@@ -1,0 +1,35 @@
+        };
+        trendChartInstance.setOption(option);
+      }
+
+      function updateHealthZoneTable(floodData, allVulData) {
+        // Create Province -> Health Zone mapping from allVulData
+        let provToHz = {};
+        allVulData.forEach(item => {
+          if (item['จังหวัด'] && item['เขตสุขภาพ']) {
+            provToHz[item['จังหวัด']] = item['เขตสุขภาพ'];
+          }
+        });
+
+        // Group data by Health Zone
+        let hzMap = {};
+        floodData.forEach(item => {
+          let p = item.Province;
+          if (!p) return;
+          let hz = provToHz[p] || 'ไม่ระบุเขตสุขภาพ';
+          if (!hzMap[hz]) {
+            hzMap[hz] = {
+              provinces: new Set(),
+              households: 0,
+              child: 0, preg: 0, elderly: 0, totalVul: 0
+            };
+          }
+          hzMap[hz].provinces.add(p);
+          hzMap[hz].households += (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0);
+        });
+
+        // Add Vulnerable stats to the zones based on affected provinces
+        allVulData.forEach(item => {
+          let p = item['จังหวัด'];
+          let hz = item['เขตสุขภาพ'];
+          if (p && hz && hzMap[hz] && hzMap[hz].provinces.has(p)) {

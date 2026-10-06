@@ -1,0 +1,32 @@
+import pandas as pd
+import json
+
+excel_file = 'รายงานสถานการณ์สาธารณภัยรายจังหวัด.xlsx'
+sheets = pd.ExcelFile(excel_file).sheet_names
+
+data = {}
+# 'Disaster_DB', 'Vulnerable_group', 'Dashboard', 'BKK_water_DB', 'thai_water_DB', 'shelter_DB'
+sheet_mapping = {
+    'Disaster_DB': 'floodData',
+    'Vulnerable_group': 'vulData',
+    'BKK_water_DB': 'bkkWaterData',
+    'thai_water_DB': 'thaiWaterData',
+    'shelter_DB': 'shelterData'
+}
+
+for sheet in sheets:
+    if sheet in sheet_mapping:
+        df = pd.read_excel(excel_file, sheet_name=sheet)
+        # Convert NaN to None (null in json)
+        df = df.where(pd.notnull(df), None)
+        # convert datetime to string if needed
+        for col in df.columns:
+            if pd.api.types.is_datetime64_any_dtype(df[col]):
+                df[col] = df[col].dt.strftime('%d/%m/%Y %H:%M')
+        
+        data[sheet_mapping[sheet]] = df.to_dict(orient='records')
+
+with open('mock_data.js', 'w', encoding='utf-8') as f:
+    f.write('const MOCK_DATA = ')
+    json.dump(data, f, ensure_ascii=False, indent=2)
+    f.write(';')

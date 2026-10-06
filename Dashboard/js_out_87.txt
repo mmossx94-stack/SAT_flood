@@ -1,0 +1,30 @@
+            }
+          ]
+        };
+
+        vulChartInstance.setOption(option, true);
+      }
+
+      function updateVulnerableTable(vulData) {
+        const tbody = document.getElementById('vulTableBody');
+        tbody.innerHTML = '';
+
+        if (vulData.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-3">ไม่พบข้อมูลกลุ่มเปราะบางในพื้นที่ประสบภัย</td></tr>';
+          return;
+        }
+
+        // Sort by Total Descending
+        let sortedVul = [...vulData].sort((a, b) => (b['รวมทั้งหมด'] || 0) - (a['รวมทั้งหมด'] || 0));
+
+        sortedVul.forEach(item => {
+          let child = parseFloat(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0;
+          let preg = parseFloat(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0;
+          let elderly = parseFloat(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0;
+          let total = parseFloat(item['รวมทั้งหมด']) || 0;
+
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+          <td class="fw-semibold text-main">${item['จังหวัด']}</td>
+          <td class="text-end">${child.toLocaleString()}</td>
+          <td class="text-end">${preg.toLocaleString()}</td>

@@ -1,0 +1,25 @@
+        });
+        if (bounds.length > 0) shelterMap.fitBounds(bounds);
+      }
+
+      function applyShelterFilters() {
+        const dist = document.getElementById('shelterDistrictFilter').value;
+
+        let filtered = rawShelterData.filter(d => {
+          return (dist === 'all') || d.district === dist;
+        });
+
+        renderShelterMap(filtered);
+      }
+
+      function findMyLocation(tabType) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              let lat = position.coords.latitude;
+              let lng = position.coords.longitude;
+              let mapObj = null;
+              if (tabType === 'bkk') mapObj = bkkMap;
+              else if (tabType === 'thai') mapObj = thaiMap;
+              else if (tabType === 'shelter') mapObj = shelterMap;
+

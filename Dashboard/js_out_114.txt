@@ -1,0 +1,25 @@
+                      let obj = {};
+                      r.c.forEach((cell, i) => {
+                         if (!cols[i]) return;
+                         let val = cell ? (cell.f !== undefined ? cell.f : cell.v) : null;
+                         obj[cols[i]] = val;
+                      });
+                      return obj;
+                   });
+                   delete window[cbName];
+                   resolve(data);
+                };
+                let script = document.createElement('script');
+                script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json;responseHandler:${cbName}&sheet=${sheetName}`;
+                script.onerror = () => reject(new Error('JSONP failed for ' + sheetName));
+                document.head.appendChild(script);
+             });
+          }
+
+          Promise.all([
+             fetchSheetData('Disaster_DB'),
+             fetchSheetData('Vulnerable_group'),
+             fetchSheetData('BKK_water_DB'),
+             fetchSheetData('thai_water_DB'),
+             fetchSheetData('shelter_DB')
+          ]).then(results => {

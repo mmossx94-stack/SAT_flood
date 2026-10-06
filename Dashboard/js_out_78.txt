@@ -1,0 +1,15 @@
+            if (prov.households >= 100000) { mapColor = '#7a0118'; }
+            else if (prov.households >= 10000) { mapColor = '#f03b20'; }
+            else if (prov.households >= 1000) { mapColor = '#feb24c'; textColor = '#000000'; }
+            else if (prov.households >= 1) { mapColor = '#ffeda0'; textColor = '#000000'; }
+
+            tr.innerHTML = `
+            <td class="text-center"><span class="badge rounded-pill px-3" style="background-color: ${mapColor}; color: ${textColor};">${index + 1}</span></td>
+            <td class="fw-semibold">${prov.name}</td>
+            <td class="text-center">${prov.districts.toLocaleString()}</td>
+            <td class="text-center">${prov.subdistricts.toLocaleString()}</td>
+            <td class="text-end fw-bold text-danger">${prov.households.toLocaleString()}</td>
+            <td class="text-end text-purple fw-bold" style="background-color: rgba(0,0,0,0.02);">${vulCount.toLocaleString()}</td>
+            <td class="text-center ${prov.deaths > 0 ? 'text-danger fw-bold' : ''}">${prov.deaths}</td>
+            <td class="text-center">
+               ${prov.risingCount > 0 ? `<span class="badge bg-danger rounded-pill"><i class="bi bi-arrow-up-circle-fill"></i> ${prov.risingCount} จุด</span>` : '<span class="text-muted">-</span>'}

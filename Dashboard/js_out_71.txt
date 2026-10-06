@@ -1,0 +1,40 @@
+            <td class="text-center">${prov.districts.toLocaleString()}</td>
+            <td class="text-center">${prov.subdistricts.toLocaleString()}</td>
+            <td class="text-end fw-bold text-danger">${prov.households.toLocaleString()}</td>
+            <td class="text-end text-purple fw-bold" style="background-color: rgba(0,0,0,0.02);">${vulCount.toLocaleString()}</td>
+            <td class="text-center ${prov.deaths > 0 ? 'text-danger fw-bold' : ''}">${prov.deaths}</td>
+            <td class="text-center">
+               ${prov.risingCount > 0 ? `<span class="badge bg-danger rounded-pill"><i class="bi bi-arrow-up-circle-fill"></i> ${prov.risingCount} จุด</span>` : '<span class="text-muted">-</span>'}
+            </td>
+          `;
+            topProvTbody.appendChild(tr);
+          });
+        }
+      }
+
+      function drawMap(data, hzFilter = 'all') {
+        if (!echartsInstance) return;
+
+        let mapData = [];
+        let maxVal = 1;
+        let provinceSums = {};
+
+        data.forEach(item => {
+          let pName = item.Province;
+          if (!pName) return;
+          let count = parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0;
+          provinceSums[pName] = (provinceSums[pName] || 0) + count;
+        });
+
+        let provVulMap = {};
+        rawVulData.forEach(item => {
+          if (item['จังหวัด']) {
+            provVulMap[item['จังหวัด']] = {
+              child: parseFloat(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0,
+              preg: parseFloat(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0,
+              elderly: parseFloat(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0,
+              total: parseFloat(item['รวมทั้งหมด']) || 0,
+              healthZone: item['เขตสุขภาพ'] || ''
+            };
+          }
+        });

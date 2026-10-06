@@ -1,0 +1,55 @@
+          let lat = parseFloat(item.latitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.tele_station_lat : null));
+          let lng = parseFloat(item.longitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.tele_station_long : null));
+
+          if (!isNaN(lat) && !isNaN(lng)) {
+            let status = item.flood_status_source || 'ไม่ระบุ';
+            let color = getStatusColor(status);
+            
+            // Heatmap intensity based on severity
+            let intensity = 0.1;
+            if (status.includes('ล้นตลิ่ง') || status.includes('วิกฤต')) intensity = 1.0;
+            else if (status.includes('น้ำมาก') || status.includes('เฝ้าระวัง')) intensity = 0.6;
+            else if (status.includes('ปกติ') || status.includes('น้ำน้อย')) intensity = 0.2;
+            
+            heatData.push([lat, lng, intensity]);
+
+            // Tiny invisible dot for hover/click (unobtrusive but interactive)
+            let marker = L.circleMarker([lat, lng], {
+                radius: 6,
+                color: 'transparent',
+                weight: 0,
+                fillColor: 'transparent',
+                fillOpacity: 0
+            }).addTo(thaiMap);
+            
+            let tooltipContent = `<b>${item.station_name || item.canal || '-'}</b><br>สถานะ: ${status}`;
+            marker.bindTooltip(tooltipContent, { direction: 'top' });
+
+            marker.on('click', function () {
+              showDetailsPanel('thai-details-panel', item, 'thai');
+            });
+            
+            thaiMarkers.push(marker);
+            bounds.push([lat, lng]);
+          }
+        });
+
+        // Add Heatmap layer safely to prevent IndexSizeError on hidden tabs
+        thaiHeatLayer = L.heatLayer(heatData, {
+            radius: 30, 
+            blur: 20,
+            maxZoom: 10,
+            gradient: {0.3: 'blue', 0.5: 'lime', 0.7: 'yellow', 1.0: 'red'}
+        });
+        
+        if (thaiMap.getSize().x > 0 && thaiMap.getSize().y > 0) {
+            thaiHeatLayer.addTo(thaiMap);
+        } else {
+            thaiMap.once('resize', function() {
+                thaiHeatLayer.addTo(thaiMap);
+            });
+        }
+
+        if (bounds.length > 0) thaiMap.fitBounds(bounds);
+        updateDefaultSummary("thai", data);
+      }

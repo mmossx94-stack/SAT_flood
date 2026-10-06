@@ -1,0 +1,21 @@
+function initDashboard(response) {
+        rawFloodData = response.floodData || [];
+        rawVulData = response.vulData || [];
+        rawBkkWaterData = response.bkkWaterData || [];
+        rawThaiWaterData = response.thaiWaterData || [];
+        rawShelterData = response.shelterData || [];
+
+        populateDropdowns();
+        applyFilters();
+
+        initMaps();
+        renderBkkMap(rawBkkWaterData);
+        renderShelterMap(rawShelterData);
+        drawTrendChartMock();
+        initNewFilters();
+        renderThaiMap(rawThaiWaterData);
+        updateThaiRanking(rawThaiWaterData);
+
+        const now = new Date();
+        document.getElementById('lastUpdated').innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> ข้อมูลล่าสุด: ` + now.toLocaleTimeString('th-TH');
+      }

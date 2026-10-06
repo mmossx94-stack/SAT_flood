@@ -1,0 +1,3 @@
+984:           google.script.run.withSuccessHandler(initDashboard).getDashboardData();
+991:                 initDashboard(MOCK_DATA);
+998:       function initDashboard(response) {

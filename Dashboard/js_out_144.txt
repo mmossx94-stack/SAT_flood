@@ -1,0 +1,15 @@
+
+      function renderThaiMap(data) {
+        if (!thaiMap) return;
+        if (window.thaiChoroplethLayer) thaiMap.removeLayer(window.thaiChoroplethLayer);
+        if (thaiHeatLayer) thaiMap.removeLayer(thaiHeatLayer);
+        thaiMarkers.forEach(m => thaiMap.removeLayer(m));
+        thaiMarkers = [];
+
+        let bounds = [];
+        let heatData = [];
+
+        data.forEach(item => {
+          let lat = parseFloat(item.latitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.tele_station_lat : null));
+          let lng = parseFloat(item.longitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.tele_station_long : null));
+

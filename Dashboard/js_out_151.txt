@@ -1,0 +1,50 @@
+      filter: blur(4px);
+    }
+
+    .legend {
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+      font-size: 13px;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+      border-radius: 50%;
+      opacity: 0.9;
+    }
+
+    /* =========================================
+       2026 Modern Dashboard UI Theme 
+       ========================================= */
+    :root {
+      --bg-color: #f3f6f9;
+      --card-bg: #ffffff;
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --danger: #ef233c;
+      --warning: #f77f00;
+      --success: #2ec4b6;
+      --text-main: #2b2d42;
+      --text-muted: #8d99ae;
+      --radius: 24px;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Kanit', sans-serif;
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Header (Glassmorphism) */
+    .glass-header {
+      background: rgba(255, 255, 255, 0.7);

@@ -1,0 +1,30 @@
+        // 3. Shelter Map
+        const shelterStreet = L.tileLayer('https://mt1.google.com/vt/lyrs=m&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const shelterTerrain = L.tileLayer('https://mt1.google.com/vt/lyrs=p&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const shelterHybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+
+        shelterMap = L.map('shelter-map', {
+          center: [13.736717, 100.523186],
+          zoom: 6,
+          layers: [shelterStreet]
+        });
+
+        const shelterBaseMaps = {
+          "แผนที่ถนน (ชัดเจน)": shelterStreet,
+          "แผนที่ภูมิประเทศ": shelterTerrain,
+          "ภาพดาวเทียม": shelterHybrid
+        };
+        L.control.layers(shelterBaseMaps).addTo(shelterMap);
+
+        // Add Legend for Shelter Map
+        var legendShelter = L.control({ position: 'bottomright' });
+        legendShelter.onAdd = function (map) {
+          var div = L.DomUtil.create('div', 'info legend');
+          div.style.background = 'white'; div.style.padding = '10px'; div.style.borderRadius = '8px'; div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.2)'; div.style.fontSize = '13px';
+          div.innerHTML += '<div class="fw-bold mb-2">สถานะศูนย์พักพิง</div>';
+          div.innerHTML += '<div><i style="background: #ef4444; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> เต็ม / ล้นความจุ</div>';
+          div.innerHTML += '<div><i style="background: #22c55e; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> ยังไม่เต็ม / ว่าง</div>';
+          return div;
+        };
+        legendShelter.addTo(shelterMap);
+

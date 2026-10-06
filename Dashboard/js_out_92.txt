@@ -1,0 +1,15 @@
+        let sortedHz = hzKeys.map(k => ({ name: k, ...hzMap[k] })).sort((a, b) => b.households - a.households);
+
+        sortedHz.forEach(hz => {
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+          <td class="fw-semibold text-success">${hz.name}</td>
+          <td class="text-center">${hz.provinces.size}</td>
+          <td class="text-end fw-bold text-danger">${hz.households.toLocaleString()}</td>
+          <td class="text-end" style="background-color: rgba(0,0,0,0.02);">${hz.child.toLocaleString()}</td>
+          <td class="text-end" style="background-color: rgba(0,0,0,0.02);">${hz.preg.toLocaleString()}</td>
+          <td class="text-end" style="background-color: rgba(0,0,0,0.02);">${hz.elderly.toLocaleString()}</td>
+          <td class="text-end fw-bold text-purple" style="background-color: rgba(0,0,0,0.05);">${hz.totalVul.toLocaleString()}</td>
+        `;
+          tbody.appendChild(tr);
+        });

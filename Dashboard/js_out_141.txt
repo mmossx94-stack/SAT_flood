@@ -1,0 +1,85 @@
+            <td class="text-end fw-bold">${wl.toFixed(2)}</td>
+            <td class="text-center"><span class="badge" style="background-color: ${color}">${statText}</span></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function renderThaiMap(data) {
+        if (!thaiMap) return;
+        if (window.thaiChoroplethLayer) thaiMap.removeLayer(window.thaiChoroplethLayer);
+        thaiMarkers.forEach(m => thaiMap.removeLayer(m));
+        thaiMarkers = [];
+
+        // Group stations by province to find the maximum severity
+        let provStatusMap = {};
+        data.forEach(item => {
+           let prov = item.district_or_area;
+           if (!prov) return;
+           
+           let status = item.flood_status_source || 'ไม่ระบุ';
+           let weight = 1;
+           if (status.includes('ล้นตลิ่ง') || status.includes('วิกฤต')) weight = 3;
+           else if (status.includes('น้ำมาก') || status.includes('เฝ้าระวัง')) weight = 2;
+           else if (status.includes('ปกติ') || status.includes('น้ำน้อย')) weight = 1;
+           else weight = 0;
+           
+           if (!provStatusMap[prov] || weight > provStatusMap[prov].weight) {
+               provStatusMap[prov] = {
+                   status: status,
+                   weight: weight,
+                   item: item // keep the worst station item for popup
+               };
+           }
+        });
+
+        // Draw Choropleth Map using GeoJSON (เทสีรายจังหวัด)
+        if (originalGeoJson) {
+            window.thaiChoroplethLayer = L.geoJSON(originalGeoJson, {
+                style: function(feature) {
+                    let engName = feature.properties.name;
+                    // Find Thai name
+                    let thaiName = Object.keys(provinceEngMap).find(k => provinceEngMap[k] === engName);
+                    
+                    let fillColor = '#e2e8f0'; // default empty
+                    if (thaiName && provStatusMap[thaiName] && provStatusMap[thaiName].weight > 0) {
+                        fillColor = getStatusColor(provStatusMap[thaiName].status);
+                    }
+                    
+                    return {
+                        fillColor: fillColor,
+                        weight: 1,
+                        opacity: 1,
+                        color: 'white',
+                        fillOpacity: 0.8
+                    };
+                },
+                onEachFeature: function(feature, layer) {
+                    let engName = feature.properties.name;
+                    let thaiName = Object.keys(provinceEngMap).find(k => provinceEngMap[k] === engName);
+                    
+                    if (thaiName && provStatusMap[thaiName] && provStatusMap[thaiName].weight > 0) {
+                        let worstItem = provStatusMap[thaiName].item;
+                        let status = provStatusMap[thaiName].status;
+                        layer.bindTooltip(`<b>${thaiName}</b><br>สถานะแย่ที่สุด: ${status}`, {direction: 'center'});
+                        layer.on('click', function() {
+                            showDetailsPanel('thai-details-panel', worstItem, 'thai');
+                        });
+                    } else {
+                        layer.bindTooltip(`<b>${thaiName || engName}</b><br>ไม่มีข้อมูล`, {direction: 'center'});
+                    }
+                }
+            }).addTo(thaiMap);
+            
+            thaiMap.fitBounds(window.thaiChoroplethLayer.getBounds());
+        }
+
+        updateDefaultSummary("thai", data);
+      }
+
+      function updateThaiRanking(data) {
+        const tbody = document.getElementById('thaiRankingTableBody');
+        if (!tbody) return;
+
+        // Sort by water level (naively assuming higher is worse)
+        let sorted = [...data].filter(d => !isNaN(parseFloat(d.water_in_m_msl)))

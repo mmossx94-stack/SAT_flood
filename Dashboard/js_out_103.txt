@@ -1,0 +1,10 @@
+      fetch('https://raw.githubusercontent.com/apisit/thailand.json/master/thailand.json')
+        rawShelterData = filterToLatestDay(tempShelter, 'fetched_at_th');
+        rawThaiWaterData.forEach(d => { let ms = parseCustomDate(d.fetched_at_th); if(ms > maxDate) maxDate = ms; });
+        rawBkkWaterData.forEach(d => { let ms = parseCustomDate(d.fetched_at_th); if(ms > maxDate) maxDate = ms; });
+        fetch('https://raw.githubusercontent.com/pcrete/gsvloader-demo/master/geojson/Bangkok-districts.geojson')
+        fetch('https://raw.githubusercontent.com/pcrete/gsvloader-demo/master/geojson/Bangkok-districts.geojson')
+          ${item.age_minutes_at_fetch ? `<div class="text-secondary small mt-1">อัปเดตเมื่อ: ${parseFloat(item.age_minutes_at_fetch).toFixed(0)} นาทีที่แล้ว</div>` : ''}
+          ${item.freshness_at_fetch ? `<div class="${item.freshness_at_fetch.includes('เกิน') ? 'text-danger fw-bold' : 'text-success'} small">${item.freshness_at_fetch}</div>` : ''}
+               <td class="text-muted small">${d.fetched_at_th ? new Date(parseCustomDate(d.fetched_at_th)).toLocaleString('th-TH') : '-'}</td>
+              let ms = parseCustomDate(d.fetched_at_th);

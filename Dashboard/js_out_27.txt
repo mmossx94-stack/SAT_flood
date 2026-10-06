@@ -1,0 +1,2 @@
+2284:       function applyShelterFilters() {
+2330:       function initNewFilters() {

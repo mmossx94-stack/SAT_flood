@@ -1,0 +1,15 @@
+              `;
+           }
+        }
+      }
+
+      function updateTable(data, allVulData) {
+        let provVulMap = {};
+        if (allVulData) {
+          allVulData.forEach(item => {
+            if (item['จังหวัด']) {
+              provVulMap[item['จังหวัด']] = parseFloat(item['รวมทั้งหมด']) || 0;
+            }
+          });
+        }
+

@@ -1,0 +1,6 @@
+          <i class="bi bi-arrow-clockwise"></i> อัปเดต: กำลังโหลด...
+mb-1" style="color: var(--primary);">สรุปสถานการณ์ล่าสุด</h6>
+           โดยจัดอันดับจากสถานีที่แจ้งรายงานเข้ามาล่าสุด</small>
+                <th class="bg-success text-white">อัปเดตเมื่อ</th>
+"bi bi-check-circle-fill text-success"></i> ข้อมูลล่าสุด: ` + now.toLocaleTimeString('th-TH');
+        let text = `จากข้อมูลล่าสุด พบพื้นที่ได้รับผลกระทบรวม <strong class="text-dan

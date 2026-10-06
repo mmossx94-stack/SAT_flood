@@ -1,0 +1,70 @@
+              name: 'กลุ่มเปราะบาง',
+              type: 'pie',
+              radius: ['40%', '70%'],
+              center: ['50%', '45%'],
+              avoidLabelOverlap: false,
+              itemStyle: {
+                borderRadius: 10,
+                borderColor: '#fff',
+                borderWidth: 2
+              },
+              label: { show: false },
+              labelLine: { show: false },
+              data: [
+                { value: sumChild, name: 'เด็ก 0-4 ปี' },
+                { value: sumPreg, name: 'หญิงตั้งครรภ์' },
+                { value: sumElderly, name: 'ผู้สูงอายุ (60+)' }
+              ]
+            }
+          ]
+        };
+
+        vulChartInstance.setOption(option, true);
+      }
+
+      function updateVulnerableTable(vulData) {
+        const tbody = document.getElementById('vulTableBody');
+        tbody.innerHTML = '';
+
+        if (vulData.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-3">ไม่พบข้อมูลกลุ่มเปราะบางในพื้นที่ประสบภัย</td></tr>';
+          return;
+        }
+
+        // Sort by Total Descending
+        let sortedVul = [...vulData].sort((a, b) => (b['รวมทั้งหมด'] || 0) - (a['รวมทั้งหมด'] || 0));
+
+        sortedVul.forEach(item => {
+          let child = parseFloat(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0;
+          let preg = parseFloat(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0;
+          let elderly = parseFloat(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0;
+          let total = parseFloat(item['รวมทั้งหมด']) || 0;
+
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+          <td class="fw-semibold text-main">${item['จังหวัด']}</td>
+          <td class="text-end">${child.toLocaleString()}</td>
+          <td class="text-end">${preg.toLocaleString()}</td>
+          <td class="text-end">${elderly.toLocaleString()}</td>
+          <td class="text-end fw-bold text-danger">${total.toLocaleString()}</td>
+        `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function updateSummary(data) {
+        const provinces = new Set(data.map(item => item.Province).filter(Boolean)).size;
+        const households = data.reduce((sum, item) => sum + (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0), 0);
+        const districts = data.reduce((sum, item) => sum + (parseInt(item.Affected_Districts_Count) || 0), 0);
+        const deaths = data.reduce((sum, item) => sum + (parseInt(item.Casualties_Deaths) || 0), 0);
+
+        animateValue("totalProvinces", parseInt(document.getElementById("totalProvinces").innerText.replace(/,/g, '')) || 0, provinces, 500);
+        animateValue("totalDistricts", parseInt(document.getElementById("totalDistricts").innerText.replace(/,/g, '')) || 0, districts, 500);
+        animateValue("totalHouseholds", parseInt(document.getElementById("totalHouseholds").innerText.replace(/,/g, '')) || 0, households, 800);
+        animateValue("totalDeaths", parseInt(document.getElementById("totalDeaths").innerText.replace(/,/g, '')) || 0, deaths, 500);
+
+        let footerEl = document.getElementById('floodSourceFooter');
+        if (footerEl) {
+           let maxTime = -1;
+           data.forEach(d => {
+              let ms = parseCustomDate(d.Ingested_At || d.Report_Date);

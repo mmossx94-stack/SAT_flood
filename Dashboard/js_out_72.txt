@@ -1,0 +1,40 @@
+          'เขตสุขภาพที่ 10': '#6366f1',
+          'เขตสุขภาพที่ 11': '#8b5cf6',
+          'เขตสุขภาพที่ 12': '#d946ef',
+          'เขตสุขภาพที่ 13': '#f43f5e'
+        };
+
+        for (let p in provinceSums) {
+          let engName = provinceEngMap[p];
+          if (engName) {
+            let vData = provVulMap[p] || { total: 0, child: 0, preg: 0, elderly: 0, healthZone: '' };
+            let val = provinceSums[p] || 0;
+            let bColor = hzColors[vData.healthZone] || '#ffffff';
+
+            mapData.push({
+              name: engName,
+              value: val,
+              thaiName: p,
+              vul: vData,
+              itemStyle: {
+                borderColor: bColor,
+                borderWidth: 1.5
+              }
+            });
+            if (val > maxVal) maxVal = val;
+          }
+        }
+
+        const option = {
+          tooltip: {
+            trigger: 'item',
+            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            borderColor: '#e2e8f0',
+            textStyle: { color: '#1e293b', fontFamily: 'Kanit' },
+            formatter: function (params) {
+              let pName = params.data ? params.data.thaiName : params.name;
+              let val = params.value ? params.value.toLocaleString() : '0';
+              let vul = params.data ? params.data.vul : null;
+
+              if (params.value > 0) {
+                let vulHtml = '';

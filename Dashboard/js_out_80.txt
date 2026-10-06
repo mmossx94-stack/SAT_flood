@@ -1,0 +1,16 @@
+const MOCK_DATA = {
+  "floodData": [
+    {
+      "Record_ID": "2026-10-02_พิษณุโลก_อุทกภัย",
+      "Report_Date": "02/10/2026 00:00",
+      "Region": "ภาคเหนือ",
+      "Province": "พิษณุโลก",
+      "Disaster_Type": "อุทกภัย",
+      "Affected_Districts_Count": 1,
+      "District_Names": "อ.บางระกำ",
+      "Affected_Subdistricts_Count": 2,
+      "Affected_Villages_Count": 2,
+      "Affected_Households": 3,
+      "Casualties_Deaths": "-",
+      "Water_Level_Trend": "ลดลง",
+      "Current_Status": "

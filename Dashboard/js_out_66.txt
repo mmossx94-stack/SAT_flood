@@ -1,0 +1,8 @@
+            <td class="text-end text-purple fw-bold" style="background-color: rgba(0,0,0,0.02);">${vulCount.toLocaleString()}</td>
+            <td class="text-center ${prov.deaths > 0 ? 'text-danger fw-bold' : ''}">${prov.deaths}</td>
+            <td class="text-center">
+               ${prov.risingCount > 0 ? `<span class="badge bg-danger rounded-pill"><i class="bi bi-arrow-up-circle-fill"></i> ${prov.risingCount} จุด</span>` : '<span class="text-muted">-</span>'}
+            </td>
+          `;
+            topProvTbody.appendChild(tr);
+          });

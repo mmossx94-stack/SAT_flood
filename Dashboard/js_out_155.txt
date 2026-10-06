@@ -1,0 +1,30 @@
+        renderBkkMap(rawBkkWaterData);
+        drawTrendChartMock();
+        initNewFilters();
+        renderThaiMap(rawThaiWaterData);
+        updateThaiRanking(rawThaiWaterData);
+        applyShelterFilters(); // This renders shelter map and populates the summary cards/table
+
+        let maxDate = 0;
+        rawThaiWaterData.forEach(d => { let ms = parseCustomDate(d.fetched_at_th); if(ms > maxDate) maxDate = ms; });
+        rawBkkWaterData.forEach(d => { let ms = parseCustomDate(d.fetched_at_th); if(ms > maxDate) maxDate = ms; });
+        rawFloodData.forEach(d => { let ms = parseCustomDate(d.Ingested_At); if(ms > maxDate) maxDate = ms; });
+        
+        let updateText = 'ไม่ระบุ';
+        if (maxDate > 0) {
+            let d = new Date(maxDate);
+            updateText = d.toLocaleDateString('th-TH') + ' ' + d.toLocaleTimeString('th-TH');
+        } else {
+            updateText = new Date().toLocaleTimeString('th-TH');
+        }
+
+        document.getElementById('lastUpdated').innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> อัปเดตล่าสุด: ` + updateText;
+      }
+
+
+      function populateDropdowns() {
+        const healthZones = [...new Set(rawVulData.map(item => item['เขตสุขภาพ']))]
+          .filter(val => val && !val.includes('รวม'))
+          .sort((a, b) => {
+            let numA = parseInt(a.replace(/\D/g, '')) || 0;
+            let numB = parseInt(b.replace(/\D/g, '')) || 0;

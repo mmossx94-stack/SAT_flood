@@ -1,0 +1,30 @@
+                        </th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">เด็ก 0-4 ปี</th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">หญิงตั้งครรภ์</th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">ผู้สูงอายุ (60+)
+                        </th>
+                        <th class="text-end fw-bold text-white" style="background-color: #047857 !important;">
+                          เปราะบางรวม (คน)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="healthZoneTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Vulnerable Groups Row -->
+          <div class="row g-4 mb-4">
+            <!-- Donut Chart -->
+            <div class="col-lg-4">
+              <div class="modern-card h-100 p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-pie-chart-fill" style="color: #8b5cf6;"></i> สัดส่วนกลุ่มเปราะบาง
+                    (ในพื้นที่ประสบภัย)
+                  </h6>
+                </div>

@@ -1,0 +1,10 @@
+      "source_url": "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/canal_waterlevel",
+      "raw_station_json": "{\"canal_datetime\":\"2026-09-28 13:20\",\"canal_value\":-1.76,\"canal_out\":0,\"agency\":{\"agency_name\":{\"th\":\"สำนักการระบายน้ำ กรุงเทพมหานคร\",\"en\":\"Department of Bangkok\",\"jp\":\"\"}},\"geocode\":{\"area_code\":\"1\",\"area_name\":{\"th\":\"กรุงเทพมหานคร\",\"en\":\"Bangkok\"},\"amphoe_name\":{\"th\":\"วัฒนา\",\"en\":\"Vadhana District\"},\"tumbon_name\":{\"th\":\"คลองตันเหนือ\",\"en\":\"Khlong Tan Nuea\"},\"province_code\":\"10\",\"province_name\":{\"th\":\"กรุงเทพมหานคร\",\"en\":\"Bangkok\"}},\"station\":{\"id\":223,\"canal_name\":{\"th\":\"คูน้ำต่อศักดิ์ ซ.ทองหล่อ 25\"},\"canal_lat\":13.74019,\"canal_long\":100.58037,\"canal_oldcode\":\"WL.TSK.01\",\"bank\":0,\"warning_level\":-0.2,\"critical_level\":0}}"
+    }
+  ],
+  "thaiWaterData": [
+    {
+      "station_id": "THAIWATER_WL:1098950",
+      "station_code": "Kgt.12A",
+      "station_name": "บ้านแก้ง",
+      "district_or_area": "สระแก้ว",

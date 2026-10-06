@@ -1,0 +1,10 @@
+        let sumElderly = 0;
+
+        vulData.forEach(item => {
+          sumChild += (parseFloat(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0);
+          sumPreg += (parseFloat(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0);
+          sumElderly += (parseFloat(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0);
+        });
+
+        let total = sumChild + sumPreg + sumElderly;
+

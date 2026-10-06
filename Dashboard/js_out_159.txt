@@ -1,0 +1,15 @@
+    .badge-modern {
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .badge-danger-soft {
+      background-color: #ffe5d9;
+      color: #d00000;
+    }
+

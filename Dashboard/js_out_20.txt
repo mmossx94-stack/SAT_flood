@@ -1,0 +1,3 @@
+863:       let bkkMap = null;
+1656:         bkkMap = L.map('bkk-map', {
+1662:         const bkkBaseMaps = {

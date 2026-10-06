@@ -1,0 +1,3899 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base target="_top">
+
+  <!-- Fonts: Kanit (Modern Thai UI Font) -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Leaflet.heat plugin -->
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+  <!-- ECharts สำหรับแผนที่ที่ซูมได้และสวยงาม -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js">
+  </script>
+
+  <style>
+    /* Map & Panel Layout */
+    .map-container {
+      height: 600px;
+      border-radius: 12px;
+      z-index: 1;
+    }
+
+    .details-panel {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      padding: 24px;
+      height: 600px;
+      overflow-y: auto;
+    }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 12px;
+    }
+
+    .nav-pills .nav-link {
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: 50px;
+      padding: 10px 24px;
+    }
+
+    .nav-pills .nav-link.active {
+      background-color: var(--primary);
+      color: white;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    }
+
+    .nav-pills-container {
+      background: white;
+      padding: 10px;
+      border-radius: 50px;
+      display: inline-flex;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      margin-bottom: 24px;
+    }
+
+    .status-glow {
+      filter: blur(4px);
+    }
+
+    .legend {
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+      font-size: 13px;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+      border-radius: 50%;
+      opacity: 0.9;
+    }
+
+    /* =========================================
+       2026 Modern Dashboard UI Theme 
+       ========================================= */
+    :root {
+      --bg-color: #f3f6f9;
+      --card-bg: #ffffff;
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --danger: #ef233c;
+      --warning: #f77f00;
+      --success: #2ec4b6;
+      --text-main: #2b2d42;
+      --text-muted: #8d99ae;
+      --radius: 24px;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Kanit', sans-serif;
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Header (Glassmorphism) */
+    .glass-header {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    }
+
+    .main-content {
+      padding: 20px 30px;
+    }
+
+    /* Cards */
+    .modern-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Filter Select */
+    .filter-wrapper {
+      background: var(--card-bg);
+      border-radius: 100px;
+      padding: 10px 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
+    .filter-select {
+      border: none;
+      background: #f8f9fa;
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-weight: 500;
+      color: var(--text-main);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s;
+    }
+
+    .filter-select:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+      background: #fff;
+    }
+
+    /* Stat Cards */
+    .stat-card {
+      padding: 25px;
+      border-radius: calc(var(--radius) - 4px);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+      border-radius: 50%;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+      border-radius: 50%;
+    }
+
+    .bg-gradient-blue {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    }
+
+    .bg-gradient-orange {
+      background: linear-gradient(135deg, #ff9f1c, #f77f00);
+    }
+
+    .bg-gradient-red {
+      background: linear-gradient(135deg, #ff4d6d, var(--danger));
+    }
+
+    .stat-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      opacity: 0.9;
+      z-index: 1;
+    }
+
+    .stat-value {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-top: 5px;
+      z-index: 1;
+    }
+
+    .stat-icon {
+      position: absolute;
+      right: 20px;
+      bottom: 15px;
+      font-size: 4rem;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    /* Map Area */
+    #map_canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+
+    /* Table & Scroll */
+    .table-container {
+      flex: 1;
+      overflow-y: auto;
+      border-radius: 12px;
+      padding-right: 5px;
+    }
+
+    .table th {
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      border-bottom: 2px solid #edf2f4;
+      font-size: 0.9rem;
+    }
+
+    .table thead:not([style*="background"]) th {
+      background-color: var(--card-bg);
+      color: var(--text-muted);
+    }
+
+    .table thead[style*="background"] th {
+      color: white;
+    }
+
+    .table td {
+      vertical-align: middle;
+      font-size: 0.95rem;
+      border-bottom: 1px dashed #edf2f4;
+      padding: 12px 8px;
+    }
+
+    .table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Modern Badges */
+    .badge-modern {
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .badge-danger-soft {
+      background-color: #ffe5d9;
+      color: #d00000;
+    }
+
+    .badge-warning-soft {
+      background-color: #fff3b0;
+      color: #9c6644;
+    }
+
+    .badge-success-soft {
+      background-color: #d8f3dc;
+      color: #1b4332;
+    }
+
+    .trend-up {
+      color: #d00000;
+      font-weight: 600;
+    }
+
+    .trend-down {
+      color: #1b4332;
+      font-weight: 600;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #d3d9df;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #adb5bd;
+    }
+
+    /* Layout fixes */
+    @media (min-width: 992px) {
+      .col-map {
+        min-height: 700px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .dashboard-row>div {
+        margin-bottom: 20px;
+      }
+
+      #map_canvas {
+        min-height: 400px;
+      }
+
+      .filter-wrapper {
+        flex-direction: column;
+        border-radius: 20px;
+      }
+
+      .filter-select {
+        width: 100%;
+      }
+    }
+    
+    /* Fade out map backgrounds so Heatmap shines */
+    .muted-map-tiles {
+      filter: grayscale(60%) saturate(40%) brightness(110%) contrast(80%);
+    }
+  </style>
+
+  <!-- html2canvas สำหรับเซฟหน้าจอเป็นรูปภาพ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+  </script>
+</head>
+
+<body>
+
+  <!-- Dashboard Container for Export -->
+  <div id="dashboard-export-area" style="background-color: var(--bg-color);">
+
+    <!-- Header -->
+    <header class="glass-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+          style="width: 45px; height: 45px; font-size: 1.2rem;">
+          <i class="bi bi-droplet-fill"></i>
+        </div>
+        <div>
+          <h4 class="m-0 fw-bold" style="color: var(--text-main);">รายงานสถานการณ์สาธารณภัยรายจังหวัด</h4>
+          <div class="small text-muted" style="margin-top: -2px;">แหล่งข้อมูล: กรมป้องกันและบรรเทาสาธารณภัย (ปภ.) และ
+            HDC ระบบคลังข้อมูลด้านการแพทย์และสุขภาพ</div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <div class="text-muted small fw-medium bg-light px-3 py-2 rounded-pill" id="lastUpdated"
+          data-html2canvas-ignore>
+          <i class="bi bi-arrow-clockwise"></i> อัปเดต: กำลังโหลด...
+        </div>
+        <button onclick="exportToPNG()" class="btn btn-primary rounded-pill fw-semibold px-4 shadow-sm"
+          data-html2canvas-ignore>
+          <i class="bi bi-download me-1"></i> บันทึกเป็น PNG
+        </button>
+      </div>
+    </header>
+
+
+    <div class="container-fluid px-4 mt-3">
+      <div class="text-center">
+        <div class="nav-pills-container">
+          <ul class="nav nav-pills" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-overview" type="button" role="tab">ภาพรวมสถานการณ์ (ระดับจังหวัด)</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-thai-tab" data-bs-toggle="pill" data-bs-target="#pills-thai"
+                type="button" role="tab"
+                onclick="setTimeout(()=>{if(thaiMap) thaiMap.invalidateSize();}, 200)">สถานการณ์น้ำ ประเทศไทย</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-bkk-tab" data-bs-toggle="pill" data-bs-target="#pills-bkk"
+                type="button" role="tab"
+                onclick="setTimeout(()=>{if(bkkMap) bkkMap.invalidateSize();}, 200)">สถานการณ์น้ำ กทม.</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-shelter-tab" data-bs-toggle="pill" data-bs-target="#pills-shelter"
+                type="button" role="tab" onclick="setTimeout(()=>{if(shelterMap) shelterMap.invalidateSize();}, 200)"><i
+                  class="bi bi-house-heart"></i> ศูนย์พักพิง</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-news-tab" data-bs-toggle="pill" data-bs-target="#pills-news"
+                type="button" role="tab" onclick="loadNewsTab()"><i class="bi bi-newspaper"></i> ข่าว & Word Cloud</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-trends-tab" data-bs-toggle="pill" data-bs-target="#pills-trends"
+                type="button" role="tab" onclick="loadTrendsTab()"><i class="bi bi-graph-up-arrow"></i> 🔥 Google Trends</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="pills-tabContent">
+      <!-- Tab 1: Overview -->
+      <div class="tab-pane fade show active" id="pills-overview" role="tabpanel">
+        <div class="main-content">
+
+          <!-- Executive Insight Alert -->
+          <div class="alert alert-primary shadow-sm border-0 mb-4 rounded-4"
+            style="background: linear-gradient(to right, #edf2fa, #fff); border-left: 5px solid var(--primary) !important; padding: 18px 24px;">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2 pb-2 border-bottom border-primary-subtle">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-shield-exclamation text-primary fs-4"></i>
+                <h6 class="fw-bold mb-0 text-primary" style="font-size: 1.05rem;">ภาพรวมสถานการณ์ (ระดับจังหวัด)</h6>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <i class="bi bi-lightbulb-fill text-warning fs-3 flex-shrink-0"></i>
+              <div id="executiveSummaryText" class="text-dark mb-0 fw-medium" style="font-size: 0.95rem;">
+                กำลังประมวลผลข้อมูล...
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Filters (Pill shaped) -->
+          <div class="filter-wrapper w-100 mb-4">
+            <div class="fw-bold text-muted me-2 d-none d-lg-block"><i class="bi bi-funnel-fill"></i> ตัวกรอง:</div>
+            <div class="row g-2 flex-grow-1 w-100">
+              <div class="col-md-6">
+                <select id="healthZoneFilter" class="form-select filter-select w-100" onchange="onHealthZoneChange()">
+                  <option value="all">🏥 ทุกเขตสุขภาพ</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <select id="provinceFilter" class="form-select filter-select w-100" onchange="applyFilters()">
+                  <option value="all">📌 ทุกจังหวัด</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 KPI Cards Row -->
+          <div class="row g-3 mb-4">
+            <div class="col-lg-3 col-md-6">
+              <div class="stat-card bg-gradient-blue shadow-sm">
+                <i class="bi bi-pin-map-fill stat-icon"></i>
+                <div class="stat-title">จังหวัดที่ประสบภัย</div>
+                <div class="stat-value" id="totalProvinces">0</div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="stat-card bg-gradient-red shadow-sm">
+                <i class="bi bi-house-door-fill stat-icon"></i>
+                <div class="stat-title">ครัวเรือนที่เดือดร้อน (หลัง)</div>
+                <div class="stat-value" id="totalHouseholds">0</div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="stat-card bg-dark shadow-sm" style="background: linear-gradient(135deg, #4b5563, #1f2937);">
+                <i class="bi bi-person-x-fill stat-icon"></i>
+                <div class="stat-title">ผู้เสียชีวิต (ราย)</div>
+                <div class="stat-value" id="totalDeaths">0</div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="stat-card bg-gradient-orange shadow-sm">
+                <i class="bi bi-geo-alt-fill stat-icon"></i>
+                <div class="stat-title">อำเภอที่ได้รับผลกระทบ</div>
+                <div class="stat-value" id="totalDistricts">0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Grid Layout (Map + Tables) -->
+          <div class="row g-4 dashboard-row" style="height: auto;">
+
+            <!-- Left Column: Geo Map -->
+            <div class="col-lg-5 col-map">
+              <div class="modern-card">
+                <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                  <i class="bi bi-map text-primary fs-5"></i> แผนที่ความรุนแรง (ครัวเรือน)
+                </h6>
+                <div id="map_canvas"
+                  class="flex-grow-1 d-flex justify-content-center align-items-center bg-light rounded"
+                  style="height: 480px;">
+                  <div class="spinner-border text-primary" role="status" id="mapSpinner"></div>
+                </div>
+                <div class="mt-2 px-2 text-muted small" id="floodSourceFooter">
+                   <!-- JavaScript will populate this -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Summary Tables -->
+            <div class="col-lg-7 d-flex flex-column gap-4">
+
+              <!-- Top Provinces Table -->
+              <div class="modern-card p-0 overflow-hidden shadow-sm d-flex flex-column">
+                <div class="p-3 border-bottom bg-light d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-bar-chart-line-fill text-danger fs-5"></i> รายชื่อจังหวัดที่ได้รับผลกระทบ
+                  </h6>
+                  <span id="overviewTableDate" class="badge bg-white text-secondary border shadow-sm fw-normal">
+                    <i class="bi bi-calendar-event me-1"></i> กำลังโหลดวันเวลาข้อมูล...
+                  </span>
+                </div>
+                <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                  <table class="table table-borderless table-striped m-0" id="topProvinceTable"
+                    style="white-space: nowrap;">
+                    <thead>
+                      <tr>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อันดับ</th>
+                        <th class="text-white" style="background-color: #3b82f6 !important;">จังหวัด</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อำเภอ</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">ตำบล</th>
+                        <th class="text-end fw-bold text-white" style="background-color: #3b82f6 !important;">
+                          ครัวเรือนเดือดร้อน</th>
+                        <th class="text-end text-white" style="background-color: #2563eb !important;">กลุ่มเปราะบางรวม
+                        </th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">เสียชีวิต</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">
+                          แนวโน้มของน้ำ</th>
+                      </tr>
+                    </thead>
+                    <tbody id="topProvinceTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Health Zone Summary Row -->
+          <div class="row g-4 mb-4">
+            <div class="col-12">
+              <div class="modern-card p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-hospital-fill text-success"></i> สรุปผลกระทบและกลุ่มเปราะบาง ระดับเขตสุขภาพ (Health
+                    Zone Summary)
+                  </h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-borderless table-striped m-0" id="healthZoneTable">
+                    <thead>
+                      <tr>
+                        <th class="text-white" style="background-color: #10b981 !important;">เขตสุขภาพ</th>
+                        <th class="text-start text-white" style="background-color: #10b981 !important;">รายชื่อจังหวัดที่ประสบภัย
+                        </th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">เด็ก 0-4 ปี</th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">หญิงตั้งครรภ์</th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">ผู้สูงอายุ (60+)
+                        </th>
+                        <th class="text-end fw-bold text-white" style="background-color: #047857 !important;">
+                          เปราะบางรวม (คน)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="healthZoneTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Vulnerable Groups Row -->
+          <div class="row g-4 mb-4">
+            <!-- Donut Chart -->
+            <div class="col-lg-4">
+              <div class="modern-card h-100 p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-pie-chart-fill" style="color: #8b5cf6;"></i> สัดส่วนกลุ่มเปราะบาง
+                    (ในพื้นที่ประสบภัย)
+                  </h6>
+                  <div class="text-muted small mt-1">แหล่งที่มา: HDC กระทรวงสาธารณสุข ณ เดือนกันยายน 2569</div>
+                </div>
+                <div id="vulnerable_chart" style="height: 300px;" class="p-2 w-100"></div>
+              </div>
+            </div>
+            <!-- Vulnerable Table -->
+            <div class="col-lg-8">
+              <div class="modern-card h-100 p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-people-fill" style="color: #8b5cf6;"></i>
+                    ข้อมูลกลุ่มเปราะบางในพื้นที่ประสบภัยรายจังหวัด
+                  </h6>
+                  <div class="text-muted small mt-1">แหล่งที่มา: HDC กระทรวงสาธารณสุข ณ เดือนกันยายน 2569</div>
+                </div>
+                <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                  <table class="table table-borderless table-hover m-0" id="vulTable">
+                    <thead style="position: sticky; top: 0; z-index: 1;">
+                      <tr>
+                        <th class="text-white" style="background-color: #8b5cf6 !important;">จังหวัด</th>
+                        <th class="text-end text-white" style="background-color: #8b5cf6 !important;">เด็ก 0-4 ปี</th>
+                        <th class="text-end text-white" style="background-color: #8b5cf6 !important;">หญิงตั้งครรภ์</th>
+                        <th class="text-end text-white" style="background-color: #8b5cf6 !important;">ผู้สูงอายุ (60+)
+                        </th>
+                        <th class="text-end fw-bold text-white" style="background-color: #7c3aed !important;">รวมทั้งหมด
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="vulTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div> <!-- End Tab 1 -->
+
+      <!-- Tab 2: BKK Water -->
+      <div class="tab-pane fade" id="pills-bkk" role="tabpanel">
+        <div class="main-content">
+
+          <div class="filter-wrapper mb-3">
+            <div class="fw-bold text-muted me-2"><i class="bi bi-funnel-fill"></i> ค้นหาสถานี กทม.:</div>
+            <div class="row g-2 flex-grow-1">
+              <div class="col-md-12">
+                <select id="bkkDistrictFilter" class="form-select filter-select" onchange="applyBkkFilters()">
+                  <option value="all">📍 ทุกเขต</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="findMyLocation('bkk')"
+              class="btn btn-outline-primary ms-auto rounded-pill fw-semibold mt-2 mt-md-0">
+              <i class="bi bi-geo-alt"></i> ค้นหาใกล้ฉัน
+            </button>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="modern-card p-2">
+                <h6 class="fw-bold px-3 pt-2 mb-3"><i class="bi bi-geo-alt text-primary"></i> แผนที่สถานการณ์น้ำ
+                  กรุงเทพมหานคร</h6>
+                <div id="bkk-map" class="map-container"></div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="details-panel" id="bkk-details-panel">
+                <div class="text-center text-muted mt-5">
+                  <i class="bi bi-hand-index-thumb fs-1"></i>
+                  <p class="mt-2">คลิกที่จุดสถานีบนแผนที่เพื่อดูข้อมูลที่เข้าใจง่าย</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4 mt-2">
+            <div class="col-12">
+              <div class="modern-card p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0"><i class="bi bi-list-ol text-primary"></i> 10 อันดับสถานีระดับน้ำสูงสุดใน กทม.
+                  </h6>
+                  <small class="text-muted">ข้อมูลจัดอันดับจากระดับน้ำรทก. สูงสุด
+                    เพื่อให้เห็นพื้นที่ที่น้ำสูงชัดเจน</small>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-borderless table-striped m-0" id="bkkRankingTable">
+                    <thead>
+                      <tr>
+                        <th class="bg-primary text-white">อันดับ</th>
+                        <th class="bg-primary text-white">ชื่อสถานี/คลอง</th>
+                        <th class="bg-primary text-white">เขต</th>
+                        <th class="bg-primary text-white text-end">ระดับน้ำ (ม.)</th>
+                        <th class="bg-primary text-white text-center">สถานะ</th>
+                      </tr>
+                    </thead>
+                    <tbody id="bkkRankingTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab 3: Thai Water -->
+      <div class="tab-pane fade" id="pills-thai" role="tabpanel">
+        <div class="main-content">
+
+          <div class="filter-wrapper mb-3">
+            <div class="fw-bold text-muted me-2"><i class="bi bi-funnel-fill"></i> ค้นหาสถานีทั่วประเทศ:</div>
+            <div class="row g-2 flex-grow-1">
+              <div class="col-md-4">
+                <select id="thaiHealthZoneFilter" class="form-select filter-select" onchange="onThaiHealthZoneChange()">
+                  <option value="all">🏥 ทุกเขตสุขภาพ</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <select id="thaiProvinceFilter" class="form-select filter-select" onchange="applyThaiFilters()">
+                  <option value="all">📍 ทุกจังหวัด</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <select id="thaiStatusFilter" class="form-select filter-select" onchange="applyThaiFilters()">
+                  <option value="all">💧 ทุกสถานการณ์น้ำ</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="findMyLocation('thai')"
+              class="btn btn-outline-primary ms-auto rounded-pill fw-semibold mt-2 mt-md-0">
+              <i class="bi bi-geo-alt"></i> ค้นหาใกล้ฉัน
+            </button>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="modern-card p-2">
+                <h6 class="fw-bold px-3 pt-2 mb-3"><i class="bi bi-geo-alt text-success"></i> แผนที่สถานการณ์น้ำ
+                  ประเทศไทย</h6>
+                <div id="thai-map" class="map-container"></div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="details-panel" id="thai-details-panel">
+                <div class="text-center text-muted mt-5">
+                  <i class="bi bi-hand-index-thumb fs-1"></i>
+                  <p class="mt-2">คลิกที่จุดสถานีบนแผนที่เพื่อดูข้อมูลที่เข้าใจง่าย</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary Rankings for Thai Water -->
+          <div class="row g-4 mt-2">
+            <div class="col-12">
+              <div class="modern-card p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0"><i class="bi bi-list-ol text-warning"></i> 10
+                    อันดับสถานีที่ระดับน้ำสูงสุดระดับประเทศ</h6>
+                  <small class="text-muted">ข้อมูลเพื่อเฝ้าระวังพื้นที่เสี่ยง
+                    โดยจัดอันดับจากสถานีที่แจ้งรายงานเข้ามาล่าสุด</small>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-borderless table-striped m-0" id="thaiRankingTable">
+                    <thead>
+                      <tr>
+                        <th class="bg-success text-white">อันดับ</th>
+                        <th class="bg-success text-white">สถานี</th>
+                        <th class="bg-success text-white">จังหวัด</th>
+                        <th class="bg-success text-white text-end">ระดับน้ำ (ม.)</th>
+                        <th class="bg-success text-white text-center">สถานะ</th>
+                        <th class="bg-success text-white">อัปเดตเมื่อ</th>
+                      </tr>
+                    </thead>
+                    <tbody id="thaiRankingTableBody">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Shelter -->
+      <div class="tab-pane fade" id="pills-shelter" role="tabpanel">
+        <div class="main-content">
+          <div class="filter-wrapper mb-3">
+            <div class="fw-bold text-muted me-2"><i class="bi bi-funnel-fill"></i> ค้นหาศูนย์พักพิง:</div>
+            <div class="row g-2 flex-grow-1">
+              <div class="col-md-6">
+                <select id="shelterDistrictFilter" class="form-select filter-select" onchange="applyShelterFilters()">
+                  <option value="all">📍 ทุกเขต</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <select id="shelterStatusFilter" class="form-select filter-select" onchange="applyShelterFilters()">
+                  <option value="all">🟢 ทุกสถานะ</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="findMyLocation('shelter')"
+              class="btn btn-outline-primary ms-auto rounded-pill fw-semibold">
+              <i class="bi bi-geo-alt"></i> ค้นหาใกล้ฉัน
+            </button>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-lg-7">
+              <!-- Shelter Summary Area -->
+              <div class="row" id="shelterSummaryArea">
+                 <!-- Javascript will populate this -->
+              </div>
+              <div class="modern-card p-2 shadow-sm border-0 mt-3">
+                <h6 class="fw-bold px-3 pt-2 mb-2 text-primary"><i class="bi bi-map-fill"></i> แผนที่ศูนย์พักพิง</h6>
+                <div id="shelter-map" class="map-container" style="height: 450px; border-radius: 8px;"></div>
+                <div class="mt-2 px-2 text-muted small" id="shelterSourceFooter">
+                   <!-- JavaScript will populate this -->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="modern-card p-0 overflow-hidden shadow-sm h-100 border-0">
+                <div class="p-3 bg-danger bg-opacity-10 d-flex justify-content-between align-items-center border-bottom">
+                  <h6 class="fw-bold m-0 text-danger" style="font-size: 1.1rem;"><i class="bi bi-exclamation-triangle-fill"></i> ศูนย์พักพิงที่เต็ม หรือ ใกล้เต็ม</h6>
+                </div>
+                <div class="table-responsive" style="max-height: 600px;">
+                  <table class="table table-bordered table-striped m-0 text-center text-nowrap align-middle">
+                    <thead class="table-danger">
+                      <tr>
+                        <th class="py-2">เขต</th>
+                        <th class="py-2">ชื่อศูนย์พักพิง</th>
+                        <th class="py-2">ความจุ</th>
+                        <th class="py-2">เข้าพัก</th>
+                      </tr>
+                    </thead>
+                    <tbody id="shelterCriticalTableBody">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- All Shelters Table (Bottom) -->
+          <div class="modern-card p-3 shadow-sm border-0">
+            <h5 class="fw-bold mb-3 text-primary" id="shelterAllTableTitle"><i class="bi bi-list-columns-reverse"></i> รายชื่อศูนย์พักพิงชั่วคราวทั้งหมด</h5>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered text-center align-middle text-nowrap" id="shelterAllTable">
+                <thead class="table-primary">
+                  <tr>
+                    <th>ลำดับ</th>
+                    <th>เขต</th>
+                    <th>ชื่อสถานที่ / ศูนย์</th>
+                    <th>ความจุ (คน)</th>
+                    <th>ผู้เข้าพัก (คน)</th>
+                    <th>สถานะ</th>
+                    <th>อัปเดตข้อมูลเมื่อ</th>
+                  </tr>
+                </thead>
+                <tbody id="shelterAllTableBody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 5: News & Word Cloud -->
+      <div class="tab-pane fade" id="pills-news" role="tabpanel">
+        <div class="main-content">
+
+          <!-- Header Bar -->
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div>
+              <h5 class="fw-bold mb-0"><i class="bi bi-newspaper text-primary"></i> ข่าวน้ำท่วมรายวัน & Word Cloud</h5>
+              <small class="text-muted" id="newsUpdateTime">กำลังโหลด...</small>
+            </div>
+            <div class="d-flex gap-2 flex-wrap align-items-center">
+              <!-- Language Toggle -->
+              <div class="btn-group btn-group-sm" role="group">
+                <input type="radio" class="btn-check" name="wclang" id="wclang-th" value="th" checked>
+                <label class="btn btn-outline-primary" for="wclang-th">🇹🇭 ไทย</label>
+                <input type="radio" class="btn-check" name="wclang" id="wclang-en" value="en">
+                <label class="btn btn-outline-primary" for="wclang-en">🇬🇧 English</label>
+                <input type="radio" class="btn-check" name="wclang" id="wclang-all" value="combined">
+                <label class="btn btn-outline-primary" for="wclang-all">🌐 ทั้งหมด</label>
+              </div>
+              <button class="btn btn-sm btn-outline-secondary" onclick="loadNewsTab(true)">
+                <i class="bi bi-arrow-clockwise"></i> รีเฟรช
+              </button>
+            </div>
+          </div>
+
+          <!-- Word Cloud Card -->
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <div class="modern-card p-3 shadow-sm border-0">
+                <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+                  <h6 class="fw-bold mb-0"><i class="bi bi-cloud-fill text-info"></i> Word Cloud คำที่ปรากฏในข่าวน้ำท่วม</h6>
+                  <!-- Category Filter Pills -->
+                  <div class="btn-group btn-group-sm" role="group" id="wcCategoryFilterGroup">
+                    <button type="button" class="btn btn-primary active" onclick="setWcCategory('all', this)">🌐 ทั้งหมด</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="setWcCategory('monitoring', this)">🌊 เฝ้าระวัง & สถานการณ์น้ำ</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="setWcCategory('relief', this)">🤝 การช่วยเหลือ & ศูนย์พักพิง</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="setWcCategory('post_flood', this)">🧹 ฟื้นฟูหลังน้ำท่วม</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="setWcCategory('location', this)">📍 พื้นที่ & จังหวัด</button>
+                  </div>
+                  <small class="text-muted" id="wcArticleCount"></small>
+                </div>
+                <!-- Animated Word Cloud Canvas -->
+                <div id="wordCloudContainer" style="width:100%;height:400px;position:relative;background:linear-gradient(135deg,#e8f4fd,#f0f9ff);border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+                  <div id="wordCloudLoading" class="text-center text-muted">
+                    <div class="spinner-border text-info mb-2" role="status"></div>
+                    <div>กำลังโหลด Word Cloud...</div>
+                  </div>
+                  <canvas id="wordCloudCanvas" style="display:none;max-width:100%;max-height:400px;"></canvas>
+                </div>
+                <!-- Word size legend -->
+                <div class="d-flex align-items-center gap-3 mt-2 flex-wrap">
+                  <small class="text-muted"><span style="font-size:22px;color:#1e3a5f;font-weight:900;">คำใหญ่</span> = พบบ่อยมาก</small>
+                  <small class="text-muted"><span style="font-size:14px;color:#4682b4;">คำกลาง</span> = พบปานกลาง</small>
+                  <small class="text-muted"><span style="font-size:10px;color:#87ceeb;">คำเล็ก</span> = พบน้อย</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Words Bar Chart + Stats -->
+          <div class="row g-3 mb-3">
+            <div class="col-lg-7">
+              <div class="modern-card p-3 shadow-sm border-0" style="height:320px;">
+                <h6 class="fw-bold mb-2"><i class="bi bi-bar-chart-fill text-warning"></i> คำที่ปรากฏบ่อยที่สุด (Top 15)</h6>
+                <div id="wordBarChart" style="height:260px;"></div>
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="modern-card p-3 shadow-sm border-0" style="height:320px;overflow-y:auto;">
+                <h6 class="fw-bold mb-2"><i class="bi bi-list-ol text-success"></i> ตารางคำความถี่</h6>
+                <table class="table table-sm table-hover mb-0">
+                  <thead class="table-light sticky-top">
+                    <tr><th>#</th><th>คำ</th><th class="text-end">ความถี่</th></tr>
+                  </thead>
+                  <tbody id="wordFreqTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- News Headlines -->
+          <div class="modern-card p-3 shadow-sm border-0">
+            <h6 class="fw-bold mb-3"><i class="bi bi-rss-fill text-danger"></i> พาดหัวข่าวน้ำท่วมล่าสุด</h6>
+            <div id="newsHeadlinesList">
+              <div class="text-center text-muted py-3">
+                <div class="spinner-border spinner-border-sm text-danger"></div> กำลังโหลดข่าว...
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab 6: Google Trends -->
+      <div class="tab-pane fade" id="pills-trends" role="tabpanel">
+        <div class="main-content">
+          <!-- Header Bar -->
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div>
+              <h5 class="fw-bold mb-0 text-dark"><i class="bi bi-graph-up-arrow text-danger"></i> 🔥 ข้อมูลจาก Google Trends</h5>
+              <small class="text-muted" id="trendsUpdateTime">กำลังโหลดข้อมูล...</small>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-secondary" onclick="loadTrendsTab(true)">
+                <i class="bi bi-arrow-clockwise"></i> รีเฟรชข้อมูล
+              </button>
+            </div>
+          </div>
+
+          <!-- Alert Note -->
+          <div class="alert alert-info py-2 px-3 mb-3 border-0 shadow-sm d-flex align-items-center gap-2" style="border-radius:10px; background:#e0f2fe; color:#0369a1;">
+            <i class="bi bi-info-circle-fill text-info" style="font-size:1.2rem;"></i>
+            <div class="small">
+              ข้อมูลเทรนด์คำค้นหาสกัดตรงจาก <strong>Google Trends ประเทศไทย (`geo='TH'`)</strong> จัดแยกเป็นหมวดหมู่ตามบริบท เพื่อให้ผู้บริหารมองเห็นประเด็นและข้อกังวลหลักของประชาชนได้ง่ายและชัดเจน
+            </div>
+          </div>
+
+          <!-- Feature 1: 📊 กราฟแนวโน้มความสนใจ 7 วันย้อนหลัง (7-Day Interest Trend Line Chart) -->
+          <div class="row g-3 mb-4">
+            <div class="col-12">
+              <div class="modern-card p-3 shadow-sm border-0">
+                <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+                  <h6 class="fw-bold mb-0 text-primary"><i class="bi bi-graph-up-arrow text-danger me-1"></i> 📊 แนวโน้มความสนใจเปรียบเทียบ 7 วันย้อนหลัง (7-Day Search Interest Trend)</h6>
+                  <small class="text-muted"><i class="bi bi-info-circle me-1"></i> แสดงความสนใจจากช่วงเกิดเหตุจนถึงช่วงฟื้นฟูหลังน้ำลด</small>
+                </div>
+                <div id="trendsTimelineChart" style="width: 100%; height: 260px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 หมวดหมู่คำค้นหาร้อนแรง (Categorized Query Cards) -->
+          <div class="row g-3 mb-4">
+            <!-- 1. หมวดการเงิน & เยียวยา -->
+            <div class="col-md-6 col-lg-3">
+              <div class="modern-card p-3 shadow-sm border-0 h-100" style="border-top: 4px solid var(--primary) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold text-primary mb-0" style="font-size: 0.95rem;"><i class="bi bi-cash-coin me-1"></i> หมวดการเงิน & เยียวยา</h6>
+                  <span class="badge bg-primary-subtle text-primary">ความสนใจสูง</span>
+                </div>
+                <small class="text-muted d-block mb-3" style="font-size: 0.8rem;">เยียวยา เงินช่วยเหลือ แอปทางรัฐ</small>
+                <div id="catQueriesFin" class="d-flex flex-column gap-2">
+                  <div class="text-muted small">กำลังโหลดข้อมูล...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. หมวดพื้นที่เสี่ยง & สถานการณ์น้ำ -->
+            <div class="col-md-6 col-lg-3">
+              <div class="modern-card p-3 shadow-sm border-0 h-100" style="border-top: 4px solid var(--primary) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold text-primary mb-0" style="font-size: 0.95rem;"><i class="bi bi-geo-alt-fill me-1"></i> หมวดพื้นที่เสี่ยง & น้ำ</h6>
+                  <span class="badge bg-primary-subtle text-primary">ความสนใจสูง</span>
+                </div>
+                <small class="text-muted d-block mb-3" style="font-size: 0.8rem;">ระดับน้ำ ลุ่มน้ำ เรดาร์ฝน</small>
+                <div id="catQueriesSurv" class="d-flex flex-column gap-2">
+                  <div class="text-muted small">กำลังโหลดข้อมูล...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. หมวดสิ่งของ & บรรเทาทุกข์ -->
+            <div class="col-md-6 col-lg-3">
+              <div class="modern-card p-3 shadow-sm border-0 h-100" style="border-top: 4px solid var(--primary) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold text-primary mb-0" style="font-size: 0.95rem;"><i class="bi bi-box-seam me-1"></i> หมวดสิ่งของ & บรรเทาทุกข์</h6>
+                  <span class="badge bg-primary-subtle text-primary">ความสนใจสูง</span>
+                </div>
+                <small class="text-muted d-block mb-3" style="font-size: 0.8rem;">ป้ายทะเบียน คันกั้นน้ำ ถุงยังชีพ</small>
+                <div id="catQueriesRel" class="d-flex flex-column gap-2">
+                  <div class="text-muted small">กำลังโหลดข้อมูล...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. หมวดวิธีปฏิบัติ & ขอความช่วยเหลือ -->
+            <div class="col-md-6 col-lg-3">
+              <div class="modern-card p-3 shadow-sm border-0 h-100" style="border-top: 4px solid var(--primary) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold text-primary mb-0" style="font-size: 0.95rem;"><i class="bi bi-question-circle-fill me-1"></i> หมวดวิธีปฏิบัติ & ช่วยเหลือ</h6>
+                  <span class="badge bg-primary-subtle text-primary">ความสนใจสูง</span>
+                </div>
+                <small class="text-muted d-block mb-3" style="font-size: 0.8rem;">วิธีทำ ขั้นตอนยื่นเรื่อง สายด่วน</small>
+                <div id="catQueriesHowTo" class="d-flex flex-column gap-2">
+                  <div class="text-muted small">กำลังโหลดข้อมูล...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Rising Queries + Region Ranking (Top 5) -->
+          <div class="row g-3 mb-4">
+            <div class="col-lg-6">
+              <div class="modern-card p-3 shadow-sm border-0 h-100" style="max-height:380px; overflow-y:auto;">
+                <h6 class="fw-bold mb-3 text-dark"><i class="bi bi-lightning-charge-fill text-warning me-1"></i> 🔥 คำค้นหาทั้งหมดที่พุ่งสูงขึ้นกระทันหัน (Rising Queries)</h6>
+                <div id="risingQueriesContainer" class="d-flex flex-wrap gap-2">
+                  <div class="text-muted">กำลังโหลดคำค้นหา...</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="modern-card p-3 shadow-sm border-0 h-100" style="max-height:380px; overflow-y:auto;">
+                <h6 class="fw-bold mb-2 text-dark"><i class="bi bi-geo-alt-fill text-danger me-1"></i> อันดับจังหวัดที่ค้นหาเรื่องน้ำท่วมมากที่สุด (Top 5 + คำค้นหาหลัก)</h6>
+                <table class="table table-sm table-hover mb-0" style="font-size: 13px;">
+                  <thead class="table-light sticky-top">
+                    <tr><th>#</th><th>จังหวัด</th><th>คำค้นหาอันดับ 1 ในพื้นที่</th><th class="text-end">ดัชนี</th></tr>
+                  </thead>
+                  <tbody id="trendsRegionTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div> <!-- End tab-content -->
+
+
+    <!-- JavaScript logic -->
+    <script>
+      const provinceEngMap = {
+        "กรุงเทพมหานคร": "Bangkok Metropolis", "สมุทรปราการ": "Samut Prakan", "นนทบุรี": "Nonthaburi", "ปทุมธานี": "Pathum Thani",
+        "พระนครศรีอยุธยา": "Phra Nakhon Si Ayutthaya", "อ่างทอง": "Ang Thong", "ลพบุรี": "Lop Buri", "สิงห์บุรี": "Sing Buri",
+        "ชัยนาท": "Chai Nat", "สระบุรี": "Saraburi", "ชลบุรี": "Chon Buri", "ระยอง": "Rayong",
+        "จันทบุรี": "Chanthaburi", "ตราด": "Trat", "ฉะเชิงเทรา": "Chachoengsao", "ปราจีนบุรี": "Prachin Buri",
+        "นครนายก": "Nakhon Nayok", "สระแก้ว": "Sa Kaeo", "นครราชสีมา": "Nakhon Ratchasima", "บุรีรัมย์": "Buri Ram",
+        "สุรินทร์": "Surin", "ศรีสะเกษ": "Si Sa Ket", "อุบลราชธานี": "Ubon Ratchathani", "ยโสธร": "Yasothon",
+        "ชัยภูมิ": "Chaiyaphum", "อำนาจเจริญ": "Amnat Charoen", "บึงกาฬ": "Bueng Kan", "หนองบัวลำภู": "Nong Bua Lam Phu",
+        "ขอนแก่น": "Khon Kaen", "อุดรธานี": "Udon Thani", "เลย": "Loei", "หนองคาย": "Nong Khai",
+        "มหาสารคาม": "Maha Sarakham", "ร้อยเอ็ด": "Roi Et", "กาฬสินธุ์": "Kalasin", "สกลนคร": "Sakon Nakhon",
+        "นครพนม": "Nakhon Phanom", "มุกดาหาร": "Mukdahan", "เชียงใหม่": "Chiang Mai", "ลำพูน": "Lamphun",
+        "ลำปาง": "Lampang", "อุตรดิตถ์": "Uttaradit", "แพร่": "Phrae", "น่าน": "Nan",
+        "พะเยา": "Phayao", "เชียงราย": "Chiang Rai", "แม่ฮ่องสอน": "Mae Hong Son", "นครสวรรค์": "Nakhon Sawan",
+        "อุทัยธานี": "Uthai Thani", "กำแพงเพชร": "Kamphaeng Phet", "ตาก": "Tak", "สุโขทัย": "Sukhothai",
+        "พิษณุโลก": "Phitsanulok", "พิจิตร": "Phichit", "เพชรบูรณ์": "Phetchabun", "ราชบุรี": "Ratchaburi",
+        "กาญจนบุรี": "Kanchanaburi", "สุพรรณบุรี": "Suphan Buri", "นครปฐม": "Nakhon Pathom", "สมุทรสาคร": "Samut Sakhon",
+        "สมุทรสงคราม": "Samut Songkhram", "เพชรบุรี": "Phetchaburi", "ประจวบคีรีขันธ์": "Prachuap Khiri Khan", "นครศรีธรรมราช": "Nakhon Si Thammarat",
+        "กระบี่": "Krabi", "พังงา": "Phangnga", "ภูเก็ต": "Phuket", "สุราษฎร์ธานี": "Surat Thani",
+        "ระนอง": "Ranong", "ชุมพร": "Chumphon", "สงขลา": "Songkhla", "สตูล": "Satun",
+        "ตรัง": "Trang", "พัทลุง": "Phatthalung", "ปัตตานี": "Pattani", "ยะลา": "Yala", "นราธิวาส": "Narathiwat"
+      };
+
+      let rawFloodData = [];
+      let rawVulData = [];
+      let isMapLoaded = false;
+      let currentFilteredData = [];
+      let echartsInstance = null;
+      let vulChartInstance = null;
+      let originalGeoJson = null;
+
+      let rawBkkWaterData = [];
+      let rawThaiWaterData = [];
+      let rawShelterData = [];
+      let bkkMap = null;
+      let thaiMap = null;
+      let shelterMap = null;
+      let trendChartInstance = null;
+      let bkkMarkers = [];
+      let thaiMarkers = [];
+      let thaiHeatLayer = null;
+      let shelterMarkers = [];
+      let userLocationMarker = null;
+
+
+      // Load GeoJSON for ECharts
+      fetch('https://raw.githubusercontent.com/apisit/thailand.json/master/thailand.json')
+        .then(response => response.json())
+        .then(geoJson => {
+          originalGeoJson = geoJson;
+          echarts.registerMap('Thailand', geoJson);
+          isMapLoaded = true;
+          document.getElementById('mapSpinner').style.display = 'none';
+
+          echartsInstance = echarts.init(document.getElementById('map_canvas'));
+          vulChartInstance = echarts.init(document.getElementById('vulnerable_chart'));
+
+          // Handle window resize
+          window.addEventListener('resize', () => {
+            if (echartsInstance) echartsInstance.resize();
+            if (vulChartInstance) vulChartInstance.resize();
+            if (trendChartInstance) trendChartInstance.resize();
+          });
+
+          if (currentFilteredData.length > 0) {
+            drawMap(currentFilteredData);
+          }
+          if (rawThaiWaterData && rawThaiWaterData.length > 0 && typeof thaiMap !== 'undefined' && thaiMap) {
+            renderThaiMap(rawThaiWaterData);
+          }
+        })
+        .catch(error => {
+          console.error('Error loading map data:', error);
+          document.getElementById('mapSpinner').innerHTML = '<span class="text-danger">ไม่สามารถโหลดแผนที่ได้</span>';
+        });
+
+      function parseCustomDate(dStr) {
+        if(!dStr) return 0;
+        
+        let parts = dStr.split(' ');
+        
+        // Date with time (DD/MM/YYYY HH:mm)
+        if(parts.length === 2 && parts[0].includes('/')) {
+           let dp = parts[0].split('/');
+           if(dp.length === 3) return Date.parse(`${dp[2]}-${dp[1]}-${dp[0]}T${parts[1]}:00+07:00`) || 0;
+        }
+        
+        // Only date (DD/MM/YYYY)
+        if(parts.length === 1 && parts[0].includes('/')) {
+           let dp = parts[0].split('/');
+           if(dp.length === 3) return Date.parse(`${dp[2]}-${dp[1]}-${dp[0]}T00:00:00+07:00`) || 0;
+        }
+
+        // ISO format or other custom formats (YYYY-MM-DD HH:mm)
+        if(parts.length === 2 && parts[0].includes('-')) {
+           return Date.parse(parts[0] + 'T' + parts[1] + '+07:00') || 0;
+        }
+
+        // Fallback to native parse
+        let ms = Date.parse(dStr);
+        if(!isNaN(ms)) return ms;
+        
+        return 0;
+      }
+
+      function parseNum(val) {
+        if (typeof val === 'number') return val;
+        if (!val) return 0;
+        return parseFloat(String(val).replace(/,/g, '')) || 0;
+      }
+
+      window.onload = function () {
+        // Init Trend Chart (Mock) before data loads
+        let trendDom = document.getElementById('trend_chart');
+        if (trendDom) trendChartInstance = echarts.init(trendDom);
+
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run.withSuccessHandler(initDashboard).getDashboardData();
+        } else {
+          // โหมดดึงข้อมูลตรงจาก Google Sheets (ไม่ต้องใช้ Server)
+          const SHEET_ID = '1RQDU83exQhNpVYjp9JyD5UdocA6JB6GpJeXA-Qe8Pr4';
+
+          function fetchSheetData(sheetName) {
+             return new Promise((resolve, reject) => {
+                let cbName = 'gviz_' + sheetName + '_' + Math.random().toString(36).substr(2, 9);
+                window[cbName] = function(json) {
+                   let cols = json.table.cols.map(c => c ? c.label : '');
+                   let data = json.table.rows.map(r => {
+                      let obj = {};
+                      r.c.forEach((cell, i) => {
+                         if (!cols[i]) return;
+                         let val = cell ? (cell.f !== undefined ? cell.f : cell.v) : null;
+                         obj[cols[i]] = val;
+                      });
+                      return obj;
+                   });
+                   delete window[cbName];
+                   resolve(data);
+                };
+                let script = document.createElement('script');
+                script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json;responseHandler:${cbName}&sheet=${sheetName}&headers=1`;
+                script.onerror = () => reject(new Error('JSONP failed for ' + sheetName));
+                document.head.appendChild(script);
+             });
+          }
+
+          Promise.all([
+             fetchSheetData('Disaster_DB'),
+             fetchSheetData('Vulnerable_group'),
+             fetchSheetData('BKK_water_DB'),
+             fetchSheetData('thai_water_DB'),
+             fetchSheetData('shelter_DB')
+          ]).then(results => {
+             initDashboard({
+                floodData: results[0],
+                vulData: results[1],
+                bkkWaterData: results[2],
+                thaiWaterData: results[3],
+                shelterData: results[4]
+             });
+          }).catch(err => {
+             console.error("Error fetching live sheets data", err);
+             // Fallback to mock_data.js
+             const script = document.createElement('script');
+             script.src = 'mock_data.js';
+             script.onload = () => {
+                if (typeof MOCK_DATA !== 'undefined') initDashboard(MOCK_DATA);
+             };
+             document.head.appendChild(script);
+          });
+        }
+      };
+
+      function initDashboard(response) {
+
+        function filterToLatestDay(data, dateField) {
+          if (!data || data.length === 0) return data;
+          let maxTime = -1;
+          let maxDateStr = null;
+          data.forEach(item => {
+             let ms = parseCustomDate(item[dateField]);
+             if (ms > maxTime) {
+               maxTime = ms;
+               maxDateStr = new Date(ms).toLocaleDateString('th-TH');
+             }
+          });
+          if (maxTime === -1 || !maxDateStr) return data;
+          return data.filter(item => {
+             let ms = parseCustomDate(item[dateField]);
+             if (ms === 0) return false;
+             return new Date(ms).toLocaleDateString('th-TH') === maxDateStr;
+          });
+        }
+
+        let tempFlood = response.floodData || [];
+        let tempBkk = response.bkkWaterData || [];
+        let tempThai = response.thaiWaterData || [];
+        let tempShelter = response.shelterData || [];
+
+        rawFloodData = filterToLatestDay(tempFlood, 'Report_Date');
+        rawVulData = response.vulData || [];
+        rawBkkWaterData = filterToLatestDay(tempBkk, 'observed_at_th');
+        rawThaiWaterData = filterToLatestDay(tempThai, 'observed_at_th');
+        rawShelterData = filterToLatestDay(tempShelter, 'fetched_at_th');
+
+        populateDropdowns();
+        applyFilters();
+
+        initMaps();
+        renderBkkMap(rawBkkWaterData);
+        updateBkkRanking(rawBkkWaterData);
+        drawTrendChartMock();
+        initNewFilters();
+        renderThaiMap(rawThaiWaterData);
+        updateThaiRanking(rawThaiWaterData);
+        applyShelterFilters(); // This renders shelter map and populates the summary cards/table
+
+        function getMaxDate(dataArray, dateField) {
+           if (!dataArray || dataArray.length === 0) return 'ไม่ระบุ';
+           let localMax = 0;
+           dataArray.forEach(d => { 
+               let ms = parseCustomDate(d[dateField]); 
+               if(ms > localMax) localMax = ms; 
+           });
+           if (localMax === 0) return 'ไม่ระบุ';
+           let dt = new Date(localMax);
+           return dt.toLocaleDateString('th-TH') + ' ' + dt.toLocaleTimeString('th-TH');
+        }
+
+        window.updateHeaderTimeForTab = function(tabId) {
+           let updateText = 'ไม่ระบุ';
+           if (tabId === 'pills-overview-tab') {
+              updateText = getMaxDate(rawFloodData, 'Report_Date');
+              if (updateText === 'ไม่ระบุ') updateText = getMaxDate(rawFloodData, 'Ingested_At');
+           } else if (tabId === 'pills-thai-tab') {
+              updateText = getMaxDate(rawThaiWaterData, 'fetched_at_th');
+           } else if (tabId === 'pills-bkk-tab') {
+              updateText = getMaxDate(rawBkkWaterData, 'fetched_at_th');
+           } else if (tabId === 'pills-shelter-tab') {
+              updateText = getMaxDate(rawShelterData, 'fetched_at_th');
+              if (updateText === 'ไม่ระบุ') updateText = getMaxDate(rawShelterData, 'updated_at_source');
+           }
+           document.getElementById('lastUpdated').innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> อัปเดตล่าสุด: ` + updateText;
+        };
+
+        // Attach event listeners to tabs so time updates dynamically
+        document.querySelectorAll('button[data-bs-toggle="pill"]').forEach(btn => {
+           btn.addEventListener('shown.bs.tab', function (e) {
+               window.updateHeaderTimeForTab(e.target.id);
+           });
+        });
+
+        // Trigger initial update based on currently active tab
+        let activeTab = document.querySelector('button[data-bs-toggle="pill"].active');
+        if (activeTab) {
+            window.updateHeaderTimeForTab(activeTab.id);
+        } else {
+            window.updateHeaderTimeForTab('pills-overview-tab');
+        }
+      }
+
+
+      function populateDropdowns() {
+        const healthZones = [...new Set(rawVulData.map(item => item['เขตสุขภาพ']))]
+          .filter(val => val && !val.includes('รวม'))
+          .sort((a, b) => {
+            let numA = parseInt(a.replace(/\D/g, '')) || 0;
+            let numB = parseInt(b.replace(/\D/g, '')) || 0;
+            return numA - numB;
+          });
+
+        populateSelect('healthZoneFilter', healthZones, '🏥 ทุกเขตสุขภาพ');
+        updateProvinceDropdown();
+      }
+
+      function updateProvinceDropdown() {
+        const hzFilter = document.getElementById('healthZoneFilter').value;
+        let allowedProvinces = new Set();
+
+        if (hzFilter === 'all') {
+          rawFloodData.forEach(item => { if (item.Province) allowedProvinces.add(item.Province); });
+        } else {
+          let floodProvinces = new Set(rawFloodData.map(item => item.Province).filter(Boolean));
+          rawVulData.forEach(item => {
+            if (item['เขตสุขภาพ'] === hzFilter && item['จังหวัด'] && floodProvinces.has(item['จังหวัด'])) {
+              allowedProvinces.add(item['จังหวัด']);
+            }
+          });
+        }
+
+        let provinces = [...allowedProvinces].sort();
+        const provSelect = document.getElementById('provinceFilter');
+        const currentSelected = provSelect.value;
+
+        provSelect.innerHTML = '';
+        populateSelect('provinceFilter', provinces, '📌 ทุกจังหวัด');
+
+        if (provinces.includes(currentSelected)) {
+          provSelect.value = currentSelected;
+        } else {
+          provSelect.value = 'all';
+        }
+      }
+
+      function onHealthZoneChange() {
+        updateProvinceDropdown();
+        applyFilters();
+      }
+
+      function populateSelect(elementId, options, defaultText) {
+        const select = document.getElementById(elementId);
+        select.innerHTML = `<option value="all">${defaultText}</option>`;
+        options.forEach(opt => {
+          const option = document.createElement('option');
+          option.value = opt; option.text = opt;
+          select.appendChild(option);
+        });
+      }
+
+      function applyFilters() {
+        const hzFilter = document.getElementById('healthZoneFilter').value;
+        const province = document.getElementById('provinceFilter').value;
+
+        let provToHz = {};
+        rawVulData.forEach(item => {
+          if (item['จังหวัด'] && item['เขตสุขภาพ']) {
+            provToHz[item['จังหวัด']] = item['เขตสุขภาพ'];
+          }
+        });
+
+        currentFilteredData = rawFloodData.filter(item => {
+          let hz = provToHz[item.Province] || '';
+          return (hzFilter === 'all' || hz === hzFilter) &&
+            (province === 'all' || item.Province === province);
+        });
+
+        const affectedProvinces = new Set(
+          currentFilteredData
+            .filter(item => (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0) > 0)
+            .map(item => item.Province)
+            .filter(Boolean)
+        );
+        let filteredVulData = rawVulData.filter(item => affectedProvinces.has(item['จังหวัด']));
+
+        updateSummary(currentFilteredData);
+        updateTable(currentFilteredData, rawVulData);
+        updateExecutiveSummary(currentFilteredData);
+        updateHealthZoneTable(currentFilteredData, rawVulData);
+
+        if (isMapLoaded) {
+          drawMap(currentFilteredData, hzFilter); // Pass hzFilter to map
+          drawVulnerableChart(filteredVulData);
+        }
+        updateVulnerableTable(filteredVulData);
+      }
+
+      function drawTrendChartMock() {
+        if (!trendChartInstance) return;
+
+        let dates = [];
+        let today = new Date();
+        for (let i = 6; i >= 0; i--) {
+          let d = new Date(today);
+          d.setDate(today.getDate() - i);
+          dates.push(d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' }));
+        }
+
+        const option = {
+          tooltip: {
+            trigger: 'axis',
+            textStyle: { fontFamily: 'Kanit' }
+          },
+          legend: {
+            data: ['ระดับน้ำสูงสุด (ม.)', 'ครัวเรือนเดือดร้อน (หมื่นหลัง)'],
+            bottom: 0,
+            textStyle: { fontFamily: 'Kanit' }
+          },
+          grid: {
+            left: '3%', right: '4%', bottom: '15%', containLabel: true
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: dates,
+            axisLabel: { fontFamily: 'Kanit' }
+          },
+          yAxis: [
+            {
+              type: 'value',
+              name: 'ระดับน้ำ',
+              position: 'left',
+              axisLabel: { fontFamily: 'Kanit' }
+            },
+            {
+              type: 'value',
+              name: 'ครัวเรือน',
+              position: 'right',
+              axisLabel: { fontFamily: 'Kanit' }
+            }
+          ],
+          series: [
+            {
+              name: 'ระดับน้ำสูงสุด (ม.)',
+              type: 'line',
+              yAxisIndex: 0,
+              smooth: true,
+              itemStyle: { color: '#3b82f6' },
+              label: { show: true, position: 'top', formatter: '{c}', fontFamily: 'Kanit' },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: 'rgba(59,130,246,0.3)' },
+                  { offset: 1, color: 'rgba(59,130,246,0.0)' }
+                ])
+              },
+              data: [2.5, 2.8, 3.1, 3.4, 3.2, 3.0, 2.9]
+            },
+            {
+              name: 'ครัวเรือนเดือดร้อน (หมื่นหลัง)',
+              type: 'line',
+              yAxisIndex: 1,
+              smooth: true,
+              itemStyle: { color: '#ef4444' },
+              label: { show: true, position: 'top', formatter: '{c}', fontFamily: 'Kanit' },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: 'rgba(239,68,68,0.3)' },
+                  { offset: 1, color: 'rgba(239,68,68,0.0)' }
+                ])
+              },
+              data: [1.2, 1.5, 2.1, 3.5, 4.0, 3.8, 3.5]
+            }
+          ]
+        };
+        trendChartInstance.setOption(option);
+      }
+
+      function updateHealthZoneTable(floodData, allVulData) {
+        // Create Province -> Health Zone mapping from allVulData
+        let provToHz = {};
+        allVulData.forEach(item => {
+          if (item['จังหวัด'] && item['เขตสุขภาพ']) {
+            provToHz[item['จังหวัด']] = item['เขตสุขภาพ'];
+          }
+        });
+
+        // Group data by Health Zone
+        let hzMap = {};
+        floodData.forEach(item => {
+          let p = item.Province;
+          if (!p) return;
+          let households = parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0;
+          let hz = provToHz[p] || 'ไม่ระบุเขตสุขภาพ';
+          if (!hzMap[hz]) {
+            hzMap[hz] = {
+              provinces: new Set(),
+              households: 0,
+              child: 0, preg: 0, elderly: 0, totalVul: 0
+            };
+          }
+          if (households > 0) {
+              hzMap[hz].provinces.add(p);
+          }
+          hzMap[hz].households += households;
+        });
+
+        // Add Vulnerable stats to the zones based on affected provinces
+        allVulData.forEach(item => {
+          let p = item['จังหวัด'];
+          let hz = item['เขตสุขภาพ'];
+          if (p && hz && hzMap[hz] && hzMap[hz].provinces.has(p)) {
+            hzMap[hz].child += parseNum(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']);
+            hzMap[hz].preg += parseNum(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']);
+            hzMap[hz].elderly += parseNum(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']);
+            hzMap[hz].totalVul += parseNum(item['รวมทั้งหมด']);
+          }
+        });
+
+        const tbody = document.getElementById('healthZoneTableBody');
+        tbody.innerHTML = '';
+
+        let hzKeys = Object.keys(hzMap);
+        if (hzKeys.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-3">ไม่พบข้อมูล</td></tr>';
+          return;
+        }
+
+        // Sort by Number of Households descending
+        let sortedHz = hzKeys.map(k => ({ name: k, ...hzMap[k] })).sort((a, b) => b.households - a.households);
+
+        sortedHz.forEach(hz => {
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+          <td class="fw-semibold text-success">${hz.name}</td>
+          <td class="text-start text-muted" style="max-width: 250px; white-space: normal;">${Array.from(hz.provinces).join(', ')}</td>
+          <td class="text-end" style="background-color: rgba(0,0,0,0.02);">${hz.child.toLocaleString()}</td>
+          <td class="text-end" style="background-color: rgba(0,0,0,0.02);">${hz.preg.toLocaleString()}</td>
+          <td class="text-end" style="background-color: rgba(0,0,0,0.02);">${hz.elderly.toLocaleString()}</td>
+          <td class="text-end fw-bold text-purple" style="background-color: rgba(0,0,0,0.05);">${hz.totalVul.toLocaleString()}</td>
+        `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function drawVulnerableChart(vulData) {
+        if (!vulChartInstance) return;
+
+        let sumChild = 0;
+        let sumPreg = 0;
+        let sumElderly = 0;
+
+        vulData.forEach(item => {
+          sumChild += parseNum(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']);
+          sumPreg += parseNum(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']);
+          sumElderly += parseNum(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']);
+        });
+
+        let total = sumChild + sumPreg + sumElderly;
+
+        if (total === 0) {
+          vulChartInstance.clear();
+          return;
+        }
+
+        const option = {
+          tooltip: {
+            trigger: 'item',
+            formatter: '{b}: {c} คน ({d}%)',
+            textStyle: { fontFamily: 'Kanit' }
+          },
+          legend: {
+            bottom: '5%',
+            left: 'center',
+            textStyle: { fontFamily: 'Kanit' }
+          },
+          color: ['#f43f5e', '#ec4899', '#8b5cf6'],
+          series: [
+            {
+              name: 'กลุ่มเปราะบาง',
+              type: 'pie',
+              radius: ['40%', '70%'],
+              center: ['50%', '45%'],
+              avoidLabelOverlap: false,
+              itemStyle: {
+                borderRadius: 10,
+                borderColor: '#fff',
+                borderWidth: 2
+              },
+              label: { show: false },
+              labelLine: { show: false },
+              data: [
+                { value: sumChild, name: 'เด็ก 0-4 ปี' },
+                { value: sumPreg, name: 'หญิงตั้งครรภ์' },
+                { value: sumElderly, name: 'ผู้สูงอายุ (60+)' }
+              ]
+            }
+          ]
+        };
+
+        vulChartInstance.setOption(option, true);
+      }
+
+      function updateVulnerableTable(vulData) {
+        const tbody = document.getElementById('vulTableBody');
+        tbody.innerHTML = '';
+
+        if (vulData.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-3">ไม่พบข้อมูลกลุ่มเปราะบางในพื้นที่ประสบภัย</td></tr>';
+          return;
+        }
+
+        // Sort by Total Descending
+        let sortedVul = [...vulData].sort((a, b) => (b['รวมทั้งหมด'] || 0) - (a['รวมทั้งหมด'] || 0));
+
+        sortedVul.forEach(item => {
+          let child = parseNum(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']);
+          let preg = parseNum(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']);
+          let elderly = parseNum(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']);
+          let total = parseNum(item['รวมทั้งหมด']);
+
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+          <td class="fw-semibold text-main">${item['จังหวัด']}</td>
+          <td class="text-end">${child.toLocaleString()}</td>
+          <td class="text-end">${preg.toLocaleString()}</td>
+          <td class="text-end">${elderly.toLocaleString()}</td>
+          <td class="text-end fw-bold text-danger">${total.toLocaleString()}</td>
+        `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function updateSummary(data) {
+        const provinces = new Set(data.map(item => item.Province).filter(Boolean)).size;
+        const households = data.reduce((sum, item) => sum + (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0), 0);
+        const districts = data.reduce((sum, item) => sum + (parseInt(item.Affected_Districts_Count) || 0), 0);
+        const deaths = data.reduce((sum, item) => sum + (parseInt(item.Casualties_Deaths) || 0), 0);
+
+        animateValue("totalProvinces", parseInt(document.getElementById("totalProvinces").innerText.replace(/,/g, '')) || 0, provinces, 500);
+        animateValue("totalDistricts", parseInt(document.getElementById("totalDistricts").innerText.replace(/,/g, '')) || 0, districts, 500);
+        animateValue("totalHouseholds", parseInt(document.getElementById("totalHouseholds").innerText.replace(/,/g, '')) || 0, households, 800);
+        animateValue("totalDeaths", parseInt(document.getElementById("totalDeaths").innerText.replace(/,/g, '')) || 0, deaths, 500);
+
+        let maxTime = -1;
+        data.forEach(d => {
+           let ms = parseCustomDate(d.Ingested_At || d.Report_Date);
+           if (ms > maxTime) maxTime = ms;
+        });
+
+        let dateStr = "ไม่มีระบุวันเวลา";
+        if (maxTime > 0) {
+           let dObj = new Date(maxTime);
+           let thDate = dObj.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
+           let thTime = dObj.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }).replace(':', '.') + ' น.';
+           dateStr = `ณ วันที่ ${thDate} ${thTime}`;
+
+           let footerEl = document.getElementById('floodSourceFooter');
+           if (footerEl) {
+              footerEl.innerHTML = `
+                <div>ข้อมูลจาก กรมป้องกันและบรรเทาสาธารณภัย (ปภ.)</div>
+                <div>${dateStr}</div>
+                <div>แหล่งที่มา <a href="https://direct.disaster.go.th/directing/home" target="_blank" class="text-decoration-none">https://direct.disaster.go.th/directing/home</a></div>
+              `;
+           }
+        } else {
+           let footerEl = document.getElementById('floodSourceFooter');
+           if (footerEl) {
+              footerEl.innerHTML = `
+                <div>ข้อมูลจาก กรมป้องกันและบรรเทาสาธารณภัย (ปภ.)</div>
+                <div>แหล่งที่มา <a href="https://direct.disaster.go.th/directing/home" target="_blank" class="text-decoration-none">https://direct.disaster.go.th/directing/home</a></div>
+              `;
+           }
+        }
+
+        const tEl = document.getElementById('overviewTableDate');
+        if (tEl) tEl.innerHTML = `<i class="bi bi-calendar-check me-1"></i> ข้อมูล ${dateStr}`;
+      }
+
+      function updateTable(data, allVulData) {
+        let provVulMap = {};
+        if (allVulData) {
+          allVulData.forEach(item => {
+            if (item['จังหวัด']) {
+              provVulMap[item['จังหวัด']] = parseNum(item['รวมทั้งหมด']);
+            }
+          });
+        }
+
+        let provinceMap = {};
+        data.forEach(item => {
+          let p = item.Province;
+          if (!p) return;
+          if (!provinceMap[p]) {
+            provinceMap[p] = {
+              households: 0,
+              deaths: 0,
+              districts: 0,
+              subdistricts: 0,
+              trend: ''
+            };
+          }
+          provinceMap[p].households += (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0);
+          provinceMap[p].deaths += (parseInt(item.Casualties_Deaths) || 0);
+
+          provinceMap[p].districts += (parseInt(item.Affected_Districts_Count) || 0);
+          provinceMap[p].subdistricts += (parseInt(item.Affected_Subdistricts_Count) || 0);
+
+          if (item.Water_Level_Trend) {
+             provinceMap[p].trend = item.Water_Level_Trend.trim();
+          }
+        });
+
+        const topProvTbody = document.getElementById('topProvinceTableBody');
+        topProvTbody.innerHTML = '';
+
+        let sortedProvinces = Object.keys(provinceMap).map(k => ({ name: k, ...provinceMap[k] }))
+          .filter(p => p.households > 0)
+          .sort((a, b) => b.households - a.households);
+
+        if (sortedProvinces.length === 0) {
+          topProvTbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted py-3">ไม่พบข้อมูล</td></tr>';
+        } else {
+          sortedProvinces.forEach((prov, index) => {
+            let vulCount = provVulMap[prov.name] || 0;
+            let tr = document.createElement('tr');
+            
+            let mapColor = '#e2e8f0'; 
+            let textColor = '#ffffff';
+            if (prov.households >= 100000) { mapColor = '#7a0118'; }
+            else if (prov.households >= 10000) { mapColor = '#f03b20'; }
+            else if (prov.households >= 1000) { mapColor = '#feb24c'; textColor = '#000000'; }
+            else if (prov.households >= 1) { mapColor = '#ffeda0'; textColor = '#000000'; }
+
+            let trendHtml = '<span class="text-muted">-</span>';
+            if (prov.trend === 'เพิ่มขึ้น') {
+               trendHtml = '<span class="badge bg-danger rounded-pill"><i class="bi bi-arrow-up-circle-fill"></i> เพิ่มขึ้น</span>';
+            } else if (prov.trend === 'ลดลง') {
+               trendHtml = '<span class="badge bg-success rounded-pill"><i class="bi bi-arrow-down-circle-fill"></i> ลดลง</span>';
+            } else if (prov.trend === 'ทรงตัว') {
+               trendHtml = '<span class="badge bg-secondary rounded-pill"><i class="bi bi-dash-circle-fill"></i> ทรงตัว</span>';
+            } else if (prov.trend) {
+               trendHtml = `<span class="badge bg-secondary rounded-pill">${prov.trend}</span>`;
+            }
+
+            tr.innerHTML = `
+            <td class="text-center"><span class="badge rounded-pill px-3" style="background-color: ${mapColor}; color: ${textColor};">${index + 1}</span></td>
+            <td class="fw-semibold">${prov.name}</td>
+            <td class="text-center">${prov.districts.toLocaleString()}</td>
+            <td class="text-center">${prov.subdistricts.toLocaleString()}</td>
+            <td class="text-end fw-bold text-danger">${prov.households.toLocaleString()}</td>
+            <td class="text-end text-purple fw-bold" style="background-color: rgba(0,0,0,0.02);">${vulCount.toLocaleString()}</td>
+            <td class="text-center ${prov.deaths > 0 ? 'text-danger fw-bold' : ''}">${prov.deaths}</td>
+            <td class="text-center">${trendHtml}</td>
+          `;
+            topProvTbody.appendChild(tr);
+          });
+        }
+      }
+
+      function drawMap(data, hzFilter = 'all') {
+        if (!echartsInstance) return;
+
+        let mapData = [];
+        let maxVal = 1;
+        let provinceSums = {};
+
+        data.forEach(item => {
+          let pName = item.Province;
+          if (!pName) return;
+          let count = parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0;
+          provinceSums[pName] = (provinceSums[pName] || 0) + count;
+        });
+
+        let provVulMap = {};
+        rawVulData.forEach(item => {
+          if (item['จังหวัด']) {
+            provVulMap[item['จังหวัด']] = {
+              child: parseNum(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']),
+              preg: parseNum(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']),
+              elderly: parseNum(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']),
+              total: parseNum(item['รวมทั้งหมด']),
+              healthZone: item['เขตสุขภาพ'] || ''
+            };
+          }
+        });
+
+        let mapName = 'Thailand';
+
+        if (hzFilter !== 'all' && originalGeoJson) {
+          let allowedProvinces = new Set();
+          for (let p in provVulMap) {
+            if (provVulMap[p].healthZone === hzFilter) allowedProvinces.add(provinceEngMap[p]);
+          }
+          let filteredFeatures = originalGeoJson.features.filter(f => allowedProvinces.has(f.properties.name));
+          let subGeo = { type: 'FeatureCollection', features: filteredFeatures };
+
+          mapName = 'Thailand_Filtered';
+          echarts.registerMap(mapName, subGeo);
+        }
+
+        const hzColors = {
+          'เขตสุขภาพที่ 1': '#ef4444',
+          'เขตสุขภาพที่ 2': '#f97316',
+          'เขตสุขภาพที่ 3': '#f59e0b',
+          'เขตสุขภาพที่ 4': '#84cc16',
+          'เขตสุขภาพที่ 5': '#22c55e',
+          'เขตสุขภาพที่ 6': '#10b981',
+          'เขตสุขภาพที่ 7': '#06b6d4',
+          'เขตสุขภาพที่ 8': '#0ea5e9',
+          'เขตสุขภาพที่ 9': '#3b82f6',
+          'เขตสุขภาพที่ 10': '#6366f1',
+          'เขตสุขภาพที่ 11': '#8b5cf6',
+          'เขตสุขภาพที่ 12': '#d946ef',
+          'เขตสุขภาพที่ 13': '#f43f5e'
+        };
+
+        for (let p in provinceSums) {
+          let engName = provinceEngMap[p];
+          if (engName) {
+            let vData = provVulMap[p] || { total: 0, child: 0, preg: 0, elderly: 0, healthZone: '' };
+            let val = provinceSums[p] || 0;
+            let bColor = hzColors[vData.healthZone] || '#ffffff';
+
+            mapData.push({
+              name: engName,
+              value: val,
+              thaiName: p,
+              vul: vData,
+              itemStyle: {
+                borderColor: bColor,
+                borderWidth: 1.5
+              }
+            });
+            if (val > maxVal) maxVal = val;
+          }
+        }
+
+        const option = {
+          tooltip: {
+            trigger: 'item',
+            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            borderColor: '#e2e8f0',
+            textStyle: { color: '#1e293b', fontFamily: 'Kanit' },
+            formatter: function (params) {
+              let pName = params.data ? params.data.thaiName : params.name;
+              let val = params.value ? params.value.toLocaleString() : '0';
+              let vul = params.data ? params.data.vul : null;
+
+              if (params.value > 0) {
+                let vulHtml = '';
+                if (vul && vul.total > 0) {
+                  vulHtml = `<div style="font-size:0.9rem; margin-top:8px; padding-top:8px; border-top:1px dashed #cbd5e1;">
+                                 <div style="color:#64748b; margin-bottom:5px;"><i class="bi bi-shield-plus" style="color: #8b5cf6;"></i> กลุ่มเปราะบางรวม: <strong class="text-dark">${vul.total.toLocaleString()}</strong> คน</div>
+                                 <ul style="margin:0; padding-left:20px; color:#64748b; font-size:0.85rem;">
+                                   <li>เด็ก 0-4 ปี: ${vul.child.toLocaleString()}</li>
+                                   <li>ตั้งครรภ์: ${vul.preg.toLocaleString()}</li>
+                                   <li>สูงอายุ 60+: ${vul.elderly.toLocaleString()}</li>
+                                 </ul>
+                              </div>`;
+                }
+                return `<div style="font-weight:600; border-bottom:1px solid #e2e8f0; padding-bottom:5px; margin-bottom:5px; font-size:1.05rem;">
+                          <i class="bi bi-geo-alt-fill text-danger"></i> จ.${pName} ${vul && vul.healthZone ? `<span class="badge bg-secondary ms-1" style="font-size:0.7rem; font-weight:normal;">${vul.healthZone}</span>` : ''}
+                        </div>
+                        <div style="font-size:0.95rem;">ครัวเรือนที่เดือดร้อน: <strong class="text-danger fs-5">${val}</strong> หลัง</div>
+                        ${vulHtml}`;
+              } else {
+                return `<div style="font-weight:600; color:#64748b; font-size:1.05rem;">
+                          <i class="bi bi-geo-alt-fill"></i> จ.${pName} ${vul && vul.healthZone ? `<span class="badge bg-light text-secondary border ms-1" style="font-size:0.7rem; font-weight:normal;">${vul.healthZone}</span>` : ''}
+                        </div>
+                        <div style="font-size:0.9rem; color:#94a3b8; margin-top:5px;">ยังไม่มีรายงานผลกระทบ</div>`;
+              }
+            }
+          },
+          visualMap: {
+            type: 'piecewise',
+            left: 'right',
+            bottom: '20px',
+            pieces: [
+              { min: 100000, label: 'มากกว่า 100,000 หลัง' },
+              { min: 10000, max: 99999, label: '10,000 - 99,999 หลัง' },
+              { min: 1000, max: 9999, label: '1,000 - 9,999 หลัง' },
+              { min: 1, max: 999, label: '1 - 999 หลัง' }
+            ],
+            inRange: {
+              color: ['#ffeda0', '#feb24c', '#f03b20', '#7a0118']
+            },
+            textStyle: { fontFamily: 'Kanit', color: '#475569', fontSize: 11, fontWeight: '500' },
+            backgroundColor: 'rgba(255,255,255,0.95)',
+            padding: 12,
+            borderRadius: 8,
+            borderColor: '#e2e8f0',
+            borderWidth: 1,
+            itemSymbol: 'circle',
+            itemWidth: 14,
+            itemHeight: 14
+          },
+          series: [
+            {
+              name: 'ผลกระทบ',
+              type: 'map',
+              map: mapName,
+              roam: true,
+              layoutCenter: ['50%', '50%'],
+              layoutSize: '105%',
+              aspectScale: 1.0,
+              label: {
+                show: true,
+                formatter: function (params) {
+                  if (!params.data) return '';
+                  let thaiName = params.data.thaiName || '';
+                  let val = params.value || 0;
+
+                  // Show name only for affected provinces to reduce clutter
+                  if (val > 0) {
+                    return thaiName;
+                  }
+                  return '';
+                },
+                color: '#000',
+                fontSize: 10,
+                fontWeight: 'bold',
+                fontFamily: 'Kanit',
+                textBorderColor: '#fff',
+                textBorderWidth: 2
+              },
+              itemStyle: {
+                // สีของพื้นที่ๆ ไม่มีข้อมูล (สีฟ้าอมเทาอ่อนๆ คลีนๆ)
+                areaColor: '#f1f5f9',
+                // สีเส้นขอบ (ขาว)
+                borderColor: '#ffffff',
+                borderWidth: 1,
+                // เงาที่นุ่มนวลขึ้น ไม่ดูหนักเกินไป
+                shadowColor: 'rgba(0, 0, 0, 0.08)',
+                shadowBlur: 5,
+                shadowOffsetX: 2,
+                shadowOffsetY: 3
+              },
+              emphasis: {
+                label: { show: true },
+                itemStyle: {
+                  areaColor: '#3b82f6',
+                  borderColor: '#ffffff',
+                  borderWidth: 1.5,
+                  shadowBlur: 10,
+                  shadowColor: 'rgba(59, 130, 246, 0.4)'
+                }
+              },
+              select: {
+                itemStyle: { areaColor: '#f59e0b' }
+              },
+              data: mapData
+            }
+          ]
+        };
+
+        echartsInstance.setOption(option, true);
+      }
+
+      // Number animation function
+      function animateValue(id, start, end, duration) {
+        if (start === end) { document.getElementById(id).innerHTML = end.toLocaleString(); return; }
+        let range = end - start;
+        let current = start;
+        let increment = end > start ? 1 : -1;
+        let stepTime = Math.abs(Math.floor(duration / range));
+        if (stepTime < 10) { increment = Math.ceil(range / (duration / 10)); stepTime = 10; }
+
+        let obj = document.getElementById(id);
+        let timer = setInterval(function () {
+          current += increment;
+          if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+            current = end;
+            clearInterval(timer);
+          }
+          obj.innerHTML = current.toLocaleString();
+        }, stepTime);
+      }
+
+      function updateExecutiveSummary(data) {
+        const summaryElem = document.getElementById('executiveSummaryText');
+        if (data.length === 0) {
+          summaryElem.innerHTML = 'ไม่มีข้อมูลในขณะนี้ หรือไม่พบข้อมูลตามเงื่อนไขที่กรอง';
+          return;
+        }
+
+        const totalProv = new Set(data.map(item => item.Province).filter(Boolean)).size;
+        const totalHouseholds = data.reduce((sum, item) => sum + (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0), 0);
+        const deaths = data.reduce((sum, item) => sum + (parseInt(item.Casualties_Deaths) || 0), 0);
+
+        // Find top province
+        let provMap = {};
+        data.forEach(item => {
+          let p = item.Province;
+          if (p) provMap[p] = (provMap[p] || 0) + (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0);
+        });
+        let topProv = Object.keys(provMap).sort((a, b) => provMap[b] - provMap[a])[0];
+
+        let text = `จากข้อมูลล่าสุด พบพื้นที่ได้รับผลกระทบรวม <strong class="text-danger">${totalProv} จังหวัด</strong> มีครัวเรือนที่เดือดร้อนสะสม <strong class="text-danger">${totalHouseholds.toLocaleString()} หลัง</strong> `;
+        if (deaths > 0) {
+          text += `และมีผู้เสียชีวิต <strong class="text-dark">${deaths} ราย</strong> `;
+        }
+        if (topProv) {
+          text += `โดยพื้นที่ที่ต้องเฝ้าระวังและให้ความช่วยเหลือเร่งด่วนคือ <strong class="text-primary">จ.${topProv}</strong> ซึ่งมีผู้ได้รับผลกระทบสูงสุดในขณะนี้`;
+        }
+
+        summaryElem.innerHTML = text;
+      }
+
+      // Export to PNG using html2canvas
+
+      // Map Logic
+      function initMaps() {
+        // Base Layers for BKK
+        const bkkStreet = L.tileLayer('https://mt1.google.com/vt/lyrs=m&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const bkkTerrain = L.tileLayer('https://mt1.google.com/vt/lyrs=p&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const bkkHybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+
+        // 1. BKK Map
+        bkkMap = L.map('bkk-map', {
+          center: [13.7563, 100.5018],
+          zoom: 10,
+          layers: [bkkStreet] // Default to Street for clarity
+        });
+
+        const bkkBaseMaps = {
+          "แผนที่ถนน (ชัดเจน)": bkkStreet,
+          "แผนที่ภูมิประเทศ": bkkTerrain,
+          "ภาพดาวเทียม": bkkHybrid
+        };
+        L.control.layers(bkkBaseMaps).addTo(bkkMap);
+
+        // Load Bangkok districts GeoJSON boundaries
+        fetch('https://raw.githubusercontent.com/pcrete/gsvloader-demo/master/geojson/Bangkok-districts.geojson')
+          .then(res => res.json())
+          .then(geoData => {
+            L.geoJSON(geoData, {
+              style: function (feature) {
+                return {
+                  color: "#3b82f6",
+                  weight: 2,
+                  opacity: 0.6,
+                  fillOpacity: 0.05
+                };
+              }
+            }).addTo(bkkMap);
+          })
+          .catch(e => console.error('Error loading BKK geojson:', e));
+
+        // Base Layers for Thai
+        const thaiStreet = L.tileLayer('https://mt1.google.com/vt/lyrs=m&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20, className: 'muted-map-tiles' });
+        const thaiTerrain = L.tileLayer('https://mt1.google.com/vt/lyrs=p&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20, className: 'muted-map-tiles' });
+        const thaiHybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20, className: 'muted-map-tiles' });
+
+        // 2. Thai Map
+        thaiMap = L.map('thai-map', {
+          center: [13.736717, 100.523186],
+          zoom: 5,
+          layers: [thaiStreet] // Default to Street for clarity
+        });
+
+        const thaiBaseMaps = {
+          "แผนที่ถนน (ชัดเจน)": thaiStreet,
+          "แผนที่ภูมิประเทศ": thaiTerrain,
+          "ภาพดาวเทียม": thaiHybrid
+        };
+        L.control.layers(thaiBaseMaps).addTo(thaiMap);
+
+        // 3. Shelter Map
+        const shelterStreet = L.tileLayer('https://mt1.google.com/vt/lyrs=m&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const shelterTerrain = L.tileLayer('https://mt1.google.com/vt/lyrs=p&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const shelterHybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+
+        shelterMap = L.map('shelter-map', {
+          center: [13.736717, 100.523186],
+          zoom: 6,
+          layers: [shelterStreet]
+        });
+
+        const shelterBaseMaps = {
+          "แผนที่ถนน (ชัดเจน)": shelterStreet,
+          "แผนที่ภูมิประเทศ": shelterTerrain,
+          "ภาพดาวเทียม": shelterHybrid
+        };
+        L.control.layers(shelterBaseMaps).addTo(shelterMap);
+
+        // Load Bangkok districts GeoJSON boundaries for Shelter Map
+        fetch('https://raw.githubusercontent.com/pcrete/gsvloader-demo/master/geojson/Bangkok-districts.geojson')
+          .then(res => res.json())
+          .then(geoData => {
+            L.geoJSON(geoData, {
+              style: function (feature) {
+                return {
+                  color: "#3b82f6",
+                  weight: 2,
+                  opacity: 0.6,
+                  fillOpacity: 0.05
+                };
+              }
+            }).addTo(shelterMap);
+          })
+          .catch(e => console.error('Error loading BKK geojson for Shelter:', e));
+
+        // Add Legend for Shelter Map
+        var legendShelter = L.control({ position: 'bottomright' });
+        legendShelter.onAdd = function (map) {
+          var div = L.DomUtil.create('div', 'info legend');
+          div.style.background = 'white'; div.style.padding = '10px'; div.style.borderRadius = '8px'; div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.2)'; div.style.fontSize = '13px';
+          div.innerHTML += '<div class="fw-bold mb-2">สถานะศูนย์พักพิง</div>';
+          div.innerHTML += '<div><i style="background: #ef4444; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> เต็ม / ล้นความจุ</div>';
+          div.innerHTML += '<div><i style="background: #22c55e; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> ยังไม่เต็ม / ว่าง</div>';
+          return div;
+        };
+        legendShelter.addTo(shelterMap);
+
+        // Add Legend for BKK Map
+        var legendBkk = L.control({ position: 'bottomright' });
+        legendBkk.onAdd = function (map) {
+          var div = L.DomUtil.create('div', 'info legend');
+          div.style.background = 'white'; div.style.padding = '10px'; div.style.borderRadius = '8px'; div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.2)'; div.style.fontSize = '13px';
+          div.innerHTML += '<div class="fw-bold mb-2">ระดับน้ำ กทม.</div>';
+          div.innerHTML += '<div><i style="background: #ef4444; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> สูงกว่าวิกฤต</div>';
+          div.innerHTML += '<div><i style="background: #f97316; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> สูงกว่าเตือนภัย</div>';
+          div.innerHTML += '<div><i style="background: #22c55e; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> ปกติ</div>';
+          div.innerHTML += '<div><i style="background: #94a3b8; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> ไม่มีข้อมูลเกณฑ์</div>';
+          return div;
+        };
+        legendBkk.addTo(bkkMap);
+        // Add Legend for Thai Map (Heatmap)
+        var legend = L.control({ position: 'bottomright' });
+        legend.onAdd = function (map) {
+          var div = L.DomUtil.create('div', 'info legend');
+          div.style.background = 'white';
+          div.style.padding = '10px';
+          div.style.borderRadius = '8px';
+          div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.2)';
+          div.style.fontSize = '13px';
+          div.style.color = '#333';
+          div.style.lineHeight = '1.5';
+
+          div.innerHTML += '<div class="fw-bold mb-1" style="font-size:12px; color:#1d4ed8;">● ความหนาแน่นมวลน้ำ</div>';
+          div.innerHTML += '<div style="background: linear-gradient(to right, transparent, #3b82f6, #6366f1, #7e22ce); width: 140px; height: 10px; border-radius: 4px; margin-bottom: 4px; border: 1px solid #ddd;"></div>';
+          div.innerHTML += '<div style="display: flex; justify-content: space-between; font-size: 10px; color: #666; margin-bottom: 10px;"><span>ปกติ (ใส)</span><span>วิกฤต</span></div>';
+
+          div.innerHTML += '<div class="fw-bold mb-1" style="font-size:12px; color:#b91c1c;">— เส้นขอบ: ครัวเรือนเดือดร้อน</div>';
+          div.innerHTML += '<div style="font-size:11px; margin-bottom:2px;"><span style="display:inline-block; width:28px; height:4px; background:#7f1d1d; vertical-align:middle; margin-right:6px; border-radius:2px;"></span> 50,000+</div>';
+          div.innerHTML += '<div style="font-size:11px; margin-bottom:2px;"><span style="display:inline-block; width:28px; height:3px; background:#b91c1c; vertical-align:middle; margin-right:6px; border-radius:2px;"></span> 10,000–49,999</div>';
+          div.innerHTML += '<div style="font-size:11px; margin-bottom:2px;"><span style="display:inline-block; width:28px; height:2.5px; background:#ea580c; vertical-align:middle; margin-right:6px; border-radius:2px;"></span> 1,000–9,999</div>';
+          div.innerHTML += '<div style="font-size:11px; margin-bottom:2px;"><span style="display:inline-block; width:28px; height:2px; background:#f59e0b; vertical-align:middle; margin-right:6px; border-radius:2px;"></span> 1–999</div>';
+          div.innerHTML += '<div style="font-size:11px;"><span style="display:inline-block; width:28px; height:1px; background:#94a3b8; vertical-align:middle; margin-right:6px;"></span> ไม่มีข้อมูล</div>';
+          return div;
+        };
+        legend.addTo(thaiMap);
+      }
+
+
+      function getStatusColor(statusStr) {
+        if (!statusStr) return '#94a3b8';
+        if (statusStr.includes('วิกฤต') || statusStr.includes('วิกฤติ') || statusStr.includes('น้ำท่วม')) return '#ef4444'; // Red
+        if (statusStr.includes('ล้นตลิ่ง')) return '#ea580c'; // Deep Orange/Red
+        if (statusStr.includes('เฝ้าระวัง') || statusStr.includes('เตือนภัย')) return '#f59e0b'; // Orange
+        if (statusStr.includes('ปกติ') || statusStr.includes('น้อย')) return '#22c55e'; // Green
+        return '#94a3b8'; // Gray for Unknown/ไม่ทราบ
+      }
+
+      function getBkkColor(water, warning, critical) {
+        if (isNaN(water) || (isNaN(warning) && isNaN(critical))) return '#94a3b8'; // Gray for no threshold
+        if (!isNaN(critical) && water >= critical) return '#ef4444'; // Red
+        if (!isNaN(warning) && water >= warning) return '#ea580c'; // Deep Orange/Red
+        return '#22c55e'; // Green
+      }
+
+      function getBkkStatusText(water, warning, critical) {
+        if (isNaN(water) || (isNaN(warning) && isNaN(critical))) return 'ไม่มีข้อมูลเกณฑ์';
+        if (!isNaN(critical) && water >= critical) return 'วิกฤต';
+        if (!isNaN(warning) && water >= warning) return 'เตือนภัย';
+        return 'ปกติ';
+      }
+
+      // Helper for Marker icon
+      function createMarkerIcon(color, isSmall = false) {
+        const size = isSmall ? 12 : 18; // Make them bigger
+        return L.divIcon({
+          className: 'custom-div-icon',
+          html: `<div style="background-color:${color}; width:${size}px; height:${size}px; border-radius:50%; border:3px solid white; box-shadow:0 0 6px rgba(0,0,0,0.6);"></div>`,
+          iconSize: [size, size],
+          iconAnchor: [size / 2, size / 2]
+        });
+      }
+
+      function renderBkkMap(data) {
+        if (!bkkMap) return;
+        bkkMarkers.forEach(m => bkkMap.removeLayer(m));
+        bkkMarkers = [];
+        let bounds = [];
+
+        data.forEach(item => {
+          let lat = parseFloat(item.latitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.canal_lat : null));
+          let lng = parseFloat(item.longitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.canal_long : null));
+          let water = parseFloat(item.water_in_m_msl);
+          let warning = parseFloat(item.warning_in_source);
+          let crit = parseFloat(item.critical_in_source);
+
+          if (!isNaN(lat) && !isNaN(lng)) {
+            let color = getBkkColor(water, warning, crit);
+            let marker = L.marker([lat, lng], { icon: createMarkerIcon(color, false) }).addTo(bkkMap);
+            bkkMarkers.push(marker);
+            bounds.push([lat, lng]);
+
+            let statusText = item.flood_status_source || 'ปกติ';
+            let wlVal = !isNaN(water) ? water.toFixed(2) + ' ม.รทก.' : 'ไม่ระบุ';
+            let tooltipContent = `
+              <div style="font-family:'Kanit',sans-serif; font-size:13px; padding:2px;">
+                <strong class="text-dark">${item.station_name || item.canal || 'สถานีวัดน้ำ'}</strong><br>
+                📍 <b>เขต:</b> ${item.district_or_area || '-'}<br>
+                💧 <b>ระดับน้ำ:</b> <span class="fw-bold text-primary">${wlVal}</span><br>
+                <span class="badge mt-1" style="background-color:${color}">${statusText}</span>
+              </div>`;
+            marker.bindTooltip(tooltipContent, { direction: 'top', opacity: 0.95 });
+
+            marker.on('click', function () {
+              showDetailsPanel('bkk-details-panel', item, 'bkk');
+            });
+          }
+        });
+        if (bounds.length > 0) bkkMap.fitBounds(bounds);
+        updateDefaultSummary("bkk", data);
+      }
+
+
+      function updateDefaultSummary(type, data) {
+        let panelId = type === 'bkk' ? 'bkk-details-panel' : 'thai-details-panel';
+        let panel = document.getElementById(panelId);
+        if (!panel) return;
+
+        let criticalCount = 0;
+        let warningCount = 0;
+        let normalCount = 0;
+
+        let affectedProvinces = new Set();
+        let affectedDistricts = new Set();
+
+        let provStats = {};
+        let distStats = {};
+
+        if (type === 'bkk') {
+          data.forEach(item => {
+            let wl = parseFloat(item.water_in_m_msl);
+            let warning = parseFloat(item.warning_in_source);
+            let crit = parseFloat(item.critical_in_source);
+            let color = getBkkColor(wl, warning, crit);
+            if (color === '#ef4444') criticalCount++;
+            else if (color === '#ea580c') warningCount++;
+            else if (color === '#22c55e') normalCount++;
+
+            if (color === '#ef4444' || color === '#ea580c') {
+              let d = item.district_or_area;
+              if (d) {
+                affectedDistricts.add(d);
+                if (!distStats[d]) distStats[d] = { critical: 0, warning: 0 };
+                if (color === '#ef4444') distStats[d].critical++;
+                if (color === '#ea580c') distStats[d].warning++;
+              }
+            }
+          });
+        } else {
+          data.forEach(item => {
+            let stat = item.flood_status_source || '';
+            let color = getStatusColor(stat);
+            if (color === '#ef4444' || stat.includes('ล้นตลิ่ง')) criticalCount++;
+            else if (color === '#ea580c' || color === '#f59e0b') warningCount++;
+            else if (color === '#22c55e') normalCount++;
+
+            if (color === '#ef4444' || color === '#ea580c' || color === '#f59e0b') {
+              let p = item.district_or_area;
+              if (p) {
+                affectedProvinces.add(p);
+                if (!provStats[p]) provStats[p] = { critical: 0, warning: 0 };
+                if (color === '#ef4444' || stat.includes('ล้นตลิ่ง')) provStats[p].critical++;
+                else provStats[p].warning++;
+              }
+            }
+          });
+        }
+
+        let vulTotal = 0;
+        if (type === 'bkk') {
+          let matchedVul = rawVulData.filter(v => (v['จังหวัด'] || '').includes('กรุงเทพ') && affectedDistricts.has(v['อำเภอ']));
+          if (affectedDistricts.size === 0) {
+            matchedVul = rawVulData.filter(v => (v['จังหวัด'] || '').includes('กรุงเทพ'));
+          }
+          vulTotal = matchedVul.reduce((sum, v) => sum + parseNum(v['รวมทั้งหมด']), 0);
+        } else {
+          let matchedVul = rawVulData.filter(v => affectedProvinces.has(v['จังหวัด']));
+          if (affectedProvinces.size === 0) {
+            vulTotal = rawVulData.reduce((sum, v) => sum + parseNum(v['รวมทั้งหมด']), 0);
+          } else {
+            vulTotal = matchedVul.reduce((sum, v) => sum + parseNum(v['รวมทั้งหมด']), 0);
+          }
+        }
+
+        let rankHtml = '';
+        if (type === 'bkk') {
+          let sorted = Object.keys(distStats).sort((a, b) => {
+            if (distStats[b].critical !== distStats[a].critical) return distStats[b].critical - distStats[a].critical;
+            return distStats[b].warning - distStats[a].warning;
+          });
+
+          if (sorted.length > 0) {
+            let top5 = sorted.slice(0, 5);
+            let lis = top5.map((d, i) => {
+              let s = distStats[d];
+              return `<div class="d-flex justify-content-between border-bottom py-2">
+                         <span class="text-dark"><strong>${i + 1}. เขต${d}</strong></span>
+                         <span class="small"><span class="badge bg-danger rounded-pill">${s.critical}</span> วิกฤต, <span class="badge rounded-pill" style="background-color:#ea580c">${s.warning}</span> เตือนภัย</span>
+                       </div>`;
+            }).join('');
+
+            let trendText = '';
+            if (distStats[sorted[0]].critical > 0) {
+              trendText = `แนวโน้มสถานการณ์: เขต <strong>${sorted[0]}</strong> มีจุดวิกฤตมากที่สุด ควรเฝ้าระวังระดับน้ำและเตรียมรับมืออย่างเร่งด่วน`;
+            } else {
+              trendText = `แนวโน้มสถานการณ์: แม้จะยังไม่มีจุดวิกฤตสูงสุด แต่พบการเตือนภัยหนาแน่นในเขต <strong>${sorted[0]}</strong>`;
+            }
+
+            rankHtml = `<div class="mb-4 bg-light p-3 rounded border-start border-danger border-4 shadow-sm">
+                            <h6 class="fw-bold text-danger mb-3"><i class="bi bi-bar-chart-steps"></i> จัดอันดับเขตพื้นที่เสี่ยงสูงสุด</h6>
+                            <div class="bg-white p-2 rounded border mb-3">
+                               ${lis}
+                            </div>
+                            <div class="small text-dark lh-base p-2 bg-white rounded border border-warning">
+                               <i class="bi bi-graph-up-arrow text-primary"></i> <strong>วิเคราะห์แนวโน้ม:</strong> ${trendText}
+                            </div>
+                        </div>`;
+          } else {
+            rankHtml = `<div class="mb-4 bg-light p-3 rounded border-start border-success border-4">
+                           <div class="small text-dark lh-base">
+                               <i class="bi bi-graph-up-arrow text-success"></i> <strong>วิเคราะห์แนวโน้ม:</strong> ปัจจุบันยังไม่มีเขตพื้นที่ใดใน กทม. ที่อยู่ในเกณฑ์เตือนภัยหรือวิกฤต สถานการณ์โดยรวมอยู่ในระดับปกติ
+                           </div>
+                        </div>`;
+          }
+        } else {
+          let sorted = Object.keys(provStats).sort((a, b) => {
+            if (provStats[b].critical !== provStats[a].critical) return provStats[b].critical - provStats[a].critical;
+            return provStats[b].warning - provStats[a].warning;
+          });
+
+          if (sorted.length > 0) {
+            let top5 = sorted.slice(0, 5);
+            let lis = top5.map((p, i) => {
+              let s = provStats[p];
+              return `<div class="d-flex justify-content-between border-bottom py-2">
+                         <span class="text-dark"><strong>${i + 1}. ${p}</strong></span>
+                         <span class="small"><span class="badge bg-danger rounded-pill">${s.critical}</span> วิกฤต, <span class="badge rounded-pill" style="background-color:#ea580c">${s.warning}</span> เตือนภัย</span>
+                       </div>`;
+            }).join('');
+
+            let totalCrit = Object.values(provStats).reduce((sum, s) => sum + s.critical, 0);
+            let trendText = '';
+            if (totalCrit > 50) {
+              trendText = `สถานการณ์ในภาพรวม <strong>อยู่ในระดับที่ต้องเฝ้าระวังอย่างสูง</strong> เนื่องจากมีสถานีวิกฤตจำนวนมากกระจายตัว โดยเฉพาะในจังหวัด <strong>${sorted[0]}</strong> และ <strong>${sorted[1] || ''}</strong> ซึ่งเป็นพื้นที่เสี่ยงสูงสุดในขณะนี้`;
+            } else if (totalCrit > 0) {
+              trendText = `พบจุดวิกฤตกระจุกตัวในจังหวัด <strong>${sorted[0]}</strong> ควรเฝ้าระวังการขยายตัวของพื้นที่น้ำล้นตลิ่งไปยังจังหวัดใกล้เคียง`;
+            } else {
+              trendText = `สถานการณ์ส่วนใหญ่อยู่ในเกณฑ์เตือนภัย โดยจังหวัด <strong>${sorted[0]}</strong> มีจำนวนจุดเฝ้าระวังสูงสุด`;
+            }
+
+            rankHtml = `<div class="mb-4 bg-light p-3 rounded border-start border-danger border-4 shadow-sm">
+                            <h6 class="fw-bold text-danger mb-3"><i class="bi bi-bar-chart-steps"></i> 5 อันดับจังหวัดเสี่ยงสูงสุด</h6>
+                            <div class="bg-white p-2 rounded border mb-3">
+                               ${lis}
+                            </div>
+                            <div class="small text-dark lh-base p-2 bg-white rounded border border-warning">
+                               <i class="bi bi-graph-up-arrow text-primary"></i> <strong>วิเคราะห์แนวโน้ม:</strong> ${trendText}
+                            </div>
+                        </div>`;
+          } else {
+            rankHtml = `<div class="mb-4 bg-light p-3 rounded border-start border-success border-4">
+                           <div class="small text-dark lh-base">
+                               <i class="bi bi-graph-up-arrow text-success"></i> <strong>วิเคราะห์แนวโน้ม:</strong> ปัจจุบันยังไม่มีจังหวัดใดที่อยู่ในเกณฑ์เตือนภัยหรือวิกฤต สถานการณ์โดยรวมอยู่ในระดับปกติ
+                           </div>
+                        </div>`;
+          }
+        }
+
+        let html = `
+        <h5 class="fw-bold mb-3 border-bottom pb-2 text-primary">
+           <i class="bi bi-bar-chart-fill"></i> บทสรุปภาพรวมสถานการณ์
+        </h5>
+        
+        <div class="row g-2 mb-3">
+           <div class="col-4">
+              <div class="alert alert-danger p-2 text-center h-100 mb-0 d-flex flex-column justify-content-center">
+                 <div class="small fw-bold">วิกฤต</div>
+                 <div class="fs-4 fw-bold">${criticalCount}</div>
+              </div>
+           </div>
+           <div class="col-4">
+              <div class="alert alert-warning p-2 text-center h-100 mb-0 d-flex flex-column justify-content-center" style="background-color:#fffbeb; border-color:#fef3c7; color:#b45309;">
+                 <div class="small fw-bold">เตือนภัย</div>
+                 <div class="fs-4 fw-bold">${warningCount}</div>
+              </div>
+           </div>
+           <div class="col-4">
+              <div class="alert alert-success p-2 text-center h-100 mb-0 d-flex flex-column justify-content-center">
+                 <div class="small fw-bold">ปกติ</div>
+                 <div class="fs-4 fw-bold">${normalCount}</div>
+              </div>
+           </div>
+        </div>
+        
+        ${rankHtml}
+        
+${type !== 'bkk' ? `
+        <h6 class="fw-bold mb-2 border-bottom pb-2" style="color: #8b5cf6;"><i class="bi bi-people-fill"></i> ประชากรเปราะบางในพื้นที่เสี่ยง</h6>
+        <div class="mb-3">
+           <div class="fs-4 fw-bold text-danger">${vulTotal.toLocaleString()} <span class="fs-6 text-muted fw-normal">คน</span></div>
+           <div class="text-muted small mt-1">*(อ้างอิงเฉพาะจากพื้นที่เสี่ยงด้านบน)<br>แหล่งที่มา: HDC กระทรวงสาธารณสุข ณ เดือนกันยายน 2569</div>
+        </div>` : ''}
+        
+        <div class="text-center text-muted mt-3 small p-2 bg-light rounded">
+           <i class="bi bi-hand-index-thumb fs-4 text-primary"></i>
+           <p class="mt-1 mb-0">คลิกที่จุดสถานีบนแผนที่เพื่อดูรายละเอียดเชิงลึก</p>
+        </div>
+      `;
+        panel.innerHTML = html;
+      }
+      function showDetailsPanel(panelId, item, type) {
+        const panel = document.getElementById(panelId);
+        if (!panel) return;
+        let prov = item.province_name || item.district_or_area || 'ไม่ระบุ';
+        let area = item.district_or_area || 'ไม่ระบุพื้นที่';
+
+        let wl = parseFloat(item.water_in_m_msl);
+        let wlText = isNaN(wl) ? 'ไม่มีข้อมูล' : wl.toFixed(2) + ' ม.';
+
+        let statText = '';
+        let statColor = '';
+        let statBadge = '';
+
+        if (type === 'bkk') {
+          let warning = parseFloat(item.warning_in_source);
+          let crit = parseFloat(item.critical_in_source);
+          statText = getBkkStatusText(wl, warning, crit);
+          statColor = getBkkColor(wl, warning, crit);
+
+          let thresHtml = '';
+          if (!isNaN(warning)) thresHtml += `เตือนภัย: ${warning} ม.<br>`;
+          if (!isNaN(crit)) thresHtml += `วิกฤต: ${crit} ม.`;
+
+          statBadge = `<span class="badge" style="background-color: ${statColor}; font-size: 14px;">${statText}</span>
+                      <div class="text-muted small mt-2">${thresHtml}</div>`;
+        } else {
+          statText = item.flood_status_source || 'ไม่ระบุ';
+          statColor = getStatusColor(statText);
+          statBadge = `<span class="badge" style="background-color: ${statColor}; font-size: 14px;">${statText}</span>`;
+        }
+
+        let matchedVul = rawVulData.filter(v => (v['จังหวัด'] || '').includes(prov) || (v['อำเภอ'] || '').includes(area));
+        let vulTotal = matchedVul.reduce((sum, v) => sum + parseNum(v['รวมทั้งหมด']), 0);
+        let child = matchedVul.reduce((sum, v) => sum + parseNum(v['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']), 0);
+        let preg = matchedVul.reduce((sum, v) => sum + parseNum(v['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']), 0);
+        let elderly = matchedVul.reduce((sum, v) => sum + parseNum(v['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']), 0);
+
+        let matchedShelters = rawShelterData.filter(s => (s.district || '').includes(area) || (s.shelter_name || '').includes(prov));
+
+        let html = `
+        <h5 class="fw-bold mb-3 border-bottom pb-2 text-primary">
+           <i class="bi bi-geo-alt-fill"></i> จุดตรวจวัด: ${item.station_name || item.canal || 'ไม่ทราบชื่อ'}
+        </h5>
+        
+        <div class="row mb-3 bg-light p-2 rounded">
+          <div class="col-6">
+            <div class="text-muted small">พื้นที่ (เขต/อำเภอ)</div>
+            <div class="fw-bold">${area}</div>
+          </div>
+          <div class="col-6">
+            <div class="text-muted small">ระดับน้ำปัจจุบัน</div>
+            <div class="fw-bold text-dark fs-5">${wlText}</div>
+          </div>
+        </div>
+        
+        <div class="mb-4">
+          <div class="text-muted small mb-1">สถานะการณ์น้ำ</div>
+          ${statBadge}
+        </div>
+
+        <div class="mb-4 bg-white border rounded p-2 border-warning">
+          <div class="text-muted small mb-1"><i class="bi bi-clock-history"></i> ความสดของข้อมูล (อัปเดตล่าสุด)</div>
+          <div class="fw-bold fs-6">${item.observed_at_th || 'ไม่ระบุ'}</div>
+          ${item.age_minutes_at_fetch ? `<div class="text-secondary small mt-1">อัปเดตเมื่อ: ${parseFloat(item.age_minutes_at_fetch).toFixed(0)} นาทีที่แล้ว</div>` : ''}
+          ${item.freshness_at_fetch ? `<div class="${item.freshness_at_fetch.includes('เกิน') ? 'text-danger fw-bold' : 'text-success'} small">${item.freshness_at_fetch}</div>` : ''}
+        </div>
+        
+        
+        ${type !== 'bkk' ? `
+        <h6 class="fw-bold mb-2 border-bottom pb-2" style="color: #8b5cf6;"><i class="bi bi-people-fill"></i> ผู้ที่ต้องดูแลพิเศษ (ประเมินในพื้นที่)</h6>
+        <div class="mb-3">
+           <div class="fs-4 fw-bold text-danger">${vulTotal.toLocaleString()} <span class="fs-6 text-muted fw-normal">คน</span></div>
+           <div class="row text-muted small mt-1">
+             <div class="col-4">เด็กเล็ก: <br><strong class="text-dark">${child.toLocaleString()}</strong></div>
+             <div class="col-4">คนท้อง: <br><strong class="text-dark">${preg.toLocaleString()}</strong></div>
+             <div class="col-4">ผู้สูงอายุ: <br><strong class="text-dark">${elderly.toLocaleString()}</strong></div>
+           </div>
+           <div class="text-muted small mt-2">แหล่งที่มา: HDC กระทรวงสาธารณสุข ณ เดือนกันยายน 2569</div>
+        </div>` : ''}
+        
+        <h6 class="fw-bold mb-2 border-bottom pb-2 text-success"><i class="bi bi-house-heart-fill"></i> ศูนย์พักพิงที่เปิดรับใกล้เคียง</h6>
+        <div class="mb-2" style="max-height: 180px; overflow-y: auto;">
+      `;
+
+        if (matchedShelters.length > 0) {
+          html += '<ul class="list-group list-group-flush">';
+          matchedShelters.slice(0, 5).forEach(s => {
+            let cap = s.capacity || 'ไม่ระบุ';
+            let sStat = s.status_source || 'ไม่ทราบ';
+            html += `<li class="list-group-item px-0 py-2 border-0 bg-transparent">
+                      <div class="fw-bold text-dark"><i class="bi bi-pin-map text-success"></i> ${s.shelter_name}</div>
+                      <div class="small text-muted ms-3 mt-1">
+                         รับได้: <strong class="text-dark">${cap}</strong> คน | 
+                         สถานะ: <strong class="${sStat.includes('ปิด') ? 'text-danger' : 'text-success'}">${sStat}</strong>
+                      </div>
+                    </li>`;
+          });
+          html += '</ul>';
+        } else {
+          html += '<div class="text-muted small p-2 bg-light rounded text-center">ยังไม่มีข้อมูลศูนย์พักพิงในเขตนี้</div>';
+        }
+
+        html += `</div>`;
+
+        panel.innerHTML = html;
+      }
+
+      function updateBkkRanking(data) {
+        const tbody = document.getElementById('bkkRankingTableBody');
+        if (!tbody) return;
+
+        let sorted = [...data].filter(d => !isNaN(parseFloat(d.water_in_m_msl)))
+          .sort((a, b) => parseFloat(b.water_in_m_msl) - parseFloat(a.water_in_m_msl))
+          .slice(0, 10);
+
+        tbody.innerHTML = '';
+        if (sorted.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" class="text-center">ไม่มีข้อมูล</td></tr>';
+          return;
+        }
+
+        sorted.forEach((item, idx) => {
+          let wl = parseFloat(item.water_in_m_msl);
+          let warning = parseFloat(item.warning_in_source);
+          let crit = parseFloat(item.critical_in_source);
+          let statText = getBkkStatusText(wl, warning, crit);
+          let color = getBkkColor(wl, warning, crit);
+
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="text-center fw-bold">${idx + 1}</td>
+            <td>${item.station_name || item.canal || '-'}</td>
+            <td>${item.district_or_area || '-'}</td>
+            <td class="text-end fw-bold">${wl.toFixed(2)}</td>
+            <td class="text-center"><span class="badge" style="background-color: ${color}">${statText}</span></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function renderThaiMap(data) {
+        if (!thaiMap) return;
+        if (window.thaiChoroplethLayer) thaiMap.removeLayer(window.thaiChoroplethLayer);
+        if (window.thaiBoundaryLayer) thaiMap.removeLayer(window.thaiBoundaryLayer);
+        if (thaiHeatLayer) thaiMap.removeLayer(thaiHeatLayer);
+        thaiMarkers.forEach(m => thaiMap.removeLayer(m));
+        thaiMarkers = [];
+
+        let bounds = [];
+        let heatData = [];
+
+        data.forEach(item => {
+          let lat = parseFloat(item.latitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.tele_station_lat : null));
+          let lng = parseFloat(item.longitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.tele_station_long : null));
+
+          if (!isNaN(lat) && !isNaN(lng)) {
+            let status = item.flood_status_source || 'ไม่ระบุ';
+            
+            // Heatmap intensity based on severity
+            let intensity = 0; // 0 for Normal (ใส ไม่มีสี)
+            if (status.includes('ล้นตลิ่ง') || status.includes('วิกฤต')) intensity = 1.0;
+            else if (status.includes('น้ำมาก') || status.includes('เฝ้าระวัง')) intensity = 0.6;
+            
+            if (intensity > 0) {
+                heatData.push([lat, lng, intensity]);
+            }
+
+            // Tiny invisible dot for hover/click (unobtrusive but interactive)
+            let marker = L.circleMarker([lat, lng], {
+                radius: 8,
+                color: 'transparent',
+                weight: 0,
+                fillColor: 'transparent',
+                fillOpacity: 0
+            }).addTo(thaiMap);
+            
+            let wlVal = !isNaN(parseFloat(item.water_in_m_msl)) ? parseFloat(item.water_in_m_msl).toFixed(2) + ' ม.รทก.' : 'ไม่ระบุ';
+            let statusColor = getStatusColor(status);
+            let tooltipContent = `
+              <div style="font-family:'Kanit',sans-serif; font-size:13px; padding:2px;">
+                <strong class="text-dark">${item.station_name || item.canal || 'สถานีวัดน้ำ'}</strong><br>
+                📍 <b>พื้นที่/จังหวัด:</b> ${item.district_or_area || '-'}<br>
+                💧 <b>ระดับน้ำ:</b> <span class="fw-bold text-primary">${wlVal}</span><br>
+                <span class="badge mt-1" style="background-color:${statusColor}">${status}</span>
+              </div>`;
+            marker.bindTooltip(tooltipContent, { direction: 'top', opacity: 0.95 });
+
+            marker.on('click', function () {
+              showDetailsPanel('thai-details-panel', item, 'thai');
+            });
+            
+            thaiMarkers.push(marker);
+            bounds.push([lat, lng]);
+          }
+        });
+
+        // Add Heatmap layer safely with Blue-Purple gradient
+        thaiHeatLayer = L.heatLayer(heatData, {
+            radius: 30, 
+            blur: 20,
+            maxZoom: 10,
+            gradient: {
+                0.4: '#3b82f6', // Blue (เฝ้าระวังเบาบาง)
+                0.7: '#6366f1', // Indigo (เฝ้าระวังหนาแน่น/วิกฤตเบาบาง)
+                1.0: '#7e22ce'  // Purple (วิกฤตหนาแน่น)
+            }
+        });
+        
+        // Aggregate households by province from rawFloodData
+        let provinceHouseholds = {};
+        if (typeof rawFloodData !== 'undefined' && rawFloodData) {
+            rawFloodData.forEach(item => {
+              let pName = item.Province;
+              if (pName) {
+                let count = parseInt(String(item.Affected_Households || '0').replace(/,/g, '')) || 0;
+                provinceHouseholds[pName] = (provinceHouseholds[pName] || 0) + count;
+              }
+            });
+        }
+
+        // Draw Province Borders ON TOP of Heatmap — colored by affected households (no fill)
+        if (originalGeoJson) {
+            window.thaiBoundaryLayer = L.geoJSON(originalGeoJson, {
+                style: function(feature) {
+                    let engName = feature.properties.name;
+                    let thaiName = Object.keys(provinceEngMap).find(k => provinceEngMap[k] === engName);
+                    let count = (thaiName && provinceHouseholds[thaiName]) ? provinceHouseholds[thaiName] : 0;
+
+                    let color = '#94a3b8'; // Default grey
+                    let weight = 1;
+                    if (count >= 50000)      { color = '#7f1d1d'; weight = 4; }
+                    else if (count >= 10000) { color = '#b91c1c'; weight = 3; }
+                    else if (count >= 1000)  { color = '#ea580c'; weight = 2.5; }
+                    else if (count >= 1)     { color = '#f59e0b'; weight = 2; }
+
+                    return {
+                        fill: false,
+                        color: color,
+                        weight: weight,
+                        opacity: 0.9
+                    };
+                },
+                interactive: false
+            });
+        }
+        
+        let addLayers = () => {
+            thaiHeatLayer.addTo(thaiMap);
+            if (window.thaiBoundaryLayer) window.thaiBoundaryLayer.addTo(thaiMap);
+        };
+
+        if (thaiMap.getSize().x > 0 && thaiMap.getSize().y > 0) {
+            addLayers();
+        } else {
+            thaiMap.once('resize', addLayers);
+        }
+
+        if (bounds.length > 0) thaiMap.fitBounds(bounds);
+        updateDefaultSummary("thai", data);
+      }
+
+      function updateThaiRanking(data) {
+        const tbody = document.getElementById('thaiRankingTableBody');
+        if (!tbody) return;
+
+        // Sort by water level (naively assuming higher is worse)
+        let sorted = [...data].filter(d => !isNaN(parseFloat(d.water_in_m_msl)))
+          .sort((a, b) => parseFloat(b.water_in_m_msl) - parseFloat(a.water_in_m_msl))
+          .slice(0, 10);
+
+        tbody.innerHTML = '';
+        if (sorted.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="text-center">ไม่มีข้อมูล</td></tr>';
+          return;
+        }
+
+        sorted.forEach((item, idx) => {
+          let stat = item.flood_status_source || 'ไม่ระบุ';
+          let wl = parseFloat(item.water_in_m_msl).toFixed(2);
+          let color = getStatusColor(stat);
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="text-center fw-bold">${idx + 1}</td>
+            <td>${item.station_name || item.canal || '-'}</td>
+            <td>${item.district_or_area || '-'}</td>
+            <td class="text-end fw-bold">${wl}</td>
+            <td class="text-center"><span class="badge" style="background-color: ${color}">${stat}</span></td>
+            <td class="small text-muted">${item.observed_at_th || '-'}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function getShelterColor(item) {
+        let status = item.status_source || '';
+        let occ = parseFloat(item.current_occupancy);
+        let cap = parseFloat(item.capacity);
+
+        if (status.includes('เต็ม') || (!isNaN(occ) && !isNaN(cap) && occ >= cap)) {
+          return '#ef4444'; // Red
+        }
+        return '#22c55e'; // Green
+      }
+
+      function renderShelterMap(data) {
+        if (!shelterMap) return;
+        shelterMarkers.forEach(m => shelterMap.removeLayer(m));
+        shelterMarkers = [];
+        let bounds = [];
+
+        data.forEach(item => {
+          let lat = parseFloat(item.lat || item.latitude);
+          let lng = parseFloat(item.long || item.longitude);
+
+          if (!isNaN(lat) && !isNaN(lng)) {
+            let color = getShelterColor(item);
+            let marker = L.marker([lat, lng], { icon: createMarkerIcon(color) }).addTo(shelterMap);
+            shelterMarkers.push(marker);
+            bounds.push([lat, lng]);
+
+            let occ = parseFloat(item.current_occupancy);
+            let cap = parseFloat(item.capacity);
+            let occStr = !isNaN(occ) ? occ.toLocaleString() : 'ไม่ระบุ';
+            let capStr = !isNaN(cap) ? cap.toLocaleString() : 'ไม่ระบุ';
+
+            let tooltipContent = `
+              <div style="font-family:'Kanit',sans-serif; font-size:13px; padding:2px;">
+                <strong style="color:var(--primary);"><i class="bi bi-house-heart-fill"></i> ${item.shelter_name || 'ศูนย์พักพิง'}</strong><br>
+                📍 <b>เขต/อำเภอ:</b> ${item.district || '-'}<br>
+                🏠 <b>ความจุ:</b> ${capStr} คน | 👥 <b>เข้าพัก:</b> ${occStr} คน<br>
+                <span class="badge mt-1" style="background-color:${color}">${item.status_source || 'ไม่ระบุ'}</span>
+              </div>`;
+            marker.bindTooltip(tooltipContent, { direction: 'top', opacity: 0.95 });
+
+            marker.on('click', function () {
+              let panel = document.getElementById('shelter-details-panel');
+              if (!panel) return;
+              panel.innerHTML = `
+                  <h5 class="fw-bold mb-3 border-bottom pb-2 text-success">
+                     <i class="bi bi-house-heart-fill"></i> ${item.shelter_name || 'ศูนย์พักพิง'}
+                  </h5>
+                  <div class="mb-2"><strong>อำเภอ/เขต:</strong> ${item.district || '-'}</div>
+                  <div class="mb-2"><strong>ความจุ:</strong> ${item.capacity || 'ไม่ระบุ'} คน</div>
+                  <div class="mb-2"><strong>ผู้พักพิงปัจจุบัน:</strong> ${item.current_occupancy || 'ไม่ระบุ'} คน</div>
+                  <div class="mb-2"><strong>สถานะ:</strong> <span class="badge" style="background-color:${color}">${item.status_source || 'ไม่ระบุ'}</span></div>
+                `;
+            });
+          }
+        });
+        if (bounds.length > 0) shelterMap.fitBounds(bounds);
+      }
+
+      function applyShelterFilters() {
+        const dist = document.getElementById('shelterDistrictFilter').value;
+        const statusEl = document.getElementById('shelterStatusFilter');
+        const statusFilter = statusEl ? statusEl.value : 'all';
+
+        let distFiltered = rawShelterData.filter(d => {
+          return (dist === 'all') || d.district === dist;
+        });
+        
+        let fullyFiltered = distFiltered.filter(d => {
+          return (statusFilter === 'all') || d.status_source === statusFilter;
+        });
+
+        renderShelterMap(fullyFiltered);
+        updateShelterSummary(distFiltered, fullyFiltered, statusFilter);
+      }
+
+      function updateShelterSummary(baseData, tableData, statusFilterStr) {
+        let totalCount = baseData.length;
+        let totalOcc = 0;
+        let totalCap = 0;
+        
+        let fullCount = 0;
+        let fullOcc = 0;
+        let fullCap = 0;
+
+        let criticalTableHtml = '';
+        let allTableHtml = '';
+
+        // Calculate stats for Cards using baseData (district filtered)
+        baseData.forEach(d => {
+           let occ = parseInt(d.occupied) || 0;
+           let cap = parseInt(d.capacity) || 0;
+           totalOcc += occ;
+           totalCap += cap;
+           
+           let isFull = (d.status_source && d.status_source.includes('เต็ม')) || (cap > 0 && occ >= cap);
+           if (isFull) {
+             fullCount++;
+             fullOcc += occ;
+             fullCap += cap;
+           }
+        });
+
+        // Sort tableData so Full and Almost Full are at the top
+        tableData.sort((a, b) => {
+           let occA = parseInt(a.occupied) || 0;
+           let capA = parseInt(a.capacity) || 0;
+           let isFullA = (a.status_source && a.status_source.includes('เต็ม')) || (capA > 0 && occA >= capA);
+           let isAlmostFullA = !isFullA && (capA > 0 && occA >= capA * 0.8);
+           let scoreA = isFullA ? 2 : (isAlmostFullA ? 1 : 0);
+
+           let occB = parseInt(b.occupied) || 0;
+           let capB = parseInt(b.capacity) || 0;
+           let isFullB = (b.status_source && b.status_source.includes('เต็ม')) || (capB > 0 && occB >= capB);
+           let isAlmostFullB = !isFullB && (capB > 0 && occB >= capB * 0.8);
+           let scoreB = isFullB ? 2 : (isAlmostFullB ? 1 : 0);
+           
+           if (scoreA !== scoreB) {
+              return scoreB - scoreA;
+           }
+           return occB - occA;
+        });
+
+        // Generate Table rows
+        tableData.forEach((d, index) => {
+           let occ = parseInt(d.occupied) || 0;
+           let cap = parseInt(d.capacity) || 0;
+           
+           let isFull = (d.status_source && d.status_source.includes('เต็ม')) || (cap > 0 && occ >= cap);
+           let isAlmostFull = !isFull && (cap > 0 && occ >= cap * 0.8);
+           
+           // All Shelters Table
+           allTableHtml += `
+             <tr>
+               <td>${index + 1}</td>
+               <td>${d.district || '-'}</td>
+               <td class="text-start">${d.shelter_name || '-'}</td>
+               <td>${cap.toLocaleString()}</td>
+               <td class="${isFull ? 'text-danger fw-bold' : (isAlmostFull ? 'text-warning fw-bold' : '')}">${occ.toLocaleString()}</td>
+               <td>
+                  <span class="badge bg-${isFull ? 'danger' : (isAlmostFull ? 'warning' : 'success')}">
+                     ${d.status_source || 'ไม่ระบุ'}
+                  </span>
+               </td>
+               <td class="text-muted small">${d.fetched_at_th ? new Date(parseCustomDate(d.fetched_at_th)).toLocaleString('th-TH') : '-'}</td>
+             </tr>
+           `;
+
+           // Critical Shelters Table (Right Side)
+           if (isFull || isAlmostFull) {
+               criticalTableHtml += `
+                 <tr>
+                   <td>${d.district || '-'}</td>
+                   <td class="text-start">${d.shelter_name || '-'}</td>
+                   <td>${cap.toLocaleString()}</td>
+                   <td class="${isFull ? 'text-danger fw-bold' : 'text-warning fw-bold'}">${occ.toLocaleString()}</td>
+                 </tr>
+               `;
+           }
+        });
+
+        let tbodyCritical = document.getElementById('shelterCriticalTableBody');
+        if (tbodyCritical) tbodyCritical.innerHTML = criticalTableHtml || '<tr><td colspan="4" class="text-success">ไม่มีศูนย์พักพิงที่เต็มในขณะนี้</td></tr>';
+
+        let tbodyAll = document.getElementById('shelterAllTableBody');
+        if (tbodyAll) tbodyAll.innerHTML = allTableHtml || '<tr><td colspan="7">ไม่มีข้อมูล</td></tr>';
+
+        let titleAllEl = document.getElementById('shelterAllTableTitle');
+        if (titleAllEl) {
+           titleAllEl.innerHTML = statusFilterStr === 'all' 
+             ? `<i class="bi bi-list-columns-reverse"></i> รายชื่อศูนย์พักพิงชั่วคราวทั้งหมด` 
+             : `<i class="bi bi-list-columns-reverse"></i> รายชื่อศูนย์พักพิงชั่วคราว (สถานะ: '${statusFilterStr}')`;
+        }
+
+        let totalPct = totalCap > 0 ? (totalOcc / totalCap * 100) : 0;
+        let fullPct = fullCap > 0 ? (fullOcc / fullCap * 100) : 0;
+
+        let summaryHtml = `
+          <div class="col-md-6 mb-2">
+            <div class="card border-0 shadow-sm" style="background-color: #e0f2fe; border-radius: 12px;">
+              <div class="card-body d-flex align-items-center p-3">
+                 <div class="me-4 text-center">
+                    <div class="fw-bold fs-4 text-primary" style="font-family: 'Kanit', sans-serif;">ทั้งหมด</div>
+                 </div>
+                 <div class="flex-grow-1 border-start border-white ps-3">
+                    <div class="d-flex justify-content-between">
+                       <span class="text-secondary small fw-bold">ศูนย์พักพิง (แห่ง)</span>
+                       <span class="text-secondary small fw-bold">ผู้เข้าพัก / ความจุที่พัก (คน)</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-1">
+                       <span class="fs-3 fw-bold text-success">${totalCount}</span>
+                       <span class="fs-4 fw-bold text-dark">${totalOcc.toLocaleString()} <span class="fs-5 text-secondary">/ ${totalCap.toLocaleString()}</span></span>
+                    </div>
+                    <div class="progress mt-2 bg-white" style="height: 6px;">
+                       <div class="progress-bar bg-success" role="progressbar" style="width: ${totalPct}%;" aria-valuenow="${totalPct}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-2">
+            <div class="card border-0 shadow-sm" style="background-color: #fee2e2; border-radius: 12px;">
+              <div class="card-body d-flex align-items-center p-3">
+                 <div class="me-4 text-center">
+                    <div class="fw-bold fs-4 text-danger" style="font-family: 'Kanit', sans-serif;">เต็ม</div>
+                 </div>
+                 <div class="flex-grow-1 border-start border-white ps-3">
+                    <div class="d-flex justify-content-between">
+                       <span class="text-secondary small fw-bold">ศูนย์พักพิง (แห่ง)</span>
+                       <span class="text-secondary small fw-bold">ผู้เข้าพัก / ความจุที่พัก (คน)</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-1">
+                       <span class="fs-3 fw-bold text-success">${fullCount}</span>
+                       <span class="fs-4 fw-bold text-dark">${fullOcc.toLocaleString()} <span class="fs-5 text-secondary">/ ${fullCap.toLocaleString()}</span></span>
+                    </div>
+                    <div class="progress mt-2 bg-white" style="height: 6px;">
+                       <div class="progress-bar bg-danger" role="progressbar" style="width: ${fullPct}%;" aria-valuenow="${fullPct}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        let container = document.getElementById('shelterSummaryArea');
+        if (container) container.innerHTML = summaryHtml;
+
+        // Update footer date
+        let footerEl = document.getElementById('shelterSourceFooter');
+        if (footerEl) {
+           let maxTime = -1;
+           tableData.forEach(d => {
+              let ms = parseCustomDate(d.fetched_at_th);
+              if (ms > maxTime) maxTime = ms;
+           });
+           
+           if (maxTime > 0) {
+              let dObj = new Date(maxTime);
+              let thDate = dObj.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
+              let thTime = dObj.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }).replace(':', '.') + ' น.';
+              footerEl.innerHTML = `
+                <div>ข้อมูลจาก ระบบติดตามสถานการณ์ศูนย์พักพิง กรุงเทพมหานคร</div>
+                <div>ณ วันที่ ${thDate} ${thTime}</div>
+                <div>แหล่งที่มา <a href="https://floodsupport.bangkok.go.th" target="_blank" class="text-decoration-none">https://floodsupport.bangkok.go.th</a></div>
+              `;
+           } else {
+              footerEl.innerHTML = `
+                <div>ข้อมูลจาก ระบบติดตามสถานการณ์ศูนย์พักพิง กรุงเทพมหานคร</div>
+                <div>แหล่งที่มา <a href="https://floodsupport.bangkok.go.th" target="_blank" class="text-decoration-none">https://floodsupport.bangkok.go.th</a></div>
+              `;
+           }
+        }
+      }
+
+      function findMyLocation(tabType) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              let lat = position.coords.latitude;
+              let lng = position.coords.longitude;
+              let mapObj = null;
+              if (tabType === 'bkk') mapObj = bkkMap;
+              else if (tabType === 'thai') mapObj = thaiMap;
+              else if (tabType === 'shelter') mapObj = shelterMap;
+
+              if (mapObj) {
+                if (userLocationMarker) mapObj.removeLayer(userLocationMarker);
+                userLocationMarker = L.circleMarker([lat, lng], {
+                  radius: 8,
+                  fillColor: "#3b82f6",
+                  color: "#ffffff",
+                  weight: 3,
+                  opacity: 1,
+                  fillOpacity: 1
+                }).addTo(mapObj).bindPopup("ตำแหน่งของคุณ").openPopup();
+
+                mapObj.setView([lat, lng], 12);
+              }
+            },
+            function (error) {
+              alert("ไม่สามารถดึงตำแหน่งปัจจุบันได้ กรุณาตรวจสอบการอนุญาตการเข้าถึงตำแหน่ง");
+            }
+          );
+        } else {
+          alert("เบราว์เซอร์ของคุณไม่รองรับการค้นหาตำแหน่ง");
+        }
+      }
+
+      // Filter injection
+
+      function initNewFilters() {
+        // Populate BKK Filters
+        let bkkDistricts = [...new Set(rawBkkWaterData.map(d => d.district_or_area).filter(Boolean))].sort();
+
+        populateSelect('bkkDistrictFilter', bkkDistricts, '📍 ทุกเขต');
+
+
+        // Populate Thai Health Zone based on vul data mapping
+        let hzSet = new Set();
+        rawVulData.forEach(d => { if (d['เขตสุขภาพ']) hzSet.add(d['เขตสุขภาพ']); });
+        let hzList = [...hzSet].sort((a, b) => (parseInt(a.match(/\d+/)) || 0) - (parseInt(b.match(/\d+/)) || 0));
+        populateSelect('thaiHealthZoneFilter', hzList, '🏥 ทุกเขตสุขภาพ');
+
+        updateThaiProvinceDropdown();
+
+        let thaiStatuses = [...new Set(rawThaiWaterData.map(d => d.flood_status_source).filter(Boolean))].sort();
+        populateSelect('thaiStatusFilter', thaiStatuses, '💧 ทุกสถานการณ์น้ำ');
+
+        // Shelter Filters (BKK Districts)
+        let shelterDistricts = [...new Set(rawShelterData.map(d => d.district).filter(Boolean))].sort();
+        populateSelect('shelterDistrictFilter', shelterDistricts, '📍 ทุกเขต');
+
+        let shelterStatuses = [...new Set(rawShelterData.map(d => d.status_source).filter(Boolean))].sort();
+        populateSelect('shelterStatusFilter', shelterStatuses, '🟢 ทุกสถานะ');
+      }
+
+      function updateThaiProvinceDropdown() {
+        const hzFilter = document.getElementById('thaiHealthZoneFilter').value;
+        let provs = new Set();
+
+        if (hzFilter === 'all') {
+          rawThaiWaterData.forEach(d => { if (d.district_or_area) provs.add(d.district_or_area); });
+        } else {
+          // Find provinces in this HZ
+          let validProvs = new Set();
+          rawVulData.forEach(d => { if (d['เขตสุขภาพ'] === hzFilter && d['จังหวัด']) validProvs.add(d['จังหวัด']); });
+
+          rawThaiWaterData.forEach(d => {
+            if (d.district_or_area && validProvs.has(d.district_or_area)) {
+              provs.add(d.district_or_area);
+            }
+          });
+        }
+
+        let sorted = [...provs].sort();
+        const select = document.getElementById('thaiProvinceFilter');
+        const curr = select.value;
+        populateSelect('thaiProvinceFilter', sorted, '📍 ทุกจังหวัด');
+        if (sorted.includes(curr)) select.value = curr;
+      }
+
+      function onThaiHealthZoneChange() {
+        updateThaiProvinceDropdown();
+        applyThaiFilters();
+      }
+
+      function applyBkkFilters() {
+        const dist = document.getElementById('bkkDistrictFilter').value;
+        const stat = 'all';
+
+        let filtered = rawBkkWaterData.filter(d => {
+          return (dist === 'all' || d.district_or_area === dist) &&
+            (stat === 'all' || d.flood_status_source === stat);
+        });
+
+        renderBkkMap(filtered);
+        updateBkkRanking(filtered);
+      }
+
+      function applyThaiFilters() {
+        const prov = document.getElementById('thaiProvinceFilter').value;
+        const stat = document.getElementById('thaiStatusFilter').value;
+        const hz = document.getElementById('thaiHealthZoneFilter').value;
+
+        let validProvs = new Set();
+        if (hz !== 'all') {
+          rawVulData.forEach(d => { if (d['เขตสุขภาพ'] === hz && d['จังหวัด']) validProvs.add(d['จังหวัด']); });
+        }
+
+        let filtered = rawThaiWaterData.filter(d => {
+          let passHz = (hz === 'all') || (d.district_or_area && validProvs.has(d.district_or_area));
+          let passProv = (prov === 'all') || d.district_or_area === prov;
+          let passStat = (stat === 'all') || d.flood_status_source === stat;
+          return passHz && passProv && passStat;
+        });
+
+        renderThaiMap(filtered);
+        updateThaiRanking(filtered);
+      }
+
+      function updateBkkRanking(data) {
+        const tbody = document.getElementById('bkkRankingTableBody');
+        if (!tbody) return;
+
+        let sorted = [...data].filter(d => !isNaN(parseFloat(d.water_in_m_msl)))
+          .sort((a, b) => parseFloat(b.water_in_m_msl) - parseFloat(a.water_in_m_msl))
+          .slice(0, 10);
+
+        tbody.innerHTML = '';
+        if (sorted.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" class="text-center">ไม่มีข้อมูล</td></tr>';
+          return;
+        }
+
+        sorted.forEach((item, idx) => {
+          let stat = item.flood_status_source || 'ไม่ระบุ';
+          let wl = parseFloat(item.water_in_m_msl).toFixed(2);
+          let color = getStatusColor(stat);
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="text-center fw-bold">${idx + 1}</td>
+            <td>${item.station_name || item.canal || '-'}</td>
+            <td>${item.district_or_area || '-'}</td>
+            <td class="text-end fw-bold">${wl}</td>
+            <td class="text-center"><span class="badge" style="background-color: ${color}">${stat}</span></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+
+
+
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
+        tabEls.forEach(function (tabEl) {
+          tabEl.addEventListener('shown.bs.tab', function (event) {
+            var target = event.target.getAttribute('data-bs-target');
+            if (target === '#pills-bkk' && bkkMap) {
+              bkkMap.invalidateSize();
+              if (bkkMarkers.length > 0) {
+                var group = new L.featureGroup(bkkMarkers);
+                bkkMap.fitBounds(group.getBounds(), { padding: [50, 50] });
+              }
+            } else if (target === '#pills-thai' && thaiMap) {
+              thaiMap.invalidateSize();
+              if (thaiMarkers.length > 0) {
+                var group = new L.featureGroup(thaiMarkers);
+                thaiMap.fitBounds(group.getBounds(), { padding: [50, 50] });
+              }
+            } else if (target === '#pills-shelter' && shelterMap) {
+              shelterMap.invalidateSize();
+              if (shelterMarkers.length > 0) {
+                var group = new L.featureGroup(shelterMarkers);
+                shelterMap.fitBounds(group.getBounds(), { padding: [50, 50] });
+              }
+            } else if (target === '#pills-trends') {
+              loadTrendsTab();
+              if (trendsChartInstance) trendsChartInstance.resize();
+            } else if (target === '#pills-news') {
+              loadNewsTab();
+              if (wcChartInstance) wcChartInstance.resize();
+            }
+          });
+        });
+
+        // Preload trends and news in background
+        setTimeout(() => {
+          if (typeof loadTrendsTab === 'function') loadTrendsTab();
+          if (typeof loadNewsTab === 'function') loadNewsTab();
+        }, 500);
+      });
+
+      function exportToPNG() {
+        const element = document.getElementById('dashboard-export-area');
+
+        // Show loading state on button
+        const btn = event.currentTarget;
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> กำลังบันทึก...';
+        btn.disabled = true;
+
+        // Ensure ECharts is fully rendered before capture
+        setTimeout(() => {
+          html2canvas(element, {
+            scale: 2, // Higher resolution
+            useCORS: true,
+            backgroundColor: '#f3f6f9',
+            ignoreElements: function (el) {
+              return el.hasAttribute('data-html2canvas-ignore');
+            }
+          }).then(canvas => {
+            let link = document.createElement('a');
+            link.download = 'รายงานสถานการณ์ภัยพิบัติ_' + new Date().getTime() + '.png';
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+
+            // Restore button
+            btn.innerHTML = originalHtml;
+            btn.disabled = false;
+          });
+        }, 500); // slight delay to allow any animations to finish
+      }
+
+    </script>
+
+  </div> <!-- /dashboard-export-area -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+
+  <!-- WordCloud2.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.2.2/src/wordcloud2.js"></script>
+
+  <!-- ============================================================
+       NEWS & WORD CLOUD TAB LOGIC
+       ============================================================ -->
+  <script>
+    // ─── State ───────────────────────────────────────────────
+    let newsData = null;
+    let wcChartInstance = null;
+    let newsTabLoaded = false;
+    let currentWcCategory = 'all';
+
+    function setWcCategory(cat, btnEl) {
+      currentWcCategory = cat;
+      const group = document.getElementById('wcCategoryFilterGroup');
+      if (group) {
+        group.querySelectorAll('.btn').forEach(b => {
+          b.classList.remove('btn-primary', 'active');
+          b.classList.add('btn-outline-primary');
+        });
+      }
+      if (btnEl) {
+        btnEl.classList.remove('btn-outline-primary');
+        btnEl.classList.add('btn-primary', 'active');
+      }
+      renderNewsTab();
+    }
+
+    // ─── Colour palette for word cloud ───────────────────────
+    const WC_COLORS = [
+      '#0a2e6e','#1a4a9c','#1e6091','#2471a3','#2e86c1',
+      '#1565c0','#0277bd','#0288d1','#039be5','#00897b',
+      '#00695c','#558b2f','#827717','#e65100','#bf360c',
+    ];
+
+    function wcColor() {
+      return WC_COLORS[Math.floor(Math.random() * WC_COLORS.length)];
+    }
+
+    // ─── Fetch news data ─────────────────────────────────────
+    async function loadNewsTab(force = false) {
+      if (newsTabLoaded && !force) return;
+
+      try {
+        const resp = await fetch('news_data/wordfreq_latest.json?t=' + Date.now());
+        if (!resp.ok) throw new Error('ยังไม่มีข้อมูล กรุณารันสคริปต์ news_scraper.py ก่อน');
+        newsData = await resp.json();
+        renderNewsTab();
+        newsTabLoaded = true;
+      } catch (err) {
+        showNewsError(err.message);
+      }
+    }
+
+    function showNewsError(msg) {
+      document.getElementById('wordCloudLoading').innerHTML = `
+        <div class="text-center p-4">
+          <i class="bi bi-exclamation-triangle text-warning" style="font-size:2rem;"></i>
+          <div class="mt-2 fw-bold">ไม่พบข้อมูลข่าว</div>
+          <div class="text-muted small mt-1">${msg}</div>
+          <div class="mt-3 p-2 bg-light rounded text-start small">
+            <strong>วิธีแก้ไข:</strong><br>
+            1. เปิด Command Prompt / PowerShell<br>
+            2. ไปที่โฟลเดอร์ Dashboard<br>
+            3. รันคำสั่ง: <code>python news_scraper.py</code><br>
+            4. กด <strong>รีเฟรช</strong> ด้านบน
+          </div>
+        </div>`;
+      document.getElementById('wordCloudLoading').style.display = 'flex';
+      document.getElementById('wordCloudCanvas').style.display = 'none';
+      document.getElementById('newsHeadlinesList').innerHTML =
+        '<div class="text-muted text-center py-3">ไม่มีข้อมูลข่าว</div>';
+    }
+
+    function renderNewsTab() {
+      if (!newsData) return;
+
+      // Show method note if TF-IDF
+      const method = newsData.method || 'freq';
+      const methodBadge = method === 'tfidf'
+        ? `<span class="badge bg-success ms-2" title="คำถูกคัดโดย TF-IDF + Domain Boosting — บอกประเด็นและเน้นเฝ้าระวัง">TF-IDF + Domain Boost</span>`
+        : '';
+
+      // Update header info
+      const newsPollTime = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('newsUpdateTime').innerHTML =
+        `อัปเดตล่าสุด: ${newsData.updated_at || newsData.date} | ${newsData.article_count || 0} บทความ${methodBadge} <span class="badge bg-light text-dark border ms-2"><i class="bi bi-arrow-repeat text-success"></i> หน้าเว็บดึงข้อมูลอัตโนมัติ: ${newsPollTime} น.</span>`;
+      document.getElementById('wcArticleCount').textContent =
+        `${newsData.article_count || 0} บทความวันที่ ${newsData.date}`;
+
+      // Get selected language
+      const lang = document.querySelector('input[name="wclang"]:checked')?.value || 'th';
+      const freqObj = newsData.word_freq?.[lang] || {};
+      const tfidfObj = newsData.tfidf_scores?.[lang] || {};
+      let words = Object.entries(freqObj).sort((a, b) => b[1] - a[1]);
+
+      // Filter words by selected category
+      if (currentWcCategory !== 'all') {
+        words = words.filter(([w]) => {
+          const cat = newsData.word_categories?.[w] || newsData.word_categories?.[w.toLowerCase()];
+          if (cat) return cat === currentWcCategory;
+          // Fallback matching for English words if category not in dict
+          if (currentWcCategory === 'monitoring' && /rain|water|level|river|storm|flood|dam|monsoon|warning|alert|inundat/i.test(w)) return true;
+          if (currentWcCategory === 'relief' && /help|relief|shelter|evacuat|suppl|aid|victim|support|donat|rescue|disaster|claim|unicef/i.test(w)) return true;
+          if (currentWcCategory === 'post_flood' && /clean|recover|rebuild|repair|rehab|waste|garbage|post/i.test(w)) return true;
+          if (currentWcCategory === 'location' && /bangkok|chiang|mai|rai|phuket|ayutthaya|nan|thailand|province/i.test(w)) return true;
+          return false;
+        });
+      }
+
+      // Draw word cloud
+      drawWordCloud(words, tfidfObj);
+
+      // Draw bar chart
+      drawBarChart(words.slice(0, 15), tfidfObj);
+
+      // Draw freq table (ส่ง tfidf ไปแสดง tooltip)
+      drawFreqTable(words.slice(0, 30), tfidfObj);
+
+      // Draw headlines
+      drawHeadlines(newsData.articles_preview || []);
+    }
+
+
+    // ─── Word Cloud ──────────────────────────────────────────
+    function drawWordCloud(words) {
+      const loading = document.getElementById('wordCloudLoading');
+      const canvas = document.getElementById('wordCloudCanvas');
+      const container = document.getElementById('wordCloudContainer');
+
+      if (words.length === 0) {
+        loading.innerHTML = '<div class="text-muted">ไม่มีข้อมูลคำสำหรับภาษานี้</div>';
+        loading.style.display = 'flex';
+        canvas.style.display = 'none';
+        return;
+      }
+
+      loading.style.display = 'flex';
+      canvas.style.display = 'none';
+
+      const w = container.clientWidth || 800;
+      const h = 380;
+      canvas.width = w;
+      canvas.height = h;
+
+      const maxFreq = words[0][1];
+      const list = words.slice(0, 80).map(([word, freq]) => {
+        const size = Math.max(10, Math.round((freq / maxFreq) * 80));
+        return [word, size];
+      });
+
+      setTimeout(() => {
+        WordCloud(canvas, {
+          list: list,
+          gridSize: Math.round(16 * w / 1024),
+          weightFactor: 1,
+          fontFamily: 'Kanit, Sarabun, sans-serif',
+          color: wcColor,
+          rotateRatio: 0.2,
+          rotationSteps: 2,
+          backgroundColor: 'transparent',
+          shuffle: true,
+          drawOutOfBound: false,
+          click: function(item) {
+            highlightWord(item[0]);
+          },
+        });
+
+        loading.style.display = 'none';
+        canvas.style.display = 'block';
+      }, 100);
+    }
+
+    function highlightWord(word) {
+      // Highlight word in table
+      const rows = document.querySelectorAll('#wordFreqTableBody tr');
+      rows.forEach(r => {
+        r.style.background = r.cells[1]?.textContent === word ? '#fff3cd' : '';
+      });
+    }
+
+    // ─── Bar Chart (ECharts) ─────────────────────────────────
+    function drawBarChart(words) {
+      const container = document.getElementById('wordBarChart');
+      if (!container) return;
+
+      if (wcChartInstance) { wcChartInstance.dispose(); }
+      wcChartInstance = echarts.init(container);
+
+      const reversed = [...words].reverse();
+      const option = {
+        grid: { left: 80, right: 20, top: 10, bottom: 30 },
+        xAxis: { type: 'value', axisLabel: { fontSize: 11 } },
+        yAxis: {
+          type: 'category',
+          data: reversed.map(w => w[0]),
+          axisLabel: { fontSize: 12, fontFamily: 'Kanit, sans-serif' },
+        },
+        series: [{
+          type: 'bar',
+          data: reversed.map(w => w[1]),
+          itemStyle: {
+            color: (p) => {
+              const grad = ['#1a237e','#1565c0','#1976d2','#1e88e5',
+                            '#2196f3','#42a5f5','#64b5f6','#90caf9',
+                            '#bbdefb','#e3f2fd','#b2dfdb','#80cbc4',
+                            '#4db6ac','#26a69a','#00897b'];
+              return grad[p.dataIndex % grad.length];
+            }
+          },
+          label: {
+            show: true,
+            position: 'right',
+            fontSize: 11,
+            formatter: '{c}',
+          },
+        }],
+        tooltip: {
+          trigger: 'axis',
+          formatter: (p) => `<b>${p[0].name}</b>: ${p[0].value} ครั้ง`,
+        },
+      };
+      wcChartInstance.setOption(option);
+    }
+
+    // ─── Frequency Table ─────────────────────────────────────
+    function drawFreqTable(words, tfidfObj = {}) {
+      const tbody = document.getElementById('wordFreqTableBody');
+      if (!tbody) return;
+      const maxFreq = words[0]?.[1] || 1;
+      const maxTfidf = Math.max(...Object.values(tfidfObj)) || 1;
+
+      tbody.innerHTML = words.map(([w, f], i) => {
+        const pct = Math.round((f / maxFreq) * 100);
+        const tfidf = tfidfObj[w];
+        const tfidfPct = tfidf ? Math.round((tfidf / maxTfidf) * 100) : 0;
+        const tfidfBadge = tfidf
+          ? `<span class="ms-1 text-muted" style="font-size:10px;" title="TF-IDF score: ${tfidf.toFixed(3)} — ยิ่งสูง ยิ่งบอกประเด็น">📊${tfidf.toFixed(2)}</span>`
+          : '';
+        return `<tr style="cursor:pointer" onclick="highlightWord('${w.replace(/'/g, "\\'")}')">
+          <td class="text-muted">${i + 1}</td>
+          <td class="fw-bold">${w}${tfidfBadge}</td>
+          <td class="text-end">
+            <span class="badge bg-primary">${f}x</span>
+            <div style="height:3px;border-radius:2px;background:#e9ecef;margin-top:2px;">
+              <div style="height:3px;border-radius:2px;background:var(--primary);width:${pct}%"></div>
+            </div>
+            ${tfidf ? `<div style="height:3px;border-radius:2px;background:#d4edda;margin-top:1px;">
+              <div style="height:3px;border-radius:2px;background:#28a745;width:${tfidfPct}%"></div>
+            </div>` : ''}
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+
+    // ─── Headlines ───────────────────────────────────────────
+    function drawHeadlines(articles) {
+      const el = document.getElementById('newsHeadlinesList');
+      if (!el) return;
+      if (!articles || articles.length === 0) {
+        el.innerHTML = '<div class="text-muted text-center py-3">ไม่มีข้อมูลพาดหัวข่าว</div>';
+        return;
+      }
+
+      const sourceIcons = {
+        'Google': 'bi-google', 'Thai': 'bi-globe-asia-australia',
+        'กรม': 'bi-building-check', 'กรุง': 'bi-buildings',
+        'ไทย': 'bi-flag', 'มติ': 'bi-newspaper',
+      };
+
+      function getIcon(src) {
+        for (const [k, v] of Object.entries(sourceIcons)) {
+          if (src && src.includes(k)) return v;
+        }
+        return 'bi-newspaper';
+      }
+
+      el.innerHTML = `<div class="row g-2">` +
+        articles.map(a => `
+        <div class="col-md-6">
+          <div class="d-flex gap-2 p-2 rounded border bg-white align-items-start" style="font-size:13px;">
+            <i class="bi ${getIcon(a.source)} text-primary mt-1 flex-shrink-0"></i>
+            <div>
+              ${a.url ?
+                `<a href="${a.url}" target="_blank" class="text-decoration-none text-dark fw-bold">
+                  ${a.title || '(ไม่มีหัวข้อ)'}
+                </a>` :
+                `<span class="fw-bold">${a.title || '(ไม่มีหัวข้อ)'}</span>`}
+              <div class="text-muted mt-1"><i class="bi bi-broadcast"></i> ${a.source || 'ไม่ระบุแหล่ง'}</div>
+            </div>
+          </div>
+        </div>`).join('') + `</div>`;
+    }
+
+    // ─── Language switch listener ─────────────────────────────
+    document.querySelectorAll('input[name="wclang"]').forEach(el => {
+      el.addEventListener('change', () => { if (newsData) renderNewsTab(); });
+    });
+
+
+    // ============================================================
+    // GOOGLE TRENDS TAB LOGIC
+    // ============================================================
+    let trendsData = null;
+    let trendsTabLoaded = false;
+    let trendsChartInstance = null;
+
+    async function loadTrendsTab(force = false) {
+      if (trendsTabLoaded && !force) return;
+
+      try {
+        const resp = await fetch('news_data/google_trends_latest.json?t=' + Date.now());
+        if (!resp.ok) throw new Error('ยังไม่มีข้อมูล Google Trends');
+        trendsData = await resp.json();
+        renderTrendsTab();
+        trendsTabLoaded = true;
+      } catch (err) {
+        document.getElementById('trendsUpdateTime').innerHTML = '<span class="text-danger">ไม่พบข้อมูล Google Trends (กรุณารัน trends_scraper.py)</span>';
+      }
+    }
+
+    let trendsMapInstance = null;
+
+    function renderTrendsTimelineChart() {
+      const container = document.getElementById('trendsTimelineChart');
+      if (!container || !trendsData || !trendsData.timeline_interest) return;
+      if (trendsChartInstance) { trendsChartInstance.dispose(); }
+      trendsChartInstance = echarts.init(container);
+
+      const timeline = trendsData.timeline_interest || {};
+      const dates = timeline.dates || [];
+      const seriesData = timeline.series || {};
+
+      const option = {
+        tooltip: { trigger: 'axis' },
+        legend: {
+          top: 0,
+          textStyle: { fontFamily: 'Kanit', fontSize: 12 },
+          data: ['💳 การเงิน & สิทธิ', '🌊 ระดับน้ำ & เฝ้าระวัง', '🚗 บรรเทาทุกข์ & ของใช้', '🙋‍♂️ วิธีปฏิบัติ & ช่วยเหลือ']
+        },
+        grid: { left: 40, right: 20, top: 40, bottom: 30 },
+        xAxis: { type: 'category', data: dates, axisLabel: { fontSize: 11 } },
+        yAxis: { type: 'value', max: 100, axisLabel: { fontSize: 11 } },
+        series: [
+          { name: '💳 การเงิน & สิทธิ', type: 'line', smooth: true, data: seriesData.financial || [], itemStyle: { color: '#4361ee' } },
+          { name: '🌊 ระดับน้ำ & เฝ้าระวัง', type: 'line', smooth: true, data: seriesData.surveillance || [], itemStyle: { color: '#ef4444' } },
+          { name: '🚗 บรรเทาทุกข์ & ของใช้', type: 'line', smooth: true, data: seriesData.relief_traffic || [], itemStyle: { color: '#2ec4b6' } },
+          { name: '🙋‍♂️ วิธีปฏิบัติ & ช่วยเหลือ', type: 'line', smooth: true, data: seriesData.howto_relief || [], itemStyle: { color: '#f77f00' } }
+        ]
+      };
+      trendsChartInstance.setOption(option);
+    }
+
+    function renderTrendsRegionMap() {
+      const container = document.getElementById('trendsRegionMap');
+      if (!container || !trendsData || !trendsData.regional_details) return;
+      if (trendsMapInstance) { trendsMapInstance.dispose(); }
+      trendsMapInstance = echarts.init(container);
+
+      const regDetails = trendsData.regional_details || {};
+      let mapData = [];
+
+      for (let p in regDetails) {
+        let engName = provinceEngMap[p];
+        if (engName) {
+          mapData.push({
+            name: engName,
+            value: regDetails[p].score,
+            thaiName: p,
+            topQuery: regDetails[p].top_query
+          });
+        }
+      }
+
+      const option = {
+        tooltip: {
+          trigger: 'item',
+          backgroundColor: 'rgba(255, 255, 255, 0.98)',
+          borderColor: '#cbd5e1',
+          textStyle: { color: '#1e293b', fontFamily: 'Kanit' },
+          formatter: function (params) {
+            if (!params.data) return params.name;
+            return `
+              <div style="font-weight:600; font-size:1.05rem; border-bottom:1px solid #e2e8f0; padding-bottom:4px; margin-bottom:4px;">
+                <i class="bi bi-geo-alt-fill text-danger"></i> จ.${params.data.thaiName}
+              </div>
+              <div style="font-size:0.9rem;">ดัชนีความสนใจ: <strong class="text-danger fs-6">${params.data.value}/100</strong></div>
+              <div style="font-size:0.85rem; color:#475569; margin-top:6px;">
+                🔝 <b>คำค้นหาอันดับ 1:</b> <br><span class="text-primary fw-bold">${params.data.topQuery}</span>
+              </div>`;
+          }
+        },
+        visualMap: {
+          min: 75,
+          max: 100,
+          left: 'left',
+          bottom: '10px',
+          text: ['สูง', 'ต่ำ'],
+          inRange: { color: ['#c7d2fe', '#818cf8', '#4361ee', '#1e3a8a'] },
+          textStyle: { fontFamily: 'Kanit', fontSize: 11 }
+        },
+        series: [{
+          name: 'ความสนใจ Google Trends',
+          type: 'map',
+          map: 'Thailand',
+          roam: true,
+          layoutCenter: ['50%', '50%'],
+          layoutSize: '115%',
+          data: mapData
+        }]
+      };
+      trendsMapInstance.setOption(option);
+    }
+
+    function renderTrendsWhatWhereMatrix() {
+      const tbody = document.getElementById('trendsWhatWhereTableBody');
+      if (!tbody || !trendsData) return;
+
+      const rising = trendsData.rising_queries || [];
+      const regions = trendsData.interest_by_region || [];
+      const regDetails = trendsData.regional_details || {};
+      const cats = trendsData.categorized_queries || {};
+
+      // 1. WHAT Strategic Items
+      const whatList = [
+        {
+          category: '🆘 ประเด็นเร่งด่วน / พื้นที่วิกฤต',
+          query: rising[0]?.query || 'น้ำท่วม เทศบาลนครนครสวรรค์',
+          growth: rising[0]?.growth || 'Breakout',
+          badgeClass: 'bg-danger',
+          icon: 'bi-exclamation-triangle-fill text-danger'
+        },
+        {
+          category: '💳 สิทธิประโยชน์ & เงินเยียวยา',
+          query: (cats.financial && cats.financial[0]?.query) || 'ลงทะเบียนเยียวยาน้ำท่วม / แอปทางรัฐ',
+          growth: (cats.financial && cats.financial[0]?.growth) || '+5,200%',
+          badgeClass: 'bg-primary',
+          icon: 'bi-cash-coin text-primary'
+        },
+        {
+          category: '🧹 ฟื้นฟูหลังน้ำลด & ตามหาทรัพย์สิน',
+          query: rising.find(q => q.query && (q.query.includes('ป้ายทะเบียน') || q.query.includes('หลัง')))? q.query : 'ตามหาป้ายทะเบียน / รับทำความสะอาด',
+          growth: '+3,850%',
+          badgeClass: 'bg-success',
+          icon: 'bi-tools text-success'
+        },
+        {
+          category: 'ℹ️ สถานการณ์น้ำ & เส้นทางสัญจร',
+          query: (cats.surveillance && cats.surveillance[0]?.query) || 'สถานการณ์น้ำท่วม / เส้นทางน้ำท่วม',
+          growth: (cats.surveillance && cats.surveillance[0]?.growth) || 'ความสนใจสูง',
+          badgeClass: 'bg-info text-dark',
+          icon: 'bi-geo-alt-fill text-info'
+        }
+      ];
+
+      // 2. WHERE Strategic Items
+      const whereList = regions.slice(0, 4).map((r, idx) => {
+        const details = regDetails[r.region] || {};
+        const topQ = details.top_query || 'อุทกภัย / ระดับน้ำ';
+        return {
+          province: r.region,
+          score: r.score,
+          topQuery: topQ,
+          rank: idx + 1
+        };
+      });
+
+      let rowsHtml = '';
+      const maxRows = Math.max(whatList.length, whereList.length);
+
+      for (let i = 0; i < maxRows; i++) {
+        const w = whatList[i] || {};
+        const r = whereList[i] || {};
+
+        const leftCol = w.category ? `
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="fw-bold text-dark mb-1" style="font-size: 0.92rem;"><i class="bi ${w.icon} me-2"></i>${w.category}</div>
+              <div class="small text-muted"><i class="bi bi-search me-1"></i>คำค้นหลัก: <span class="fw-bold text-dark">${w.query}</span></div>
+            </div>
+            <span class="badge ${w.badgeClass} ms-2 px-2 py-1">${w.growth}</span>
+          </div>
+        ` : '<span class="text-muted">-</span>';
+
+        const rightCol = r.province ? `
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="fw-bold text-dark mb-1" style="font-size: 0.92rem;">
+                <span class="badge bg-secondary me-2">อันดับ ${r.rank}</span>
+                <i class="bi bi-geo-alt-fill text-danger me-1"></i><strong>จังหวัด${r.province}</strong>
+              </div>
+              <div class="small text-muted"><i class="bi bi-chat-left-dots me-1"></i>เรื่องที่สนใจสูงสุด: <span class="fw-bold text-primary">${r.topQuery}</span></div>
+            </div>
+            <span class="badge bg-danger ms-2 px-2 py-1">ดัชนี ${r.score}</span>
+          </div>
+        ` : '<span class="text-muted">-</span>';
+
+        rowsHtml += `
+          <tr>
+            <td class="align-middle border-end bg-white py-2 px-3">${leftCol}</td>
+            <td class="align-middle bg-white py-2 px-3">${rightCol}</td>
+          </tr>
+        `;
+      }
+
+      tbody.innerHTML = rowsHtml;
+    }
+
+    function renderTrendsTab() {
+      if (!trendsData) return;
+
+      // Update Timestamp Header
+      const lastPollTime = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('trendsUpdateTime').innerHTML =
+        `<span class="badge bg-danger me-2">ดึงตรง</span> <strong>ข้อมูลอัปเดตล่าสุด: ${trendsData.updated_at}</strong> (ย้อนหลังประจำวันที่ ${trendsData.date}) <span class="badge bg-light text-dark border ms-2"><i class="bi bi-arrow-repeat text-success"></i> หน้าเว็บดึงข้อมูลอัตโนมัติ: ${lastPollTime} น.</span>`;
+
+      // Render 2-Column Strategic Matrix Table (WHAT & WHERE)
+      renderTrendsWhatWhereMatrix();
+
+      // Render Feature 1: Timeline Line Chart
+      renderTrendsTimelineChart();
+
+      // Render Categorized Queries Cards (Feature 3)
+      const cats = trendsData.categorized_queries || {};
+
+      function renderCatList(elId, list, badgeColor) {
+        const el = document.getElementById(elId);
+        if (!el) return;
+        if (!list || list.length === 0) {
+          el.innerHTML = '<div class="text-muted small">ไม่มีคำค้นหาในหมวดนี้</div>';
+          return;
+        }
+        el.innerHTML = list.map(q => `
+          <div class="p-2 rounded border bg-white d-flex justify-content-between align-items-center shadow-sm" style="font-size:13px;">
+            <span class="fw-bold text-dark"><i class="bi bi-search text-secondary me-1"></i>${q.query}</span>
+            <span class="badge ${badgeColor}">${q.growth || 'Breakout'}</span>
+          </div>
+        `).join('');
+      }
+
+      renderCatList('catQueriesFin', (cats.financial || []).slice(0, 5), 'bg-primary');
+      renderCatList('catQueriesSurv', (cats.surveillance || []).slice(0, 5), 'bg-primary');
+      renderCatList('catQueriesRel', (cats.relief_traffic || []).slice(0, 5), 'bg-primary');
+      renderCatList('catQueriesHowTo', (cats.howto_relief || []).slice(0, 5), 'bg-primary');
+
+      // Render Rising Queries Cards
+      const risingEl = document.getElementById('risingQueriesContainer');
+      const rising = trendsData.rising_queries || [];
+      if (risingEl) {
+        if (rising.length === 0) {
+          risingEl.innerHTML = '<div class="text-muted">ไม่มีคำค้นหาพุ่งสูงพิเศษ</div>';
+        } else {
+          risingEl.innerHTML = rising.map(q => {
+            const isBreakout = String(q.growth).includes('Breakout');
+            const badgeBg = isBreakout ? 'bg-danger' : 'bg-warning text-dark';
+            return `<div class="p-2 rounded border bg-white d-flex align-items-center gap-2 shadow-sm" style="font-size:13px;">
+              <i class="bi bi-search text-danger"></i>
+              <span class="fw-bold text-dark">${q.query}</span>
+              <span class="badge ${badgeBg}">${q.growth}</span>
+            </div>`;
+          }).join('');
+        }
+      }
+
+      // Render Region Ranking Table (Top 5 + Top 1 Query)
+      const regBody = document.getElementById('trendsRegionTableBody');
+      const regDetails = trendsData.regional_details || {};
+      const regions = (trendsData.interest_by_region || []).slice(0, 5);
+      if (regBody) {
+        const maxScore = regions[0]?.score || 100;
+        regBody.innerHTML = regions.map((r, i) => {
+          const pct = Math.round((r.score / maxScore) * 100);
+          const details = regDetails[r.region] || {};
+          const topQ = details.top_query || 'อุทกภัย น้ำท่วม';
+          return `<tr>
+            <td class="text-muted">${i + 1}</td>
+            <td class="fw-bold"><i class="bi bi-geo-alt-fill text-danger me-1"></i>${r.region}</td>
+            <td class="small text-primary fw-bold">${topQ}</td>
+            <td class="text-end">
+              <span class="badge bg-danger">${r.score}</span>
+              <div style="height:3px;border-radius:2px;background:#e9ecef;margin-top:2px;">
+                <div style="height:3px;border-radius:2px;background:#dc3545;width:${pct}%"></div>
+              </div>
+            </td>
+          </tr>`;
+        }).join('');
+      }
+    }
+
+    // Auto-Poll Frontend (every 5 minutes / 300,000 ms)
+    setInterval(() => {
+      if (trendsTabLoaded) {
+        loadTrendsTab(true);
+      }
+      if (newsTabLoaded) {
+        loadNewsTab(true);
+      }
+    }, 300000);
+  </script>
+
+
+</body>
+
+</html>

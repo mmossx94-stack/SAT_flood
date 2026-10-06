@@ -1,0 +1,50 @@
+                      </tr>
+                    </thead>
+                    <tbody id="vulTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div> <!-- End Tab 1 -->
+
+      <!-- Tab 2: BKK Water -->
+      <div class="tab-pane fade" id="pills-bkk" role="tabpanel">
+        <div class="main-content">
+
+          <div class="filter-wrapper mb-3">
+            <div class="fw-bold text-muted me-2"><i class="bi bi-funnel-fill"></i> ค้นหาสถานี กทม.:</div>
+            <div class="row g-2 flex-grow-1">
+              <div class="col-md-12">
+                <select id="bkkDistrictFilter" class="form-select filter-select" onchange="applyBkkFilters()">
+                  <option value="all">📍 ทุกเขต</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="findMyLocation('bkk')"
+              class="btn btn-outline-primary ms-auto rounded-pill fw-semibold mt-2 mt-md-0">
+              <i class="bi bi-geo-alt"></i> ค้นหาใกล้ฉัน
+            </button>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="modern-card p-2">
+                <h6 class="fw-bold px-3 pt-2 mb-3"><i class="bi bi-geo-alt text-primary"></i> แผนที่สถานการณ์น้ำ
+                  กรุงเทพมหานคร</h6>
+                <div id="bkk-map" class="map-container"></div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="details-panel" id="bkk-details-panel">
+                <div class="text-center text-muted mt-5">
+                  <i class="bi bi-hand-index-thumb fs-1"></i>
+                  <p class="mt-2">คลิกที่จุดสถานีบนแผนที่เพื่อดูข้อมูลที่เข้าใจง่าย</p>
+                </div>
+              </div>

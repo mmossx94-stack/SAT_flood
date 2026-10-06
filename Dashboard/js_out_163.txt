@@ -1,0 +1,70 @@
+
+      function renderBkkMap(data) {
+        if (!bkkMap) return;
+        bkkMarkers.forEach(m => bkkMap.removeLayer(m));
+        bkkMarkers = [];
+        let bounds = [];
+
+        data.forEach(item => {
+          let lat = parseFloat(item.latitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.canal_lat : null));
+          let lng = parseFloat(item.longitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.canal_long : null));
+          let water = parseFloat(item.water_in_m_msl);
+          let warning = parseFloat(item.warning_in_source);
+          let crit = parseFloat(item.critical_in_source);
+
+          if (!isNaN(lat) && !isNaN(lng)) {
+            let color = getBkkColor(water, warning, crit);
+            let marker = L.marker([lat, lng], { icon: createMarkerIcon(color, false) }).addTo(bkkMap);
+            bkkMarkers.push(marker);
+            bounds.push([lat, lng]);
+
+            marker.on('click', function () {
+              showDetailsPanel('bkk-details-panel', item, 'bkk');
+            });
+          }
+        });
+        if (bounds.length > 0) bkkMap.fitBounds(bounds);
+        updateDefaultSummary("bkk", data);
+      }
+
+
+      function updateDefaultSummary(type, data) {
+        let panelId = type === 'bkk' ? 'bkk-details-panel' : 'thai-details-panel';
+        let panel = document.getElementById(panelId);
+        if (!panel) return;
+
+        let criticalCount = 0;
+        let warningCount = 0;
+        let normalCount = 0;
+
+        let affectedProvinces = new Set();
+        let affectedDistricts = new Set();
+
+        let provStats = {};
+        let distStats = {};
+
+        if (type === 'bkk') {
+          data.forEach(item => {
+            let wl = parseFloat(item.water_in_m_msl);
+            let warning = parseFloat(item.warning_in_source);
+            let crit = parseFloat(item.critical_in_source);
+            let color = getBkkColor(wl, warning, crit);
+            if (color === '#ef4444') criticalCount++;
+            else if (color === '#ea580c') warningCount++;
+            else if (color === '#22c55e') normalCount++;
+
+            if (color === '#ef4444' || color === '#ea580c') {
+              let d = item.district_or_area;
+              if (d) {
+                affectedDistricts.add(d);
+                if (!distStats[d]) distStats[d] = { critical: 0, warning: 0 };
+                if (color === '#ef4444') distStats[d].critical++;
+                if (color === '#ea580c') distStats[d].warning++;
+              }
+            }
+          });
+        } else {
+          data.forEach(item => {
+            let stat = item.flood_status_source || '';
+            let color = getStatusColor(stat);
+            if (color === '#ef4444' || stat.includes('ล้นตลิ่ง')) criticalCount++;

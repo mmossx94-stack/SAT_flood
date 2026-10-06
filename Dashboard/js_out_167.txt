@@ -1,0 +1,50 @@
+                <h6 class="fw-bold px-3 pt-2 mb-2 text-primary"><i class="bi bi-map-fill"></i> แผนที่ศูนย์พักพิง</h6>
+                <div id="shelter-map" class="map-container" style="height: 450px; border-radius: 8px;"></div>
+                <div class="mt-2 px-2 text-muted small" id="shelterSourceFooter">
+                   <!-- JavaScript will populate this -->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="modern-card p-0 overflow-hidden shadow-sm h-100 border-0">
+                <div class="p-3 bg-danger bg-opacity-10 d-flex justify-content-between align-items-center border-bottom">
+                  <h6 class="fw-bold m-0 text-danger" style="font-size: 1.1rem;"><i class="bi bi-exclamation-triangle-fill"></i> ศูนย์พักพิงที่เต็ม หรือ ใกล้เต็ม</h6>
+                </div>
+                <div class="table-responsive" style="max-height: 600px;">
+                  <table class="table table-bordered table-striped m-0 text-center text-nowrap align-middle">
+                    <thead class="table-danger">
+                      <tr>
+                        <th class="py-2">เขต</th>
+                        <th class="py-2">ชื่อศูนย์พักพิง</th>
+                        <th class="py-2">ความจุ</th>
+                        <th class="py-2">เข้าพัก</th>
+                      </tr>
+                    </thead>
+                    <tbody id="shelterCriticalTableBody">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- All Shelters Table (Bottom) -->
+          <div class="modern-card p-3 shadow-sm border-0">
+            <h5 class="fw-bold mb-3 text-primary" id="shelterAllTableTitle"><i class="bi bi-list-columns-reverse"></i> รายชื่อศูนย์พักพิงชั่วคราวทั้งหมด</h5>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered text-center align-middle text-nowrap" id="shelterAllTable">
+                <thead class="table-primary">
+                  <tr>
+                    <th>ลำดับ</th>
+                    <th>เขต</th>
+                    <th>ชื่อสถานที่ / ศูนย์</th>
+                    <th>ความจุ (คน)</th>
+                    <th>ผู้เข้าพัก (คน)</th>
+                    <th>สถานะ</th>
+                    <th>อัปเดตข้อมูลเมื่อ</th>
+                  </tr>
+                </thead>
+                <tbody id="shelterAllTableBody">
+                </tbody>
+              </table>
+            </div>

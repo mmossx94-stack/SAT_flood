@@ -1,0 +1,15 @@
+                        <th class="text-end fw-bold text-white" style="background-color: #3b82f6 !important;">
+                          ครัวเรือนเดือดร้อน</th>
+                        <th class="text-end text-white" style="background-color: #2563eb !important;">กลุ่มเปราะบางรวม
+                        </th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">เสียชีวิต</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">
+                          แนวโน้มน้ำเพิ่มขึ้น</th>
+                      </tr>
+                    </thead>
+                    <tbody id="topProvinceTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>

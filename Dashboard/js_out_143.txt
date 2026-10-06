@@ -1,0 +1,30 @@
+
+        // Add Heatmap layer safely with Blue-Purple gradient
+        thaiHeatLayer = L.heatLayer(heatData, {
+            radius: 30, 
+            blur: 20,
+            maxZoom: 10,
+            gradient: {
+                0.2: '#93c5fd', // Light Blue (ปกติ)
+                0.5: '#3b82f6', // Blue
+                0.8: '#6366f1', // Indigo (เฝ้าระวัง)
+                1.0: '#7e22ce'  // Purple (วิกฤต)
+            }
+        });
+        
+        if (thaiMap.getSize().x > 0 && thaiMap.getSize().y > 0) {
+            thaiHeatLayer.addTo(thaiMap);
+        } else {
+            thaiMap.once('resize', function() {
+                thaiHeatLayer.addTo(thaiMap);
+            });
+        }
+
+        if (bounds.length > 0) thaiMap.fitBounds(bounds);
+        updateDefaultSummary("thai", data);
+      }
+
+      function updateThaiRanking(data) {
+        const tbody = document.getElementById('thaiRankingTableBody');
+        if (!tbody) return;
+

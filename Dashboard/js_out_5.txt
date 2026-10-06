@@ -1,0 +1,20 @@
+function renderBkkMap(data) {
+        if (!bkkMap) return;
+        bkkMarkers.forEach(m => bkkMap.removeLayer(m));
+        bkkMarkers = [];
+        let bounds = [];
+
+        data.forEach(item => {
+          let lat = parseFloat(item.latitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.canal_lat : null));
+          let lng = parseFloat(item.longitude || (item.raw_station_json ? JSON.parse(item.raw_station_json).station.canal_long : null));
+          let water = parseFloat(item.water_in_m_msl);
+          let warning = parseFloat(item.warning_in_source);
+          let crit = parseFloat(item.critical_in_source);
+
+          if (!isNaN(lat) && !isNaN(lng)) {
+            let color = getBkkColor(water, warning, crit);
+            let marker = L.marker([lat, lng], { icon: createMarkerIcon(color, false) }).addTo(bkkMap);
+            bkkMarkers.push(marker);
+            bounds.push([lat, lng]);
+
+            marker.on('click', 

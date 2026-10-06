@@ -1,0 +1,25 @@
+
+    <!-- Header -->
+    <header class="glass-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+          style="width: 45px; height: 45px; font-size: 1.2rem;">
+          <i class="bi bi-droplet-fill"></i>
+        </div>
+        <div>
+          <h4 class="m-0 fw-bold" style="color: var(--text-main);">รายงานสถานการณ์สาธารณภัยรายจังหวัด</h4>
+          <div class="small text-muted" style="margin-top: -2px;">แหล่งข้อมูล: กรมป้องกันและบรรเทาสาธารณภัย (ปภ.) และ
+            HDC ระบบคลังข้อมูลด้านการแพทย์และสุขภาพ</div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <div class="text-muted small fw-medium bg-light px-3 py-2 rounded-pill" id="lastUpdated"
+          data-html2canvas-ignore>
+          <i class="bi bi-arrow-clockwise"></i> อัปเดต: กำลังโหลด...
+        </div>
+        <button onclick="exportToPNG()" class="btn btn-primary rounded-pill fw-semibold px-4 shadow-sm"
+          data-html2canvas-ignore>
+          <i class="bi bi-download me-1"></i> บันทึกเป็น PNG
+        </button>
+      </div>
+    </header>

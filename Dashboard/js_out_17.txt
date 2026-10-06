@@ -1,0 +1,3 @@
+901:       window.onload = function () {
+906:         google.script.run.withSuccessHandler(initDashboard).getDashboardData();
+909:       function initDashboard(response) {

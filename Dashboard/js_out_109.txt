@@ -1,0 +1,51 @@
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run.withSuccessHandler(initDashboard).getDashboardData();
+        } else {
+          // โหมดดึงข้อมูลตรงจาก Google Sheets (ไม่ต้องใช้ Server)
+          const SHEET_ID = '1RQDU83exQhNpVYjp9JyD5UdocA6JB6GpJeXA-Qe8Pr4';
+
+          function fetchSheetData(sheetName) {
+             return new Promise((resolve, reject) => {
+                let cbName = 'gviz_' + sheetName + '_' + Math.random().toString(36).substr(2, 9);
+                window[cbName] = function(json) {
+                   let cols = json.table.cols.map(c => c ? c.label : '');
+                   let data = json.table.rows.map(r => {
+                      let obj = {};
+                      r.c.forEach((cell, i) => {
+                         if (!cols[i]) return;
+                         let val = cell ? (cell.f !== undefined ? cell.f : cell.v) : null;
+                         obj[cols[i]] = val;
+                      });
+                      return obj;
+                   });
+                   delete window[cbName];
+                   resolve(data);
+                };
+                let script = document.createElement('script');
+                script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json;responseHandler:${cbName}&sheet=${sheetName}`;
+                script.onerror = () => reject(new Error('JSONP failed for ' + sheetName));
+                document.head.appendChild(script);
+             });
+          }
+
+          Promise.all([
+             fetchSheetData('Disaster_DB'),
+             fetchSheetData('Vulnerable_group'),
+             fetchSheetData('BKK_water_DB'),
+             fetchSheetData('thai_water_DB'),
+             fetchSheetData('shelter_DB')
+          ]).then(results => {
+             initDashboard({
+                floodData: results[0],
+                vulData: results[1],
+                bkkWaterData: results[2],
+                thaiWaterData: results[3],
+                shelterData: results[4]
+             });
+          }).catch(err => {
+             console.error("Error fetching live sheets data", err);
+             // Fallback to mock_data.js
+             const script = document.createElement('script');
+             script.src = 'mock_data.js';
+             script.onload = () => {
+                if (typeof MOCK_DATA !== 'undefined') initDashboard(MOCK_DATA);

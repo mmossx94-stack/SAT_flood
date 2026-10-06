@@ -1,0 +1,33 @@
+function updateThaiRanking(data) {
+        const tbody = document.getElementById('thaiRankingTableBody');
+        if (!tbody) return;
+
+        // Sort by water level (naively assuming higher is worse)
+        let sorted = [...data].filter(d => !isNaN(parseFloat(d.water_in_m_msl)))
+          .sort((a, b) => parseFloat(b.water_in_m_msl) - parseFloat(a.water_in_m_msl))
+          .slice(0, 10);
+
+        tbody.innerHTML = '';
+        if (sorted.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="text-center">ไม่มีข้อมูล</td></tr>';
+          return;
+        }
+
+        sorted.forEach((item, idx) => {
+          let stat = item.flood_status_source || 'ไม่ระบุ';
+          let wl = parseFloat(item.water_in_m_msl).toFixed(2);
+          let color = getStatusColor(stat);
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="text-center fw-bold">${idx + 1}</td>
+            <td>${item.station_name || item.canal || '-'}</td>
+            <td>${item.district_or_area || '-'}</td>
+            <td class="text-end fw-bold">${wl}</td>
+            <td class="text-center"><span class="badge" style="background-color: ${color}">${stat}</span></td>
+            <td class="small text-muted">${item.observed_at_th || '-'}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      

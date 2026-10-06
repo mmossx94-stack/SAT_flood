@@ -1,0 +1,25 @@
+      function applyBkkFilters() {
+        const dist = document.getElementById('bkkDistrictFilter').value;
+        const stat = 'all';
+
+        let filtered = rawBkkWaterData.filter(d => {
+          return (dist === 'all' || d.district_or_area === dist) &&
+            (stat === 'all' || d.flood_status_source === stat);
+        });
+
+        renderBkkMap(filtered);
+        updateBkkRanking(filtered);
+      }
+
+      function applyThaiFilters() {
+        const prov = document.getElementById('thaiProvinceFilter').value;
+        const stat = document.getElementById('thaiStatusFilter').value;
+        const hz = document.getElementById('thaiHealthZoneFilter').value;
+
+        let validProvs = new Set();
+        if (hz !== 'all') {
+          rawVulData.forEach(d => { if (d['เขตสุขภาพ'] === hz && d['จังหวัด']) validProvs.add(d['จังหวัด']); });
+        }
+
+        let filtered = rawThaiWaterData.filter(d => {
+          let passHz = (hz === 'all') || (d.district_or_area && validProvs.has(d.district_or_area));

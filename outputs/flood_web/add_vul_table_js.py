@@ -1,0 +1,34 @@
+﻿import re, sys
+sys.stdout.reconfigure(encoding="utf-8")
+
+with open("outputs/flood_web/template.html", "r", encoding="utf-8") as f:
+    html = f.read()
+
+# Using regex to find the line
+pattern = r"\$\('vulnerable'\)\.innerHTML=\[.*?\.join\(''\);"
+match = re.search(pattern, html)
+if match:
+    old_js = match.group(0)
+    new_js = """const affectedProvs = new Set(reports.filter(r => r.Current_Status === 'กำลังประสบภัย').map(r => r.Province)).size;
+$('vulnerable').innerHTML=card('จังหวัดที่ประสบภัย',fmt(affectedProvs),'จังหวัด')+[['เด็ก 0-4 ปี',sum(v,'เด็ก 0-4 ปี')],['หญิงตั้งครรภ์',sum(v,'หญิงตั้งครรภ์')],['ผู้สูงอายุ 60 ปีขึ้นไป',sum(v,'ผู้สูงอายุ 60 ปีขึ้นไป')]].map(([t,n])=>card(t,fmt(n),'คน')).join('');
+const vulHeaders = ['จังหวัด', 'เขตสุขภาพ', 'เด็ก 0-4 ปี', 'หญิงตั้งครรภ์', 'ผู้สูงอายุ 60 ปีขึ้นไป', 'รวมกลุ่มเปราะบาง'];
+const vulRows = v.slice().sort((a,b)=>((b['เด็ก 0-4 ปี']||0)+(b['หญิงตั้งครรภ์']||0)+(b['ผู้สูงอายุ 60 ปีขึ้นไป']||0))-((a['เด็ก 0-4 ปี']||0)+(a['หญิงตั้งครรภ์']||0)+(a['ผู้สูงอายุ 60 ปีขึ้นไป']||0))).map(r => {
+  const c = (r['เด็ก 0-4 ปี']||0) + (r['หญิงตั้งครรภ์']||0) + (r['ผู้สูงอายุ 60 ปีขึ้นไป']||0);
+  return [
+    `<button class="linkbutton" data-province="${esc(r.province)}">${esc(r.province)}</button>`,
+    esc(r.region||'-'),
+    `<div style="text-align:right">${fmt(r['เด็ก 0-4 ปี']||0)}</div>`,
+    `<div style="text-align:right">${fmt(r['หญิงตั้งครรภ์']||0)}</div>`,
+    `<div style="text-align:right">${fmt(r['ผู้สูงอายุ 60 ปีขึ้นไป']||0)}</div>`,
+    `<div style="text-align:right;font-weight:bold">${fmt(c)}</div>`
+  ];
+});
+$('vulTable').innerHTML = table(vulHeaders, vulRows);
+"""
+    html = html.replace(old_js, new_js.replace('\n', ' '))
+    print("Replaced successfully!")
+else:
+    print("Could not match regex")
+
+with open("outputs/flood_web/template.html", "w", encoding="utf-8") as f:
+    f.write(html)

@@ -1,0 +1,3 @@
+965:       function initDashboard(response) {
+966:         function parseCustomDate(dStr) {
+2335:       function updateShelterSummary(baseData, tableData, statusFilterStr) {

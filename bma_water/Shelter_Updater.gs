@@ -1,0 +1,3068 @@
+/**
+ * วิธีใช้งาน:
+ * 1. คัดลอกโค้ดทั้งหมดนี้ไปวางในไฟล์ใหม่ของ Google Apps Script เดิม (เช่นตั้งชื่อว่า UpdateFix.gs)
+ * 2. กดรันฟังก์ชัน `runFixShelterCoordinates()` เพียงครั้งเดียว
+ * 3. หลังจากรันเสร็จ ระบบจะนำพิกัดที่พบ 109 รายการไปบันทึกลง PropertiesService (Cache ถาวรของระบบ)
+ * 4. รอให้ Trigger รอบถัดไปทำงาน (หรือกดรัน updateShelter() เอง) ข้อมูลใน Google Sheets จะถูกอัปเดตอัตโนมัติ
+ */
+
+function runFixShelterCoordinates() {
+  // ข้อมูลพิกัดที่เราหามาได้ทั้งหมด 109 รายการ (ตัดมาให้ดูเป็นตัวอย่าง สามารถนำข้อมูลจาก shelter_findings.json มาวางแทนที่ array นี้ได้เลย)
+  const findings = [
+    [
+  {
+    "row": 2,
+    "id": "d47bf7af-910f-be9a-1015-e3669c6d6b59",
+    "district": "คลองสาน",
+    "name": "โรงเรียนมัธยมวัดสุทธาราม",
+    "url": "https://maps.app.goo.gl/THU6UjkuSK843fuaA?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/PF7W%2B628+%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A1%E0%B8%B1%E0%B8%98%E0%B8%A2%E0%B8%A1%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A5%E0%B8%B3%E0%B8%A0%E0%B8%B9%E0%B8%A5%E0%B9%88%E0%B8%B2%E0%B8%87+%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600/data=!4m2!3m1!1s0x30e2988d4b08bfd5:0x3603e1825c0db10e!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM3LjUYACDXggMqxwEsMTAwODM2NzY1LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=d551170e-bcc5-4546-ae42-a6a66f91596e&g_st=ac",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7130698,
+    "lng": 100.4934718,
+    "evidence": {
+      "id_sch": "3110022308",
+      "name": "โรงเรียนมัธยมวัดสุทธาราม",
+      "address": "403/1 ถ.เจริญนคร แขวงบางลำภูล่าง",
+      "dcode": "1018",
+      "num_stu": 645,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 3,
+    "id": "6c09bbed-58f3-8db6-bcb6-00abd4d65cd7",
+    "district": "คลองสาน",
+    "name": "โรงเรียนวัดทองธรรมชาติ",
+    "url": "https://maps.app.goo.gl/Mck4hhX59JTUj3a27?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%AD%E0%B8%87%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4+141+%E0%B8%96%E0%B8%99%E0%B8%99+%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600/data=!4m2!3m1!1s0x30e298dfcc2b6ca5:0x9e71285d1a8d4eb7!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM3LjUYACDXggMqxwEsMTAwODM2NzY1LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=aaa3cacd-6c8b-4374-b9b5-22a11a6245bd&g_st=ac",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7340192,
+    "lng": 100.5064446,
+    "evidence": {
+      "id_sch": "3110012304",
+      "name": "โรงเรียนวัดทองธรรมชาติ",
+      "address": "ถ.เชียงใหม่ แขวงคลองสาน เขตคลองสาน",
+      "dcode": "1018",
+      "num_stu": 145,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 4,
+    "id": "ae6a1e1f-dd60-8eda-1312-b16fafab6a1c",
+    "district": "คลองสาน",
+    "name": "โรงเรียนวัดทองนพคุณ",
+    "url": "https://maps.app.goo.gl/8GDhqan3HNmxio5o6?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%AD%E0%B8%87%E0%B8%99%E0%B8%9E%E0%B8%84%E0%B8%B8%E0%B8%93+103+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%AA%E0%B8%A1%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%88%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B2+17+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600/data=!4m2!3m1!1s0x30e298dfcc2b6ca5:0x8d41a1464eb1c42b!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM3LjUYACDXggMqxwEsMTAwODM2NzY1LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=86e8013c-6cfa-4073-be66-48ead1841b92&g_st=ac",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7331238,
+    "lng": 100.5083614,
+    "evidence": {
+      "id_sch": "3110012305",
+      "name": "โรงเรียนวัดทองนพคุณ",
+      "address": "4645 แขวงคลองสาน เขตคลองสาน",
+      "dcode": "1018",
+      "num_stu": 116,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 5,
+    "id": "893d718f-1fc7-05d1-eb9c-bd57f45498f1",
+    "district": "คลองสาน",
+    "name": "โรงเรียนวัดทองเพลง",
+    "url": "https://maps.app.goo.gl/TP3AwKk5fgBeDXP4A?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%9E%E0%B8%A5%E0%B8%87+135%2F1+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B1%E0%B8%96+14+%E0%B8%96.+%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B1%E0%B8%96+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B9%89%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%A3+%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600/data=!4m2!3m1!1s0x30e298ef680b255f:0x25f3c7ec8e9da9b3!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM3LjUYACDXggMqxwEsMTAwODM2NzY1LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=c0221ff2-7e65-406d-97aa-f17c63b79498&g_st=ac",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7244692,
+    "lng": 100.5007125,
+    "evidence": {
+      "id_sch": "3110022303",
+      "name": "โรงเรียนวัดทองเพลง",
+      "address": "135 ถ.เจริญนคร 14 แขวงคลองต้นไทร เขตคลองสาน",
+      "dcode": "1018",
+      "num_stu": 667,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 6,
+    "id": "4b8d7251-8897-a8c9-625c-b32f8ae6c9f7",
+    "district": "คลองสาน",
+    "name": "โรงเรียนวัดพิชัยญาติ",
+    "url": "https://maps.app.goo.gl/VmSL2ibA2WyXGT41A?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%B4%E0%B8%8A%E0%B8%B1%E0%B8%A2%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%B4+%E0%B9%80%E0%B8%A5%E0%B8%82%E0%B8%97%E0%B8%B5%E0%B9%88+32+%E0%B8%96.+%E0%B8%AA%E0%B8%A1%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%88%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%AA%E0%B8%A1%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%88%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B2+%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600/data=!4m2!3m1!1s0x30e298e310afc089:0x54ab3da684f88039!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM3LjUYACDXggMqxwEsMTAwODM2NzY1LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=ced494f5-5e32-4114-a5f7-7bf1efe5be53&g_st=ac",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7327454,
+    "lng": 100.4971926,
+    "evidence": {
+      "id_sch": "3110012306",
+      "name": "โรงเรียนวัดพิชัยญาติ",
+      "address": "685 แขวงสมเด็จเจ้าพระยา เขตคลองสาน",
+      "dcode": "1018",
+      "num_stu": 170,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 7,
+    "id": "08267586-0c76-6a16-1c46-515a9b01b6b9",
+    "district": "คลองสาน",
+    "name": "โรงเรียนวัดสุทธาราม",
+    "url": "https://maps.app.goo.gl/rg8VbkBh5VSzg55y7?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/403,+%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1,+1+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A5%E0%B8%B3%E0%B8%A0%E0%B8%B9%E0%B8%A5%E0%B9%88%E0%B8%B2%E0%B8%87+%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600/data=!4m2!3m1!1s0x30e2997567111e07:0x72bf7f38cb14cd99!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM3LjUYACDXggMqxwEsMTAwODM2NzY1LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=76184ba4-7497-4652-b490-67f3b2e0cf77&g_st=ac",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7131086,
+    "lng": 100.4934223,
+    "evidence": {
+      "id_sch": "3110022302",
+      "name": "โรงเรียนวัดสุทธาราม",
+      "address": "403/1 ถ.เจริญนคร แขวงบางลำภูล่าง เขตคลองสาน",
+      "dcode": "1018",
+      "num_stu": 882,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 8,
+    "id": "cb64c88c-65ac-4406-89a5-fbad303fcc1c",
+    "district": "คลองสาน",
+    "name": "โรงเรียนวัดสุวรรณ",
+    "url": "https://maps.app.goo.gl/vyGbvEjQCpvuzhFw9?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B8%E0%B8%A7%E0%B8%A3%E0%B8%A3%E0%B8%93+27+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%99%E0%B8%84%E0%B8%A3+9+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B9%89%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%A3+%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600/data=!4m2!3m1!1s0x30e298dcd3768f39:0x162fb2e11e2fe285!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM3LjUYACDXggMqxwEsMTAwODM2NzY1LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=a690315c-3b97-4623-a610-774c6a68a308&g_st=ac",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.724199,
+    "lng": 100.5104975,
+    "evidence": {
+      "id_sch": "3110012307",
+      "name": "โรงเรียนวัดสุวรรณ",
+      "address": "27 ถ.เจริญนคร แขวงคลองต้นไทร เขตคลองสาน",
+      "dcode": "1018",
+      "num_stu": 731,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 9,
+    "id": "2b25b8c2-0107-1c5d-5e8c-0256ef0c4a9d",
+    "district": "คลองสาน",
+    "name": "โรงเรียนวัดเศวตฉัตร",
+    "url": "https://maps.app.goo.gl/VDLF36p77vs9eniw6?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%80%E0%B8%A8%E0%B8%A7%E0%B8%95%E0%B8%89%E0%B8%B1%E0%B8%95%E0%B8%A3+8+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%99%E0%B8%84%E0%B8%A3+25+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A5%E0%B8%B3%E0%B8%A0%E0%B8%B9%E0%B8%A5%E0%B9%88%E0%B8%B2%E0%B8%87+%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%99+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600/data=!4m2!3m1!1s0x30e298eab6ce67b7:0xad86f3614ac3d84c!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM3LjUYACDXggMqxwEsMTAwODM2NzY1LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=8cd66339-d0bb-4eea-becf-f6bc22307753&g_st=ac",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7131209,
+    "lng": 100.5060561,
+    "evidence": {
+      "id_sch": "3110022301",
+      "name": "โรงเรียนวัดเศวตฉัตร",
+      "address": "1223/1 ถ.เจริญนคร 25 แขวงบางลำภูล่าง เขตคลองสาน",
+      "dcode": "1018",
+      "num_stu": 595,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 39,
+    "id": "64581ef2-b823-cc2e-f161-dbe4285ff141",
+    "district": "จตุจักร",
+    "name": "โรงเรียนวัดเทวสุนทร",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%80%E0%B8%97%E0%B8%A7%E0%B8%AA%E0%B8%B8%E0%B8%99%E0%B8%97%E0%B8%A3%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%88%E0%B8%95%E0%B8%B8%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.8538904,
+    "lng": 100.5620488,
+    "evidence": {
+      "id_sch": "3110011802",
+      "name": "โรงเรียนวัดเทวสุนทร",
+      "address": "1 หมู่ 19 ถ.วิภาวดีรังสิต แขวงลาดยาว เขตจตุจักร",
+      "dcode": "1030",
+      "num_stu": 240,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 40,
+    "id": "57c52eca-7e19-268b-5ebb-ac4470cebbb6",
+    "district": "จตุจักร",
+    "name": "โรงเรียนวัดเสมียนนารี",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%80%E0%B8%AA%E0%B8%A1%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%99%E0%B8%B2%E0%B8%A3%E0%B8%B5%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%88%E0%B8%95%E0%B8%B8%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.8404236,
+    "lng": 100.5562791,
+    "evidence": {
+      "id_sch": "3110011801",
+      "name": "โรงเรียนวัดเสมียนนารี",
+      "address": "32 หมู่ 2 ถ.วิภาวดีรังสิต แขวงลาดยาว เขตจตุจักร",
+      "dcode": "1030",
+      "num_stu": 864,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 41,
+    "id": "e5c896e0-c1df-34db-4f87-8a8096472399",
+    "district": "จตุจักร",
+    "name": "โรงเรียนเสนานิคม",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%AA%E0%B8%99%E0%B8%B2%E0%B8%99%E0%B8%B4%E0%B8%84%E0%B8%A1%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%88%E0%B8%95%E0%B8%B8%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.8317499,
+    "lng": 100.5883609,
+    "evidence": {
+      "id_sch": "3110021805",
+      "name": "โรงเรียนเสนานิคม",
+      "address": "1242 ถ.พหลโยธิน แขวงลาดยาว เขตจตุจักร",
+      "dcode": "1030",
+      "num_stu": 1421,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 42,
+    "id": "db069ece-3cc7-20fa-1725-1988e6dc3f3f",
+    "district": "ดอนเมือง",
+    "name": "โรงเรียนพหลโยธิน",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%AB%E0%B8%A5%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B4%E0%B8%99%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%94%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.9495167,
+    "lng": 100.615449,
+    "evidence": {
+      "id_sch": "3110011702",
+      "name": "โรงเรียนพหลโยธิน",
+      "address": "9 ซ.วิภาวดีรังสิต 45 แขวงสีกัน เขตดอนเมือง",
+      "dcode": "1036",
+      "num_stu": 744,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 43,
+    "id": "8404aba6-d4dc-3f49-49d0-f491f6fa42b7",
+    "district": "ดอนเมือง",
+    "name": "โรงเรียนวัดดอนเมือง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%94%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%94%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.9214919,
+    "lng": 100.6010932,
+    "evidence": {
+      "id_sch": "3110011701",
+      "name": "โรงเรียนวัดดอนเมือง (ทหารอากาศอุทิศ)",
+      "address": "1/4 หมู่ 10 แขวงสีกัน เขตดอนเมือง",
+      "dcode": "1036",
+      "num_stu": 1640,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 49,
+    "id": "f121cc39-0c1b-298e-d247-72fbee6948d5",
+    "district": "ดุสิต",
+    "name": "โรงเรียนวัดสวัสดิ์วารีสีมาราม",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B4%E0%B9%8C%E0%B8%A7%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%B5%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%94%E0%B8%B8%E0%B8%AA%E0%B8%B4%E0%B8%95%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.7807771,
+    "lng": 100.5156618,
+    "evidence": {
+      "id_sch": "3110010602",
+      "name": "โรงเรียนวัดสวัสดิ์วารีสีมาราม",
+      "address": "996 ถ.นครไชยศรี เขตดุสิต",
+      "dcode": "1002",
+      "num_stu": 161,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 50,
+    "id": "165c7fd3-3a14-d02d-b852-f0f3982eb9c0",
+    "district": "ดุสิต",
+    "name": "โรงเรียนวัดเทวราชกุญชร",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%80%E0%B8%97%E0%B8%A7%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B8%E0%B8%8D%E0%B8%8A%E0%B8%A3%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%94%E0%B8%B8%E0%B8%AA%E0%B8%B4%E0%B8%95%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.7730088,
+    "lng": 100.5016567,
+    "evidence": {
+      "id_sch": "3110010604",
+      "name": "โรงเรียนวัดเทวราชกุญชร",
+      "address": "90/1 ถ.ศรีอยุธยา แขวงวชิรพยาบาล เขตดุสิต",
+      "dcode": "1002",
+      "num_stu": 199,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 52,
+    "id": "078156ff-1e9f-4177-a2e5-fd725054a93b",
+    "district": "ทวีวัฒนา",
+    "name": "โรงเรียนคลองต้นไทร(สุขล้อมอุทิศ)",
+    "url": "https://maps.app.goo.gl/Lvm3q12TxWnA55786",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B9%89%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%A3+87%2F1+%E0%B8%96.+%E0%B8%9A%E0%B8%A3%E0%B8%A1%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%8A%E0%B8%99%E0%B8%99%E0%B8%B5+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%AA%E0%B8%9E%E0%B8%99%E0%B9%8C+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10170/data=!4m2!3m1!1s0x30e296dc347fd357:0x66e4ef803ebec77a!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACCenQoq0QEsMTAwODM3NTI5LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDEwMDgwODY1NCw5NDI3NTE2OCw5NDI3OTYxOSwxMDA4MzU3MDQsMTAwODI1MDI1LDEwMDgyMDIzNywxMDA4MjI0OTQsMTAwODI3OTc1LDEwMDgzODM1NUICVEg%3D&skid=0ddc0b92-a7ea-4640-a4c9-8c46bf087b7a",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7835033,
+    "lng": 100.3838333,
+    "evidence": {
+      "id_sch": "3110014901",
+      "name": "โรงเรียนคลองต้นไทร (สุขล้อมอุทิศ)",
+      "address": "87/2 หมู่ 19 แขวงศาลาธรรมสพน์ เขตทวีวัฒนา",
+      "dcode": "1048",
+      "num_stu": 282,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 53,
+    "id": "b17e35b9-6828-468b-a753-c3fe90479a46",
+    "district": "ทวีวัฒนา",
+    "name": "โรงเรียนคลองทวีวัฒนา(ทองน่วมอนุสรณ์)",
+    "url": "https://maps.app.goo.gl/Jn8GzDEPTb1XWuuLA?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+111%2F1+%E0%B8%96.+%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10170/data=!4m2!3m1!1s0x30e2969d04d6e44f:0x2c4ad4f53465e15b!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACDXggMq0QEsMTAwODM3NTI5LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDEwMDgwODY1NCw5NDI3NTE2OCw5NDI3OTYxOSwxMDA4MzU3MDQsMTAwODI1MDI1LDEwMDgyMDIzNywxMDA4MjI0OTQsMTAwODI3OTc1LDEwMDgzODM1NUICVEg%3D&skid=48d3528b-c697-4b7b-bfd5-21475b905d79&g_st=ac",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7555626,
+    "lng": 100.3516647,
+    "evidence": {
+      "id_sch": "3110014902",
+      "name": "โรงเรียนคลองทวีวัฒนา",
+      "address": "155 หมู่ 1 แขวงทวีวัฒนา เขตทวีวัฒนา",
+      "dcode": "1048",
+      "num_stu": 1155,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 54,
+    "id": "3dc7b92c-20e7-4ddd-a7eb-6012a01bae5c",
+    "district": "ทวีวัฒนา",
+    "name": "โรงเรียนคลองบางพรหม",
+    "url": "https://maps.app.goo.gl/LC24wmGu2r73UQJR9?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B8%AB%E0%B8%A1+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88+12+%E0%B8%8B%E0%B8%AD%E0%B8%A2+18+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%AA%E0%B8%9E%E0%B8%99%E0%B9%8C+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10170/data=!4m2!3m1!1s0x30e297dabfc8863f:0xd33ae4af12eb32df!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACDXggMq0QEsMTAwODM3NTI5LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDEwMDgwODY1NCw5NDI3NTE2OCw5NDI3OTYxOSwxMDA4MzU3MDQsMTAwODI1MDI1LDEwMDgyMDIzNywxMDA4MjI0OTQsMTAwODI3OTc1LDEwMDgzODM1NUICVEg%3D&skid=b0719f50-e1b4-4ef2-9e45-0f8328ad6f1c&g_st=ac",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7686342,
+    "lng": 100.368626,
+    "evidence": {
+      "id_sch": "3110014903",
+      "name": "โรงเรียนคลองบางพรหม",
+      "address": "53 หมู่ 12 แขวงศาลาธรรมสพน์ เขตทวีวัฒนา",
+      "dcode": "1048",
+      "num_stu": 374,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 55,
+    "id": "0d95bb9d-216c-4ef9-86ee-d1ea0d829e25",
+    "district": "ทวีวัฒนา",
+    "name": "โรงเรียนคลองมหาสวัสดิ์",
+    "url": "https://maps.app.goo.gl/cu6qooLYkhSspMmNA?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B4%E0%B9%8C+28%2F3+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%AA%E0%B8%9E%E0%B8%99%E0%B9%8C+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10170/data=!4m2!3m1!1s0x30e29158f8d3b96b:0x3546c04e50e19ffb!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACCIJyrRASwxMDA4Mzc1MjksOTQyNjc3MjcsOTQyOTIxOTUsOTQyOTk1MzIsMTAwNzk2NDk4LDEwMDc5Nzc2MSwxMDA3OTY1MzUsOTQyODA1NzYsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTg2NTMsOTQyMjk4MzksMTAwODA4NjU0LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcwNCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=87a716b8-da8c-4ab0-a973-9e396db09126&g_st=ac",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8026823,
+    "lng": 100.3523604,
+    "evidence": {
+      "id_sch": "3110014904",
+      "name": "โรงเรียนคลองมหาสวัสดิ์",
+      "address": "28/3 หมู่ 4 แขวงศาลาธรรมสพน์ เขตทวีวัฒนา",
+      "dcode": "1048",
+      "num_stu": 427,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 57,
+    "id": "f02dc659-7a22-4af6-9ee1-ef413273225a",
+    "district": "ทวีวัฒนา",
+    "name": "โรงเรียนมัธยมปุรณาวาส",
+    "url": "https://maps.app.goo.gl/2SrNrV4o1j3vFM1n9?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A1%E0%B8%B1%E0%B8%98%E0%B8%A2%E0%B8%A1%E0%B8%9B%E0%B8%B8%E0%B8%A3%E0%B8%93%E0%B8%B2%E0%B8%A7%E0%B8%B2%E0%B8%AA+29+%E0%B8%96.+%E0%B8%A8%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%AA%E0%B8%9E%E0%B8%99%E0%B9%8C+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%AA%E0%B8%9E%E0%B8%99%E0%B9%8C+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10170/data=!4m2!3m1!1s0x30e293efc012f5a3:0xcc3ecc8993ef727d!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACDXggMq0QEsMTAwODM3NTI5LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDEwMDgwODY1NCw5NDI3NTE2OCw5NDI3OTYxOSwxMDA4MzU3MDQsMTAwODI1MDI1LDEwMDgyMDIzNywxMDA4MjI0OTQsMTAwODI3OTc1LDEwMDgzODM1NUICVEg%3D&skid=65c1ff9d-52b8-4681-b2f0-8b2665c0078f&g_st=ac",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8012417,
+    "lng": 100.3369944,
+    "evidence": {
+      "id_sch": "3110010304",
+      "name": "โรงเรียนมัธยมปุรณาวาส",
+      "address": "25 หมู่ 3 แขวงศาลาธรรมสพน์ เขตทวีวัฒนา",
+      "dcode": "1048",
+      "num_stu": 860,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 58,
+    "id": "8fb662a7-69f9-4d75-a6df-a72562a364c8",
+    "district": "ทวีวัฒนา",
+    "name": "โรงเรียนวัดปุรณาวาส",
+    "url": "https://maps.app.goo.gl/KQy275Z89uN6XfXz5?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/R82P%2BP43+%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9B%E0%B8%B8%E0%B8%A3%E0%B8%93%E0%B8%B2%E0%B8%A7%E0%B8%B2%E0%B8%AA+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%AA%E0%B8%9E%E0%B8%99%E0%B9%8C+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10170/data=!4m2!3m1!1s0x30e293a4907e5d5d:0x99661c601326f1dd!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACDXggMq0QEsMTAwODM3NTI5LDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDEwMDgwODY1NCw5NDI3NTE2OCw5NDI3OTYxOSwxMDA4MzU3MDQsMTAwODI1MDI1LDEwMDgyMDIzNywxMDA4MjI0OTQsMTAwODI3OTc1LDEwMDgzODM1NUICVEg%3D&skid=062a6ca1-989e-4584-9c31-c5022fe23c1e&g_st=ac",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8015209,
+    "lng": 100.3352201,
+    "evidence": {
+      "id_sch": "3110024905",
+      "name": "โรงเรียนวัดปุรณาวาส",
+      "address": "25 หมู่ 3 แขวงศาลาธรรมสพน์ เขตทวีวัฒนา",
+      "dcode": "1048",
+      "num_stu": 1355,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 59,
+    "id": "b7fbc4ec-56dc-7900-ace2-5a8cb685c8d3",
+    "district": "ทุ่งครุ",
+    "name": "โรงเรียนคลองรางจาก",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%88%E0%B8%B2%E0%B8%81%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B8%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.6357191,
+    "lng": 100.514756,
+    "evidence": {
+      "id_sch": "3110015007",
+      "name": "โรงเรียนคลองรางจาก",
+      "address": "69/1 คลองรางจาก แขวงทุ่งครุ เขตทุ่งครุ",
+      "dcode": "1049",
+      "num_stu": 143,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 60,
+    "id": "53dda150-1b18-5d9a-b257-8a6ac2829450",
+    "district": "ทุ่งครุ",
+    "name": "โรงเรียนชูสินทองประดิษฐ์อนุสรณ์",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%8A%E0%B8%B9%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B4%E0%B8%A9%E0%B8%90%E0%B9%8C%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%AA%E0%B8%A3%E0%B8%93%E0%B9%8C%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B8%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.6571443,
+    "lng": 100.5095495,
+    "evidence": {
+      "id_sch": "3110015008",
+      "name": "โรงเรียนชูสินทองประดิษฐ์อนุสรณ์",
+      "address": "81/27 หมู่ 4 ถ.ประชาอุทิศ แขวงบางมด เขตทุ่งครุ",
+      "dcode": "1049",
+      "num_stu": 638,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 61,
+    "id": "7df1767c-2913-ffbe-3e81-865a4cbac662",
+    "district": "ทุ่งครุ",
+    "name": "โรงเรียนนาหลวง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B8%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.6476913,
+    "lng": 100.4950497,
+    "evidence": {
+      "id_sch": "3110015001",
+      "name": "โรงเรียนนาหลวง",
+      "address": "ถ.พุทธบูชา แขวงบางมด เขตทุ่งครุ",
+      "dcode": "1049",
+      "num_stu": 2703,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 62,
+    "id": "cc3501f8-bf75-048f-f0ee-4727755df689",
+    "district": "ทุ่งครุ",
+    "name": "โรงเรียนบางมด (ตันเปาว์วิทยาคาร)",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A1%E0%B8%94%20(%E0%B8%95%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%9B%E0%B8%B2%E0%B8%A7%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3)%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B8%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.654502,
+    "lng": 100.4716705,
+    "evidence": {
+      "id_sch": "3110015003",
+      "name": "โรงเรียนบางมด (ตันเปาว์วิทยาคาร)",
+      "address": "177 หมู่ 3 ถ.พุทธบูชา แขวงบางมด เขตทุ่งครุ",
+      "dcode": "1049",
+      "num_stu": 688,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 64,
+    "id": "00dd767b-4ec9-4c4e-c430-ada69841114c",
+    "district": "ทุ่งครุ",
+    "name": "โรงเรียนราษฎร์บูรณะ (มูฮำหมัดอุทิศ)",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B8%B9%E0%B8%A3%E0%B8%93%E0%B8%B0%20(%E0%B8%A1%E0%B8%B9%E0%B8%AE%E0%B8%B3%E0%B8%AB%E0%B8%A1%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%B8%E0%B8%97%E0%B8%B4%E0%B8%A8)%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B8%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.6347802,
+    "lng": 100.5031628,
+    "evidence": {
+      "id_sch": "3110015004",
+      "name": "โรงเรียนราษฎร์บูรณะ",
+      "address": "141 หมู่ 1 ซ.ทุ่งครุ ถ.ประชาอุทิศ แขวงทุ่งครุ เขตทุ่งครุ",
+      "dcode": "1049",
+      "num_stu": 1281,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 65,
+    "id": "5f3d517f-7411-6ec9-a5c9-a551da2a0905",
+    "district": "ทุ่งครุ",
+    "name": "โรงเรียนวัดทุ่งครุ (พึ่งสายอนุสรณ์)",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B8%20(%E0%B8%9E%E0%B8%B6%E0%B9%88%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%AA%E0%B8%A3%E0%B8%93%E0%B9%8C)%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B8%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.6192295,
+    "lng": 100.5120069,
+    "evidence": {
+      "id_sch": "3110015006",
+      "name": "โรงเรียนวัดทุ่งครุ",
+      "address": "42 หมู่ 6 ถ.ประชาอุทิศ แขวงทุ่งครุ เขตทุ่งครุ",
+      "dcode": "1049",
+      "num_stu": 2390,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 66,
+    "id": "79cc73f1-16f8-9235-2c4a-1f071b1038f9",
+    "district": "ทุ่งครุ",
+    "name": "โรงเรียนสามัคคีบำรุง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%84%E0%B8%84%E0%B8%B5%E0%B8%9A%E0%B8%B3%E0%B8%A3%E0%B8%B8%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B8%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.6457149,
+    "lng": 100.5113544,
+    "evidence": {
+      "id_sch": "3110015002",
+      "name": "โรงเรียนสามัคคีบำรุง",
+      "address": "75 หมู่ 4 ถ.ประชาอุทิศ แขวงบางมด เขตทุ่งครุ",
+      "dcode": "1049",
+      "num_stu": 689,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 67,
+    "id": "aebb8f0d-7ac8-d49b-d135-593c2b1fdfd7",
+    "district": "ธนบุรี",
+    "name": "โรงเรียนกันตทาราราม",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%97%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%98%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.7176477,
+    "lng": 100.4783538,
+    "evidence": {
+      "id_sch": "3110012210",
+      "name": "โรงเรียนกันตทาราราม",
+      "address": "ถ.รัชดาภิเษก 14 แขวงตลาดพลู เขตธนบุรี",
+      "dcode": "1015",
+      "num_stu": 247,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 69,
+    "id": "f67cbe20-e844-b6cd-7310-25d620ec280f",
+    "district": "ธนบุรี",
+    "name": "โรงเรียนวัดกัลยาณมิตร",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%81%E0%B8%B1%E0%B8%A5%E0%B8%A2%E0%B8%B2%E0%B8%93%E0%B8%A1%E0%B8%B4%E0%B8%95%E0%B8%A3%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%98%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.7406484,
+    "lng": 100.4908449,
+    "evidence": {
+      "id_sch": "3110012205",
+      "name": "โรงเรียนวัดกัลยาณมิตร",
+      "address": "656 ถ.เทศบาลสาย 1 แขวงวัดกัลยาณ์ เขตธนบุรี",
+      "dcode": "1015",
+      "num_stu": 137,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 70,
+    "id": "3b0e9445-1ce4-5723-1c23-da82162e37c8",
+    "district": "ธนบุรี",
+    "name": "โรงเรียนวัดขุนจันทร์",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%82%E0%B8%B8%E0%B8%99%E0%B8%88%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%98%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.719847,
+    "lng": 100.4709283,
+    "evidence": {
+      "id_sch": "3110012202",
+      "name": "โรงเรียนวัดขุนจันทร์",
+      "address": "1144 ถ.เทอดไท แขวงตลาดพลู เขตธนบุรี",
+      "dcode": "1015",
+      "num_stu": 184,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 71,
+    "id": "069ac5a8-91fe-780c-a74a-9ba5e0989daf",
+    "district": "ธนบุรี",
+    "name": "โรงเรียนวัดบางน้ำชน",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%8A%E0%B8%99%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%98%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.7040946,
+    "lng": 100.4907039,
+    "evidence": {
+      "id_sch": "3110012217",
+      "name": "โรงเรียนวัดบางน้ำชน",
+      "address": "ถ.เจริญนคร แขวงบุคคโล เขตธนบุรี",
+      "dcode": "1015",
+      "num_stu": 78,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 72,
+    "id": "359aec1a-274a-d748-a423-5add85e49f90",
+    "district": "ธนบุรี",
+    "name": "โรงเรียนวัดบุคคโล",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9A%E0%B8%B8%E0%B8%84%E0%B8%84%E0%B9%82%E0%B8%A5%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%98%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.7003749,
+    "lng": 100.4883414,
+    "evidence": {
+      "id_sch": "3110012203",
+      "name": "โรงเรียนวัดบุคคโล",
+      "address": "349 ถ.เจริญนคร แขวงบุคคโล เขตธนบุรี",
+      "dcode": "1015",
+      "num_stu": 1249,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 73,
+    "id": "f1300896-d216-7e56-6c87-240e8926a5fa",
+    "district": "ธนบุรี",
+    "name": "โรงเรียนวัดใหญ่ศรีสุพรรณ",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%83%E0%B8%AB%E0%B8%8D%E0%B9%88%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%B8%E0%B8%9E%E0%B8%A3%E0%B8%A3%E0%B8%93%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%98%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.7290148,
+    "lng": 100.4885865,
+    "evidence": {
+      "id_sch": "3110012216",
+      "name": "โรงเรียนวัดใหญ่ศรีสุพรรณ",
+      "address": "98 ถ.อินทรพิทักษ์ แขวงหิรัญจี เขตธนบุรี",
+      "dcode": "1015",
+      "num_stu": 241,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 84,
+    "id": "408c77d3-f1cb-ae83-42c8-10264d62b45b",
+    "district": "บางกอกน้อย",
+    "name": "โรงเรียนวัดสุวรรณาราม",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B8%E0%B8%A7%E0%B8%A3%E0%B8%A3%E0%B8%93%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%AD%E0%B8%81%E0%B8%99%E0%B9%89%E0%B8%AD%E0%B8%A2%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.7621124,
+    "lng": 100.477667,
+    "evidence": {
+      "id_sch": "3110012708",
+      "name": "โรงเรียนวัดสุวรรณาราม",
+      "address": "375/2 ถ.จรัญสนิทวงศ์ 32 เขตบางกอกน้อย",
+      "dcode": "1020",
+      "num_stu": 522,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 90,
+    "id": "2d3f5e3a-ce0d-b5ea-d5ce-84df66b6c82a",
+    "district": "บางกอกใหญ่",
+    "name": "โรงเรียนวัดดีดวด",
+    "url": "https://maps.app.goo.gl/AAK9oFKoK3aXWG7T6?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%94%E0%B8%B5%E0%B8%94%E0%B8%A7%E0%B8%94+116/13+%E0%B8%8B.+%E0%B8%88%E0%B8%A3%E0%B8%B1%E0%B8%8D%E0%B8%AA%E0%B8%99%E0%B8%B4%E0%B8%97%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C+12+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%AB%E0%B8%8D%E0%B9%88+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600&ftid=0x30e299a5612deea7:0x74fbd8a72bd1076c&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838873&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAINeCAypxLDk0Mjk3Njk5LDk0MjMxMTg4LDk0MjgwNTY4LDEwMDgyMTU1OSw0NzA3MTcwNCw5NDIxODY0MSw5NDI4MjEzNCwxMDA4MzU2OTQsOTQyODY4NjksMTAwODIwMjQ3LDEwMDgyMjUwNCwxMDA4Mzg4NzNCAlRI&skid=02c327a1-f82e-4b19-821c-0dd3841f666f&g_st=ic",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7412336,
+    "lng": 100.474829,
+    "evidence": {
+      "id_sch": "3110013005",
+      "name": "โรงเรียนวัดดีดวด",
+      "address": "116/13 แขวงวัดท่าพระ เขตบางกอกใหญ่",
+      "dcode": "1016",
+      "num_stu": 117,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 91,
+    "id": "f756b6cc-f792-aa4b-4ec9-b06b801c2883",
+    "district": "บางกอกใหญ่",
+    "name": "โรงเรียนวัดท่าพระ",
+    "url": "https://maps.app.goo.gl/QfgRkEdmLnXMaYze7?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0+30+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%88%E0%B8%A3%E0%B8%B1%E0%B8%8D%E0%B8%AA%E0%B8%99%E0%B8%B4%E0%B8%97%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C+4+%E0%B8%96.+%E0%B8%88%E0%B8%A3%E0%B8%B1%E0%B8%8D%E0%B8%AA%E0%B8%99%E0%B8%B4%E0%B8%97%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%AB%E0%B8%8D%E0%B9%88+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600&ftid=0x30e2984d8f51c1d3:0x67081f7acc54595f&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838873&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAINeCAypxLDk0Mjk3Njk5LDk0MjMxMTg4LDk0MjgwNTY4LDEwMDgyMTU1OSw0NzA3MTcwNCw5NDIxODY0MSw5NDI4MjEzNCwxMDA4MzU2OTQsOTQyODY4NjksMTAwODIwMjQ3LDEwMDgyMjUwNCwxMDA4Mzg4NzNCAlRI&skid=56aa0ab1-0077-4ceb-b69e-68ee34175833&g_st=ic",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7334763,
+    "lng": 100.4728119,
+    "evidence": {
+      "id_sch": "3110013002",
+      "name": "โรงเรียนวัดท่าพระ",
+      "address": "30 แขวงวัดท่าพระ เขตบางกอกใหญ่",
+      "dcode": "1016",
+      "num_stu": 628,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 92,
+    "id": "cff5b16f-1252-0b88-3a6f-4279772b7420",
+    "district": "บางกอกใหญ่",
+    "name": "โรงเรียนวัดประดู่ฉิมพลี",
+    "url": "https://maps.app.goo.gl/TkZ7VX2z2eMBVS8a9?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B9%E0%B9%88%E0%B8%89%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%A5%E0%B8%B5+1158+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B9%E0%B9%88%E0%B9%83%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%AB%E0%B8%8D%E0%B9%88+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600&ftid=0x30e29845a5cd7cbd:0xdf7fc62ecd17947b&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838873&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAINeCAypxLDk0Mjk3Njk5LDk0MjMxMTg4LDk0MjgwNTY4LDEwMDgyMTU1OSw0NzA3MTcwNCw5NDIxODY0MSw5NDI4MjEzNCwxMDA4MzU2OTQsOTQyODY4NjksMTAwODIwMjQ3LDEwMDgyMjUwNCwxMDA4Mzg4NzNCAlRI&skid=d2832565-cdb4-4a1d-899d-9f672d7c9604&g_st=ic",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7241142,
+    "lng": 100.4691135,
+    "evidence": {
+      "id_sch": "3110013003",
+      "name": "โรงเรียนวัดประดู่ฉิมพลี",
+      "address": "1162 แขวงวัดท่าพระ เขตบางกอกใหญ่",
+      "dcode": "1016",
+      "num_stu": 277,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 93,
+    "id": "78d45971-6b69-1ddd-881c-c1136700e90f",
+    "district": "บางกอกใหญ่",
+    "name": "โรงเรียนวัดราชสิทธาราม",
+    "url": "https://maps.app.goo.gl/m6iri1jNpHM3K1Y59?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=PFPP+547+%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%AA%E0%B8%B4%E0%B8%97%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1+%E0%B8%96%E0%B8%99%E0%B8%99+%E0%B8%AD%E0%B8%B4%E0%B8%AA%E0%B8%A3%E0%B8%A0%E0%B8%B2%E0%B8%9E+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%93+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%AB%E0%B8%8D%E0%B9%88+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10600&ftid=0x30e298fff3d86a9f:0x2c8e1b27831973e5&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838873&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAINeCAypxLDk0Mjk3Njk5LDk0MjMxMTg4LDk0MjgwNTY4LDEwMDgyMTU1OSw0NzA3MTcwNCw5NDIxODY0MSw5NDI4MjEzNCwxMDA4MzU2OTQsOTQyODY4NjksMTAwODIwMjQ3LDEwMDgyMjUwNCwxMDA4Mzg4NzNCAlRI&skid=c0c9ffbb-08b9-4078-af40-1371a861661c&g_st=ic",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7357938,
+    "lng": 100.4850235,
+    "evidence": {
+      "id_sch": "3110013001",
+      "name": "โรงเรียนวัดราชสิทธาราม",
+      "address": "94 แขวงวัดท่าพระ เขตบางกอกใหญ่",
+      "dcode": "1016",
+      "num_stu": 533,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 94,
+    "id": "f7f239f3-5482-e34f-2314-deb837b99281",
+    "district": "บางกอกใหญ่",
+    "name": "โรงเรียนวัดใหม่พิเรนทร์",
+    "url": "https://maps.app.goo.gl/vjb5VHhVZDzquQoaA?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=13.7413193,100.4825358&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838873&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAINeCAypxLDk0Mjk3Njk5LDk0MjMxMTg4LDk0MjgwNTY4LDEwMDgyMTU1OSw0NzA3MTcwNCw5NDIxODY0MSw5NDI4MjEzNCwxMDA4MzU2OTQsOTQyODY4NjksMTAwODIwMjQ3LDEwMDgyMjUwNCwxMDA4Mzg4NzNCAlRI&skid=841b9e62-58e4-4772-a9ed-9b11cfb579b1&g_st=ic",
+      "2026-10-01T16:32:07+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7411726,
+    "lng": 100.4822686,
+    "evidence": {
+      "id_sch": "3110013004",
+      "name": "โรงเรียนวัดใหม่พิเรนทร์",
+      "address": "611 แขวงวัดอรุณ เขตบางกอกใหญ่",
+      "dcode": "1016",
+      "num_stu": 127,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 102,
+    "id": "057ef1e1-7837-f250-3c3e-3636b741f981",
+    "district": "บางซื่อ",
+    "name": "โรงเรียนวัดบางโพโอมาวาส",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%9E%E0%B9%82%E0%B8%AD%E0%B8%A1%E0%B8%B2%E0%B8%A7%E0%B8%B2%E0%B8%AA%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%8B%E0%B8%B7%E0%B9%88%E0%B8%AD%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.8088566,
+    "lng": 100.5197171,
+    "evidence": {
+      "id_sch": "3110010702",
+      "name": "โรงเรียนวัดบางโพโอมาวาส",
+      "address": "101 ถ.ประชาราษฎร์สาย 1 แขวงบางซื่อ เขตบางซื่อ",
+      "dcode": "1029",
+      "num_stu": 704,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 112,
+    "id": "e8b14651-ee91-f6ce-c7e7-0b796b904096",
+    "district": "บางรัก",
+    "name": "โรงเรียนวัดหัวลำโพง",
+    "url": "https://share.google/SN3IeQUtAgTeMzEf6",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B8%A5%E0%B8%B3%E0%B9%82%E0%B8%9E%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%81%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.7319111,
+    "lng": 100.5286106,
+    "evidence": {
+      "id_sch": "3110010501",
+      "name": "โรงเรียนวัดหัวลำโพง",
+      "address": "728/1 ถ.พระรามสี่ แขวงสี่พระยา เขตบางรัก",
+      "dcode": "1004",
+      "num_stu": 363,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 113,
+    "id": "8a1c081f-f06b-a37a-f746-76cee889174d",
+    "district": "บางรัก",
+    "name": "โรงเรียนวัดแก้วแจ่มฟ้า",
+    "url": "https://share.google/SU8mNHuRZCgSxXtcj",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%A7%E0%B9%81%E0%B8%88%E0%B9%88%E0%B8%A1%E0%B8%9F%E0%B9%89%E0%B8%B2%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%81%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.7317807,
+    "lng": 100.5194975,
+    "evidence": {
+      "id_sch": "3110010505",
+      "name": "โรงเรียนวัดแก้วแจ่มฟ้า",
+      "address": "562 ถ.สี่พระยา แขวงมหาพฤฒาราม เขตบางรัก",
+      "dcode": "1004",
+      "num_stu": 154,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 130,
+    "id": "58d18f0f-184f-425a-b34c-ec7a042127a3",
+    "district": "ยานนาวา",
+    "name": "โรงเรียนวัดคลองภูมิ",
+    "url": "https://maps.app.goo.gl/g6ka5gor8jLLrJ2y6?g_st=ac",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/Wat+Khlong+Phum+School,+24%2F2+Rama+III+Soi+46,+Chong+Nonsi,+Yan+Nawa,+Bangkok+10120,+Thailand/data=!4m2!3m1!1s0x30e2a1e6debb14b1:0x6d146536958c6a91!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACCenQoqswEsOTQyNjc3MjcsOTQyOTIxOTUsOTQyOTk1MzIsMTAwNzk2NDk4LDEwMDc5Nzc2MSwxMDA3OTY1MzUsMTAwODQwMDQ2LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjAyMzcsMTAwODIyNDk0LDEwMDgyNzk3NUICR0I%3D&skid=c4a36ebf-169c-4739-8c1e-208f4aee6ad9&g_st=ac",
+      "2026-10-01T16:32:07+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.6807733,
+    "lng": 100.5486882,
+    "evidence": {
+      "id_sch": "3110011006",
+      "name": "โรงเรียนวัดคลองภูมิ",
+      "address": "22/1 ถ.พระราม 3 แขวงช่องนนทรี เขตยานนาวา",
+      "dcode": "1012",
+      "num_stu": 205,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 140,
+    "id": "f18749f9-1bb1-fc13-0fd9-128f5bb46a9b",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนตำบลขุมทอง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%97%E0%B8%AD%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7548505,
+    "lng": 100.8571279,
+    "evidence": {
+      "id_sch": "3110013214",
+      "name": "โรงเรียนตำบลขุมทอง (ประชาอุทิศ)",
+      "address": "68 หมู่ 7 แขวงขุมทอง เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 65,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 141,
+    "id": "92ce774c-8709-f476-ce12-a42ab1d2f458",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนประสานสามัคคี",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%84%E0%B8%84%E0%B8%B5%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7318374,
+    "lng": 100.8377682,
+    "evidence": {
+      "id_sch": "3110013208",
+      "name": "โรงเรียนประสานสามัคคี (บ้านทับยาว)",
+      "address": "97/2 หมู่ 8 ถ.ทับยาว แขวงทับยาว เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 113,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 142,
+    "id": "8bb3b656-819d-8ba2-5d1a-394d5600d7a8",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนวัดบำรุงรื่น",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9A%E0%B8%B3%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%99%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7426308,
+    "lng": 100.7557878,
+    "evidence": {
+      "id_sch": "3110013204",
+      "name": "โรงเรียนวัดบำรุงรื่น",
+      "address": "61 หมู่ 3 ถ.ร่มเกล้า แขวงคลองสาม เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 838,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 143,
+    "id": "1d4a03e3-61d7-ae7f-fd30-68dbd475d5a5",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนวัดปากบึง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9B%E0%B8%B2%E0%B8%81%E0%B8%9A%E0%B8%B6%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7768417,
+    "lng": 100.7381436,
+    "evidence": {
+      "id_sch": "3110013217",
+      "name": "โรงเรียนวัดปากบึง",
+      "address": "46 หมู่ 6 ถ.ร่มเกล้า แขวงคลองสอง เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 1303,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 144,
+    "id": "87957c08-9e83-fad5-051d-8173cd27bed6",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนวัดลาดกระบัง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7269937,
+    "lng": 100.7524152,
+    "evidence": {
+      "id_sch": "3110023201",
+      "name": "โรงเรียนวัดลาดกระบัง",
+      "address": "125 หมู่ 4 ถ.ร่มเกล้า แขวงลาดกระบัง เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 901,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 145,
+    "id": "f972891e-249a-d6ee-d41c-e53a087128d2",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนวัดลานบุญ",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A5%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%8D%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7254454,
+    "lng": 100.7200408,
+    "evidence": {
+      "id_sch": "3110023216",
+      "name": "โรงเรียนวัดลานบุญ",
+      "address": "19 หมู่ 7 ถ.อ่อนนุช แขวงลาดกระบัง เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 1596,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 146,
+    "id": "71c4ce5c-d133-efe4-0e62-58419ffc6266",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนวัดสังฆราชา",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B1%E0%B8%87%E0%B8%86%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%B2%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7263666,
+    "lng": 100.7377299,
+    "evidence": {
+      "id_sch": "3110023216",
+      "name": "โรงเรียนวัดสังฆราชา",
+      "address": "336 หมู่ 5 ถ.อ่อนนุช แขวงลาดกระบัง เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 791,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 147,
+    "id": "8a114428-c8c2-f3fe-86a8-73bd768f9cdf",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนวัดสุทธาโภชน์",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B8%B2%E0%B9%82%E0%B8%A0%E0%B8%8A%E0%B8%99%E0%B9%8C%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7402499,
+    "lng": 100.7954481,
+    "evidence": {
+      "id_sch": "3110013206",
+      "name": "โรงเรียนวัดสุทธาโภชน์",
+      "address": "139 หมู่ 7 ถ.ฉลองกรุง แขวงทับยาว เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 703,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 148,
+    "id": "785e557e-e447-a3a7-6499-971bf3730fb6",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนเคหะชุมชนลาดกระบัง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%84%E0%B8%AB%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%8A%E0%B8%99%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7657276,
+    "lng": 100.7304156,
+    "evidence": {
+      "id_sch": "3110013220",
+      "name": "โรงเรียนเคหะชุมชนลาดกระบัง",
+      "address": "3 หมู่ 3 ถ.ร่มเกล้า แขวงคลองสองต้นนุ่น เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 2113,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 149,
+    "id": "73063bec-9106-8f60-9180-e25f2eaec5d4",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนแดงเป้า",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%81%E0%B8%94%E0%B8%87%E0%B9%80%E0%B8%9B%E0%B9%89%E0%B8%B2%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.748239,
+    "lng": 100.7243466,
+    "evidence": {
+      "id_sch": "3110013219",
+      "name": "โรงเรียนแดงเป้า (สิงสุขบูรณะ)",
+      "address": "79 หมู่ 1 แขวงคลองสองต้นนุ่น เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 156,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 150,
+    "id": "b5a72573-170d-53df-6af8-5d8ceb2e153e",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนแสงหิรัญวิทยา",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%81%E0%B8%AA%E0%B8%87%E0%B8%AB%E0%B8%B4%E0%B8%A3%E0%B8%B1%E0%B8%8D%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7127983,
+    "lng": 100.812968,
+    "evidence": {
+      "id_sch": "3110013207",
+      "name": "โรงเรียนแสงหิรัญวิทยา",
+      "address": "99 หมู่ 3 ถ.หลวงแพ่ง แขวงทับยาว เขตลาดกระบัง",
+      "dcode": "1011",
+      "num_stu": 1157,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 153,
+    "id": "3f3b5a42-1de4-d401-613c-21be82ca8966",
+    "district": "ลาดพร้าว",
+    "name": "โรงเรียนคลองทรงกระเทียม",
+    "url": "https://maps.app.goo.gl/dLXBqTQrZMLGU7Nh8?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=RJ27+849+%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B8%A2%E0%B8%A1+%E0%B8%8B%E0%B8%AD%E0%B8%A2%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B8%A2%E0%B8%A1+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10230&ftid=0x30e29d8cbece6a09:0x4f1fc2927eaa392f&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM5LjAuOTg0OTU2MzcwMBgAIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU5LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=b19e9065-6239-47cf-b094-48778b39fdd8&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8003197,
+    "lng": 100.6128105,
+    "evidence": {
+      "id_sch": "3110012006",
+      "name": "โรงเรียนคลองทรงกระเทียม",
+      "address": "1/4 หมู่ 8 แขวงลาดพร้าว เขตลาดพร้าว",
+      "dcode": "1038",
+      "num_stu": 674,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 154,
+    "id": "46ce6821-25ab-4575-ed92-b26fa4f869a5",
+    "district": "ลาดพร้าว",
+    "name": "โรงเรียนลอยสายอนุสรณ์",
+    "url": "https://maps.app.goo.gl/Jywq7HkmQXnKJK138?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A5%E0%B8%AD%E0%B8%A2%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%AA%E0%B8%A3%E0%B8%93%E0%B9%8C+12+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88%E0%B9%80%E0%B8%A2%E0%B9%87%E0%B8%99+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10230&ftid=0x311d62bc2ccbdbc1:0x3c6770bb52363eee&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM5LjAuOTg0OTU2MzcwMBgAIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU5LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=1b4f29c6-3f96-4635-aeb0-e271362a0fb3&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8403222,
+    "lng": 100.6324374,
+    "evidence": {
+      "id_sch": "3110012001",
+      "name": "โรงเรียนลอยสายอนุสรณ์",
+      "address": "41 หมู่ 12 แขวงลาดพร้าว เขตลาดพร้าว",
+      "dcode": "1038",
+      "num_stu": 840,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 155,
+    "id": "210b3783-4da3-eae5-37cd-69104091b0c8",
+    "district": "ลาดพร้าว",
+    "name": "โรงเรียนวัดลาดปลาเค้า",
+    "url": "https://maps.app.goo.gl/J9amCBHo4EGiZb7D9?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9B%E0%B8%A5%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B9%89%E0%B8%B2+487+%E0%B8%96%E0%B8%99%E0%B8%99+%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9B%E0%B8%A5%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B9%89%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%88%E0%B8%A3%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%9A%E0%B8%B1%E0%B8%A7+%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10230&ftid=0x30e29d4247499eaf:0x35755e4f169fc8ec&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM5LjAuOTg0OTU2MzcwMBgAIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU5LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=01ec2435-136a-46f4-bca2-e0a397e49883&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8473866,
+    "lng": 100.6040203,
+    "evidence": {
+      "id_sch": "3110012004",
+      "name": "โรงเรียนวัดลาดปลาเค้า",
+      "address": "63/1 หมู่ 2 แขวงจรเข้บัว เขตลาดพร้าว",
+      "dcode": "1038",
+      "num_stu": 945,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 156,
+    "id": "7656bb34-1b58-5bd3-6280-11379aac5fa5",
+    "district": "ลาดพร้าว",
+    "name": "โรงเรียนวัดลาดพร้าว",
+    "url": "https://maps.app.goo.gl/JT9g2f4AqSwahrZE6?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=RH3R+838+%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%87%E0%B8%97%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%B2%E0%B8%87+%E0%B8%88%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%94+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10230&ftid=0x30e29db8e0eb8335:0x4ffb2c398b5bddd0&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM5LjAuOTg0OTU2MzcwMBgAIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU5LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=60b95a5e-0b02-4a16-8cdd-3117e362deb0&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8031513,
+    "lng": 100.5902427,
+    "evidence": {
+      "id_sch": "3110022002",
+      "name": "โรงเรียนวัดลาดพร้าว",
+      "address": "1 หมู่ 9 ถ.ลาดพร้าว 41 แขวงลาดพร้าว เขตลาดพร้าว",
+      "dcode": "1038",
+      "num_stu": 952,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 157,
+    "id": "7c341567-761f-bfa7-751f-b399f48363d8",
+    "district": "ลาดพร้าว",
+    "name": "โรงเรียนเทพวิทยา",
+    "url": "https://maps.app.goo.gl/t86op6p4kxSo1abb8?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=RHJR+VCF+%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2+%E0%B8%96.+%E0%B9%80%E0%B8%AA%E0%B8%99%E0%B8%B2%E0%B8%99%E0%B8%B4%E0%B8%84%E0%B8%A1+1+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10230&ftid=0x30e29cfd47741d73:0xee7ef17757ecc27c&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM5LjAuOTg0OTU2MzcwMBgAIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU5LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=ca46535a-f2e0-4453-85ad-afec03d1424b&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8322177,
+    "lng": 100.590927,
+    "evidence": {
+      "id_sch": "3110012003",
+      "name": "โรงเรียนเทพวิทยา",
+      "address": "13/3 ซ.เสนานิคม 1 แขวงลาดพร้าว เขตลาดพร้าว",
+      "dcode": "1038",
+      "num_stu": 663,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 158,
+    "id": "f5e6984e-42e7-218c-d4f7-c5d1f63f80b4",
+    "district": "ลาดพร้าว",
+    "name": "โรงเรียนเพชรถนอม",
+    "url": "https://maps.app.goo.gl/nQ2WXTAcZrT6ixTeA?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=RJF8+777+%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%9E%E0%B8%8A%E0%B8%A3%E0%B8%96%E0%B8%99%E0%B8%AD%E0%B8%A1+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%AD%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2+67+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%AD%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%84%E0%B8%B1%E0%B8%99%E0%B8%99%E0%B8%B2%E0%B8%A2%E0%B8%B2%E0%B8%A7+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10230&ftid=0x311d63985e5613d5:0xe3fd6af902bd2cfc&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM5LjAuOTg0OTU2MzcwMBgAIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU5LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=c2647c56-7d14-4358-81d4-a7334b585e20&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8228948,
+    "lng": 100.6157542,
+    "evidence": {
+      "id_sch": "3110012005",
+      "name": "โรงเรียนเพชรถนอม (คลองเสือน้อย)",
+      "address": "2/3 หมู่ 2 ถ.ลาดพร้าว เขตลาดพร้าว",
+      "dcode": "1038",
+      "num_stu": 1389,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 159,
+    "id": "7f5f5105-0333-4b10-9153-1f419f53bdbc",
+    "district": "วัฒนา",
+    "name": "โรงเรียนวัดธาตุทอง (เรือนเขียวสะอาด)",
+    "url": "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%98%E0%B8%B2%E0%B8%95%E0%B8%B8%E0%B8%97%E0%B8%AD%E0%B8%87(%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94)+1325+%E0%B8%96.+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%82%E0%B8%82%E0%B8%99%E0%B8%87%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e29f66e118c887:0x7d668b0b96816377!2m2!1d100.5866626!2d13.7196058?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%98%E0%B8%B2%E0%B8%95%E0%B8%B8%E0%B8%97%E0%B8%AD%E0%B8%87(%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94)+1325+%E0%B8%96.+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%82%E0%B8%82%E0%B8%99%E0%B8%87%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e29f66e118c887:0x7d668b0b96816377!2m2!1d100.5866626!2d13.7196058?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7196572,
+    "lng": 100.5866531,
+    "evidence": {
+      "id_sch": "3110014501",
+      "name": "โรงเรียนวัดธาตุทอง",
+      "address": "1325 ถ.สุขุมวิท แขวงพระโขนง เขตวัฒนา",
+      "dcode": "1039",
+      "num_stu": 1008,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 160,
+    "id": "f595791c-1730-ef8f-574d-4689a44f6c6f",
+    "district": "วัฒนา",
+    "name": "โรงเรียนสวัสดีวิทยา",
+    "url": "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2+35%2F10+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+31+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%A2%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e29efb9c42273b:0xfc179f752a3d0dff!2m2!1d100.5662747!2d13.7399734?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2+35%2F10+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+31+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%A2%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e29efb9c42273b:0xfc179f752a3d0dff!2m2!1d100.5662747!2d13.7399734?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7398013,
+    "lng": 100.5662809,
+    "evidence": {
+      "id_sch": "3110014508",
+      "name": "โรงเรียนสวัสดีวิทยา",
+      "address": "35/10 ถ.สุขุมวิท 31 แขวงคลองตัน เขตวัฒนา",
+      "dcode": "1039",
+      "num_stu": 715,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 161,
+    "id": "ed3b58c3-55c8-4bee-7681-c29a1cf2dd20",
+    "district": "วัฒนา",
+    "name": "โรงเรียนสุเหร่าบางมะเขือ",
+    "url": "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A1%E0%B8%B0%E0%B9%80%E0%B8%82%E0%B8%B7%E0%B8%AD+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%9B%E0%B8%A3%E0%B8%B5%E0%B8%94%E0%B8%B5%E0%B8%9E%E0%B8%99%E0%B8%A1%E0%B8%A2%E0%B8%87%E0%B8%84%E0%B9%8C2+%E0%B9%81%E0%B8%A2%E0%B8%81+1+%E0%B8%96.+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+71+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%82%E0%B8%82%E0%B8%99%E0%B8%87+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e29fb8a71a8a1d:0x655a370f652d2b85!2m2!1d100.5967501!2d13.7153612?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A1%E0%B8%B0%E0%B9%80%E0%B8%82%E0%B8%B7%E0%B8%AD+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%9B%E0%B8%A3%E0%B8%B5%E0%B8%94%E0%B8%B5%E0%B8%9E%E0%B8%99%E0%B8%A1%E0%B8%A2%E0%B8%87%E0%B8%84%E0%B9%8C2+%E0%B9%81%E0%B8%A2%E0%B8%81+1+%E0%B8%96.+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+71+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%82%E0%B8%82%E0%B8%99%E0%B8%87+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e29fb8a71a8a1d:0x655a370f652d2b85!2m2!1d100.5967501!2d13.7153612?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7154035,
+    "lng": 100.5969278,
+    "evidence": {
+      "id_sch": "3110014504",
+      "name": "โรงเรียนสุเหร่าบางมะเขือ",
+      "address": "ถ.สุขุมวิท 71 แขวงพระโขนง เขตวัฒนา",
+      "dcode": "1039",
+      "num_stu": 421,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 162,
+    "id": "2b9d72d0-ab1f-578c-d2e3-7205d40f2f4c",
+    "district": "วัฒนา",
+    "name": "โรงเรียนสุเหร่าบ้านดอน",
+    "url": "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%AD%E0%B8%99+84+%E0%B8%96.+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%A2%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e2",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%AD%E0%B8%99+84+%E0%B8%96.+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%A2%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e2",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7431516,
+    "lng": 100.5802374,
+    "evidence": {
+      "id_sch": "3110024503",
+      "name": "โรงเรียนสุเหร่าบ้านดอน",
+      "address": "84 ถ.สุขุมวิท 49-14 แขวงคลองตันเหนือ เขตวัฒนา",
+      "dcode": "1039",
+      "num_stu": 337,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 163,
+    "id": "fefd59ba-944e-230c-db96-42bcf6831f43",
+    "district": "วัฒนา",
+    "name": "โรงเรียนสุเหร่าสามอิน",
+    "url": "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%AD%E0%B8%B4%E0%B8%99+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e29fb5941fa4c5:0xccc259cf957db33!2m2!1d100.5962461!2d13.7277882?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%AD%E0%B8%B4%E0%B8%99+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x30e29fb5941fa4c5:0xccc259cf957db33!2m2!1d100.5962461!2d13.7277882?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.727914,
+    "lng": 100.5962,
+    "evidence": {
+      "id_sch": "3110014505",
+      "name": "โรงเรียนสุเหร่าสามอิน",
+      "address": "780 ถ.สุขุมวิท 71 แขวงคลองตัน เขตวัฒนา",
+      "dcode": "1039",
+      "num_stu": 588,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 164,
+    "id": "012012bb-7bee-2d90-e5fe-c648e1b66142",
+    "district": "วัฒนา",
+    "name": "โรงเรียนแจ่มจันทร์",
+    "url": "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%81%E0%B8%88%E0%B9%88%E0%B8%A1%E0%B8%88%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C+75+%E0%B8%8B.+%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%A1%E0%B8%B1%E0%B8%A2+21+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x30e29e4e6c24f993:0x5abdc4b2a44257a5!2m2!1d100.587692!2d13.7391174?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/dir//%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%81%E0%B8%88%E0%B9%88%E0%B8%A1%E0%B8%88%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C+75+%E0%B8%8B.+%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%A1%E0%B8%B1%E0%B8%A2+21+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10110/@13.7986048,100.6174208,12z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x30e29e4e6c24f993:0x5abdc4b2a44257a5!2m2!1d100.587692!2d13.7391174?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7391706,
+    "lng": 100.5877197,
+    "evidence": {
+      "id_sch": "3110014507",
+      "name": "โรงเรียนแจ่มจันทร์",
+      "address": "4/44 ถ.เอกชัย แขวงคลองตัน เขตวัฒนา",
+      "dcode": "1039",
+      "num_stu": 351,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 168,
+    "id": "e9209803-630c-4768-81ad-8da226b91c72",
+    "district": "สะพานสูง",
+    "name": "โรงเรียนวัดลาดบัวขาว",
+    "url": "https://maps.app.goo.gl/9d4amU62sLuNHe1w9?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9A%E0%B8%B1%E0%B8%A7%E0%B8%82%E0%B8%B2%E0%B8%A7+%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+170/7+%E0%B8%96.+%E0%B8%81%E0%B8%B2%E0%B8%8D%E0%B8%88%E0%B8%99%E0%B8%B2%E0%B8%A0%E0%B8%B4%E0%B9%80%E0%B8%A9%E0%B8%81+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10250&ftid=0x311d61451700023f:0xd6074b1d80545748&entry=gps&shh=CAE&lucs=,94297699,100826475,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838877,121816461&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAIIgnKoUBLDk0Mjk3Njk5LDEwMDgyNjQ3NSw5NDIzMTE4OCw5NDI4MDU2OCwxMDA4MjE1NTUsNDcwNzE3MDQsOTQyMTg2NDEsOTQyODIxMzQsMTAwODM1Njk0LDk0Mjg2ODY5LDEwMDgyMDI0NywxMDA4MjI1MDQsMTAwODM4ODc3LDEyMTgxNjQ2MUICVEg%3D&skid=873b6ccc-652b-4814-9f1a-34377fe90abc&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7583472,
+    "lng": 100.6965257,
+    "evidence": {
+      "id_sch": "3110011203",
+      "name": "โรงเรียนวัดลาดบัวขาว",
+      "address": "33 หมู่ 14 แขวงสะพานสูง เขตสะพานสูง",
+      "dcode": "1044",
+      "num_stu": 467,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 170,
+    "id": "730c9de8-15b4-419d-afa7-6726a100827f",
+    "district": "สะพานสูง",
+    "name": "โรงเรียนสมโภชกรุงอนุสรณ์ (200ปี)",
+    "url": "https://maps.app.goo.gl/mL6qjZokdgQihY4x6?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%A1%E0%B9%82%E0%B8%A0%E0%B8%8A%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%AA%E0%B8%A3%E0%B8%93%E0%B9%8C+(200%E0%B8%9B%E0%B8%B5)+16+%E0%B8%96.+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%81%E0%B8%A3%E0%B8%B5%E0%B8%91%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10250&ftid=0x311d613c989cc73d:0x20f09078052cc81b&entry=gps&shh=CAE&lucs=,94297699,100826475,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838877,121816461&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAINeCAyqFASw5NDI5NzY5OSwxMDA4MjY0NzUsOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU1LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0LDEwMDgzODg3NywxMjE4MTY0NjFCAlRI&skid=92121f13-cb56-4abc-b530-a49d4d5be85c&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7403079,
+    "lng": 100.6922842,
+    "evidence": {
+      "id_sch": "3110014103",
+      "name": "โรงเรียนสมโภชกรุงอนุสรณ์ (200 ปี)",
+      "address": "100/603 หมู่ 16 แขวงประเวศ เขตสะพานสูง",
+      "dcode": "1044",
+      "num_stu": 1011,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 171,
+    "id": "2bc70ccc-aa67-4dc5-ae69-b22d8f58bf94",
+    "district": "สะพานสูง",
+    "name": "โรงเรียนสามแยกคลองหลอแหล",
+    "url": "https://maps.app.goo.gl/LhQd8WRQCxCtmrzGA?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B9%81%E0%B8%A2%E0%B8%81%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+10+%E0%B8%96.+%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10240&ftid=0x311d63fb9a7a9445:0x27251c16bd70dce1&entry=gps&shh=CAE&lucs=,94297699,100826475,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838877,121816461&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAIIgnKoUBLDk0Mjk3Njk5LDEwMDgyNjQ3NSw5NDIzMTE4OCw5NDI4MDU2OCwxMDA4MjE1NTUsNDcwNzE3MDQsOTQyMTg2NDEsOTQyODIxMzQsMTAwODM1Njk0LDk0Mjg2ODY5LDEwMDgyMDI0NywxMDA4MjI1MDQsMTAwODM4ODc3LDEyMTgxNjQ2MUICVEg%3D&skid=af3cbf18-6d20-4200-96f9-e68f8744e005&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7803467,
+    "lng": 100.7016735,
+    "evidence": {
+      "id_sch": "3110024106",
+      "name": "โรงเรียนสามแยกคลองหลอแหล",
+      "address": "19 หมู่ 7 แขวงสะพานสูง เขตสะพานสูง",
+      "dcode": "1044",
+      "num_stu": 564,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 172,
+    "id": "8247b8db-8742-4645-a7be-e1e18036cf0a",
+    "district": "สะพานสูง",
+    "name": "โรงเรียนสุเหร่าซีรอ (ราษฎร์สามัคคี)",
+    "url": "https://maps.app.goo.gl/bGVh12H1RuUdxHrw8?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%8B%E0%B8%B5%E0%B8%A3%E0%B8%AD+3+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+8+%E0%B8%96.+%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10240&ftid=0x311d615913e5facb:0x6f4f400a21dc704f&entry=gps&shh=CAE&lucs=,94297699,100826475,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838877,121816461&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAINeCAyqFASw5NDI5NzY5OSwxMDA4MjY0NzUsOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU1LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0LDEwMDgzODg3NywxMjE4MTY0NjFCAlRI&skid=b82c8070-4332-4d5f-82e4-ac609cada5f5&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7691558,
+    "lng": 100.6948509,
+    "evidence": {
+      "id_sch": "3110024104",
+      "name": "โรงเรียนสุเหร่าซีรอ",
+      "address": "25/2 หมู่ แขวงสะพานสูง เขตสะพานสูง",
+      "dcode": "1044",
+      "num_stu": 959,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 173,
+    "id": "296cf755-32af-482c-b455-6cb6b1cfabd3",
+    "district": "สะพานสูง",
+    "name": "โรงเรียนสุเหร่าทับช้างคลองบน",
+    "url": "https://maps.app.goo.gl/dUa6Q1Q7uZE13rMU9?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9A%E0%B8%B1%E0%B8%A7%E0%B8%82%E0%B8%B2%E0%B8%A7+36+%E0%B8%96.+%E0%B9%80%E0%B8%84%E0%B8%AB%E0%B8%B0%E0%B8%A3%E0%B9%88%E0%B8%A1%E0%B9%80%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10240&ftid=0x311d673d1eb430d1:0x70daffcd9a7f43d&entry=gps&shh=CAE&lucs=,94297699,100826475,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838877,121816461&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAIIgnKoUBLDk0Mjk3Njk5LDEwMDgyNjQ3NSw5NDIzMTE4OCw5NDI4MDU2OCwxMDA4MjE1NTUsNDcwNzE3MDQsOTQyMTg2NDEsOTQyODIxMzQsMTAwODM1Njk0LDk0Mjg2ODY5LDEwMDgyMDI0NywxMDA4MjI1MDQsMTAwODM4ODc3LDEyMTgxNjQ2MUICVEg%3D&skid=35b5d743-274d-4fc7-bafd-56c74b83f63f&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7436495,
+    "lng": 100.6996266,
+    "evidence": {
+      "id_sch": "3110014101",
+      "name": "โรงเรียนสุเหร่าทับช้างคลองบน",
+      "address": "79 หมู่ 16 ถ.กรุงเทพกรีฑา แขวงประเวศ เขตสะพานสูง",
+      "dcode": "1044",
+      "num_stu": 319,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 174,
+    "id": "c6aee575-ed2c-4ed4-aefb-1fce9936e1d0",
+    "district": "สะพานสูง",
+    "name": "โรงเรียนสุเหร่าลาดบัวขาว",
+    "url": "https://maps.app.goo.gl/dUa6Q1Q7uZE13rMU9?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9A%E0%B8%B1%E0%B8%A7%E0%B8%82%E0%B8%B2%E0%B8%A7+36+%E0%B8%96.+%E0%B9%80%E0%B8%84%E0%B8%AB%E0%B8%B0%E0%B8%A3%E0%B9%88%E0%B8%A1%E0%B9%80%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10240&ftid=0x311d673d1eb430d1:0x70daffcd9a7f43d&entry=gps&shh=CAE&lucs=,94297699,100826475,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838877,121816461&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAIIgnKoUBLDk0Mjk3Njk5LDEwMDgyNjQ3NSw5NDIzMTE4OCw5NDI4MDU2OCwxMDA4MjE1NTUsNDcwNzE3MDQsOTQyMTg2NDEsOTQyODIxMzQsMTAwODM1Njk0LDk0Mjg2ODY5LDEwMDgyMDI0NywxMDA4MjI1MDQsMTAwODM4ODc3LDEyMTgxNjQ2MUICVEg%3D&skid=35b5d743-274d-4fc7-bafd-56c74b83f63f&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7698743,
+    "lng": 100.7134803,
+    "evidence": {
+      "id_sch": "3110014105",
+      "name": "โรงเรียนสุเหร่าลาดบัวขาว",
+      "address": "63/1 หมู่ 9 ถ.ราษฎร์พัฒนา แขวงสะพานสูง เขตสะพานสูง",
+      "dcode": "1044",
+      "num_stu": 615,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 193,
+    "id": "d7ce38ae-dada-b91c-d326-c04d4be15c5a",
+    "district": "หนองจอก",
+    "name": "โรงเรียนสุเหร่าคลองสิบ",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B9%88%E0%B8%B2%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B4%E0%B8%9A%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%88%E0%B8%AD%E0%B8%81%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.9041444,
+    "lng": 100.812104,
+    "evidence": {
+      "id_sch": "3110013324",
+      "name": "โรงเรียนสุเหร่าคลองสิบ",
+      "address": "18 หมู่ 8 แขวงคลองสิบ เขตหนองจอก",
+      "dcode": "1003",
+      "num_stu": 115,
+      "type": "1"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 203,
+    "id": "b4d829a9-ce79-ed07-8323-b7d37f76731b",
+    "district": "หลักสี่",
+    "name": "โรงเรียนการเคหะท่าทราย",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%84%E0%B8%AB%E0%B8%B0%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%97%E0%B8%A3%E0%B8%B2%E0%B8%A2%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B5%E0%B9%88%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.8734112,
+    "lng": 100.5532913,
+    "evidence": {
+      "id_sch": "3110023905",
+      "name": "โรงเรียนการเคหะท่าทราย",
+      "address": "304/233 หมู่ 6 แขวงทุ่งสองห้อง เขตหลักสี่",
+      "dcode": "1041",
+      "num_stu": 1287,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 204,
+    "id": "fd747b69-e217-0d07-2f83-e21ae0e4312b",
+    "district": "หลักสี่",
+    "name": "โรงเรียนทุ่งสองห้อง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%AA%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B9%89%E0%B8%AD%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B5%E0%B9%88%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.8853393,
+    "lng": 100.5604221,
+    "evidence": {
+      "id_sch": "3110023902",
+      "name": "โรงเรียนทุ่งสองห้อง",
+      "address": "207 หมู่ 4 ถ.แจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่",
+      "dcode": "1041",
+      "num_stu": 615,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 205,
+    "id": "40fdb062-ea65-a686-4cbf-9cf2eef1bd0f",
+    "district": "หลักสี่",
+    "name": "โรงเรียนบางเขน (ไว้สาลีอนุสรณ์)",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "ไม่มีลิงก์ Google Maps",
+      "",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "รอค้นรอบถัดไป",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%82%E0%B8%99%20(%E0%B9%84%E0%B8%A7%E0%B9%89%E0%B8%AA%E0%B8%B2%E0%B8%A5%E0%B8%B5%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%AA%E0%B8%A3%E0%B8%93%E0%B9%8C)%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B5%E0%B9%88%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2"
+    ],
+    "lat": 13.8608221,
+    "lng": 100.5671252,
+    "evidence": {
+      "id_sch": "3110013906",
+      "name": "โรงเรียนบางเขน (ไว้สาลีอนุสรณ์)",
+      "address": "106 หมู่ 1 ถ.วิภาวดีรังสิต แขวงตลาดบางเขน เขตหลักสี่",
+      "dcode": "1041",
+      "num_stu": 785,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 206,
+    "id": "a38fdd2a-6876-5bb5-740f-50b294f14d4b",
+    "district": "หลักสี่",
+    "name": "โรงเรียนวัดหลักสี่ (ทองใบทิวารีวิทยา)",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "ไม่มีลิงก์ Google Maps",
+      "",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "รอค้นรอบถัดไป",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B5%E0%B9%88%20(%E0%B8%97%E0%B8%AD%E0%B8%87%E0%B9%83%E0%B8%9A%E0%B8%97%E0%B8%B4%E0%B8%A7%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2)%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B5%E0%B9%88%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2"
+    ],
+    "lat": 13.889233,
+    "lng": 100.5824933,
+    "evidence": {
+      "id_sch": "3110013901",
+      "name": "โรงเรียนวัดหลักสี่ (ทองใบ ทิวารี)",
+      "address": "487/1 ถ.วิภาวดีรังสิต แขวงตลาดบางเขน เขตหลักสี่",
+      "dcode": "1041",
+      "num_stu": 746,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 207,
+    "id": "03f082a0-8c14-8b45-6faf-02fe835f3a39",
+    "district": "หลักสี่",
+    "name": "โรงเรียนเคหะทุ่งสองห้องวิทยา 1",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "ไม่มีลิงก์ Google Maps",
+      "",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "รอค้นรอบถัดไป",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%84%E0%B8%AB%E0%B8%B0%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%AA%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%201%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B5%E0%B9%88%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2"
+    ],
+    "lat": 13.9009975,
+    "lng": 100.5832113,
+    "evidence": {
+      "id_sch": "3110023903",
+      "name": "โรงเรียนเคหะทุ่งสองห้องวิทยา 1",
+      "address": "326 ถ.วิภาวดีรังสิต แขวงทุ่งสองห้อง เขตหลักสี่",
+      "dcode": "1041",
+      "num_stu": 1247,
+      "type": "3"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 208,
+    "id": "d82e09a3-e241-b961-bdde-b8af57f46921",
+    "district": "หลักสี่",
+    "name": "โรงเรียนเคหะทุ่งสองห้องวิทยา 2",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "ไม่มีลิงก์ Google Maps",
+      "",
+      "2026-10-01T16:01:43+07:00",
+      "",
+      "รอค้นรอบถัดไป",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%84%E0%B8%AB%E0%B8%B0%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%AA%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%202%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%AA%E0%B8%B5%E0%B9%88%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2"
+    ],
+    "lat": 13.9022826,
+    "lng": 100.5785958,
+    "evidence": {
+      "id_sch": "3110013904",
+      "name": "โรงเรียนเคหะทุ่งสองห้องวิทยา 2",
+      "address": "314 หมู่ 2 ถ.วิภาวดีรังสิต แขวงทุ่งสองห้อง เขตหลักสี่",
+      "dcode": "1041",
+      "num_stu": 677,
+      "type": "2"
+    },
+    "source": "bma_school.json",
+    "method": "Name match"
+  },
+  {
+    "row": 36,
+    "id": "12135531-bf8d-18d0-0d58-727f2f37a01e",
+    "district": "จตุจักร",
+    "name": "ราชภัฏจันทรเกษม",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%A0%E0%B8%B1%E0%B8%8F%E0%B8%88%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%A1%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%88%E0%B8%95%E0%B8%B8%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.8200212,
+    "lng": 100.5775218,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 37,
+    "id": "9f1c27dc-35ca-d9bf-1f98-89db992049b8",
+    "district": "จตุจักร",
+    "name": "วัดเทวสุนทร",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%80%E0%B8%97%E0%B8%A7%E0%B8%AA%E0%B8%B8%E0%B8%99%E0%B8%97%E0%B8%A3%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%88%E0%B8%95%E0%B8%B8%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.8545494,
+    "lng": 100.5621327,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 45,
+    "id": "866d79e5-6d6a-1532-3281-758768670715",
+    "district": "ดุสิต",
+    "name": "วัดสวัสดิ์วารีสีมาราม",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B4%E0%B9%8C%E0%B8%A7%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%B5%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%94%E0%B8%B8%E0%B8%AA%E0%B8%B4%E0%B8%95%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.7812793,
+    "lng": 100.5156583,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 46,
+    "id": "86b84da7-fd67-e137-13bc-1760c72970e7",
+    "district": "ดุสิต",
+    "name": "วัดสุคันธาราม",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B8%E0%B8%84%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%94%E0%B8%B8%E0%B8%AA%E0%B8%B4%E0%B8%95%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.7771293,
+    "lng": 100.522973,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 47,
+    "id": "88883e8b-442c-31fd-848a-d1b15046cc07",
+    "district": "ดุสิต",
+    "name": "ศูนย์นันทนาการสวนอ้อย",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%99%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%99%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%AD%E0%B9%89%E0%B8%AD%E0%B8%A2%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%94%E0%B8%B8%E0%B8%AA%E0%B8%B4%E0%B8%95%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.7802808,
+    "lng": 100.5115001,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 48,
+    "id": "10a55cee-cc6f-4f0a-a61e-eab585c09bd4",
+    "district": "ดุสิต",
+    "name": "โรงเรียนวัดสมณานัมบริหาร",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%A1%E0%B8%93%E0%B8%B2%E0%B8%99%E0%B8%B1%E0%B8%A1%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%94%E0%B8%B8%E0%B8%AA%E0%B8%B4%E0%B8%95%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.76005,
+    "lng": 100.51616,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 51,
+    "id": "e5ee61e4-9f67-ef99-64ab-7f36778882fd",
+    "district": "ดุสิต",
+    "name": "โรงเรียนวัดเบญจมบพิตร",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:41:00+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%80%E0%B8%9A%E0%B8%8D%E0%B8%88%E0%B8%A1%E0%B8%9A%E0%B8%9E%E0%B8%B4%E0%B8%95%E0%B8%A3%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%94%E0%B8%B8%E0%B8%AA%E0%B8%B4%E0%B8%95%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:41:00+07:00"
+    ],
+    "lat": 13.766,
+    "lng": 100.514,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 119,
+    "id": "8f4df65b-c5a8-6569-50a5-112d3fe4a7b1",
+    "district": "ประเวศ",
+    "name": "สำนักงานเขตประเวศ",
+    "url": "https://me-l.co/v55ml1z3",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%AA%E0%B8%B3%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A7%E0%B8%A8%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A7%E0%B8%A8%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.7172432,
+    "lng": 100.6946855,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 120,
+    "id": "64a84257-a1fc-9759-ad8d-1b0266abd743",
+    "district": "ประเวศ",
+    "name": "โรงเรียนฝึกอาชีพกรุงเทพมหานคร (ประเวศ)",
+    "url": "https://me-l.co/4nkos9tt",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9D%E0%B8%B6%E0%B8%81%E0%B8%AD%E0%B8%B2%E0%B8%8A%E0%B8%B5%E0%B8%9E%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20(%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A7%E0%B8%A8)%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A7%E0%B8%A8%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.683518,
+    "lng": 100.6652647,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 121,
+    "id": "5ac1597a-6790-d7a2-04c4-75d255fe2c21",
+    "district": "พญาไท",
+    "name": "อาคารศูนย์บริการสาธารณสุข 51(เดิม)  ในบริเวณวัดไผ่ตัน",
+    "url": "https://www.google.com/search?q=%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%B2%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%93%E0%B8%AA%E0%B8%B8%E0%B8%82+51+%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1+%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88%E0%B8%A0%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%84%E0%B8%9C%E0%B9%88%E0%B8%95%E0%B8%B1%E0%B8%99+%E0%B8%8B%E0%B8%AD%E0%B8%A2%E0%B8%9E%E0%B8%AB%E0%B8%A5%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B4%E0%B8%99+15+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9E%E0%B8%8D%E0%B8%B2%E0%B9%84%E0%B8%97+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9E%E0%B8%8D%E0%B8%B2%E0%B9%84%E0%B8%97+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3&sca_esv=fd861737a4dd1940&biw=390&bih=669&sxsrf=APpeQnuRpzBC9WWrWKK44-7ug78WzsTfOA%3A1790408080654&ei=kHW3aofLJ8qTseMPy5712QI&oq=%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%B2%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%93%E0%B8%AA%E0%B8%B8%E0%B8%82+51+%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1+%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88%E0%B8%A0%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%84%E0%B8%9C%E0%B9%88%E0%B8%95%E0%B8%B1%E0%B8%99+%E0%B8%8B%E0%B8%AD%E0%B8%A2%E0%B8%9E%E0%B8%AB%E0%B8%A5%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B4%E0%B8%99+15+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9E%E0%B8%8D%E0%B8%B2%E0%B9%84%E0%B8%97+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9E%E0%B8%8D%E0%B8%B2%E0%B9%84%E0%B8%97+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3&gs_lp=EhNtb2JpbGUtZ3dzLXdpei1zZXJwIqAC4Lit4Liy4LiE4Liy4Lij4Lio4Li54LiZ4Lii4LmM4Lia4Lij4Li04LiB4Liy4Lij4Liq4Liy4LiY4Liy4Lij4LiT4Liq4Li44LiCIDUxIOC5gOC4lOC4tOC4oSDguJXguLHguYnguIfguK3guKLguLnguYjguKDguLLguKLguYPguJnguKfguLHguJTguYTguJzguYjguJXguLHguJkg4LiL4Lit4Lii4Lie4Lir4Lil4LmC4Lii4LiY4Li04LiZIDE1IOC5geC4guC4p-C4h-C4nuC4jeC4suC5hOC4lyDguYDguILguJXguJ7guI3guLLguYTguJcg4LiB4Lij4Li44LiH4LmA4LiX4Lie4Lih4Lir4Liy4LiZ4LiE4LijMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMg0QIxjwBRjJAhjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgoQIxjwBRjqAhgnMg0QLhjHARivARjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQLhgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQLhgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQLhgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBSIksUMUaWMUacAN4AZABAJgBAKABAKoBALgBA8gBAPgBAfgBApgCA6ACI6gCLZgDEfEFYyef746ajDC6BgQIARgKkgcBM6AHALIHALgHAMIHAzMtM8gHIIAIAQ&sclient=mobile-gws-wiz-serp#",
+    "geo": [
+      "",
+      "",
+      "อ่านลิงก์ไม่สำเร็จ",
+      "https://www.google.com/search?q=%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%B2%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%93%E0%B8%AA%E0%B8%B8%E0%B8%82+51+%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1+%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88%E0%B8%A0%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%84%E0%B8%9C%E0%B9%88%E0%B8%95%E0%B8%B1%E0%B8%99+%E0%B8%8B%E0%B8%AD%E0%B8%A2%E0%B8%9E%E0%B8%AB%E0%B8%A5%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B4%E0%B8%99+15+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9E%E0%B8%8D%E0%B8%B2%E0%B9%84%E0%B8%97+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9E%E0%B8%8D%E0%B8%B2%E0%B9%84%E0%B8%97+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3&sca_esv=fd861737a4dd1940&biw=390&bih=669&sxsrf=APpeQnuRpzBC9WWrWKK44-7ug78WzsTfOA%3A1790408080654&ei=kHW3aofLJ8qTseMPy5712QI&oq=%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%B2%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%93%E0%B8%AA%E0%B8%B8%E0%B8%82+51+%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%A1+%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88%E0%B8%A0%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%84%E0%B8%9C%E0%B9%88%E0%B8%95%E0%B8%B1%E0%B8%99+%E0%B8%8B%E0%B8%AD%E0%B8%A2%E0%B8%9E%E0%B8%AB%E0%B8%A5%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B4%E0%B8%99+15+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9E%E0%B8%8D%E0%B8%B2%E0%B9%84%E0%B8%97+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9E%E0%B8%8D%E0%B8%B2%E0%B9%84%E0%B8%97+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3&gs_lp=EhNtb2JpbGUtZ3dzLXdpei1zZXJwIqAC4Lit4Liy4LiE4Liy4Lij4Lio4Li54LiZ4Lii4LmM4Lia4Lij4Li04LiB4Liy4Lij4Liq4Liy4LiY4Liy4Lij4LiT4Liq4Li44LiCIDUxIOC5gOC4lOC4tOC4oSDguJXguLHguYnguIfguK3guKLguLnguYjguKDguLLguKLguYPguJnguKfguLHguJTguYTguJzguYjguJXguLHguJkg4LiL4Lit4Lii4Lie4Lir4Lil4LmC4Lii4LiY4Li04LiZIDE1IOC5geC4guC4p-C4h-C4nuC4jeC4suC5hOC4lyDguYDguILguJXguJ7guI3guLLguYTguJcg4LiB4Lij4Li44LiH4LmA4LiX4Lie4Lih4Lir4Liy4LiZ4LiE4LijMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMg0QIxjwBRjJAhjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgoQIxjwBRjqAhgnMg0QLhjHARivARjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMgcQIxjqAhgnMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQLhgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQLhgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQLhgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBMhAQABgDGI8BGOoCGLQC2AEBSIksUMUaWMUacAN4AZABAJgBAKABAKoBALgBA8gBAPgBAfgBApgCA6ACI6gCLZgDEfEFYyef746ajDC6BgQIARgKkgcBM6AHALIHALgHAMIHAzMtM8gHIIAIAQ&sclient=mobile-gws-wiz-serp#",
+      "2026-10-01T16:32:07+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.795578,
+    "lng": 100.5479366,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 123,
+    "id": "ed542ef7-11b3-3d96-fa5f-fe027618ee14",
+    "district": "พระโขนง",
+    "name": "วัดบุญรอดธรรมาราม",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9A%E0%B8%B8%E0%B8%8D%E0%B8%A3%E0%B8%AD%E0%B8%94%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%82%E0%B8%82%E0%B8%99%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.6936784,
+    "lng": 100.5938422,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 124,
+    "id": "c40024d9-10b8-1ce2-4a5b-32a5139672e3",
+    "district": "พระโขนง",
+    "name": "วัดวชิรธรรมสาธิตวรวิหาร",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A7%E0%B8%8A%E0%B8%B4%E0%B8%A3%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%AA%E0%B8%B2%E0%B8%98%E0%B8%B4%E0%B8%95%E0%B8%A7%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%82%E0%B8%82%E0%B8%99%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.6914189,
+    "lng": 100.6351071,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 138,
+    "id": "4094bbd8-3137-4ccd-bf38-ae725cb44174",
+    "district": "ลาดกระบัง",
+    "name": "หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค)",
+    "url": "https://maps.app.goo.gl/NDLAChaKvW6ma2u1A",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B8%AB%E0%B8%AD%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%B8%E0%B8%A3%E0%B8%A7%E0%B8%87%E0%B8%A9%E0%B9%8C%E0%B9%84%E0%B8%A7%E0%B8%A2%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+(%E0%B8%A7%E0%B8%A3+%E0%B8%9A%E0%B8%B8%E0%B8%99%E0%B8%99%E0%B8%B2%E0%B8%84)+1+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%89%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87+1+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10520/data=!4m2!3m1!1s0x311d6635a05d5803:0xcf3745bf3c34ea45!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACCenQoqswEsOTQyNjc3MjcsOTQyOTIxOTUsOTQyOTk1MzIsMTAwNzk2NDk4LDEwMDc5Nzc2MSwxMDA3OTY1MzUsOTQyODA1NzYsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTg2NTMsOTQyMjk4MzksMTAwODA4NjU5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgyNTAyNSwxMDA4MjAyMzcsMTAwODIyNDk0LDEwMDgyNzk3NUICVEg%3D&skid=d140bb19-02ac-48d7-a975-c4699899c594",
+      "2026-10-01T16:32:07+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7263458,
+    "lng": 100.7794033,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 139,
+    "id": "ae48d8db-3682-063f-d0a0-c2f41011e2cf",
+    "district": "ลาดกระบัง",
+    "name": "โรงเรียนขุุมทอง",
+    "url": "https://share.google/41On0UmQrV4qs2ZRU",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%82%E0%B8%B8%E0%B8%B8%E0%B8%A1%E0%B8%97%E0%B8%AD%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7414571,
+    "lng": 100.8530263,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 151,
+    "id": "70e3808f-2cec-c049-6c34-f9252640f14f",
+    "district": "ลาดพร้าว",
+    "name": "วัดลาดปลาเค้า",
+    "url": "https://maps.app.goo.gl/qqTw6x5uT1e5mQHC8?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9B%E0%B8%A5%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B9%89%E0%B8%B2+542+%E0%B8%96.+%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9B%E0%B8%A5%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B9%89%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%88%E0%B8%A3%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%9A%E0%B8%B1%E0%B8%A7+%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10230&ftid=0x30e29d426eadbec3:0xcad7b7dd6a0ec205&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM5LjAuOTg0OTU2MzcwMBgAIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU5LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=4b867c46-3f79-4e1f-bfdc-db509897664a&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8465621,
+    "lng": 100.6047116,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 166,
+    "id": "d9026e04-5cbd-b52d-fe4d-d8d150a4b6d2",
+    "district": "สวนหลวง",
+    "name": "ห้องประชุมสวนหลวง ชั้น 6 สำนักงานเขตสวนหลวง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%AB%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87%20%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99%206%20%E0%B8%AA%E0%B8%B3%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7303867,
+    "lng": 100.6514719,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 175,
+    "id": "1532c37b-861f-9dc5-3729-daff0b15fd94",
+    "district": "สัมพันธวงศ์",
+    "name": "สำนักงานเขตสัมพันธวงศ์",
+    "url": "https://maps.app.goo.gl/JSHyKz2iro5FmL8W8?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B8%AA%E0%B8%B3%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C+37+%E0%B8%96%E0%B8%99%E0%B8%99+%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B2+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%99%E0%B9%89%E0%B8%AD%E0%B8%A2+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10100&ftid=0x30e298d91bbe2e15:0x37c152b7d974ab4f&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgBIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU1LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=0e29af86-d7be-450a-b0b9-49edeea730ce&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7315471,
+    "lng": 100.5138159,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 176,
+    "id": "3634a4d1-8d0a-5f3e-2500-7eb6b5e4c130",
+    "district": "สัมพันธวงศ์",
+    "name": "โรงเรียนวัดจักรวรรดิ",
+    "url": "https://maps.app.goo.gl/mrs2zd7eUGfAeJot8?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%E0%B8%A7%E0%B8%A3%E0%B8%A3%E0%B8%94%E0%B8%B4%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%B2%E0%B8%A7%E0%B8%B2%E0%B8%AA+%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3+225+%E0%B8%96%E0%B8%99%E0%B8%99+%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%E0%B8%A7%E0%B8%A3%E0%B8%A3%E0%B8%94%E0%B8%B4+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%E0%B8%A7%E0%B8%A3%E0%B8%A3%E0%B8%94%E0%B8%B4%E0%B9%8C+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%B1%E0%B8%A1%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10100&ftid=0x30e299192b9cc05d:0xd76d644c041c17af&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgBIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU1LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=8781739f-5adc-4b66-9327-82f772e14bb8&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7428564,
+    "lng": 100.503868,
+    "source": "nominatim_or_manual"
+  },
+  {
+    "row": 56,
+    "id": "7c4c03f9-10bc-44f0-ad6a-b7c314ec8563",
+    "district": "ทวีวัฒนา",
+    "name": "โรงเรียนตั้งพิรุฬห์ธรรม",
+    "url": "https://maps.app.goo.gl/tGytJfNkVqnX3QdW8",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%9E%E0%B8%B4%E0%B8%A3%E0%B8%B8%E0%B8%AC%E0%B8%AB%E0%B9%8C%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1+ups+9%2F3+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88+10+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%9A%E0%B8%A3%E0%B8%A1%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%8A%E0%B8%99%E0%B8%99%E0%B8%B5+121+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%AA%E0%B8%9E%E0%B8%99%E0%B9%8C+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%97%E0%B8%A7%E0%B8%B5%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10170/data=!4m2!3m1!1s0x30e2972a99130fb5:0xd162f765dca2bd14!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACCIJyrRASwxMDA4Mzc1MjksOTQyNjc3MjcsOTQyOTIxOTUsOTQyOTk1MzIsMTAwNzk2NDk4LDEwMDc5Nzc2MSwxMDA3OTY1MzUsOTQyODA1NzYsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTg2NTMsOTQyMjk4MzksMTAwODA4NjU0LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcwNCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4Mjc5NzUsMTAwODM4MzU1QgJUSA%3D%3D&skid=e44b0f70-65c3-499f-a8eb-ee3924a8e828",
+      "2026-10-01T16:30:18+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7915347,
+    "lng": 100.3541175,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 101,
+    "id": "558ba1d1-b0ab-3071-1f0e-2a17bd80ad4f",
+    "district": "บางซื่อ",
+    "name": "ศูนย์พัฒนาเด็กเล็กชุมชนหัวจักรรถไฟตึกแดง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%81%E0%B9%80%E0%B8%A5%E0%B9%87%E0%B8%81%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%8A%E0%B8%99%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%96%E0%B9%84%E0%B8%9F%E0%B8%95%E0%B8%B6%E0%B8%81%E0%B9%81%E0%B8%94%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%8B%E0%B8%B7%E0%B9%88%E0%B8%AD%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.804868,
+    "lng": 100.537651,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 103,
+    "id": "23707524-79a4-8878-c056-8879498da0ee",
+    "district": "บางซื่อ",
+    "name": "โรงเรียนวัดประดู่ธรรมประชาธิปัตย์",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B9%E0%B9%88%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B2%E0%B8%98%E0%B8%B4%E0%B8%9B%E0%B8%B1%E0%B8%95%E0%B8%A2%E0%B9%8C%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%8B%E0%B8%B7%E0%B9%88%E0%B8%AD%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.8115682,
+    "lng": 100.5284059,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 114,
+    "id": "ad3a1af1-7fed-4791-19dd-0371c220c153",
+    "district": "บางแค",
+    "name": "ศูนย์นันทนาการบางแคเรืองสอน",
+    "url": "https://www.google.com/maps/place/%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%99%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%99%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%84(%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%AD%E0%B8%99)/data=!4m2!3m1!1s0x0:0xf4887f097a0f76ea?sa=X&ved=1t:2428&ictx=111",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%99%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%99%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%84(%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%AD%E0%B8%99)/data=!4m2!3m1!1s0x0:0xf4887f097a0f76ea?sa=X&ved=1t:2428&ictx=111",
+      "2026-10-01T16:32:07+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.70425,
+    "lng": 100.39578,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 122,
+    "id": "f5313405-82de-a3c2-69fa-36b25f99866e",
+    "district": "พระโขนง",
+    "name": "วัดธรรมมงคลเถาบุญนนทวิหาร",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:43:13+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%A1%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B9%80%E0%B8%96%E0%B8%B2%E0%B8%9A%E0%B8%B8%E0%B8%8D%E0%B8%99%E0%B8%99%E0%B8%97%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%82%E0%B8%82%E0%B8%99%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:43:13+07:00"
+    ],
+    "lat": 13.68453,
+    "lng": 100.61367,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 137,
+    "id": "09a0444e-4181-c113-8486-412d5d65c3bb",
+    "district": "ลาดกระบัง",
+    "name": "ศูนย์นันทนาการลาดกระบัง",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%99%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%99%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.72251,
+    "lng": 100.7816,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 152,
+    "id": "ce5239a0-c88d-c6b6-2e50-8d3648d550be",
+    "district": "ลาดพร้าว",
+    "name": "ศูนย์ส่งเสริมการเรียนรู้ระดับเขตลาดพร้าว",
+    "url": "https://maps.app.goo.gl/ymnZgx6HL271GUmk8?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%AA%E0%B8%A3%E0%B8%B4%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B2%E0%B8%84%E0%B8%A3%E0%B8%AA%E0%B9%88%E0%B8%B8%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B2%E0%B8%AA%E0%B8%A3%E0%B8%A3%E0%B8%84%E0%B9%8C+%E0%B8%8B%E0%B8%AD%E0%B8%A2+%E0%B8%AA%E0%B8%B8%E0%B8%84%E0%B8%99%E0%B8%98%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B4%E0%B9%8C+3+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10230&ftid=0x30e29d4975cac345:0x6e6d956373b78bc5&entry=gps&shh=CAE&lucs=,94297699,94231188,94280568,100821559,47071704,94218641,94282134,100835694,94286869,100820247,100822504&g_ep=CAISEjI2LjM5LjAuOTg0OTU2MzcwMBgAIIgnKmcsOTQyOTc2OTksOTQyMzExODgsOTQyODA1NjgsMTAwODIxNTU5LDQ3MDcxNzA0LDk0MjE4NjQxLDk0MjgyMTM0LDEwMDgzNTY5NCw5NDI4Njg2OSwxMDA4MjAyNDcsMTAwODIyNTA0QgJUSA%3D%3D&skid=836135bb-ee33-46ba-a17c-34c8ab319de3&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.83272,
+    "lng": 100.62772,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 165,
+    "id": "92e9c61f-23ba-d76a-0d6b-afb89269c167",
+    "district": "สวนหลวง",
+    "name": "ศูนย์พัฒนาเด็กก่อนวัยเรียนชุมชนธรรมานุรักษ์",
+    "url": "",
+    "geo": [
+      "",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "",
+      "2026-10-01T16:44:03+07:00",
+      "",
+      "รอตรวจสอบ: ชื่อ/เขตไม่ชัดเจน หรือมีหลายแห่ง",
+      "https://www.google.com/maps/search/?api=1&query=%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%81%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%A2%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%8A%E0%B8%B8%E0%B8%A1%E0%B8%8A%E0%B8%99%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%B2%E0%B8%99%E0%B8%B8%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%20%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%84%E0%B8%97%E0%B8%A2",
+      "",
+      "",
+      "2026-10-01T16:44:03+07:00"
+    ],
+    "lat": 13.7381,
+    "lng": 100.6267,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 167,
+    "id": "786a9010-5577-4011-90cb-f18ac61451af",
+    "district": "สะพานสูง",
+    "name": "ศูนย์นันทนาการเขตสะพานสูง",
+    "url": "https://maps.app.goo.gl/2REkkzWP6mf94LNE6?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B9%80%E0%B8%A2%E0%B8%B2%E0%B8%A7%E0%B8%8A%E0%B8%99%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+29+%E0%B8%8B.+%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%84%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%87+118+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10240&ftid=0x311d61215e0f0ec7:0x3670841615ae8b95&entry=gps&shh=CAE&lucs=,94297699,100826475,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838877,121816461&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAIIgnKoUBLDk0Mjk3Njk5LDEwMDgyNjQ3NSw5NDIzMTE4OCw5NDI4MDU2OCwxMDA4MjE1NTUsNDcwNzE3MDQsOTQyMTg2NDEsOTQyODIxMzQsMTAwODM1Njk0LDk0Mjg2ODY5LDEwMDgyMDI0NywxMDA4MjI1MDQsMTAwODM4ODc3LDEyMTgxNjQ2MUICVEg%3D&skid=ec94f894-28bc-4ecd-bff9-d7bf0f728fd1&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.76632,
+    "lng": 100.69741,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 169,
+    "id": "0f7918ff-cedd-4203-a4bc-4a1c65644a95",
+    "district": "สะพานสูง",
+    "name": "โรงเรียนศรีพฤฒา",
+    "url": "https://maps.app.goo.gl/29PqwaSCySY2hspa6?g_st=ic",
+    "geo": [
+      "",
+      "",
+      "ลิงก์ไม่ใช่ Google Maps ที่รองรับ",
+      "https://maps.google.com?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9E%E0%B8%A4%E0%B8%92%E0%B8%B2+%E0%B9%80%E0%B8%A5%E0%B8%82%E0%B8%97%E0%B8%B5%E0%B9%88+61+%E0%B8%96.+%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%81%E0%B8%B5%E0%B8%AC%E0%B8%B2%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%E0%B8%97%E0%B8%AD%E0%B8%87+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%97%E0%B8%B1%E0%B8%9A%E0%B8%8A%E0%B9%89%E0%B8%B2%E0%B8%87+%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B8%87+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10250&ftid=0x311d613bd428986f:0x8beec6ff191bfc4a&entry=gps&shh=CAE&lucs=,94297699,100826475,94231188,94280568,100821555,47071704,94218641,94282134,100835694,94286869,100820247,100822504,100838877,121816461&g_ep=CAISEjI2LjM4LjEuOTgwODE1NDQ1MBgAIIgnKoUBLDk0Mjk3Njk5LDEwMDgyNjQ3NSw5NDIzMTE4OCw5NDI4MDU2OCwxMDA4MjE1NTUsNDcwNzE3MDQsOTQyMTg2NDEsOTQyODIxMzQsMTAwODM1Njk0LDk0Mjg2ODY5LDEwMDgyMDI0NywxMDA4MjI1MDQsMTAwODM4ODc3LDEyMTgxNjQ2MUICVEg%3D&skid=157b3204-cb40-4fab-a546-8857a3038ca1&g_st=ic",
+      "2026-10-01T16:32:40+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.7374828,
+    "lng": 100.6865239,
+    "source": "manual_approximate"
+  },
+  {
+    "row": 192,
+    "id": "7580563e-242d-a3c5-93a8-64fdba5806a5",
+    "district": "หนองจอก",
+    "name": "โรงเรียนสังฆประชานุสสรณ์",
+    "url": "https://maps.app.goo.gl/XT4rgiZXfpNQ3H5a8?g_st=al",
+    "geo": [
+      "",
+      "",
+      "ไม่พบพิกัดหมุดในลิงก์",
+      "https://www.google.com/maps/place/3+%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B8%B1%E0%B8%87%E0%B8%86%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%8A%E0%B8%B2%E0%B8%99%E0%B8%B8%E0%B8%AA%E0%B8%AA%E0%B8%A3%E0%B8%93%E0%B9%8C+3-4+%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%887+%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%A5%E0%B8%B3%E0%B8%9C%E0%B8%B1%E0%B8%81%E0%B8%8A%E0%B8%B5+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%88%E0%B8%AD%E0%B8%81+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10530/data=!4m2!3m1!1s0x311d6f2d5f22facf:0x84bec5098ef1cbf8!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI2LjM4LjEYACCenQoqxwEsOTQyNjc3MjcsOTQyOTIxOTUsOTQyOTk1MzIsMTAwNzk2NDk4LDEwMDc5Nzc2MSwxMDA3OTU2MjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5LDEwMDgzNTcxMCwxMDA4MjUwMjUsMTAwODIwMjM3LDEwMDgyMjQ5NCwxMDA4MDQ5NzYsMTAwODI3OTc1QgJUSA%3D%3D&skid=f9d5515d-e0c5-4af6-a4ff-920e6cfd3709&g_st=al",
+      "2026-10-01T16:35:38+07:00",
+      "",
+      "มีลิงก์ต้นทาง"
+    ],
+    "lat": 13.8055653,
+    "lng": 100.8358482,
+    "source": "manual_approximate"
+  }
+]
+  ];
+  
+  const store = PropertiesService.getScriptProperties();
+  let count = 0;
+  
+  findings.forEach(row => {
+    if (!row.lat || !row.lng) return;
+    
+    // สร้าง key เดียวกับที่ Shelter.gs ใช้
+    const id = row.id;
+    const link = (row.url || '').trim();
+    const digest = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256,
+      JSON.stringify([String(id), link]), Utilities.Charset.UTF_8);
+    const key = 'SHELTER_GEO_V1_' + digest.map(b => ('0' + (b & 255).toString(16)).slice(-2)).join('');
+    
+    // สถานะที่จะแสดงในคอลัมน์ coordinate_status
+    const status = row.source === 'nominatim_or_manual' || row.source === 'manual_approximate' 
+        ? 'ค้นหาเพิ่มเติม (Manual/Nominatim)'
+        : 'ค้นหาเพิ่มเติม (ตรงชื่อโรงเรียน)';
+        
+    // [lat, lng, status, url, checked_at]
+    const entry = [
+      row.lat,
+      row.lng,
+      status,
+      link || '',
+      Utilities.formatDate(new Date(), 'Asia/Bangkok', "yyyy-MM-dd'T'HH:mm:ss") + '+07:00'
+    ];
+    
+    store.setProperty(key, JSON.stringify(entry));
+    count++;
+  });
+  
+  console.log('อัปเดตพิกัดลง Cache สำเร็จจำนวน ' + count + ' รายการ');
+  console.log('กรุณารัน updateShelter() ในไฟล์ Shelter.gs หรือรอให้ Trigger ทำงานเพื่ออัปเดตข้อมูลลงชีต');
+}

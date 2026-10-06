@@ -1,0 +1,20 @@
+
+        // ISO format or other custom formats (YYYY-MM-DD HH:mm)
+        if(parts.length === 2 && parts[0].includes('-')) {
+           return Date.parse(parts[0] + 'T' + parts[1] + '+07:00') || 0;
+        }
+
+        // Fallback to native parse
+        let ms = Date.parse(dStr);
+        if(!isNaN(ms)) return ms;
+        
+        return 0;
+      }
+
+      window.onload = function () {
+        // Init Trend Chart (Mock) before data loads
+        let trendDom = document.getElementById('trend_chart');
+        if (trendDom) trendChartInstance = echarts.init(trendDom);
+
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run.withSuccessHandler(initDashboard).getDashboardData();

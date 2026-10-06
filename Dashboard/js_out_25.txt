@@ -1,0 +1,24 @@
+function initNewFilters() {
+        // Populate BKK Filters
+        let bkkDistricts = [...new Set(rawBkkWaterData.map(d => d.district_or_area).filter(Boolean))].sort();
+
+        populateSelect('bkkDistrictFilter', bkkDistricts, '📍 ทุกเขต');
+
+
+        // Populate Thai Health Zone based on vul data mapping
+        let hzSet = new Set();
+        rawVulData.forEach(d => { if (d['เขตสุขภาพ']) hzSet.add(d['เขตสุขภาพ']); });
+        let hzList = [...hzSet].sort((a, b) => (parseInt(a.match(/\d+/)) || 0) - (parseInt(b.match(/\d+/)) || 0));
+        populateSelect('thaiHealthZoneFilter', hzList, '🏥 ทุกเขตสุขภาพ');
+
+        updateThaiProvinceDropdown();
+
+        let thaiStatuses = [...new Set(rawThaiWaterData.map(d => d.flood_status_source).filter(Boolean))].sort();
+        populateSelect('thaiStatusFilter', thaiStatuses, '💧 ทุกสถานการณ์น้ำ');
+
+        // Shelter Filters (BKK Districts)
+        let shelterDistricts = [...new Set(rawShelterData.map(d => d.district).filter(Boolean))].sort();
+        populateSelect('shelterDistrictFilter', shelterDistricts, '📍 ทุกเขต');
+      }
+
+      

@@ -1,0 +1,15 @@
+
+            <!-- Right Column: Summary Tables -->
+            <div class="col-lg-7 d-flex flex-column gap-4">
+
+              <!-- Top Provinces Table -->
+              <div class="modern-card flex-grow-1 p-0 overflow-hidden shadow-sm d-flex flex-column">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-bar-chart-line-fill text-danger fs-5"></i> จังหวัดที่ได้รับผลกระทบสูงสุด
+                  </h6>
+                </div>
+                <div class="table-responsive flex-grow-1">
+                  <table class="table table-borderless table-striped m-0" id="topProvinceTable"
+                    style="white-space: nowrap;">
+                    <thead>

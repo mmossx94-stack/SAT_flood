@@ -1,0 +1,15 @@
+                <div class="p-3 bg-danger bg-opacity-10 d-flex justify-content-between align-items-center border-bottom">
+                  <h6 class="fw-bold m-0 text-danger" style="font-size: 1.1rem;"><i class="bi bi-exclamation-triangle-fill"></i> ศูนย์พักพิงที่เต็ม หรือ ใกล้เต็ม</h6>
+                </div>
+                <div class="table-responsive" style="max-height: 600px;">
+                  <table class="table table-bordered table-striped m-0 text-center text-nowrap align-middle">
+                    <thead style="background-color: #fdf3c6;">
+                      <tr>
+                        <th class="py-2">เขต</th>
+                        <th class="py-2">ชื่อศูนย์พักพิง</th>
+                        <th class="py-2">ความจุ</th>
+                        <th class="py-2">เข้าพัก</th>
+                      </tr>
+                    </thead>
+                    <tbody id="shelterCriticalTableBody">
+                    </tbody>

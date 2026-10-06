@@ -1,0 +1,50 @@
+
+      function getShelterColor(item) {
+        let status = item.status_source || '';
+        let occ = parseFloat(item.current_occupancy);
+        let cap = parseFloat(item.capacity);
+
+        if (status.includes('เต็ม') || (!isNaN(occ) && !isNaN(cap) && occ >= cap)) {
+          return '#ef4444'; // Red
+        }
+        return '#22c55e'; // Green
+      }
+
+      function renderShelterMap(data) {
+        if (!shelterMap) return;
+        shelterMarkers.forEach(m => shelterMap.removeLayer(m));
+        shelterMarkers = [];
+        let bounds = [];
+
+        data.forEach(item => {
+          let lat = parseFloat(item.lat || item.latitude);
+          let lng = parseFloat(item.long || item.longitude);
+
+          if (!isNaN(lat) && !isNaN(lng)) {
+            let color = getShelterColor(item);
+            let marker = L.marker([lat, lng], { icon: createMarkerIcon(color) }).addTo(shelterMap);
+            shelterMarkers.push(marker);
+            bounds.push([lat, lng]);
+
+            marker.on('click', function () {
+              let panel = document.getElementById('shelter-details-panel');
+              if (!panel) return;
+              panel.innerHTML = `
+                  <h5 class="fw-bold mb-3 border-bottom pb-2 text-success">
+                     <i class="bi bi-house-heart-fill"></i> ${item.shelter_name || 'ศูนย์พักพิง'}
+                  </h5>
+                  <div class="mb-2"><strong>อำเภอ/เขต:</strong> ${item.district || '-'}</div>
+                  <div class="mb-2"><strong>ความจุ:</strong> ${item.capacity || 'ไม่ระบุ'} คน</div>
+                  <div class="mb-2"><strong>ผู้พักพิงปัจจุบัน:</strong> ${item.current_occupancy || 'ไม่ระบุ'} คน</div>
+                  <div class="mb-2"><strong>สถานะ:</strong> <span class="badge" style="background-color:${color}">${item.status_source || 'ไม่ระบุ'}</span></div>
+                `;
+            });
+          }
+        });
+        if (bounds.length > 0) shelterMap.fitBounds(bounds);
+      }
+
+      function applyShelterFilters() {
+        const dist = document.getElementById('shelterDistrictFilter').value;
+        const statusEl = document.getElementById('shelterStatusFilter');
+        const statusFilter = statusEl ? statusEl.value : 'all';

@@ -1,0 +1,3 @@
+395:         <div class="text-muted small fw-medium bg-light px-3 py-2 rounded-pill" id="lastUpdated"
+776:                         <th class="bg-success text-white">อัปเดตเมื่อ</th>
+928:         document.getElementById('lastUpdated').innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> ข้อมูลล่าสุด: ` + now.toLocaleTimeString('th-TH');

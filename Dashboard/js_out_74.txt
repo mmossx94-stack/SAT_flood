@@ -1,0 +1,16 @@
+          topProvTbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted py-3">ไม่พบข้อมูล</td></tr>';
+        } else {
+          sortedProvinces.forEach((prov, index) => {
+            let vulCount = provVulMap[prov.name] || 0;
+            let tr = document.createElement('tr');
+            let badgeClass = index === 0 ? 'bg-danger' : (index === 1 ? 'bg-warning text-dark' : (index === 2 ? 'bg-primary' : 'bg-secondary'));
+
+            tr.innerHTML = `
+            <td class="text-center"><span class="badge ${badgeClass} rounded-pill px-3">${index + 1}</span></td>
+            <td class="fw-semibold">${prov.name}</td>
+            <td class="text-center">${prov.districts.toLocaleString()}</td>
+            <td class="text-center">${prov.subdistricts.toLocaleString()}</td>
+            <td class="text-end fw-bold text-danger">${prov.households.toLocaleString()}</td>
+            <td class="text-end text-purple fw-bold" style="background-color: rgba(0,0,0,0.02);">${vulCount.toLocaleString()}</td>
+            <td class="text-center ${prov.deaths > 0 ? 'text-danger fw-bold' : ''}">${prov.deaths}</td>
+            <td class="text-center">

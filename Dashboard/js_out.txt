@@ -1,0 +1,250 @@
+      };
+
+      let rawFloodData = [];
+      let rawVulData = [];
+      let isMapLoaded = false;
+      let currentFilteredData = [];
+      let echartsInstance = null;
+      let vulChartInstance = null;
+      let originalGeoJson = null;
+
+      let rawBkkWaterData = [];
+      let rawThaiWaterData = [];
+      let rawShelterData = [];
+      let bkkMap = null;
+      let thaiMap = null;
+      let shelterMap = null;
+      let trendChartInstance = null;
+      let bkkMarkers = [];
+      let thaiMarkers = [];
+      let shelterMarkers = [];
+      let userLocationMarker = null;
+
+
+      // Load GeoJSON for ECharts
+      fetch('https://raw.githubusercontent.com/apisit/thailand.json/master/thailand.json')
+        .then(response => response.json())
+        .then(geoJson => {
+          originalGeoJson = geoJson;
+          echarts.registerMap('Thailand', geoJson);
+          isMapLoaded = true;
+          document.getElementById('mapSpinner').style.display = 'none';
+
+          echartsInstance = echarts.init(document.getElementById('map_canvas'));
+          vulChartInstance = echarts.init(document.getElementById('vulnerable_chart'));
+
+          // Handle window resize
+          window.addEventListener('resize', () => {
+            if (echartsInstance) echartsInstance.resize();
+            if (vulChartInstance) vulChartInstance.resize();
+            if (trendChartInstance) trendChartInstance.resize();
+          });
+
+          if (currentFilteredData.length > 0) {
+            drawMap(currentFilteredData);
+          }
+        })
+        .catch(error => {
+          console.error('Error loading map data:', error);
+          document.getElementById('mapSpinner').innerHTML = '<span class="text-danger">ไม่สามารถโหลดแผนที่ได้</span>';
+        });
+
+      window.onload = function () {
+        // Init Trend Chart (Mock) before data loads
+        let trendDom = document.getElementById('trend_chart');
+        if (trendDom) trendChartInstance = echarts.init(trendDom);
+
+        google.script.run.withSuccessHandler(initDashboard).getDashboardData();
+      };
+
+      function initDashboard(response) {
+        rawFloodData = response.floodData || [];
+        rawVulData = response.vulData || [];
+        rawBkkWaterData = response.bkkWaterData || [];
+        rawThaiWaterData = response.thaiWaterData || [];
+        rawShelterData = response.shelterData || [];
+
+        populateDropdowns();
+        applyFilters();
+
+        initMaps();
+        renderBkkMap(rawBkkWaterData);
+        renderShelterMap(rawShelterData);
+        drawTrendChartMock();
+        initNewFilters();
+        renderThaiMap(rawThaiWaterData);
+        updateThaiRanking(rawThaiWaterData);
+
+        const now = new Date();
+        document.getElementById('lastUpdated').innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> ข้อมูลล่าสุด: ` + now.toLocaleTimeString('th-TH');
+      }
+
+
+      function populateDropdowns() {
+        const healthZones = [...new Set(rawVulData.map(item => item['เขตสุขภาพ']))]
+          .filter(val => val && !val.includes('รวม'))
+          .sort((a, b) => {
+            let numA = parseInt(a.replace(/\D/g, '')) || 0;
+            let numB = parseInt(b.replace(/\D/g, '')) || 0;
+            return numA - numB;
+          });
+
+        populateSelect('healthZoneFilter', healthZones, '🏥 ทุกเขตสุขภาพ');
+        updateProvinceDropdown();
+      }
+
+      function updateProvinceDropdown() {
+        const hzFilter = document.getElementById('healthZoneFilter').value;
+        let allowedProvinces = new Set();
+
+        if (hzFilter === 'all') {
+          rawFloodData.forEach(item => { if (item.Province) allowedProvinces.add(item.Province); });
+        } else {
+          let floodProvinces = new Set(rawFloodData.map(item => item.Province).filter(Boolean));
+          rawVulData.forEach(item => {
+            if (item['เขตสุขภาพ'] === hzFilter && item['จังหวัด'] && floodProvinces.has(item['จังหวัด'])) {
+              allowedProvinces.add(item['จังหวัด']);
+            }
+          });
+        }
+
+        let provinces = [...allowedProvinces].sort();
+        const provSelect = document.getElementById('provinceFilter');
+        const currentSelected = provSelect.value;
+
+        provSelect.innerHTML = '';
+        populateSelect('provinceFilter', provinces, '📌 ทุกจังหวัด');
+
+        if (provinces.includes(currentSelected)) {
+          provSelect.value = currentSelected;
+        } else {
+          provSelect.value = 'all';
+        }
+      }
+
+      function onHealthZoneChange() {
+        updateProvinceDropdown();
+        applyFilters();
+      }
+
+      function populateSelect(elementId, options, defaultText) {
+        const select = document.getElementById(elementId);
+        select.innerHTML = `<option value="all">${defaultText}</option>`;
+        options.forEach(opt => {
+          const option = document.createElement('option');
+          option.value = opt; option.text = opt;
+          select.appendChild(option);
+        });
+      }
+
+      function applyFilters() {
+        const hzFilter = document.getElementById('healthZoneFilter').value;
+        const province = document.getElementById('provinceFilter').value;
+
+        let provToHz = {};
+        rawVulData.forEach(item => {
+          if (item['จังหวัด'] && item['เขตสุขภาพ']) {
+            provToHz[item['จังหวัด']] = item['เขตสุขภาพ'];
+          }
+        });
+
+        currentFilteredData = rawFloodData.filter(item => {
+          let hz = provToHz[item.Province] || '';
+          return (hzFilter === 'all' || hz === hzFilter) &&
+            (province === 'all' || item.Province === province);
+        });
+
+        const affectedProvinces = new Set(currentFilteredData.map(item => item.Province).filter(Boolean));
+        let filteredVulData = rawVulData.filter(item => affectedProvinces.has(item['จังหวัด']));
+
+        updateSummary(currentFilteredData);
+        updateTable(currentFilteredData, rawVulData);
+        updateExecutiveSummary(currentFilteredData);
+        updateHealthZoneTable(currentFilteredData, rawVulData);
+
+        if (isMapLoaded) {
+          drawMap(currentFilteredData, hzFilter); // Pass hzFilter to map
+          drawVulnerableChart(filteredVulData);
+        }
+        updateVulnerableTable(filteredVulData);
+      }
+
+      function drawTrendChartMock() {
+        if (!trendChartInstance) return;
+
+        let dates = [];
+        let today = new Date();
+        for (let i = 6; i >= 0; i--) {
+          let d = new Date(today);
+          d.setDate(today.getDate() - i);
+          dates.push(d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' }));
+        }
+
+        const option = {
+          tooltip: {
+            trigger: 'axis',
+            textStyle: { fontFamily: 'Kanit' }
+          },
+          legend: {
+            data: ['ระดับน้ำสูงสุด (ม.)', 'ครัวเรือนเดือดร้อน (หมื่นหลัง)'],
+            bottom: 0,
+            textStyle: { fontFamily: 'Kanit' }
+          },
+          grid: {
+            left: '3%', right: '4%', bottom: '15%', containLabel: true
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: dates,
+            axisLabel: { fontFamily: 'Kanit' }
+          },
+          yAxis: [
+            {
+              type: 'value',
+              name: 'ระดับน้ำ',
+              position: 'left',
+              axisLabel: { fontFamily: 'Kanit' }
+            },
+            {
+              type: 'value',
+              name: 'ครัวเรือน',
+              position: 'right',
+              axisLabel: { fontFamily: 'Kanit' }
+            }
+          ],
+          series: [
+            {
+              name: 'ระดับน้ำสูงสุด (ม.)',
+              type: 'line',
+              yAxisIndex: 0,
+              smooth: true,
+              itemStyle: { color: '#3b82f6' },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: 'rgba(59,130,246,0.3)' },
+                  { offset: 1, color: 'rgba(59,130,246,0.0)' }
+                ])
+              },
+              data: [2.5, 2.8, 3.1, 3.4, 3.2, 3.0, 2.9]
+            },
+            {
+              name: 'ครัวเรือนเดือดร้อน (หมื่นหลัง)',
+              type: 'line',
+              yAxisIndex: 1,
+              smooth: true,
+              itemStyle: { color: '#ef4444' },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: 'rgba(239,68,68,0.3)' },
+                  { offset: 1, color: 'rgba(239,68,68,0.0)' }
+                ])
+              },
+              data: [1.2, 1.5, 2.1, 3.5, 4.0, 3.8, 3.5]
+            }
+          ]
+        };
+        trendChartInstance.setOption(option);
+      }
+
+      function updateHealthZoneTable(floodData, allVulData) {

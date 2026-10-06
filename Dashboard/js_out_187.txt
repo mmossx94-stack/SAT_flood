@@ -1,0 +1,15 @@
+          statBadge = `<span class="badge" style="background-color: ${statColor}; font-size: 14px;">${statText}</span>
+                      <div class="text-muted small mt-2">${thresHtml}</div>`;
+        } else {
+          statText = item.flood_status_source || 'ไม่ระบุ';
+          statColor = getStatusColor(statText);
+          statBadge = `<span class="badge" style="background-color: ${statColor}; font-size: 14px;">${statText}</span>`;
+        }
+
+        let matchedVul = rawVulData.filter(v => (v['จังหวัด'] || '').includes(prov) || (v['อำเภอ'] || '').includes(area));
+        let vulTotal = matchedVul.reduce((sum, v) => sum + (parseFloat(v['รวมทั้งหมด']) || 0), 0);
+        let child = matchedVul.reduce((sum, v) => sum + (parseFloat(v['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0), 0);
+        let preg = matchedVul.reduce((sum, v) => sum + (parseFloat(v['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0), 0);
+        let elderly = matchedVul.reduce((sum, v) => sum + (parseFloat(v['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0), 0);
+
+        let matchedShelters = rawShelterData.filter(s => (s.district || '').includes(area) || (s.shelter_name || '').includes(prov));

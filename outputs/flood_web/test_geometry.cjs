@@ -1,0 +1,10 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const script=fs.readFileSync(__dirname+'/dashboard.js','utf8');
+new vm.Script(script);new vm.Script(fs.readFileSync(__dirname+'/data-model.js','utf8'));
+const names=script.match(/const districts='([^']+)'/)[1].split(' ');
+const districts=JSON.parse(fs.readFileSync(__dirname+'/bkk_districts.geojson','utf8'));
+assert.equal(districts.features.length,50);
+assert.deepEqual(districts.features.map(f=>f.properties.amp_th).sort(),names.sort());
+assert.equal(JSON.parse(fs.readFileSync(__dirname+'/thai_provinces.json','utf8')).features.length,77);
+assert.equal(JSON.parse(fs.readFileSync(__dirname+'/regions.geojson','utf8')).features.length,13);
+console.log('PASS: JavaScript syntax, 50 districts, 77 provinces and 13 health regions');

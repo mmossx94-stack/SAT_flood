@@ -1,0 +1,2 @@
+                thaiWaterData: results[3],
+        let tempThai = response.thaiWaterData || [];

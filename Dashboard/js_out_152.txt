@@ -1,0 +1,40 @@
+
+
+      // Load GeoJSON for ECharts
+      fetch('https://raw.githubusercontent.com/apisit/thailand.json/master/thailand.json')
+        .then(response => response.json())
+        .then(geoJson => {
+          originalGeoJson = geoJson;
+          echarts.registerMap('Thailand', geoJson);
+          isMapLoaded = true;
+          document.getElementById('mapSpinner').style.display = 'none';
+
+          echartsInstance = echarts.init(document.getElementById('map_canvas'));
+          vulChartInstance = echarts.init(document.getElementById('vulnerable_chart'));
+
+          // Handle window resize
+          window.addEventListener('resize', () => {
+            if (echartsInstance) echartsInstance.resize();
+            if (vulChartInstance) vulChartInstance.resize();
+            if (trendChartInstance) trendChartInstance.resize();
+          });
+
+          if (currentFilteredData.length > 0) {
+            drawMap(currentFilteredData);
+          }
+          if (rawThaiWaterData && rawThaiWaterData.length > 0 && typeof thaiMap !== 'undefined' && thaiMap) {
+            renderThaiMap(rawThaiWaterData);
+          }
+        })
+        .catch(error => {
+          console.error('Error loading map data:', error);
+          document.getElementById('mapSpinner').innerHTML = '<span class="text-danger">ไม่สามารถโหลดแผนที่ได้</span>';
+        });
+
+      function parseCustomDate(dStr) {
+        if(!dStr) return 0;
+        
+        let parts = dStr.split(' ');
+        
+        // Date with time (DD/MM/YYYY HH:mm)
+        if(parts.length === 2 && parts[0].includes('/')) {

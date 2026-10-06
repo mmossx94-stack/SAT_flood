@@ -1,0 +1,30 @@
+              if (p) {
+                affectedProvinces.add(p);
+                if (!provStats[p]) provStats[p] = { critical: 0, warning: 0 };
+                if (color === '#ef4444' || stat.includes('ล้นตลิ่ง')) provStats[p].critical++;
+                else provStats[p].warning++;
+              }
+            }
+          });
+        }
+
+        let vulTotal = 0;
+        if (type === 'bkk') {
+          let matchedVul = rawVulData.filter(v => (v['จังหวัด'] || '').includes('กรุงเทพ') && affectedDistricts.has(v['อำเภอ']));
+          if (affectedDistricts.size === 0) {
+            matchedVul = rawVulData.filter(v => (v['จังหวัด'] || '').includes('กรุงเทพ'));
+          }
+          vulTotal = matchedVul.reduce((sum, v) => sum + (parseFloat(v['รวมทั้งหมด']) || 0), 0);
+        } else {
+          let matchedVul = rawVulData.filter(v => affectedProvinces.has(v['จังหวัด']));
+          if (affectedProvinces.size === 0) {
+            vulTotal = rawVulData.reduce((sum, v) => sum + (parseFloat(v['รวมทั้งหมด']) || 0), 0);
+          } else {
+            vulTotal = matchedVul.reduce((sum, v) => sum + (parseFloat(v['รวมทั้งหมด']) || 0), 0);
+          }
+        }
+
+        let rankHtml = '';
+        if (type === 'bkk') {
+          let sorted = Object.keys(distStats).sort((a, b) => {
+            if (distStats[b].critical !== distStats[a].critical) return distStats[b].critical - distStats[a].critical;

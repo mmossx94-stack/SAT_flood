@@ -1,0 +1,15 @@
+
+        populateDropdowns();
+        applyFilters();
+
+        initMaps();
+        renderBkkMap(rawBkkWaterData);
+        drawTrendChartMock();
+        initNewFilters();
+        renderThaiMap(rawThaiWaterData);
+        updateThaiRanking(rawThaiWaterData);
+        applyShelterFilters(); // This renders shelter map and populates the summary cards/table
+
+        function getMaxDate(dataArray, dateField) {
+           if (!dataArray || dataArray.length === 0) return 'ไม่ระบุ';
+           let localMax = 0;

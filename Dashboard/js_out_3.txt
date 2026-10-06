@@ -1,0 +1,30 @@
+              <div class="modern-card p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0"><i class="bi bi-list-ol text-warning"></i> 10
+                    อันดับสถานีที่ระดับน้ำสูงสุดระดับประเทศ</h6>
+                  <small class="text-muted">ข้อมูลเพื่อเฝ้าระวังพื้นที่เสี่ยง
+                    โดยจัดอันดับจากสถานีที่แจ้งรายงานเข้ามาล่าสุด</small>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-borderless table-striped m-0" id="thaiRankingTable">
+                    <thead>
+                      <tr>
+                        <th class="bg-success text-white">อันดับ</th>
+                        <th class="bg-success text-white">สถานี</th>
+                        <th class="bg-success text-white">จังหวัด</th>
+                        <th class="bg-success text-white text-end">ระดับน้ำ (ม.)</th>
+                        <th class="bg-success text-white text-center">สถานะ</th>
+                        <th class="bg-success text-white">อัปเดตเมื่อ</th>
+                      </tr>
+                    </thead>
+                    <tbody id="thaiRankingTableBody">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Shelter -->

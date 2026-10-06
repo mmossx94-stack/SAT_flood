@@ -1,0 +1,30 @@
+      function applyFilters() {
+        const hzFilter = document.getElementById('healthZoneFilter').value;
+        const province = document.getElementById('provinceFilter').value;
+
+        let provToHz = {};
+        rawVulData.forEach(item => {
+          if (item['จังหวัด'] && item['เขตสุขภาพ']) {
+            provToHz[item['จังหวัด']] = item['เขตสุขภาพ'];
+          }
+        });
+
+        currentFilteredData = rawFloodData.filter(item => {
+          let hz = provToHz[item.Province] || '';
+          return (hzFilter === 'all' || hz === hzFilter) &&
+            (province === 'all' || item.Province === province);
+        });
+
+        const affectedProvinces = new Set(currentFilteredData.map(item => item.Province).filter(Boolean));
+        let filteredVulData = rawVulData.filter(item => affectedProvinces.has(item['จังหวัด']));
+
+        updateSummary(currentFilteredData);
+        updateTable(currentFilteredData, rawVulData);
+        updateExecutiveSummary(currentFilteredData);
+        updateHealthZoneTable(currentFilteredData, rawVulData);
+
+        if (isMapLoaded) {
+          drawMap(currentFilteredData, hzFilter); // Pass hzFilter to map
+          drawVulnerableChart(filteredVulData);
+        }
+        updateVulnerableTable(filteredVulData);

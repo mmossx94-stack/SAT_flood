@@ -1,0 +1,17 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const html=fs.readFileSync(__dirname+'/template.html','utf8');
+new vm.Script(html.split('<script>')[1].split('</script>')[0]);
+const code=html.slice(html.indexOf('const WATER_STATUS='),html.indexOf('function renderDistrictWaterMap'));
+const ctx=vm.createContext({});vm.runInContext(code,ctx);
+const summarize=labels=>ctx.districtWaterSummary(labels.map(flood_status_source=>({flood_status_source})));
+assert.equal(summarize(['ปกติ','เตือนภัย','วิกฤติ']).status,'วิกฤต');
+assert.equal(summarize(['ขัดข้อง','ปกติ']).status,'ปกติ');
+assert.equal(summarize(['วิกฤต','ล้นตลิ่ง']).status,'ล้นตลิ่ง');
+assert.equal(summarize(['ขัดข้อง','ขัดข้องชั่วคราว']).color,'#94a3b8');
+assert.equal(summarize([]).color,'transparent');
+assert.equal(summarize(['ปกติ','เฝ้าระวัง']).status,'เฝ้าระวัง');
+const geo=JSON.parse(fs.readFileSync(__dirname+'/bkk_districts.geojson','utf8'));
+const names=html.match(/const districts='([^']+)'/)[1].split(' ');
+assert.equal(geo.features.length,50);
+assert.deepEqual(geo.features.map(f=>f.properties.amp_th).sort(),names.sort());
+console.log('Status aggregation, missing-data cases, JS syntax and 50 district names passed');

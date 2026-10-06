@@ -1,0 +1,40 @@
+            });
+          }
+        });
+        if (bounds.length > 0) shelterMap.fitBounds(bounds);
+      }
+
+      function applyShelterFilters() {
+        const dist = document.getElementById('shelterDistrictFilter').value;
+        const statusEl = document.getElementById('shelterStatusFilter');
+        const statusFilter = statusEl ? statusEl.value : 'all';
+
+        let filtered = rawShelterData.filter(d => {
+          let matchDist = (dist === 'all') || d.district === dist;
+          let matchStatus = (statusFilter === 'all') || d.status_source === statusFilter;
+          return matchDist && matchStatus;
+        });
+
+        renderShelterMap(filtered);
+        updateShelterSummary(filtered);
+      }
+
+      function updateShelterSummary(data) {
+        let stats = {};
+        data.forEach(d => {
+          let s = d.status_source || 'ไม่ระบุ';
+          stats[s] = (stats[s] || 0) + 1;
+        });
+        
+        let html = '';
+        for (let [status, count] of Object.entries(stats)) {
+          let badgeColor = status.includes('ปิด') ? 'danger' : (status.includes('ว่าง') || status.includes('เปิด') ? 'success' : 'warning');
+          html += `<div class="col-auto">
+                      <div class="badge bg-${badgeColor} text-white fs-6 py-2 px-3 shadow-sm rounded-pill">
+                         ${status}: ${count} แห่ง
+                      </div>
+                   </div>`;
+        }
+        
+        let container = document.getElementById('shelterSummaryArea');
+        if (container) container.innerHTML = html;

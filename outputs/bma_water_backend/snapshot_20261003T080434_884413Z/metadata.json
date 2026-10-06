@@ -1,0 +1,39 @@
+{
+  "source_url": "https://weather.bangkok.go.th/water/PageMap/GoogleMap",
+  "method": "POST",
+  "form_body": {
+    "payload": "TEST_DATA_GOES_HERE"
+  },
+  "fetched_at_utc": "2026-10-03T08:04:34.884413+00:00",
+  "fetched_at_th": "2026-10-03T15:04:34.884413+07:00",
+  "station_count": 311,
+  "unique_station_ids": 311,
+  "district_count": 50,
+  "district_status_counts": {
+    "normal": 27,
+    "critical": 14,
+    "warning": 6,
+    "unknown": 3
+  },
+  "source_status_counts": {
+    "ขัดข้อง": 57,
+    "ปกติ": 195,
+    "เตือนภัย": 19,
+    "วิกฤต": 40
+  },
+  "quality_counts": {
+    "sensor_fault_or_unknown_status": 57,
+    "usable": 252,
+    "future_timestamp": 2
+  },
+  "outside_bangkok_stations": 19,
+  "stale_minutes_policy": 15,
+  "timestamp_policy": "Use site_timestampTH Buddhist year as UTC+07. Preserve raw site_timestamp. Do not assume Z agrees with TH field.",
+  "aggregation_policy": "Highest source alert among usable stations; operational custom policy, not official district alert.",
+  "optional_source_errors": [
+    {
+      "source": "https://weather.bangkok.go.th/water/summary",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

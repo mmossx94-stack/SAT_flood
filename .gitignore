@@ -1,0 +1,23 @@
+# Dependencies & Node
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+env/
+venv/
+
+# Executables & Logs
+*.exe
+cloudflared.exe
+*.log
+cloudflared_log.txt
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

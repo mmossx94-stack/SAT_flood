@@ -1,0 +1,60 @@
+          let pName = item.Province;
+          if (!pName) return;
+          let count = parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0;
+          provinceSums[pName] = (provinceSums[pName] || 0) + count;
+        });
+
+        let provVulMap = {};
+        rawVulData.forEach(item => {
+          if (item['จังหวัด']) {
+            provVulMap[item['จังหวัด']] = {
+              child: parseFloat(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0,
+              preg: parseFloat(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0,
+              elderly: parseFloat(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0,
+              total: parseFloat(item['รวมทั้งหมด']) || 0,
+              healthZone: item['เขตสุขภาพ'] || ''
+            };
+          }
+        });
+
+        let mapName = 'Thailand';
+
+        if (hzFilter !== 'all' && originalGeoJson) {
+          let allowedProvinces = new Set();
+          for (let p in provVulMap) {
+            if (provVulMap[p].healthZone === hzFilter) allowedProvinces.add(provinceEngMap[p]);
+          }
+          let filteredFeatures = originalGeoJson.features.filter(f => allowedProvinces.has(f.properties.name));
+          let subGeo = { type: 'FeatureCollection', features: filteredFeatures };
+
+          mapName = 'Thailand_Filtered';
+          echarts.registerMap(mapName, subGeo);
+        }
+
+        const hzColors = {
+          'เขตสุขภาพที่ 1': '#ef4444',
+          'เขตสุขภาพที่ 2': '#f97316',
+          'เขตสุขภาพที่ 3': '#f59e0b',
+          'เขตสุขภาพที่ 4': '#84cc16',
+          'เขตสุขภาพที่ 5': '#22c55e',
+          'เขตสุขภาพที่ 6': '#10b981',
+          'เขตสุขภาพที่ 7': '#06b6d4',
+          'เขตสุขภาพที่ 8': '#0ea5e9',
+          'เขตสุขภาพที่ 9': '#3b82f6',
+          'เขตสุขภาพที่ 10': '#6366f1',
+          'เขตสุขภาพที่ 11': '#8b5cf6',
+          'เขตสุขภาพที่ 12': '#d946ef',
+          'เขตสุขภาพที่ 13': '#f43f5e'
+        };
+
+        for (let p in provinceSums) {
+          let engName = provinceEngMap[p];
+          if (engName) {
+            let vData = provVulMap[p] || { total: 0, child: 0, preg: 0, elderly: 0, healthZone: '' };
+            let val = provinceSums[p] || 0;
+            let bColor = hzColors[vData.healthZone] || '#ffffff';
+
+            mapData.push({
+              name: engName,
+              value: val,
+              thaiName: p,

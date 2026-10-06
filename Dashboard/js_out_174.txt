@@ -1,0 +1,40 @@
+
+        currentFilteredData = rawFloodData.filter(item => {
+          let hz = provToHz[item.Province] || '';
+          return (hzFilter === 'all' || hz === hzFilter) &&
+            (province === 'all' || item.Province === province);
+        });
+
+        const affectedProvinces = new Set(currentFilteredData.map(item => item.Province).filter(Boolean));
+        let filteredVulData = rawVulData.filter(item => affectedProvinces.has(item['จังหวัด']));
+
+        updateSummary(currentFilteredData);
+        updateTable(currentFilteredData, rawVulData);
+        updateExecutiveSummary(currentFilteredData);
+        updateHealthZoneTable(currentFilteredData, rawVulData);
+
+        if (isMapLoaded) {
+          drawMap(currentFilteredData, hzFilter); // Pass hzFilter to map
+          drawVulnerableChart(filteredVulData);
+        }
+        updateVulnerableTable(filteredVulData);
+      }
+
+      function drawTrendChartMock() {
+        if (!trendChartInstance) return;
+
+        let dates = [];
+        let today = new Date();
+        for (let i = 6; i >= 0; i--) {
+          let d = new Date(today);
+          d.setDate(today.getDate() - i);
+          dates.push(d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' }));
+        }
+
+        const option = {
+          tooltip: {
+            trigger: 'axis',
+            textStyle: { fontFamily: 'Kanit' }
+          },
+          legend: {
+            data: ['ระดับน้ำสูงสุด (ม.)', 'ครัวเรือนเดือดร้อน (หมื่นหลัง)'],

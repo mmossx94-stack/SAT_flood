@@ -1,0 +1,40 @@
+           let isAlmostFullA = !isFullA && (capA > 0 && occA >= capA * 0.8);
+           let scoreA = isFullA ? 2 : (isAlmostFullA ? 1 : 0);
+
+           let occB = parseInt(b.occupied) || 0;
+           let capB = parseInt(b.capacity) || 0;
+           let isFullB = (b.status_source && b.status_source.includes('เต็ม')) || (capB > 0 && occB >= capB);
+           let isAlmostFullB = !isFullB && (capB > 0 && occB >= capB * 0.8);
+           let scoreB = isFullB ? 2 : (isAlmostFullB ? 1 : 0);
+           
+           if (scoreA !== scoreB) {
+              return scoreB - scoreA;
+           }
+           return occB - occA;
+        });
+
+        // Generate Table rows
+        tableData.forEach((d, index) => {
+           let occ = parseInt(d.occupied) || 0;
+           let cap = parseInt(d.capacity) || 0;
+           
+           let isFull = (d.status_source && d.status_source.includes('เต็ม')) || (cap > 0 && occ >= cap);
+           let isAlmostFull = !isFull && (cap > 0 && occ >= cap * 0.8);
+           
+           // All Shelters Table
+           allTableHtml += `
+             <tr>
+               <td>${index + 1}</td>
+               <td>${d.district || '-'}</td>
+               <td class="text-start">${d.shelter_name || '-'}</td>
+               <td>${cap.toLocaleString()}</td>
+               <td class="${isFull ? 'text-danger fw-bold' : (isAlmostFull ? 'text-warning fw-bold' : '')}">${occ.toLocaleString()}</td>
+               <td>
+                  <span class="badge bg-${isFull ? 'danger' : (isAlmostFull ? 'warning' : 'success')}">
+                     ${d.status_source || 'ไม่ระบุ'}
+                  </span>
+               </td>
+               <td class="text-muted small">${d.fetched_at_th ? new Date(parseCustomDate(d.fetched_at_th)).toLocaleString('th-TH') : '-'}</td>
+             </tr>
+           `;
+

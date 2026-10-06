@@ -1,0 +1,40 @@
+
+      let rawFloodData = [];
+      let rawVulData = [];
+      let isMapLoaded = false;
+      let currentFilteredData = [];
+      let echartsInstance = null;
+      let vulChartInstance = null;
+      let originalGeoJson = null;
+
+      let rawBkkWaterData = [];
+      let rawThaiWaterData = [];
+      let rawShelterData = [];
+      let bkkMap = null;
+      let thaiMap = null;
+      let shelterMap = null;
+      let trendChartInstance = null;
+      let bkkMarkers = [];
+      let thaiMarkers = [];
+      let thaiHeatLayer = null;
+      let shelterMarkers = [];
+      let userLocationMarker = null;
+
+
+      // Load GeoJSON for ECharts
+      fetch('https://raw.githubusercontent.com/apisit/thailand.json/master/thailand.json')
+        .then(response => response.json())
+        .then(geoJson => {
+          originalGeoJson = geoJson;
+          echarts.registerMap('Thailand', geoJson);
+          isMapLoaded = true;
+          document.getElementById('mapSpinner').style.display = 'none';
+
+          echartsInstance = echarts.init(document.getElementById('map_canvas'));
+          vulChartInstance = echarts.init(document.getElementById('vulnerable_chart'));
+
+          // Handle window resize
+          window.addEventListener('resize', () => {
+            if (echartsInstance) echartsInstance.resize();
+            if (vulChartInstance) vulChartInstance.resize();
+            if (trendChartInstance) trendChartInstance.resize();

@@ -1,0 +1,15 @@
+                </div>
+                <div class="table-responsive flex-grow-1" style="max-height: 450px; overflow-y: auto;">
+                  <table class="table table-borderless table-striped m-0" id="topProvinceTable"
+                    style="white-space: nowrap;">
+                    <thead>
+                      <tr>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อันดับ</th>
+                        <th class="text-white" style="background-color: #3b82f6 !important;">จังหวัด</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อำเภอ</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">ตำบล</th>
+                        <th class="text-end fw-bold text-white" style="background-color: #3b82f6 !important;">
+                          ครัวเรือนเดือดร้อน</th>
+                        <th class="text-end text-white" style="background-color: #2563eb !important;">กลุ่มเปราะบางรวม
+                        </th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">เสียชีวิต</th>

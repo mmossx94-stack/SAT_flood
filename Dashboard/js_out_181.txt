@@ -1,0 +1,25 @@
+           let dp = parts[0].split('/');
+           if(dp.length === 3) return Date.parse(`${dp[2]}-${dp[1]}-${dp[0]}T${parts[1]}:00+07:00`) || 0;
+        }
+        
+        // Only date (DD/MM/YYYY)
+        if(parts.length === 1 && parts[0].includes('/')) {
+           let dp = parts[0].split('/');
+           if(dp.length === 3) return Date.parse(`${dp[2]}-${dp[1]}-${dp[0]}T00:00:00+07:00`) || 0;
+        }
+
+        // ISO format or other custom formats (YYYY-MM-DD HH:mm)
+        if(parts.length === 2 && parts[0].includes('-')) {
+           return Date.parse(parts[0] + 'T' + parts[1] + '+07:00') || 0;
+        }
+
+        // Fallback to native parse
+        let ms = Date.parse(dStr);
+        if(!isNaN(ms)) return ms;
+        
+        return 0;
+      }
+
+      window.onload = function () {
+        // Init Trend Chart (Mock) before data loads
+        let trendDom = document.getElementById('trend_chart');

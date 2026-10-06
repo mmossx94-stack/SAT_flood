@@ -1,0 +1,5 @@
+796:                 <select id="shelterDistrictFilter" class="form-select filter-select" onchange="applyShelterFilters()">
+801:                 <select id="shelterStatusFilter" class="form-select filter-select" onchange="applyShelterFilters()">
+2296:       function applyShelterFilters() {
+2308:         updateShelterSummary(filtered);
+2311:       function updateShelterSummary(data) {

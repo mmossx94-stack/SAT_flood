@@ -1,0 +1,35 @@
+            bkkMarkers.push(marker);
+            bounds.push([lat, lng]);
+
+            marker.on('click', function () {
+              showDetailsPanel('bkk-details-panel', item, 'bkk');
+            });
+          }
+        });
+        if (bounds.length > 0) bkkMap.fitBounds(bounds);
+        updateDefaultSummary("bkk", data);
+      }
+
+
+      function updateDefaultSummary(type, data) {
+        let panelId = type === 'bkk' ? 'bkk-details-panel' : 'thai-details-panel';
+        let panel = document.getElementById(panelId);
+        if (!panel) return;
+
+        let criticalCount = 0;
+        let warningCount = 0;
+        let normalCount = 0;
+
+        let affectedProvinces = new Set();
+        let affectedDistricts = new Set();
+
+        let provStats = {};
+        let distStats = {};
+
+        if (type === 'bkk') {
+          data.forEach(item => {
+            let wl = parseFloat(item.water_in_m_msl);
+            let warning = parseFloat(item.warning_in_source);
+            let crit = parseFloat(item.critical_in_source);
+            let color = getBkkColor(wl, warning, crit);
+            if (color === '#ef4444') criticalCount++;

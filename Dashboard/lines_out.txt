@@ -1,0 +1,1 @@
+928:         document.getElementById('lastUpdated').innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> ข้อมูลล่าสุด: ` + now.toLocaleTimeString('th-TH');

@@ -1,0 +1,50 @@
+      }
+
+      function updateHealthZoneTable(floodData, allVulData) {
+        // Create Province -> Health Zone mapping from allVulData
+        let provToHz = {};
+        allVulData.forEach(item => {
+          if (item['จังหวัด'] && item['เขตสุขภาพ']) {
+            provToHz[item['จังหวัด']] = item['เขตสุขภาพ'];
+          }
+        });
+
+        // Group data by Health Zone
+        let hzMap = {};
+        floodData.forEach(item => {
+          let p = item.Province;
+          if (!p) return;
+          let hz = provToHz[p] || 'ไม่ระบุเขตสุขภาพ';
+          if (!hzMap[hz]) {
+            hzMap[hz] = {
+              provinces: new Set(),
+              households: 0,
+              child: 0, preg: 0, elderly: 0, totalVul: 0
+            };
+          }
+          hzMap[hz].provinces.add(p);
+          hzMap[hz].households += (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0);
+        });
+
+        // Add Vulnerable stats to the zones based on affected provinces
+        allVulData.forEach(item => {
+          let p = item['จังหวัด'];
+          let hz = item['เขตสุขภาพ'];
+          if (p && hz && hzMap[hz] && hzMap[hz].provinces.has(p)) {
+            hzMap[hz].child += (parseFloat(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0);
+            hzMap[hz].preg += (parseFloat(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0);
+            hzMap[hz].elderly += (parseFloat(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0);
+            hzMap[hz].totalVul += (parseFloat(item['รวมทั้งหมด']) || 0);
+          }
+        });
+
+        const tbody = document.getElementById('healthZoneTableBody');
+        tbody.innerHTML = '';
+
+        let hzKeys = Object.keys(hzMap);
+        if (hzKeys.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-3">ไม่พบข้อมูล</td></tr>';
+          return;
+        }
+
+        // Sort by Number of Households descending

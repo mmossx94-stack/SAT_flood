@@ -1,0 +1,65 @@
+
+        renderShelterMap(fullyFiltered);
+        updateShelterSummary(distFiltered, fullyFiltered, statusFilter);
+      }
+
+      function updateShelterSummary(baseData, tableData, statusFilterStr) {
+        let totalCount = baseData.length;
+        let totalOcc = 0;
+        let totalCap = 0;
+        
+        let fullCount = 0;
+        let fullOcc = 0;
+        let fullCap = 0;
+
+        let tableHtml = '';
+
+        // Calculate stats for Cards using baseData (district filtered)
+        baseData.forEach(d => {
+           let occ = parseInt(d.occupied) || 0;
+           let cap = parseInt(d.capacity) || 0;
+           totalOcc += occ;
+           totalCap += cap;
+           
+           let isFull = (d.status_source && d.status_source.includes('เต็ม')) || (cap > 0 && occ >= cap);
+           if (isFull) {
+             fullCount++;
+             fullOcc += occ;
+             fullCap += cap;
+           }
+        });
+
+        // Generate Table rows using tableData (district AND status filtered)
+        tableData.forEach(d => {
+           let occ = parseInt(d.occupied) || 0;
+           let cap = parseInt(d.capacity) || 0;
+           let isFull = (d.status_source && d.status_source.includes('เต็ม')) || (cap > 0 && occ >= cap);
+           tableHtml += `
+             <tr>
+               <td>${d.district || '-'}</td>
+               <td class="text-start">${d.shelter_name || '-'}</td>
+               <td>${cap.toLocaleString()}</td>
+               <td class="${isFull ? 'text-danger fw-bold' : ''}">${occ.toLocaleString()}</td>
+             </tr>
+           `;
+        });
+
+        let tbody = document.getElementById('shelterTableBody');
+        if (tbody) tbody.innerHTML = tableHtml || '<tr><td colspan="4">ไม่มีข้อมูล</td></tr>';
+
+        let titleEl = document.getElementById('shelterTableTitle');
+        if (titleEl) {
+           titleEl.innerHTML = statusFilterStr === 'all' 
+             ? `รายชื่อศูนย์พักพิงชั่วคราวใน กทม.` 
+             : `รายชื่อศูนย์พักพิงชั่วคราวใน กทม. ที่รายงานสถานะ '${statusFilterStr}'`;
+        }
+
+        let totalPct = totalCap > 0 ? (totalOcc / totalCap * 100) : 0;
+        let fullPct = fullCap > 0 ? (fullOcc / fullCap * 100) : 0;
+
+        let summaryHtml = `
+          <div class="col-md-6 mb-2">
+            <div class="card border-0 shadow-sm" style="background-color: #e0f2fe; border-radius: 12px;">
+              <div class="card-body d-flex align-items-center p-3">
+                 <div class="me-4 text-center">
+                    <div class="fw-bold fs-4 text-primary" style="font-family: 'Kanit', sans-serif;">ทั้งหมด</div>

@@ -1,0 +1,30 @@
+
+      function updateSummary(data) {
+        const provinces = new Set(data.map(item => item.Province).filter(Boolean)).size;
+        const households = data.reduce((sum, item) => sum + (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0), 0);
+        const districts = data.reduce((sum, item) => sum + (parseInt(item.Affected_Districts_Count) || 0), 0);
+        const deaths = data.reduce((sum, item) => sum + (parseInt(item.Casualties_Deaths) || 0), 0);
+
+        animateValue("totalProvinces", parseInt(document.getElementById("totalProvinces").innerText.replace(/,/g, '')) || 0, provinces, 500);
+        animateValue("totalDistricts", parseInt(document.getElementById("totalDistricts").innerText.replace(/,/g, '')) || 0, districts, 500);
+        animateValue("totalHouseholds", parseInt(document.getElementById("totalHouseholds").innerText.replace(/,/g, '')) || 0, households, 800);
+        animateValue("totalDeaths", parseInt(document.getElementById("totalDeaths").innerText.replace(/,/g, '')) || 0, deaths, 500);
+      }
+
+      function updateTable(data, allVulData) {
+        let provVulMap = {};
+        if (allVulData) {
+          allVulData.forEach(item => {
+            if (item['จังหวัด']) {
+              provVulMap[item['จังหวัด']] = parseFloat(item['รวมทั้งหมด']) || 0;
+            }
+          });
+        }
+
+        let provinceMap = {};
+        data.forEach(item => {
+          let p = item.Province;
+          if (!p) return;
+          if (!provinceMap[p]) {
+            provinceMap[p] = {
+              households: 0,

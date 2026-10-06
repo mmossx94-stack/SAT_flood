@@ -1,0 +1,51 @@
+{
+  "source_url": "https://weather.bangkok.go.th/water/summary",
+  "retrieved_at_utc": "2026-10-01T05:26:30.0370555Z",
+  "observation_timezone": "Asia/Bangkok",
+  "station_count": 303,
+  "unique_station_count": 303,
+  "area_groups_with_stations": 55,
+  "older_than_24_hours": 8,
+  "minus99_source_stations": 2,
+  "oldest_observation": "2026-09-24T04:30:00",
+  "newest_observation": "2026-10-01T12:25:00",
+  "missing_timestamp": 0,
+  "missing_coordinates": 0,
+  "missing_all_water_values": 0,
+  "flood_status_counts": [
+    {
+      "Name": "เตือนภัย",
+      "Count": 28
+    },
+    {
+      "Name": "ปกติ",
+      "Count": 217
+    },
+    {
+      "Name": "วิกฤติ",
+      "Count": 58
+    }
+  ],
+  "sensor_status_counts": [
+    {
+      "Name": "ขัดข้อง",
+      "Count": 26
+    },
+    {
+      "Name": "ปกติ",
+      "Count": 212
+    },
+    {
+      "Name": "ไม่ทราบ",
+      "Count": 65
+    }
+  ],
+  "notes": [
+    "Snapshot only, not a historical time series.",
+    "Raw source values and status codes are preserved; no alert thresholds recalculated.",
+    "Water levels are relative to mean sea level, not street flood depth.",
+    "Blank or null is not zero. Source thresholds require validation before reuse, especially across water_system_id.",
+    "Source timestamps are shown unchanged and interpreted as Thai local time.",
+    "Flood status is distinct from sensor status and observation freshness."
+  ]
+}

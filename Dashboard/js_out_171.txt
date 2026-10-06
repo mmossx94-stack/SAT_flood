@@ -1,0 +1,65 @@
+        const topProvTbody = document.getElementById('topProvinceTableBody');
+        topProvTbody.innerHTML = '';
+
+        let sortedProvinces = Object.keys(provinceMap).map(k => ({ name: k, ...provinceMap[k] }))
+          .filter(p => p.households > 0)
+          .sort((a, b) => b.households - a.households);
+
+        if (sortedProvinces.length === 0) {
+          topProvTbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted py-3">ไม่พบข้อมูล</td></tr>';
+        } else {
+          sortedProvinces.forEach((prov, index) => {
+            let vulCount = provVulMap[prov.name] || 0;
+            let tr = document.createElement('tr');
+            
+            let mapColor = '#e2e8f0'; 
+            let textColor = '#ffffff';
+            if (prov.households >= 100000) { mapColor = '#7a0118'; }
+            else if (prov.households >= 10000) { mapColor = '#f03b20'; }
+            else if (prov.households >= 1000) { mapColor = '#feb24c'; textColor = '#000000'; }
+            else if (prov.households >= 1) { mapColor = '#ffeda0'; textColor = '#000000'; }
+
+            let trendHtml = '<span class="text-muted">-</span>';
+            if (prov.trend === 'เพิ่มขึ้น') {
+               trendHtml = '<span class="badge bg-danger rounded-pill"><i class="bi bi-arrow-up-circle-fill"></i> เพิ่มขึ้น</span>';
+            } else if (prov.trend === 'ลดลง') {
+               trendHtml = '<span class="badge bg-success rounded-pill"><i class="bi bi-arrow-down-circle-fill"></i> ลดลง</span>';
+            } else if (prov.trend === 'ทรงตัว') {
+               trendHtml = '<span class="badge bg-secondary rounded-pill"><i class="bi bi-dash-circle-fill"></i> ทรงตัว</span>';
+            } else if (prov.trend) {
+               trendHtml = `<span class="badge bg-secondary rounded-pill">${prov.trend}</span>`;
+            }
+
+            tr.innerHTML = `
+            <td class="text-center"><span class="badge rounded-pill px-3" style="background-color: ${mapColor}; color: ${textColor};">${index + 1}</span></td>
+            <td class="fw-semibold">${prov.name}</td>
+            <td class="text-center">${prov.districts.toLocaleString()}</td>
+            <td class="text-center">${prov.subdistricts.toLocaleString()}</td>
+            <td class="text-end fw-bold text-danger">${prov.households.toLocaleString()}</td>
+            <td class="text-end text-purple fw-bold" style="background-color: rgba(0,0,0,0.02);">${vulCount.toLocaleString()}</td>
+            <td class="text-center ${prov.deaths > 0 ? 'text-danger fw-bold' : ''}">${prov.deaths}</td>
+            <td class="text-center">${trendHtml}</td>
+          `;
+            topProvTbody.appendChild(tr);
+          });
+        }
+      }
+
+      function drawMap(data, hzFilter = 'all') {
+        if (!echartsInstance) return;
+
+        let mapData = [];
+        let maxVal = 1;
+        let provinceSums = {};
+
+        data.forEach(item => {
+          let pName = item.Province;
+          if (!pName) return;
+          let count = parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0;
+          provinceSums[pName] = (provinceSums[pName] || 0) + count;
+        });
+
+        let provVulMap = {};
+        rawVulData.forEach(item => {
+          if (item['จังหวัด']) {
+            provVulMap[item['จังหวัด']] = {

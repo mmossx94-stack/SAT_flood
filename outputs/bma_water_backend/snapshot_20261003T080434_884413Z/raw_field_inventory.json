@@ -1,0 +1,226 @@
+{
+  "rain_expected": [
+    "NoneType"
+  ],
+  "water_system_id": [
+    "int"
+  ],
+  "max_out02_yesterday": [
+    "NoneType",
+    "float"
+  ],
+  "piont": [
+    "NoneType"
+  ],
+  "countWaterId": [
+    "int"
+  ],
+  "wl_in_DB": [
+    "NoneType",
+    "float"
+  ],
+  "wl_out02": [
+    "NoneType",
+    "float"
+  ],
+  "watergate05": [
+    "NoneType",
+    "float"
+  ],
+  "right_bank": [
+    "NoneType",
+    "float"
+  ],
+  "river_id": [
+    "int"
+  ],
+  "water_url": [
+    "NoneType",
+    "str"
+  ],
+  "watergate01": [
+    "NoneType",
+    "float"
+  ],
+  "riverside": [
+    "NoneType"
+  ],
+  "txtStatus": [
+    "str"
+  ],
+  "wl_out01": [
+    "NoneType",
+    "float",
+    "int"
+  ],
+  "critical_out02": [
+    "NoneType",
+    "float"
+  ],
+  "display_graph": [
+    "NoneType"
+  ],
+  "profile_order": [
+    "NoneType"
+  ],
+  "wl_pos_name": [
+    "NoneType"
+  ],
+  "watergate02": [
+    "NoneType",
+    "float"
+  ],
+  "watergate03": [
+    "NoneType",
+    "float"
+  ],
+  "wl_pos_name_en": [
+    "NoneType"
+  ],
+  "district_id": [
+    "int"
+  ],
+  "site_timestampEN": [
+    "str"
+  ],
+  "statusColor": [
+    "str"
+  ],
+  "max_in_yesterday": [
+    "NoneType",
+    "float"
+  ],
+  "watergate06": [
+    "NoneType",
+    "float"
+  ],
+  "status": [
+    "int"
+  ],
+  "latitude": [
+    "float"
+  ],
+  "max_out01_day": [
+    "NoneType",
+    "float"
+  ],
+  "water_id": [
+    "int"
+  ],
+  "water_shortname_en": [
+    "str"
+  ],
+  "priorityStatus": [
+    "int"
+  ],
+  "series": [
+    "int"
+  ],
+  "txtStatus_en": [
+    "str"
+  ],
+  "water_gate_count": [
+    "int"
+  ],
+  "warning": [
+    "float"
+  ],
+  "water_control": [
+    "NoneType"
+  ],
+  "wl_pos": [
+    "NoneType"
+  ],
+  "watergate04": [
+    "NoneType",
+    "float"
+  ],
+  "wl_in": [
+    "float",
+    "int"
+  ],
+  "water_name_en": [
+    "str"
+  ],
+  "warning_out01": [
+    "NoneType",
+    "float"
+  ],
+  "site_timestamp": [
+    "str"
+  ],
+  "site_timestampTH": [
+    "str"
+  ],
+  "water_code": [
+    "str"
+  ],
+  "critical_out01": [
+    "NoneType",
+    "float"
+  ],
+  "district_name_en": [
+    "str"
+  ],
+  "water_count": [
+    "int"
+  ],
+  "wl_level": [
+    "NoneType"
+  ],
+  "river_name": [
+    "str"
+  ],
+  "left_bank": [
+    "NoneType",
+    "float"
+  ],
+  "wl_out02_DB": [
+    "NoneType",
+    "float"
+  ],
+  "adjust": [
+    "int"
+  ],
+  "longitude": [
+    "float"
+  ],
+  "max_in_day": [
+    "NoneType",
+    "float"
+  ],
+  "water_shortname": [
+    "str"
+  ],
+  "water_name": [
+    "str"
+  ],
+  "datediffnow": [
+    "int"
+  ],
+  "max_out02_day": [
+    "NoneType",
+    "float"
+  ],
+  "district_name": [
+    "str"
+  ],
+  "colorStatus": [
+    "str"
+  ],
+  "critical": [
+    "float"
+  ],
+  "max_out01_yesterday": [
+    "NoneType",
+    "float"
+  ],
+  "warning_out02": [
+    "NoneType",
+    "float"
+  ],
+  "wl_out01_DB": [
+    "NoneType",
+    "float"
+  ]
+}

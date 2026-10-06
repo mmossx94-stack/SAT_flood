@@ -1,0 +1,25 @@
+          });
+
+          if (currentFilteredData.length > 0) {
+            drawMap(currentFilteredData);
+          }
+        })
+        .catch(error => {
+          console.error('Error loading map data:', error);
+          document.getElementById('mapSpinner').innerHTML = '<span class="text-danger">ไม่สามารถโหลดแผนที่ได้</span>';
+        });
+
+      function parseCustomDate(dStr) {
+        if(!dStr) return 0;
+        let ms = Date.parse(dStr);
+        if(!isNaN(ms)) return ms;
+        let parts = dStr.split(' ');
+        if(parts.length === 2 && parts[0].includes('-')) {
+           return Date.parse(parts[0] + 'T' + parts[1] + '+07:00') || 0;
+        }
+        if(parts.length === 2 && parts[0].includes('/')) {
+           let dp = parts[0].split('/');
+           if(dp.length === 3) return Date.parse(`${dp[2]}-${dp[1]}-${dp[0]}T${parts[1]}:00+07:00`) || 0;
+        }
+        // Only date dd/MM/yyyy
+        if(parts.length === 1 && parts[0].includes('/')) {

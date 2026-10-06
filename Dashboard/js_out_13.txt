@@ -1,0 +1,3 @@
+1768:             marker.on('click', function () {
+2123:             marker.on('click', function () {
+2192:             marker.on('click', function () {

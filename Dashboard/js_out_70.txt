@@ -1,0 +1,40 @@
+              <div class="modern-card flex-grow-1 p-0 overflow-hidden shadow-sm d-flex flex-column">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-bar-chart-line-fill text-danger fs-5"></i> รายชื่อจังหวัดที่ได้รับผลกระทบ
+                  </h6>
+                </div>
+                <div class="table-responsive flex-grow-1" style="max-height: 450px; overflow-y: auto;">
+                  <table class="table table-borderless table-striped m-0" id="topProvinceTable"
+                    style="white-space: nowrap;">
+                    <thead>
+                      <tr>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อันดับ</th>
+                        <th class="text-white" style="background-color: #3b82f6 !important;">จังหวัด</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อำเภอ</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">ตำบล</th>
+                        <th class="text-end fw-bold text-white" style="background-color: #3b82f6 !important;">
+                          ครัวเรือนเดือดร้อน</th>
+                        <th class="text-end text-white" style="background-color: #2563eb !important;">กลุ่มเปราะบางรวม
+                        </th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">เสียชีวิต</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">
+                          แนวโน้มน้ำเพิ่มขึ้น</th>
+                      </tr>
+                    </thead>
+                    <tbody id="topProvinceTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Health Zone Summary Row -->
+          <div class="row g-4 mb-4">
+            <div class="col-12">
+              <div class="modern-card p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">

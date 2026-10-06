@@ -1,0 +1,20 @@
+        // 1. BKK Map
+        bkkMap = L.map('bkk-map', {
+          center: [13.7563, 100.5018],
+          zoom: 10,
+          layers: [bkkStreet] // Default to Street for clarity
+        });
+
+        const bkkBaseMaps = {
+          "แผนที่ถนน (ชัดเจน)": bkkStreet,
+          "แผนที่ภูมิประเทศ": bkkTerrain,
+          "ภาพดาวเทียม": bkkHybrid
+        };
+        L.control.layers(bkkBaseMaps).addTo(bkkMap);
+
+
+        // Base Layers for Thai
+        const thaiStreet = L.tileLayer('https://mt1.google.com/vt/lyrs=m&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const thaiTerrain = L.tileLayer('https://mt1.google.com/vt/lyrs=p&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const thaiHybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+

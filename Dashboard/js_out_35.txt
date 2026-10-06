@@ -1,0 +1,1 @@
+[(<class 'int'>, 100), (<class 'int'>, 30), (<class 'int'>, 30), (<class 'int'>, 50), (<class 'int'>, 50)]

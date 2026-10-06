@@ -1,0 +1,6 @@
+789:       <!-- Tab 4: Shelter -->
+811:                 <div id="shelter-map" class="map-container"></div>
+977:         renderShelterMap(rawShelterData);
+1710:         shelterMap = L.map('shelter-map', {
+2240:       function renderShelterMap(data) {
+2281:         renderShelterMap(filtered);

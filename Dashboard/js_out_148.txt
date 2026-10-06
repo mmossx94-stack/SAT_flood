@@ -1,0 +1,25 @@
+        
+        // Draw Province Boundaries ON TOP of Heatmap
+        if (originalGeoJson) {
+            window.thaiBoundaryLayer = L.geoJSON(originalGeoJson, {
+                style: {
+                    fill: false,       // No color fill
+                    color: '#64748b',  // Slate color for borders
+                    weight: 1,         // Thin border
+                    opacity: 0.6       // Semi-transparent
+                },
+                interactive: false // Let clicks pass through to the invisible dots below
+            });
+        }
+        
+        let addLayers = () => {
+            thaiHeatLayer.addTo(thaiMap);
+            if (window.thaiBoundaryLayer) window.thaiBoundaryLayer.addTo(thaiMap);
+        };
+
+        if (thaiMap.getSize().x > 0 && thaiMap.getSize().y > 0) {
+            addLayers();
+        } else {
+            thaiMap.once('resize', addLayers);
+        }
+

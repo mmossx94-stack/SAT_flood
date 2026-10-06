@@ -1,0 +1,30 @@
+          html2canvas(element, {
+            scale: 2, // Higher resolution
+            useCORS: true,
+            backgroundColor: '#f3f6f9',
+            ignoreElements: function (el) {
+              return el.hasAttribute('data-html2canvas-ignore');
+            }
+          }).then(canvas => {
+            let link = document.createElement('a');
+            link.download = 'รายงานสถานการณ์ภัยพิบัติ_' + new Date().getTime() + '.png';
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+
+            // Restore button
+            btn.innerHTML = originalHtml;
+            btn.disabled = false;
+          });
+        }, 500); // slight delay to allow any animations to finish
+      }
+
+    </script>
+
+  </div> <!-- /dashboard-export-area -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+
+</body>
+
+</html>

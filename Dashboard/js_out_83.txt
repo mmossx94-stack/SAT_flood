@@ -1,0 +1,15 @@
+,
+      "Source_URL": "https://direct.disaster.go.th/directing/home"
+    },
+    {
+      "Record_ID": "2026-10-02_ลพบุรี_อุทกภัย",
+      "Report_Date": "02/10/2026 00:00",
+      "Region": "ภาคกลาง",
+      "Province": "ลพบุรี",
+      "Disaster_Type": "อุทกภัย",
+      "Affected_Districts_Count": 5,
+      "District_Names": "อ.เมืองฯ อ.ท่าหลวง อ.พัฒนานิคม อ.โคกสำโรง อ.บ้านหมี่",
+      "Affected_Subdistricts_Count": 23,
+      "Affected_Villages_Count": 84,
+      "Affected_Households": 1657,
+      "Cas

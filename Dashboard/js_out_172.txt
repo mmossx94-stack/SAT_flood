@@ -1,0 +1,50 @@
+                <div>แหล่งที่มา <a href="https://direct.disaster.go.th/directing/home" target="_blank" class="text-decoration-none">https://direct.disaster.go.th/directing/home</a></div>
+              `;
+           } else {
+              footerEl.innerHTML = `
+                <div>ข้อมูลจาก กรมป้องกันและบรรเทาสาธารณภัย (ปภ.)</div>
+                <div>แหล่งที่มา <a href="https://direct.disaster.go.th/directing/home" target="_blank" class="text-decoration-none">https://direct.disaster.go.th/directing/home</a></div>
+              `;
+           }
+        }
+      }
+
+      function updateTable(data, allVulData) {
+        let provVulMap = {};
+        if (allVulData) {
+          allVulData.forEach(item => {
+            if (item['จังหวัด']) {
+              provVulMap[item['จังหวัด']] = parseFloat(item['รวมทั้งหมด']) || 0;
+            }
+          });
+        }
+
+        let provinceMap = {};
+        data.forEach(item => {
+          let p = item.Province;
+          if (!p) return;
+          if (!provinceMap[p]) {
+            provinceMap[p] = {
+              households: 0,
+              deaths: 0,
+              districts: 0,
+              subdistricts: 0,
+              trend: ''
+            };
+          }
+          provinceMap[p].households += (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0);
+          provinceMap[p].deaths += (parseInt(item.Casualties_Deaths) || 0);
+
+          provinceMap[p].districts += (parseInt(item.Affected_Districts_Count) || 0);
+          provinceMap[p].subdistricts += (parseInt(item.Affected_Subdistricts_Count) || 0);
+
+          if (item.Water_Level_Trend) {
+             provinceMap[p].trend = item.Water_Level_Trend.trim();
+          }
+        });
+
+        const topProvTbody = document.getElementById('topProvinceTableBody');
+        topProvTbody.innerHTML = '';
+
+        let sortedProvinces = Object.keys(provinceMap).map(k => ({ name: k, ...provinceMap[k] }))
+          .filter(p => p.households > 0)

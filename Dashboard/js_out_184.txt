@@ -1,0 +1,15 @@
+          }
+          if (households > 0) {
+              hzMap[hz].provinces.add(p);
+          }
+          hzMap[hz].households += households;
+        });
+
+        // Add Vulnerable stats to the zones based on affected provinces
+        allVulData.forEach(item => {
+          let p = item['จังหวัด'];
+          let hz = item['เขตสุขภาพ'];
+          if (p && hz && hzMap[hz] && hzMap[hz].provinces.has(p)) {
+            hzMap[hz].child += (parseFloat(item['จำนวนเด็ก 0-4 ปีทั้งหมด (คน)']) || 0);
+            hzMap[hz].preg += (parseFloat(item['จำนวนหญิงตั้งครรภ์ทั้งหมด (คน)']) || 0);
+            hzMap[hz].elderly += (parseFloat(item['จำนวนผู้สูงอายุ 60 ปีขึ้นไปทั้งหมด (คน)']) || 0);

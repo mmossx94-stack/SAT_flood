@@ -1,0 +1,40 @@
+            let intensity = 0.2;
+            if (status.includes('ล้นตลิ่ง') || status.includes('วิกฤต')) intensity = 1.0;
+            else if (status.includes('น้ำมาก') || status.includes('เฝ้าระวัง')) intensity = 0.6;
+            
+            heatData.push([lat, lng, intensity]);
+
+            // Tiny invisible dot for hover/click (unobtrusive but interactive)
+            let marker = L.circleMarker([lat, lng], {
+                radius: 8,
+                color: 'transparent',
+                weight: 0,
+                fillColor: 'transparent',
+                fillOpacity: 0
+            }).addTo(thaiMap);
+            
+            let tooltipContent = `<b>${item.station_name || item.canal || '-'}</b><br>สถานะ: ${status}`;
+            marker.bindTooltip(tooltipContent, { direction: 'top' });
+
+            marker.on('click', function () {
+              showDetailsPanel('thai-details-panel', item, 'thai');
+            });
+            
+            thaiMarkers.push(marker);
+            bounds.push([lat, lng]);
+          }
+        });
+
+        // Add Heatmap layer safely with Blue-Purple gradient
+        thaiHeatLayer = L.heatLayer(heatData, {
+            radius: 30, 
+            blur: 20,
+            maxZoom: 10,
+            gradient: {
+                0.2: '#93c5fd', // Light Blue (ปกติ)
+                0.5: '#3b82f6', // Blue
+                0.8: '#6366f1', // Indigo (เฝ้าระวัง)
+                1.0: '#7e22ce'  // Purple (วิกฤต)
+            }
+        });
+        

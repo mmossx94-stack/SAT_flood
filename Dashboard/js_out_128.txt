@@ -1,0 +1,20 @@
+      let echartsInstance = null;
+      let vulChartInstance = null;
+      let originalGeoJson = null;
+
+      let rawBkkWaterData = [];
+      let rawThaiWaterData = [];
+      let rawShelterData = [];
+      let bkkMap = null;
+      let thaiMap = null;
+      let shelterMap = null;
+      let trendChartInstance = null;
+      let bkkMarkers = [];
+      let thaiMarkers = [];
+      let shelterMarkers = [];
+      let userLocationMarker = null;
+
+
+      // Load GeoJSON for ECharts
+      fetch('https://raw.githubusercontent.com/apisit/thailand.json/master/thailand.json')
+        .then(response => response.json())

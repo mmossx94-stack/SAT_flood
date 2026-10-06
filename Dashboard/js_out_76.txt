@@ -1,0 +1,35 @@
+      function updateTable(data, allVulData) {
+        let provVulMap = {};
+        if (allVulData) {
+          allVulData.forEach(item => {
+            if (item['จังหวัด']) {
+              provVulMap[item['จังหวัด']] = parseFloat(item['รวมทั้งหมด']) || 0;
+            }
+          });
+        }
+
+        let provinceMap = {};
+        data.forEach(item => {
+          let p = item.Province;
+          if (!p) return;
+          if (!provinceMap[p]) {
+            provinceMap[p] = {
+              households: 0,
+              deaths: 0,
+              districts: 0,
+              subdistricts: 0,
+              risingCount: 0
+            };
+          }
+          provinceMap[p].households += (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0);
+          provinceMap[p].deaths += (parseInt(item.Casualties_Deaths) || 0);
+
+          provinceMap[p].districts += (parseInt(item.Affected_Districts_Count) || 0);
+          provinceMap[p].subdistricts += (parseInt(item.Affected_Subdistricts_Count) || 0);
+
+          if (item.Water_Level_Trend === 'เพิ่มขึ้น') provinceMap[p].risingCount += 1;
+        });
+
+        const topProvTbody = document.getElementById('topProvinceTableBody');
+        topProvTbody.innerHTML = '';
+

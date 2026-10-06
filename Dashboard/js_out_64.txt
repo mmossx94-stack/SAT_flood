@@ -1,0 +1,10 @@
+                </div>
+                <div class="table-responsive flex-grow-1">
+                  <table class="table table-borderless table-striped m-0" id="topProvinceTable"
+                    style="white-space: nowrap;">
+                    <thead>
+                      <tr>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อันดับ</th>
+                        <th class="text-white" style="background-color: #3b82f6 !important;">จังหวัด</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">อำเภอ</th>
+                        <th class="text-center text-white" style="background-color: #3b82f6 !important;">ตำบล</th>

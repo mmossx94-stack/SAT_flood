@@ -1,0 +1,50 @@
+          zoom: 10,
+          layers: [bkkStreet] // Default to Street for clarity
+        });
+
+        const bkkBaseMaps = {
+          "แผนที่ถนน (ชัดเจน)": bkkStreet,
+          "แผนที่ภูมิประเทศ": bkkTerrain,
+          "ภาพดาวเทียม": bkkHybrid
+        };
+        L.control.layers(bkkBaseMaps).addTo(bkkMap);
+
+        // Load Bangkok districts GeoJSON boundaries
+        fetch('https://raw.githubusercontent.com/pcrete/gsvloader-demo/master/geojson/Bangkok-districts.geojson')
+          .then(res => res.json())
+          .then(geoData => {
+            L.geoJSON(geoData, {
+              style: function (feature) {
+                return {
+                  color: "#3b82f6",
+                  weight: 2,
+                  opacity: 0.6,
+                  fillOpacity: 0.05
+                };
+              }
+            }).addTo(bkkMap);
+          })
+          .catch(e => console.error('Error loading BKK geojson:', e));
+
+        // Base Layers for Thai
+        const thaiStreet = L.tileLayer('https://mt1.google.com/vt/lyrs=m&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const thaiTerrain = L.tileLayer('https://mt1.google.com/vt/lyrs=p&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const thaiHybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+
+        // 2. Thai Map
+        thaiMap = L.map('thai-map', {
+          center: [13.736717, 100.523186],
+          zoom: 5,
+          layers: [thaiStreet] // Default to Street for clarity
+        });
+
+        const thaiBaseMaps = {
+          "แผนที่ถนน (ชัดเจน)": thaiStreet,
+          "แผนที่ภูมิประเทศ": thaiTerrain,
+          "ภาพดาวเทียม": thaiHybrid
+        };
+        L.control.layers(thaiBaseMaps).addTo(thaiMap);
+
+        // 3. Shelter Map
+        const shelterStreet = L.tileLayer('https://mt1.google.com/vt/lyrs=m&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });
+        const shelterTerrain = L.tileLayer('https://mt1.google.com/vt/lyrs=p&hl=th&x={x}&y={y}&z={z}', { attribution: '© Google', maxZoom: 20 });

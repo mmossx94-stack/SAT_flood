@@ -1,0 +1,50 @@
+        });
+
+        renderShelterMap(fullyFiltered);
+        updateShelterSummary(distFiltered, fullyFiltered, statusFilter);
+      }
+
+      function updateShelterSummary(baseData, tableData, statusFilterStr) {
+        let totalCount = baseData.length;
+        let totalOcc = 0;
+        let totalCap = 0;
+        
+        let fullCount = 0;
+        let fullOcc = 0;
+        let fullCap = 0;
+
+        let criticalTableHtml = '';
+        let allTableHtml = '';
+
+        // Calculate stats for Cards using baseData (district filtered)
+        baseData.forEach(d => {
+           let occ = parseInt(d.occupied) || 0;
+           let cap = parseInt(d.capacity) || 0;
+           totalOcc += occ;
+           totalCap += cap;
+           
+           let isFull = (d.status_source && d.status_source.includes('เต็ม')) || (cap > 0 && occ >= cap);
+           if (isFull) {
+             fullCount++;
+             fullOcc += occ;
+             fullCap += cap;
+           }
+        });
+
+        // Generate Table rows
+        tableData.forEach((d, index) => {
+           let occ = parseInt(d.occupied) || 0;
+           let cap = parseInt(d.capacity) || 0;
+           
+           let isFull = (d.status_source && d.status_source.includes('เต็ม')) || (cap > 0 && occ >= cap);
+           let isAlmostFull = !isFull && (cap > 0 && occ >= cap * 0.8);
+           
+           // All Shelters Table
+           allTableHtml += `
+             <tr>
+               <td>${index + 1}</td>
+               <td>${d.district || '-'}</td>
+               <td class="text-start">${d.shelter_name || '-'}</td>
+               <td>${cap.toLocaleString()}</td>
+               <td class="${isFull ? 'text-danger fw-bold' : (isAlmostFull ? 'text-warning fw-bold' : '')}">${occ.toLocaleString()}</td>
+               <td>

@@ -1,0 +1,35 @@
+          obj.innerHTML = current.toLocaleString();
+        }, stepTime);
+      }
+
+      function updateExecutiveSummary(data) {
+        const summaryElem = document.getElementById('executiveSummaryText');
+        if (data.length === 0) {
+          summaryElem.innerHTML = 'ไม่มีข้อมูลในขณะนี้ หรือไม่พบข้อมูลตามเงื่อนไขที่กรอง';
+          return;
+        }
+
+        const totalProv = new Set(data.map(item => item.Province).filter(Boolean)).size;
+        const totalHouseholds = data.reduce((sum, item) => sum + (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0), 0);
+        const deaths = data.reduce((sum, item) => sum + (parseInt(item.Casualties_Deaths) || 0), 0);
+
+        // Find top province
+        let provMap = {};
+        data.forEach(item => {
+          let p = item.Province;
+          if (p) provMap[p] = (provMap[p] || 0) + (parseInt(String(item.Affected_Households).replace(/,/g, '')) || 0);
+        });
+        let topProv = Object.keys(provMap).sort((a, b) => provMap[b] - provMap[a])[0];
+
+        let text = `จากข้อมูลล่าสุด พบพื้นที่ได้รับผลกระทบรวม <strong class="text-danger">${totalProv} จังหวัด</strong> มีครัวเรือนที่เดือดร้อนสะสม <strong class="text-danger">${totalHouseholds.toLocaleString()} หลัง</strong> `;
+        if (deaths > 0) {
+          text += `และมีผู้เสียชีวิต <strong class="text-dark">${deaths} ราย</strong> `;
+        }
+        if (topProv) {
+          text += `โดยพื้นที่ที่ต้องเฝ้าระวังและให้ความช่วยเหลือเร่งด่วนคือ <strong class="text-primary">จ.${topProv}</strong> ซึ่งมีผู้ได้รับผลกระทบสูงสุดในขณะนี้`;
+        }
+
+        summaryElem.innerHTML = text;
+      }
+
+      // Export to PNG using html2canvas

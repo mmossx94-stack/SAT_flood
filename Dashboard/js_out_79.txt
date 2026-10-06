@@ -1,0 +1,25 @@
+
+          <!-- Main Grid Layout (Map + Tables) -->
+          <div class="row g-4 dashboard-row" style="height: auto;">
+
+            <!-- Left Column: Geo Map -->
+            <div class="col-lg-5 col-map">
+              <div class="modern-card h-100">
+                <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                  <i class="bi bi-map text-primary fs-5"></i> แผนที่ความรุนแรง (ครัวเรือน)
+                </h6>
+                <div id="map_canvas"
+                  class="flex-grow-1 d-flex justify-content-center align-items-center bg-light rounded"
+                  style="min-height: 450px;">
+                  <div class="spinner-border text-primary" role="status" id="mapSpinner"></div>
+                </div>
+                <div class="mt-2 px-2 text-muted small" id="floodSourceFooter">
+                   <!-- JavaScript will populate this -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Summary Tables -->
+            <div class="col-lg-7 d-flex flex-column gap-4">
+
+              <!-- Top Provinces Table -->

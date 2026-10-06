@@ -1,0 +1,50 @@
+                  <option value="all">🏥 ทุกเขตสุขภาพ</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <select id="thaiProvinceFilter" class="form-select filter-select" onchange="applyThaiFilters()">
+                  <option value="all">📍 ทุกจังหวัด</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <select id="thaiStatusFilter" class="form-select filter-select" onchange="applyThaiFilters()">
+                  <option value="all">💧 ทุกสถานการณ์น้ำ</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="findMyLocation('thai')"
+              class="btn btn-outline-primary ms-auto rounded-pill fw-semibold mt-2 mt-md-0">
+              <i class="bi bi-geo-alt"></i> ค้นหาใกล้ฉัน
+            </button>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="modern-card p-2">
+                <h6 class="fw-bold px-3 pt-2 mb-3"><i class="bi bi-geo-alt text-success"></i> แผนที่สถานการณ์น้ำ
+                  ประเทศไทย</h6>
+                <div id="thai-map" class="map-container"></div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="details-panel" id="thai-details-panel">
+                <div class="text-center text-muted mt-5">
+                  <i class="bi bi-hand-index-thumb fs-1"></i>
+                  <p class="mt-2">คลิกที่จุดสถานีบนแผนที่เพื่อดูข้อมูลที่เข้าใจง่าย</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary Rankings for Thai Water -->
+          <div class="row g-4 mt-2">
+            <div class="col-12">
+              <div class="modern-card p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0"><i class="bi bi-list-ol text-warning"></i> 10
+                    อันดับสถานีที่ระดับน้ำสูงสุดระดับประเทศ</h6>
+                  <small class="text-muted">ข้อมูลเพื่อเฝ้าระวังพื้นที่เสี่ยง
+                    โดยจัดอันดับจากสถานีที่แจ้งรายงานเข้ามาล่าสุด</small>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-borderless table-striped m-0" id="thaiRankingTable">

@@ -1,0 +1,396 @@
+[
+  {
+    "district_code": "1001",
+    "district_name": "พระนคร",
+    "source_district_ids": [
+      1
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1002",
+    "district_name": "ดุสิต",
+    "source_district_ids": [
+      2
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1003",
+    "district_name": "หนองจอก",
+    "source_district_ids": [
+      3
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1004",
+    "district_name": "บางรัก",
+    "source_district_ids": [
+      4
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1005",
+    "district_name": "บางเขน",
+    "source_district_ids": [
+      5
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1006",
+    "district_name": "บางกะปิ",
+    "source_district_ids": [
+      6
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1007",
+    "district_name": "ปทุมวัน",
+    "source_district_ids": [
+      7
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1008",
+    "district_name": "ป้อมปราบศัตรูพ่าย",
+    "source_district_ids": [
+      8
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1009",
+    "district_name": "พระโขนง",
+    "source_district_ids": [
+      9
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1010",
+    "district_name": "มีนบุรี",
+    "source_district_ids": [
+      10
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1011",
+    "district_name": "ลาดกระบัง",
+    "source_district_ids": [
+      11
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1012",
+    "district_name": "ยานนาวา",
+    "source_district_ids": [
+      12
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1013",
+    "district_name": "สัมพันธวงศ์",
+    "source_district_ids": [],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1014",
+    "district_name": "พญาไท",
+    "source_district_ids": [
+      14
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1015",
+    "district_name": "ธนบุรี",
+    "source_district_ids": [
+      15
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1016",
+    "district_name": "บางกอกใหญ่",
+    "source_district_ids": [],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1017",
+    "district_name": "ห้วยขวาง",
+    "source_district_ids": [
+      17
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1018",
+    "district_name": "คลองสาน",
+    "source_district_ids": [
+      18
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1019",
+    "district_name": "ตลิ่งชัน",
+    "source_district_ids": [
+      19
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1020",
+    "district_name": "บางกอกน้อย",
+    "source_district_ids": [
+      20
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1021",
+    "district_name": "บางขุนเทียน",
+    "source_district_ids": [
+      21
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1022",
+    "district_name": "ภาษีเจริญ",
+    "source_district_ids": [
+      22
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1023",
+    "district_name": "หนองแขม",
+    "source_district_ids": [
+      23
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1024",
+    "district_name": "ราษฎร์บูรณะ",
+    "source_district_ids": [
+      24
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1025",
+    "district_name": "บางพลัด",
+    "source_district_ids": [
+      25
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1026",
+    "district_name": "ดินแดง",
+    "source_district_ids": [
+      26
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1027",
+    "district_name": "บึงกุ่ม",
+    "source_district_ids": [
+      27
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1028",
+    "district_name": "สาทร",
+    "source_district_ids": [],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1029",
+    "district_name": "บางซื่อ",
+    "source_district_ids": [
+      29
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1030",
+    "district_name": "จตุจักร",
+    "source_district_ids": [
+      30
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1031",
+    "district_name": "บางคอแหลม",
+    "source_district_ids": [
+      31
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1032",
+    "district_name": "ประเวศ",
+    "source_district_ids": [
+      32
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1033",
+    "district_name": "คลองเตย",
+    "source_district_ids": [
+      33
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1034",
+    "district_name": "สวนหลวง",
+    "source_district_ids": [
+      34
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1035",
+    "district_name": "จอมทอง",
+    "source_district_ids": [
+      35
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1036",
+    "district_name": "ดอนเมือง",
+    "source_district_ids": [
+      36
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1037",
+    "district_name": "ราชเทวี",
+    "source_district_ids": [
+      37
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1038",
+    "district_name": "ลาดพร้าว",
+    "source_district_ids": [
+      38
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1039",
+    "district_name": "วัฒนา",
+    "source_district_ids": [
+      39
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1040",
+    "district_name": "บางแค",
+    "source_district_ids": [
+      40
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1041",
+    "district_name": "หลักสี่",
+    "source_district_ids": [
+      41
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1042",
+    "district_name": "สายไหม",
+    "source_district_ids": [
+      42
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1043",
+    "district_name": "คันนายาว",
+    "source_district_ids": [
+      43
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1044",
+    "district_name": "สะพานสูง",
+    "source_district_ids": [
+      44
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1045",
+    "district_name": "วังทองหลาง",
+    "source_district_ids": [
+      45
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1046",
+    "district_name": "คลองสามวา",
+    "source_district_ids": [
+      46
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1047",
+    "district_name": "บางนา",
+    "source_district_ids": [
+      47
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1048",
+    "district_name": "ทวีวัฒนา",
+    "source_district_ids": [
+      48
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1049",
+    "district_name": "ทุ่งครุ",
+    "source_district_ids": [
+      49
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  },
+  {
+    "district_code": "1050",
+    "district_name": "บางบอน",
+    "source_district_ids": [
+      50
+    ],
+    "mapping_basis": "Thai district name; verify against target boundary dataset"
+  }
+]

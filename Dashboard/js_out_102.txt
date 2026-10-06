@@ -1,0 +1,25 @@
+
+        // Fallback to native parse
+        let ms = Date.parse(dStr);
+        if(!isNaN(ms)) return ms;
+        
+        return 0;
+      }
+
+      window.onload = function () {
+        // Init Trend Chart (Mock) before data loads
+        let trendDom = document.getElementById('trend_chart');
+        if (trendDom) trendChartInstance = echarts.init(trendDom);
+
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run.withSuccessHandler(initDashboard).getDashboardData();
+        } else {
+          // โหมด Local Mockup (เมื่อรันบนเครื่องไม่ได้รันบน Google Apps Script)
+          const script = document.createElement('script');
+          script.src = 'mock_data.js';
+          script.onload = () => {
+             if (typeof MOCK_DATA !== 'undefined') {
+                initDashboard(MOCK_DATA);
+             }
+          };
+          document.head.appendChild(script);

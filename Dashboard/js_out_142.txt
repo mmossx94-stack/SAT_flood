@@ -1,0 +1,25 @@
+        legendBkk.addTo(bkkMap);
+        // Add Legend for Thai Map
+        var legend = L.control({ position: 'bottomright' });
+        legend.onAdd = function (map) {
+          var div = L.DomUtil.create('div', 'info legend');
+          div.style.background = 'white';
+          div.style.padding = '10px';
+          div.style.borderRadius = '8px';
+          div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.2)';
+          div.style.fontSize = '13px';
+          div.style.color = '#333';
+          div.style.lineHeight = '1.5';
+
+          div.innerHTML += '<div class="fw-bold mb-2">สถานะน้ำ</div>';
+          div.innerHTML += '<div><i style="background: #ef4444; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> วิกฤต<br><div><i style="background: #ea580c; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> ล้นตลิ่ง</div></div>';
+          div.innerHTML += '<div><i style="background: #f59e0b; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> เฝ้าระวัง</div>';
+          div.innerHTML += '<div><i style="background: #22c55e; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> ปกติ</div>';
+          div.innerHTML += '<div><i style="background: #94a3b8; width:14px; height:14px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle;"></i> ไม่มีข้อมูล</div>';
+          return div;
+        };
+        legend.addTo(thaiMap);
+      }
+
+
+      function getStatusColor(statusStr) {

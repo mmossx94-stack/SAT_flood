@@ -1,0 +1,35 @@
+          <div class="row g-4 mb-4">
+            <div class="col-12">
+              <div class="modern-card p-0 overflow-hidden shadow-sm">
+                <div class="p-3 border-bottom bg-light">
+                  <h6 class="fw-bold m-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-hospital-fill text-success"></i> สรุปผลกระทบและกลุ่มเปราะบาง ระดับเขตสุขภาพ (Health
+                    Zone Summary)
+                  </h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-borderless table-striped m-0" id="healthZoneTable">
+                    <thead>
+                      <tr>
+                        <th class="text-white" style="background-color: #10b981 !important;">เขตสุขภาพ</th>
+                        <th class="text-center text-white" style="background-color: #10b981 !important;">จังหวัดประสบภัย
+                        </th>
+                        <th class="text-end text-white" style="background-color: #10b981 !important;">ครัวเรือนเดือดร้อน
+                        </th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">เด็ก 0-4 ปี</th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">หญิงตั้งครรภ์</th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">ผู้สูงอายุ (60+)
+                        </th>
+                        <th class="text-end fw-bold text-white" style="background-color: #047857 !important;">
+                          เปราะบางรวม (คน)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="healthZoneTableBody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+

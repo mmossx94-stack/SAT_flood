@@ -1,0 +1,50 @@
+              if (!panel) return;
+              panel.innerHTML = `
+                  <h5 class="fw-bold mb-3 border-bottom pb-2 text-success">
+                     <i class="bi bi-house-heart-fill"></i> ${item.shelter_name || 'ศูนย์พักพิง'}
+                  </h5>
+                  <div class="mb-2"><strong>อำเภอ/เขต:</strong> ${item.district || '-'}</div>
+                  <div class="mb-2"><strong>ความจุ:</strong> ${item.capacity || 'ไม่ระบุ'} คน</div>
+                  <div class="mb-2"><strong>ผู้พักพิงปัจจุบัน:</strong> ${item.current_occupancy || 'ไม่ระบุ'} คน</div>
+                  <div class="mb-2"><strong>สถานะ:</strong> <span class="badge" style="background-color:${color}">${item.status_source || 'ไม่ระบุ'}</span></div>
+                `;
+            });
+          }
+        });
+        if (bounds.length > 0) shelterMap.fitBounds(bounds);
+      }
+
+      function applyShelterFilters() {
+        const dist = document.getElementById('shelterDistrictFilter').value;
+        const statusEl = document.getElementById('shelterStatusFilter');
+        const statusFilter = statusEl ? statusEl.value : 'all';
+
+        let filtered = rawShelterData.filter(d => {
+          let matchDist = (dist === 'all') || d.district === dist;
+          let matchStatus = (statusFilter === 'all') || d.status_source === statusFilter;
+          return matchDist && matchStatus;
+        });
+
+        renderShelterMap(filtered);
+        updateShelterSummary(filtered);
+      }
+
+      function updateShelterSummary(data) {
+        let totalCount = data.length;
+        let totalOcc = 0;
+        let totalCap = 0;
+        
+        let fullCount = 0;
+        let fullOcc = 0;
+        let fullCap = 0;
+
+        let tableHtml = '';
+
+        data.forEach(d => {
+           let occ = parseInt(d.occupied) || 0;
+           let cap = parseInt(d.capacity) || 0;
+           totalOcc += occ;
+           totalCap += cap;
+           
+           let isFull = (d.status_source && d.status_source.includes('เต็ม')) || (cap > 0 && occ >= cap);
+           if (isFull) {

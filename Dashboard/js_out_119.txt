@@ -1,0 +1,12 @@
+418:                 onclick="setTimeout(()=>{if(thaiMap) thaiMap.invalidateSize();}, 200)">สถานการณ์น้ำ ประเทศไทย</button>
+912:       let thaiMap = null;
+1834:         thaiMap = L.map('thai-map', {
+1845:         L.control.layers(thaiBaseMaps).addTo(thaiMap);
+1926:         legend.addTo(thaiMap);
+2330:         thaiMarkers.forEach(m => thaiMap.removeLayer(m));
+2342:             let marker = L.marker([lat, lng], { icon: createMarkerIcon(color) }).addTo(thaiMap);
+2352:         if (bounds.length > 0) thaiMap.fitBounds(bounds);
+2637:               else if (tabType === 'thai') mapObj = thaiMap;
+2800:             } else if (target === '#pills-thai' && thaiMap) {
+2801:               thaiMap.invalidateSize();
+2804:                 thaiMap.fitBounds(group.getBounds(), { padding: [50, 50] });

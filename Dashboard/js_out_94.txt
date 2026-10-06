@@ -1,0 +1,7 @@
+                        <th class="text-white" style="background-color: #10b981 !important;">เขตสุขภาพ</th>
+                        <th class="text-center text-white" style="background-color: #10b981 !important;">จังหวัดประสบภัย
+                        </th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">เด็ก 0-4 ปี</th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">หญิงตั้งครรภ์</th>
+                        <th class="text-end text-white" style="background-color: #059669 !important;">ผู้สูงอายุ (60+)
+                        </th>
