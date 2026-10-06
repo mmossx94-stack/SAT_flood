@@ -3377,8 +3377,9 @@ ${type !== 'bkk' ? `
 
       // Update header info
       const newsPollTime = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const cronBadge = `<span class="badge bg-light text-secondary border ms-2" style="font-size:0.78rem; font-weight:normal;" title="ระบบหลังบ้านกวาดข้อมูลใหม่ทุก 2 ชั่วโมง"><i class="bi bi-clock-history text-muted me-1"></i>ระบบอัปเดตข้อมูลทุก 2 ชม.</span>`;
       document.getElementById('newsUpdateTime').innerHTML =
-        `อัปเดตล่าสุด: ${newsData.updated_at || newsData.date} | ${newsData.article_count || 0} บทความ${methodBadge} <span class="badge bg-light text-dark border ms-2"><i class="bi bi-arrow-repeat text-success"></i> หน้าเว็บดึงข้อมูลอัตโนมัติ: ${newsPollTime} น.</span>`;
+        `อัปเดตล่าสุด: ${newsData.updated_at || newsData.date} | ${newsData.article_count || 0} บทความ${methodBadge} ${cronBadge} <span class="badge bg-light text-dark border ms-2"><i class="bi bi-arrow-repeat text-success"></i> หน้าเว็บดึงข้อมูลอัตโนมัติ: ${newsPollTime} น.</span>`;
       document.getElementById('wcArticleCount').textContent =
         `${newsData.article_count || 0} บทความวันที่ ${newsData.date}`;
 
@@ -3806,8 +3807,9 @@ ${type !== 'bkk' ? `
 
       // Update Timestamp Header
       const lastPollTime = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const cronBadge = `<span class="badge bg-light text-secondary border ms-2" style="font-size:0.78rem; font-weight:normal;" title="ระบบหลังบ้านกวาดข้อมูลใหม่ทุก 2 ชั่วโมง"><i class="bi bi-clock-history text-muted me-1"></i>ระบบอัปเดตข้อมูลทุก 2 ชม.</span>`;
       document.getElementById('trendsUpdateTime').innerHTML =
-        `<span class="badge bg-danger me-2">ดึงตรง</span> <strong>ข้อมูลอัปเดตล่าสุด: ${trendsData.updated_at}</strong> (ย้อนหลังประจำวันที่ ${trendsData.date}) <span class="badge bg-light text-dark border ms-2"><i class="bi bi-arrow-repeat text-success"></i> หน้าเว็บดึงข้อมูลอัตโนมัติ: ${lastPollTime} น.</span>`;
+        `<span class="badge bg-danger me-2">ดึงตรง</span> <strong>ข้อมูลอัปเดตล่าสุด: ${trendsData.updated_at}</strong> (ย้อนหลังประจำวันที่ ${trendsData.date}) ${cronBadge} <span class="badge bg-light text-dark border ms-2"><i class="bi bi-arrow-repeat text-success"></i> หน้าเว็บดึงข้อมูลอัตโนมัติ: ${lastPollTime} น.</span>`;
 
       // Render 2-Column Strategic Matrix Table (WHAT & WHERE)
       renderTrendsWhatWhereMatrix();
