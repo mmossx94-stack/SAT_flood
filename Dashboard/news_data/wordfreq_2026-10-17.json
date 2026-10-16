@@ -1,0 +1,981 @@
+{
+  "date": "2026-10-17",
+  "article_count": 88,
+  "updated_at": "2026-10-16 19:24:37",
+  "method": "tfidf",
+  "note": "คำในข้อมูลนี้ผ่านการคัดกรองด้วย TF-IDF และเพิ่มน้ำหนักคำกลุ่มเฝ้าระวังน้ำท่วม",
+  "word_categories": {
+    "ผู้ประสบอุทกภัย": "relief",
+    "หลังน้ำท่วม": "post_flood",
+    "เงินเยียวยา": "general",
+    "ถุงยังชีพ": "relief",
+    "เจ้าพระยา": "monitoring",
+    "เครื่องสูบน้ำ": "monitoring",
+    "ป่าสัก": "monitoring",
+    "ประตูระบายน้ำ": "monitoring",
+    "ฟื้นฟูหลังน้ำท่วม": "post_flood",
+    "ผู้ประสบภัย": "relief",
+    "องครักษ์": "general",
+    "หมื่นล้าน": "general",
+    "แสนครัวเรือน": "general",
+    "เพชรบุรี": "general",
+    "ยังมี": "general",
+    "แนวทาง": "general",
+    "หลังน้ำลด": "post_flood",
+    "ปราจีนบุรี": "location",
+    "ภูมิใจ": "general",
+    "พาณิชย์": "general",
+    "ลดราคาสินค้า": "general",
+    "ลงพื้นที่": "general",
+    "ฝ่าวิกฤตน้ำท่วม": "general",
+    "บางน้ำเปรี้ยว": "general",
+    "จุด": "general",
+    "อ่าวไทย": "general",
+    "ห่วงใยชุมชน": "general",
+    "บางคล้า": "general",
+    "เอกชน": "general",
+    "จับมือ": "general",
+    "มติชนออนไลน์": "general",
+    "ฉะเชิงเทรา": "location",
+    "หารือประธาน": "general",
+    "พรรคภูมิใจไทย": "general",
+    "พูดแล้วทำ": "general",
+    "ชั้น": "general",
+    "จัดกำลังพลจิตอาสาพระราชทานของหน่วย": "general",
+    "ศบภ": "general"
+  },
+  "word_freq": {
+    "th": {
+      "ผู้ประสบอุทกภัย": 18,
+      "หลังน้ำท่วม": 8,
+      "เงินเยียวยา": 11,
+      "ถุงยังชีพ": 9,
+      "เจ้าพระยา": 2,
+      "เครื่องสูบน้ำ": 3,
+      "ป่าสัก": 3,
+      "ประตูระบายน้ำ": 2,
+      "ฟื้นฟูหลังน้ำท่วม": 2,
+      "ผู้ประสบภัย": 5,
+      "องครักษ์": 5,
+      "หมื่นล้าน": 3,
+      "แสนครัวเรือน": 4,
+      "เพชรบุรี": 2,
+      "ยังมี": 2,
+      "แนวทาง": 2,
+      "หลังน้ำลด": 2,
+      "ปราจีนบุรี": 3,
+      "ภูมิใจ": 4,
+      "พาณิชย์": 2,
+      "ลดราคาสินค้า": 2,
+      "ลงพื้นที่": 3,
+      "ฝ่าวิกฤตน้ำท่วม": 2,
+      "บางน้ำเปรี้ยว": 2,
+      "จุด": 2,
+      "อ่าวไทย": 3,
+      "ห่วงใยชุมชน": 2,
+      "บางคล้า": 2,
+      "เอกชน": 2,
+      "จับมือ": 2,
+      "มติชนออนไลน์": 2,
+      "ฉะเชิงเทรา": 3,
+      "หารือประธาน": 2,
+      "พรรคภูมิใจไทย": 2,
+      "พูดแล้วทำ": 2,
+      "ชั้น": 2,
+      "จัดกำลังพลจิตอาสาพระราชทานของหน่วย": 2,
+      "ศบภ": 2
+    },
+    "en": {
+      "thansettakij": 2,
+      "insight": 2,
+      "head": 2,
+      "topics": 2
+    },
+    "combined": {
+      "ผู้ประสบอุทกภัย": 100,
+      "หลังน้ำท่วม": 44,
+      "เงินเยียวยา": 61,
+      "ถุงยังชีพ": 50,
+      "เจ้าพระยา": 11,
+      "เครื่องสูบน้ำ": 17,
+      "ป่าสัก": 17,
+      "ประตูระบายน้ำ": 11,
+      "ฟื้นฟูหลังน้ำท่วม": 11,
+      "ผู้ประสบภัย": 28,
+      "องครักษ์": 28,
+      "หมื่นล้าน": 17,
+      "แสนครัวเรือน": 22,
+      "เพชรบุรี": 11,
+      "ยังมี": 11,
+      "แนวทาง": 11,
+      "หลังน้ำลด": 11,
+      "ปราจีนบุรี": 17,
+      "ภูมิใจ": 22,
+      "พาณิชย์": 11,
+      "ลดราคาสินค้า": 11,
+      "ลงพื้นที่": 17,
+      "ฝ่าวิกฤตน้ำท่วม": 11,
+      "บางน้ำเปรี้ยว": 11,
+      "จุด": 11,
+      "อ่าวไทย": 17,
+      "ห่วงใยชุมชน": 11,
+      "บางคล้า": 11,
+      "เอกชน": 11,
+      "จับมือ": 11,
+      "มติชนออนไลน์": 11,
+      "ฉะเชิงเทรา": 17,
+      "หารือประธาน": 11,
+      "พรรคภูมิใจไทย": 11,
+      "พูดแล้วทำ": 11,
+      "ชั้น": 11,
+      "จัดกำลังพลจิตอาสาพระราชทานของหน่วย": 11,
+      "ศบภ": 11,
+      "thansettakij": 60,
+      "insight": 60,
+      "head": 60,
+      "topics": 60
+    }
+  },
+  "tfidf_scores": {
+    "th": {
+      "ผู้ประสบอุทกภัย": 10.3758,
+      "หลังน้ำท่วม": 10.1093,
+      "เงินเยียวยา": 5.7389,
+      "ถุงยังชีพ": 4.909,
+      "เจ้าพระยา": 4.3116,
+      "เครื่องสูบน้ำ": 4.1196,
+      "ป่าสัก": 3.4593,
+      "ประตูระบายน้ำ": 3.3894,
+      "ฟื้นฟูหลังน้ำท่วม": 3.2925,
+      "ผู้ประสบภัย": 3.2739,
+      "องครักษ์": 2.774,
+      "หมื่นล้าน": 2.6665,
+      "แสนครัวเรือน": 2.4614,
+      "เพชรบุรี": 2.0121,
+      "ยังมี": 1.9755,
+      "แนวทาง": 1.9755,
+      "หลังน้ำลด": 1.8814,
+      "ปราจีนบุรี": 1.8292,
+      "ภูมิใจ": 1.8181,
+      "พาณิชย์": 1.6463,
+      "ลดราคาสินค้า": 1.6463,
+      "ลงพื้นที่": 1.5111,
+      "ฝ่าวิกฤตน้ำท่วม": 1.5052,
+      "บางน้ำเปรี้ยว": 1.4268,
+      "จุด": 1.4268,
+      "อ่าวไทย": 1.3837,
+      "ห่วงใยชุมชน": 1.3588,
+      "บางคล้า": 1.3588,
+      "เอกชน": 1.2543,
+      "จับมือ": 1.2195,
+      "มติชนออนไลน์": 1.0365,
+      "ฉะเชิงเทรา": 0.9146,
+      "หารือประธาน": 0.8536,
+      "พรรคภูมิใจไทย": 0.8381,
+      "พูดแล้วทำ": 0.8381,
+      "ชั้น": 0.8255,
+      "จัดกำลังพลจิตอาสาพระราชทานของหน่วย": 0.8014,
+      "ศบภ": 0.7526
+    },
+    "en": {
+      "thansettakij": 8.78,
+      "insight": 8.78,
+      "head": 4.39,
+      "topics": 4.39
+    }
+  },
+  "articles_preview": [
+    {
+      "title": "นย.3001 องครักษ์ - บางน้ำเปรี้ยว กม.17 ยังมีน้ำท่วมขัง และน้ำไหลเชี่ยว รถเล็กไม่ควรผ่าน | สวพ.FM91 - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBPdlFDdXBKUGVKX21WNVVGem1RMnFCaUwwYmF3TEM2azlYZTdYOUxIbkNtMC1md0dYRVp6SEZKV3p4ekMzUmJBLTRGMDNVZlhLNVpoQUhR?oc=5",
+      "published_at": "2026-10-16 12:25",
+      "age_hours": 14.0,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กทม.เดินหน้าฟื้นฟู 15 เขตน้ำท่วม แผนระยาวเล็งขยายคลองเดิม 8–9 แห่ง - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE01NmZ1SS1sR3IySmFpakpFNUFaRHZEcTRlMlVOLXJlRFQwMkZUNkt3c2l6dm5PVUNvLWtxREk4QUN1Y3dyZ2dOYVZaZlRvZ2pZc2tUOFRlS2E?oc=5",
+      "published_at": "2026-10-16 18:12",
+      "age_hours": 8.2,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "ปราจีนบุรีอ่วม! น้ำท่วมคร่าชีวิต 26 ราย เดือดร้อนเกือบ 6 หมื่นครัวเรือน - ผู้จัดการออนไลน์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE05NVUyQWtValVNUjIwZ1Zwc0VyMG1qTU42NFVYOUNNc3JPUWQ2bDdmNEhPYjdzX083UGdxbDBuWU1JNkVLZmFMdWotU0xsdVlJQ3liSkd2OFY0RzBB?oc=5",
+      "published_at": "2026-10-16 20:11",
+      "age_hours": 6.2,
+      "urgency": "warning",
+      "province": "ปราจีนบุรี"
+    },
+    {
+      "title": "บินสะดุดเพราะน้ำท่วม! การบินไทยเปิดรับคำร้องเยียวยา - ททบ. 5",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMimwVBVV95cUxNaVFYZEUtVUZzMUN1R3M4Mk0wd05ZN1R2anh6eTY3Q2d5azA3ZVZzOHZ5VHA4Q3BFLVZGM1h5TldoVUtma1FGaFJTMlZCSEoyMUp2d085QjhxQkRHS0xYbld6RVg2OXVtbklLb2g2SXhMc1JiamZyVEZVMGhKYnp5ZEhfRXZwT0JsUTF0NkZESHpXX2VUajA2M3FWcEY1bERDVV9FTGhwM3V5MHhzcERBLXVyeWswSDBNMHI4bG5wdnEwTWRCSC02eGhuRk1WNHhmazdXbEYzMHdxU0RHb0gwRlFDQWhSYm1OQmVGN2k4TlduX0xpdVdSMHZ2TGgtejg2M0RDNDF1cHRNaVpuanQ2aFBxMm9YRmZXYXJTWlZfc0E3TnBSeXR6cXN1LUFoVTkyOF9vYzduOXU2NGZFZElCZV9HVWtmTXYxQkl6NzVPOEtOZi1mTlBOZWVzUU9ScTBRTTlwc1JlaFpRZ3J2RWhjNUduY3d0OGVTME5WbjVVOEpFdlYzQUFFSGlscWt4NFVPMV9pYjJFX0Y3dU1hd1Rsa2UwSVhIVFdoSW9maEVwclJRVHdwZi1hLW1NNFgtQlpueDFSNWVSODV3SE1RX3JRTFNVSF9BNExhZUh3NDZsU0FJeE9xYVZqVmhFOU1yQjJiM2twUjlDQUdCVFY4cTM0dXE3YVRGdDRFMmozQWxlaFlkbVgwcU1tblQ2MHpzcjN4R2lKT2wzRWN0cGJLdjYxUWJjdkQ4c2hISHdhRWtxbXBzUXBLWDR5UGZmR0RiRktGYVJiQjZKTzJaR3IxZlduc0toeGZpQmZrQ3YzS2VEcWFwRmN3VFBpaWRRbld3Y3lBdVNqLUlhSFRyMDlvamQ4YTR6X3JtLVpkblF3?oc=5",
+      "published_at": "2026-10-17 02:11",
+      "age_hours": 0.2,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "“องครักษ์”ยังอ่วม! จมน้ำท่วมขัง | 16 ต.ค. 69 | ไทยรัฐนิวส์โชว์ - Thairath.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNa0puQ0xVd2o4MXh4aFE0eWxRR1BnQTB0b05haUV2U2lrYWNKLVFXMl9kS2FGcEtIaVhuMHBlWEtqbjlGcFdOMzMzS3ozMHFiZm50T0tpTHVOeEhPS3J2a05zajc2WFBwU0h4ZkpNUkszSlMwdGRMdEhiTm5PTDJZOUlwaGpuMnQy?oc=5",
+      "published_at": "2026-10-16 22:11",
+      "age_hours": 4.2,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ชาวบ้านแห่รับคิวเยียวยาน้ำท่วมสายไหมตี 3 บางส่วนเก้อ! ไม่ทัน 1,250 คิว | เข้มข่าวค่ำ | 16 ต.ค. 69 - pptvhd36.com",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9mTjNMRV9qSWR6cWNsZFhiRUd6ZHFmVkpZblgxSWlMUVdlY3FzZl85T29jUUQwdThNSFVuRW1jNmd4UE12Qmwzb3FTSnlFVmtLdGx2aA?oc=5",
+      "published_at": "2026-10-16 19:20",
+      "age_hours": 7.1,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "วิทยาลัยการต่อเรืออยุธยา จับมือ สอศ. ลุยน้ำท่วมแจกถุงยังชีพ 1,500 ชุด ช่วยเหลือ 9 ชุมชนประสบอุทกภัย - เดลินิวส์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9ZZWhMYmZWUWdGOG9kSVc2eU1uckY1dFhqQVpDOTZncnh3Z3NkR0VnWGIyem15MlZJYjgtMTRIcmdrcmNWYWs4ZkktQjlHYnp3eXY0?oc=5",
+      "published_at": "2026-10-16 21:52",
+      "age_hours": 4.5,
+      "urgency": "recovery",
+      "province": "อยุธยา"
+    },
+    {
+      "title": "ชลบุรีน้ำท่วมขังซ้ำซาก ฝนหยุดยังรอระบายหลายจุด - อมรินทร์ทีวี ช่อง 34",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQcDR3ZjVCbjBjU3VDVmhxVlE3ZDhPcTJwdlBoelpDaVlJRDIwSm93NWdpUDFEU3Rrc1JhRnFCdkhESnFMOGJRVzE5UHIySXRNTTBpaWdEU1hMNEpINWxPWVE5U0d4dmlGcWhoV0dVXzZsVWtFTGtTOTdMU2wyaDJmQk03YkxqbTAzUEJrbWY3b1hyaGlLWVg3M0h6cWhvREtsNEJQaHhwTTJkdEphOGtOSWtOdnhZR0NDUlRSYnc1ekJmM1pEcmxsMXBlUHhhQzNNbmV6OW9jTl9tUQ?oc=5",
+      "published_at": "2026-10-16 22:13",
+      "age_hours": 4.2,
+      "urgency": "warning",
+      "province": "ชลบุรี"
+    },
+    {
+      "title": "ปภ.เผยยังมีน้ำท่วม 20 จังหวัด - กทม. เสียชีวิตรวม 67 คน - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBrYzVtUHlCV1F5LTJleDJoQmV4ZDFfZUtHZWlCaVl5UGlzY0VSYXR1Yk40RTFadlhYM2FtNkRPU3JtNENTYUROMnlmVnpDb2x6VFhOZWNoOEY?oc=5",
+      "published_at": "2026-10-16 12:45",
+      "age_hours": 13.6,
+      "urgency": "critical",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "สุขศาสตร์ธรรมศาสตร์อาสา ฝ่าวิกฤตน้ำท่วม ส่งต่อแรงกาย แรงใจ และความช่วยเหลือ เพื่อประชาชนที่ได้รับผลกระทบจากสถานการณ์น้ำท่วม - มหาวิทยาลัยธรรมศาสตร์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMivAJBVV95cUxNajlfcXJkbG0xb2h3VlNmajc3Q1E1NUxnUURHMldvT1I3c09MemRDdk5TazR6dmNXRXgzU1hrQTNVT05JdklRMmFqUDlrT01TcmVQaTBWNUk4S1BqbWFHYkNLeHdGeEg4WW90M2RaYkF3YlU1WFRQT2JTUExhSUhPY2tlQXBNUEdxUFdobzdMX19VbzgycTJnejNHSzZiRktkc200Ni1qSkV3VV9xXzl4TDZSSGV2clZtNmttT1BwWS1JLXFNTDVsTjVpZnN2SUVzdmk2ZFhNNnJweFlwdWhpNXBkUDg5LXVYell2TFpIaGRCZXpXcEFtcVdLTzRpTkdHT0JoMVJxWGduOU95MmZkeEpidlVpSTJqV1hQWHdXcWJsck8xUFpaQkVVXzdNeC1jaDhxX0lvcDQxdDl5?oc=5",
+      "published_at": "2026-10-16 12:49",
+      "age_hours": 13.6,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "รวมวิธีเช็กสถานะเงินเยียวยาน้ำท่วม 2569 ล่าสุด เงินยังไม่เข้า เช็กด่วน ทำตามได้ง่ายๆ - Sanook.com",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE95VDZIVnZzNE9maFY1YWZ5V281Qms0dzJtOWlRdGxudXhtX0lNWUlhZ1NocE5panNDQmktX2RxZmswMGlNQy1Xa1JTMFA?oc=5",
+      "published_at": "2026-10-16 09:27",
+      "age_hours": 17.0,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "สธ. เขตสุขภาพที่ 11 ระดมกำลังรับมือน้ำท่วมใต้ 7 จ. คุมเข้ม 37 อำเภอเสี่ยงสูง สำรองยา–เวชภัณฑ์ - Hfocus.org",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5BLTJMSWFPbDI0elV1Wk8tUEtCVW1oRlM0M1MyNG8xLWttaEpTTEZuNTluc3ZURTM1ZHlHYm1aakJaVERBSGF0eUhaaDg5dmJfd1gxOWZocw?oc=5",
+      "published_at": "2026-10-16 12:55",
+      "age_hours": 13.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เช็กสถานะเงินเยียวยาน้ำท่วม 2569 ล่าสุด วันนี้โอนเพิ่มอีก 1.5 แสนครัวเรือน - Thairath.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBpaTJ6OER4dEc3bFRySFVfZEJwd3hTcFJHUGNaazQyQ1FJTUIyQl9MaHhtaWE4VGxJeHV0cWxIZ1ppdnBuZ0poaHJUWmxyVXY4ZDk1YmJTM0gtQUU?oc=5",
+      "published_at": "2026-10-16 13:55",
+      "age_hours": 12.5,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ตั้งวอร์รูมคุมราคาสินค้า เตรียมรับมือน้ำท่วม ยันมีเพียงพอ! - ไทยโพสต์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9fMnNaYWRwd0F0Z3hNYVdnNXlhTjV1NTVPVVFtMDZQYWFxVkpFNVFKOUYwYTNOMlRQWnRhZEFtRkVJTjF4MFlZckR2bGVrd0JCcWNnQ2Q0R1dDQQ?oc=5",
+      "published_at": "2026-10-16 16:35",
+      "age_hours": 9.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "'แผน 20 ปี' ยุโรป-ไทย ปรับระบบรับมือน้ำท่วมกรุงเทพฯ- ลุ่มน้ำเจ้าพระยา - bangkokbiznews",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE53RmdsdUFBa2xTNmxMZ2hKaDhtNVhuUTRWQi1JbE9tVVB4akhqOHd2cWZ4VGppa1l5R0lRYU9Kd1FrOS1FN1RySFFXMWtvOWdlQ3ZxNDZEdVpDeWtGNFRyVmNjaw?oc=5",
+      "published_at": "2026-10-17 00:51",
+      "age_hours": 1.5,
+      "urgency": "warning",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "ฝนถล่ม \"อิสตันบูล\" น้ำท่วมพัดรถยนต์-ช่วย 2.7 พันคนติดค้าง - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBvUTRMYThYejNLRDF5Y0ZJSmN5cHg3NGxZME1LcnN3U1JPSk1JRzJPVEV4b01NTm03YnpwMGl2WDVLYjZMVEJVTUFsdURMcFV0Yy0yMnY4cm8?oc=5",
+      "published_at": "2026-10-16 06:44",
+      "age_hours": 19.7,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "วันนี้ (16ต.ค.69) เวลา 08:00 น.งานจราจร สภ.องครักษ์ ขอรายงานสถานะการณ์ น้ำท่วมเส้นทางถนน 305 รังสิต - นครนายก ช่วงแยกไฟ มศว องครักษ์ น้ำลดรถทุกชนิดสามารถผ่านได้ ทั่งขาเข้า-ขาออก #ท",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMikgdBVV95cUxQSzdSZDMyeXFpZTB3Q25DYU9Yanp0TFJmbF9FWi0wRnFoOThLb3Z2ckdqQzVhMHdPcWRtLWJjdFNORm1SQWpWVTF3Z1UtOGNiMFh4Tnp5NUUwRURyVUZSckxBTW8wQjg5QXJOcmk5bHVQYXhqSEl3SVVNRy1PbzA0SUxkTUZ6Y2JMdEFIT3R4ZWRuQl9iWHJBd3RBMEZqMnJTdWhLMHZ3ZDNUb3N4NkgxVW91RGM4QjJvd0dySDh4YkFBMzVEWDV3bERyb2oweFBLU1lwMVBWSnlvN0o0cld0UllxZE5ZNEFPTFJDa29MV012ZDdJVjhkd1FrazhKYklZdnVyUER6SldUTW9UUjZpT2tvY0ZTS2RudUxwN0NVZkNVaDNmcGJOdHNfNFZTdHdkck9EaC1jSjdLX3dNWWQzSkhxOVFTVDlPdWstdHRqbEE5OWFuTlpMT0FiMDhzc0hsdkNUMFdWVjJVT08zaFJldjE2Y1c2U1dfbk9SX1cxMVZMb0piTXVwVGYyVmZjSmlDOFcyU0FpVkZxTDd2RnJkenVqeUxPZ1psY0pWRk9Hb2N0blBxcjZEOGdpYUJEMGdFUWw2UE9CYUZ1WHlwRkQwbHdNZlFBdjlRQW9SdGhyR2YyQ2M3Zm1Jenhuc3ZsMmRiTXVYdjJCWE1Md1gzMGExanZzbVZpSzN2X09Sa2ZBR2NYbHBjMWNocmFpa0phc285elVWTzUtbjBHdm9UbVBYaHRpbTVQTE51WDNwZmUxczRLcWdyTFJVV1dpSVNmQ3VBNVB6WXVkLU5Rd0FabmRIMUp6LTJsaFVRdkZKa2djUmN4UnNSMS13MDdiaXRERWEySkNTZWhKNDdueWM1dmVQTVJDeGc1Y2w2VXpSOVVpVUpjRF82T2NqWlJLSW9aWnNIc2R1RTdtT1RBbWdwNVllb3JIRmIxYmFmU3hIS0NMZGdLM1ZpaEg5NUJubVBKVFgxLXdMUnRHMzNJUkM1ZTdVYjVxWnRJZXdRUjIyenJiVmxOQ2xrSS1lenMtYjk0blNldnNZVl9WZ1JfclZ5bFVfS0xmX3BFa1FxNkUzWjhqSi1BVE9VV1RJa24wZm1hZU9Ra3hrdVRJa2psaUUwUXVTX0huc2lhelN5RmZMR3RTa1RvVWpRNFZpUjhlSUlfQzcxY0lJSlQtRjdWTHQ2SkIxN3EzZlYwVmJLUzNRbjZVTXpCQQ?oc=5",
+      "published_at": "2026-10-16 08:39",
+      "age_hours": 17.8,
+      "urgency": "warning",
+      "province": "นครนายก"
+    },
+    {
+      "title": "UPDATE: กรมชลประทาน ลุยแก้ปัญหาน้ำท่วมขังคลองรังสิต 'ลดน้ำขัง ไล่น้ำเสีย' สั่งระดมเครื่องสูบน้ำ 164 เครื่อง พร้อมใช้น้ำดีไล่น้ำเสีย วันนี้ (16 ต.ค. 69) นายวิทยา แก้วมี อธิบดีกรมชลป",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMivAdBVV95cUxQbUFtaHNiQXJvZHBBVU94UUROZlV3VlZ1dHJ0bE5rU3d5dFotWDBDM0lZZzh6LUNxV3dtbzNjZFNicWREWUxtNElEU2RNbl9iWVhxVzNiVXBpdU94SWNxaUJDM3otN1ZqWTBNenVuVDdHZXgzLVltSGxJbnZnS3RIZWN4Y0JXQkpEaUVyREFqUVJCRk5ZalViRE5kZ19qVVE5aGhNTkQ2ZGhkNjVaNWNWVnZDOU1JRDljYmItblVQNTZrZ0ZIWUtZb2dvSUUzT1JwdmgtT05XM0V2d1U1UzhrRlBUU1p3cmdrRjZURmNrdFBoR1VlYmt0aFdPR3VvQmNxYTlhdXFGTDlwMldoRVY5QldWMUpVYnBtVGJjOGJwMHVGMThNTFFEanFfejNmRTBjQ2ktVnBBclN4Z05pZTRuY2NOSVN1VUdjVjZuTWwxSUZ3akJfTC0zWWpmaGNiSWZjdkpMV1NYN2VBMTNzTFNCbHJpUzBDMDlTTVR3YkNremdWUHY2NkNTMWQzeGdjT1UwNFFJS0M3Y3NtalIzXzJ0U0c1QWc3U2tYNnJYV0JJU2pYeWxhMzhRNkV4V1I3NWk2UFRyNTZmVUtJSVZoYnN1ZTlVd0RXWm9KRzZPbGZBOFBWZmVMMFlMY0RPSW41SWxETkYtTnV0QjhkMVBtc1dUbUE2ay1KbmRUd3pkR05KcWZscHpFWW9QUkJaRlc0dmRqWlQ4U0pMTjFoenZQa0RfQU1MVDY2ODRMODRZQjk1V3RwcktFRjY4aXpuMEozZV9Idy1Nc1NLTHFQQjdCOWMwOTZib2x0TjgtU3kza3ktdl9QSmlLbWtvdjdIMWRyM2V5Nk5tUjN4R3lTa0ctN0M2d2dXVGJmQmlSN0VSbXBDWl91eHZOWkNoaXZPeGpTM3EtN1NLMHlVbUJNRGY3MEpGOHIyTnhxTzJWcUdieTJJMHk0Rmp4TVNnNG1aM3VtQ2xzeUR4d1Q4MzAweFJmdXVKLW5iYlBPd1dfX3pJQmRBSHROaVY3QnFtSDdQbWdheEhZZHF6M0NoNkkyN1lfemRxeVF5TGxJYXlxbzFGUE1XSDRxOVpHYy1aVjBnRmZXdjlMb1pRU0cwQUtTSGpMYmxCbjVXWGtkS1lId1JzdENPeFMzX2VJelMzc0pMN2M5NjhxOWl0SGxlN3lPeGthSldCX21sTWtGRnZPV1VCWmM1czA0NWltR0JFTkE1OVlKSTNiUUpXTW9Kek5laDZXNnR0YXk2WmdGVElTRGZCNg?oc=5",
+      "published_at": "2026-10-16 13:30",
+      "age_hours": 12.9,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ตรวจสอบคุณภาพน้ำดิบ จ.ปราจีนบุรี หลังน้ำท่วม - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5jNkJxVFlUWm44LTBSdlZkaTFLMFJNZDA2VE9jY2FoUjRDeWNIUTNHcFdPUTg2LWFibkxHOGNwZTVMLW9DdTBMd0ZVaXFjZVJjM2tDZ0NDWTM?oc=5",
+      "published_at": "2026-10-16 13:58",
+      "age_hours": 12.4,
+      "urgency": "warning",
+      "province": "ปราจีนบุรี"
+    },
+    {
+      "title": "“เข้าช่วยเหลือประชาชน โดยการนำกระสอบทรายไปวางเป็นแนวป้องกันมวลน้ำไม่ให้ไหลเข้าท่วมบ้านเรือน” ศบภ.ร.29 พัน.2 ร่วมกับผู้นำชุมชน ต.บางกุ้ง อ.เมือง จ.สุพรรณบุรี เข้าช่วยเหลือประชาชนที่",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiqghBVV95cUxNLXdjUW1aX3N5aDljT2FqVEowaklvWWpLanlwMDlWTjJBbzMwNlhvbUV6NkF1b1BXNGVrUHF3XzU2VlF5RXZjVldOOUFvREVNT0hMS3RETHItTEEyQi0xbUxSU2FaazRwYkpUOEMyWlFsdEJMX0o0SjhYYnBWQlhrbTk3T0FwVUZJZTZmSlpMaWlETklycFRxSXczRTg4R0l4d1FubkhmNmJZeXJQd3VzUTE5TDZsaXhBUzh1VkFxMlNNSGlueEI3QlluQkVTRWlIdDBVd3NOM2pBRGlHMF9vQnZ5aDYyMDZ0aUx1Wmp6THl6WU1SRm9jVGZYQ2U2MVRpWmpsT19nLVdKUzlBMmZJa1V2NktDVlNIQkZzdE42REVGVVFJdVZvQldsQjd1VlhnajFnNG5QMFJPNkpaSkFOeHVrOGF0TWNRM2NteWJqXzNmMkFFbDRTd1RMbzJkQlNzQUJpUXlJWG5NSURNUlROS1FyUjJZVFlDYXpoak8za3g2cEVPQzRmbmM4S3R2NUc5UjJJb3Vvak5RSHE5VVctWGxvTFluU0tmb1ZCVlU5NFV6Mk5jOTQydVNoNU1YOHNIWU42QnRrdU9Vb0ZPd2t0Y2p1eUhrS1RmSXBFV3I3dTdaSlIxVFhySnZBRFB0WlJTQVhZdVMzaHh4TFJza1lZb1F1eHdRUzItS21rZUxlTXdKblRJYzBwVlg4OVJaRnhZZFB3Mk5rNE1OOXNVLWt1N1FJR3hCVFI3eWdvTEgxMGJPMDhqazlzUjdSLUV6OE5ZSy1Dai0tZmtrejdLa09lTDc5TnJkTFNGWlNBYVRSME1mQ2dkX3VRaTI3ZC1GRjE4VVJEc0ZTYzRyVDV1bl9rOTQ3ZVpVMDRXZ2NhUGdROXpESVh1TndyRHNLYzhiZlNpbzFyWmpTTWg2NlptZkZ0dmh6U1dhbjhCRmlpRDFqRTB4alVpQm9lUzA3b3U5OXJ1WWp5VEVHbzJndUVJMS1uclZwTHZDWnlyZVA5TXNYbXBGMUxwQ042UjY5MkpsU2N4LVhGZzJVQ0FnMTdZYlU5dllLa1RsUlZFQm5Qak9qNWJ5ZEtEam5UVlhDQk9WMThobk1UUkxOa0l5T1Y5MzA0alZ6VlNHTE9LdWtURkdDOVVBbUtNU19hckJZWWZVUmdaN2FDd0xYdWxJTHUzWG1UWElhOEFLOHhObjhubXZLTVc5bHRjZ1pLSG80R2JQclVucEhwbmRjMUJiTjNKZUk5TGxUQk1Ubl81MDhlcUJmTWRNZ2pvWU9ONDNrUWJLZjlPNWhIMVpwcmdBeHpBS0c4Z0Q3ektjTm9mb3pCa1NPeWtDSkNUY3lIdXpZNU1kQUxnMUNHX254UmwxLUh5QjY2SmFad1hyemJwT245S2cySktJYVhrZnJTdkJn?oc=5",
+      "published_at": "2026-10-16 12:00",
+      "age_hours": 14.4,
+      "urgency": "recovery",
+      "province": "สุพรรณบุรี"
+    },
+    {
+      "title": "น้ำท่วม-ปลาตาย \"ขยะพิษกากสารเคมี\" ไหลบ่าเมืองปราจีน - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFB2Sko5M0t0YUVnRzhFYmRyU0pBVGRRTk1kdmMtTlh5dlVNanpjVS1hWVBQLURISURlT2NjaE9sbU9lWnBydFIxSy1oek9aLVZ2bkJjd0F1YlI?oc=5",
+      "published_at": "2026-10-16 15:33",
+      "age_hours": 10.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "น้ำท่วมหมูปราจีนฯ ตายเกือบหมื่นตัว ค้าภายใน ขอไข่ตรึง 4 บาท ผักเริ่มถูกลง - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1LbFZWZU5jTE9HTnM5MUwyc1ozWlRkdTgycnJQUkwtT2pqQnlvRldMbG5FN3pMbDEza0RpZWdZcFhhSlNBX05wZ2R1V3FzbWlMekI3S3pDZm8?oc=5",
+      "published_at": "2026-10-16 16:40",
+      "age_hours": 9.7,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ปักหมุดธงฟ้า 3,036 จุด ลดสูงสุด 78% สู้วิกฤตน้ำท่วม ลดค่าครองชีพ - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5QR2RpZ0d1Wnd3ZnYxVWVoUk1OcUxxY1R1bE9kZUd1UGlNSERfcUZkOVNwS0llMXk3YzRBN05lNF8tUEdGQjlIcXVZZkdCbXZoLVZBOVFFRmo?oc=5",
+      "published_at": "2026-10-16 15:10",
+      "age_hours": 11.2,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เงินเยียวยาน้ำท่วม 2569 มี 3 แบบ เช็กเกณฑ์ช่วยเหลือ รัฐจ่ายสูงสุดเท่าไร - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFAwYUxMbUJPX2poeHM0MzBVNHJXRjdUQjR3MFItNDcxLWtTNHhxdFp6VjVLUnQwOXRPWDUyR2tHWGdBWXBMNUUzSFJHZU9BQmRfVUZZdGxIeFY?oc=5",
+      "published_at": "2026-10-16 12:13",
+      "age_hours": 14.2,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "น้ำท่วม 69:ยังมี 20 จังหวัดได้รับผลกระทบ-เปิดประตูระบายน้ำสถานีหนองจอกเพิ่ม 10 ซม. - จส. 100",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4taE1JTlRqU3d3ZnFybjg2c1ZUc2JCUDVWc1hkVHlwNUJ2clROaWRuUUk3RXRYODNhSFVfQWo4RkNOQWlMaExMaHE5OTktd2M4dVgwRTlwTkRBdw?oc=5",
+      "published_at": "2026-10-16 17:50",
+      "age_hours": 8.6,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "POLITICS: นายกฯ หารือประธาน ADB เห็นพ้องขยายความร่วมมือด้านการรับมือภัยพิบัติ และป้องกันน้ำท่วมอย่างมีประสิทธิภาพ พร้อมหารือแนวทางสนับสนุนโครงการบริหารจัดการน้ำชัยนาท - ป่าสัก - อ่",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMihwdBVV95cUxOS0NiQ2I5T0pKenZqcnRSZ2gzWHdvNHlfT0NSQXFwUTNNSlJUYnJnNGc0Zzk2aG1qbzc3cE9BdE9WQmVpMWZ3WmdQMWFjU1ZKX0M1c2g3V3Bpc05mZHZPMjFERGpsVkFJODZFVHRXLWZCNl9Gb2Z5SFJ5UXFyNkNPZy10NWk5cndqTXNERWlPZXVITW9pUXJqM3FyOUl4bk9JNlh4SkgzU1BnZ1hfQXVISm9nc2xkakN1eDRORGtpcGxKbW1FUWdENUVETEotV2JOYWZIdkttZnVwSVYwWUhDcjdCdFM4SHllekttV1h0RFVWa3JiQ1VqWTM1SDJLa2JaanlzaVRYUjQ4YVJxTjMxaU9OQ0l3Zk5qeDdldzFxX1JYV0pwOV9rV1BBdi0ycERkdzJPOWNuSTFyNFVKOERmLS1EejJKQmQ4VFJpbE1GSnhrMHFwZXJkVmpvWjRWc2dXVmVLLW1mN0JvNmgtSUhVRTdlM3pSS2hnVEpsRHFmdE1hM2tMOGx1WUtGYWNVMVBjV1ZSVkxTUEFiMFFxM3hranlVQjhOTm9NS3BsVlVnX1dsZGV3LVZmZWVzYWZsYVRZTkFDTFpVZFVEVi1LaVhOekhNS0NtaDhYbGVOSEZNbjNLYVhwM01GdDVvNS1sci1SNHpzVnRkQ3hnejRHcXAzaGg4MnBrdDBFbFkweHFWdEoxR1lrVERuZU1EOGNpZHpFSFpJX0JSaHNNcGVvVlhlazAzNU4tUE5lSEpiYVRYenJwWS1ISmczT0NHR2FfcmF4a1QyTUNmaDJpOU9yNjJCczctajNGSnhFZW5ZNzBlSjIxTWZxQXZxNHB5OGFjTFBlc1ZLWFhGOXdGaThRa3dTcjFTQ2VONGxaN05LeXhpNmlBZHNaS1U3Y2lHSHhHNEFGTGdKOGFucXRjQzNpYkVQbTJzRGlhUjAtNHA4SUQ2UElEOFNtWWZXOTNmVlBic29xYlVBNWc2Y0xWRWZmUmNJYTdVNmt2TlJOT2VkUXF3eEJYa3lVaGVXa09haHJwUWRwWWpCMGstT0pBMl9EYy1TcWNvcnM0MUpKZWpCdkd0aTdtMDBYMlM0Z3I4ZVRDSW9WLXVJSWtfNk42MzE3WUlsRmxqdnRXVl9PSTRFcXk5VDVGemZWSGtBcWNxdm5sa0lmOGxsd2dCVkVhUzdvVUJwYnhubFBEX1U?oc=5",
+      "published_at": "2026-10-16 15:13",
+      "age_hours": 11.2,
+      "urgency": "warning",
+      "province": "ชัยนาท"
+    },
+    {
+      "title": "เงินเยียวยาน้ำท่วมมีทั้งหมดกี่แบบ ? ขอยังไงให้ได้เงินเร็ว ! - BT beartai",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE12dE9WdTh3dkp2SWpKSER6VWp2NkVPdjF0T1IyaHJ2dGhxT0RfTjBtV2FJQTdPSjJ3eVRHRGQ3VGxRTVdVXzcyWkdDMU1uQQ?oc=5",
+      "published_at": "2026-10-16 18:38",
+      "age_hours": 7.8,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ชาวบ้านร้องน้ำท่วมยาวกว่า 20 วัน จี้ กทม.–ชลประทาน แจงข้อเท็จจริงด่วน! #News1 #หนองจอก #หลวงแพ่ง #น้ำท่วมหนองจอก #กทมชลประทาน #น้ำท่วม - Facebook",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMioAdBVV95cUxNeDFYelN4X0NmMHlDYWM5dW9zOVZqSmVydzZuZ0ZpcXhWd013RW5zZjFsbW4wV2liMnR2Ulp5UHNBcHRpNkh0cnZWeHFsTm9NekwzWmZBcUtMOXAtNkxZbWRyTnphNFZQS2NDUlZiUzdSSDUxUFVnbS1QcHVkQ1Q2SHJDZU9uUVJQdHVZbVhTMDgwaldPTW5WTlBxT05ic0NSREExSFRJMGo3dFNVdmRiUGNCTXk1aTZ1X3l0YkFkVk82TjBGUHVuRHBjMDdjX0R4LW1TY2dHVVZ1R1k2Z0JBUHp3QjBVWmZrRGZ1c1c3QkhWNXp4U1ZSNUtXWHJpTmJfYV9fcjd5NFUwNDhSQ3JEb1lxOHdPQi1fWXNMb2xZdW9rd3dmU0YyZ2FGSXpxOG5DUFM4NDI0TjVWNS0zWmh3dHBnRko0d2hvVUREb1JzV0JxZUo4NTVtSFFNQWdacnpBZTRjWkN0N3ZPeFR2LWdXQjN1WTZ5aTY0bmt2U3Y0d09keVBvV2RMeFl6RTNRM181UDh2TUhFNVF1S2w1X2prOWZBUXphZHNpZTQtaWdKanBzd3luUE1USDZQaUhCNXlmbFRIMy1GdTEtUmRtbnVHR1dHVXFJMFRPVGVHbWNLQnpYVmYxOGpVM0ZxZHMwcHl4dHZqRzFoc3NTWG82YzN1VnVHRmFDWFhwaHFQQ3ZJWmk2V3lGVm9UVkVrcnRxQmNNYVByMGFtMDUwaXlRN3dKR0F3bWFlWGVxQVlkRmZmQy1YemlYUHFLMFNFNC1qZGs3NjZkdjg3VTNvSWlJOFJ1WEJocnZHZG1fa0ZVUkxkVEoycGlqb2NQd2N6eWhaMzJGbzhsWDYzSEN2QnZIYkdyU2YyajBiVHZxT2NLQnlvY205akdMTDQwLWpCbTljWlpsOVREaHQ1Vno1dGZlWUM1N0ZybFM0SjJQLWNKeElCMGtvUHdTcTVDa0pLLU50SnBIdFVwOWtjaTFiNFExUW1KTUJ3eG0wQk1nY1RoV21famgwaGRUaUtHazNRbGNUZnVTMUdCSnBrdEhqWU80NG0xQk4ybDlhMXd5UHJfTUhlY3F0a1hRemJndVNYT29YaThNb0RybWNHUVdPYTd4ZHdZVjBDNXVzcFQ1LUU5UWFkSzBxcy1SeWtoTWIxcGlVSXJYcXhJcEQtQWdHMGdQT3R6UGNYbGpib29GYUY5ZzFNMzFBT2hKV0NjemdLU05LMW5y?oc=5",
+      "published_at": "2026-10-16 16:00",
+      "age_hours": 10.4,
+      "urgency": "critical",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "วัดพระธรรมกาย,มูลนิธิธรรมกาย ผนึกกำลังตำรวจตระเวนชายแดนภาค 1 และอำเภอหนองเสือ มอบถุงยังชีพ 500 ชุด ช่วยผู้ประสบภัยน้ำท่วม : ข่าวประชาสัมพันธ์ - DMC.tv",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE5sQVptX3RSQjhYMUlaRlNsZm1iWWROTWttall1UjdUTVZnMEs5TnZvc3RKaVVrc2JBbUJmdHRVcEZKSHBLeU9z?oc=5",
+      "published_at": "2026-10-16 20:29",
+      "age_hours": 5.9,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "3 แนวทาง รัฐบาล เยียวยาน้ำท่วม 2569 เผย ช่องทางยื่นคำร้อง-แจ้งเคลม - ข่าวสด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE54MXFESUlVTDlGazN0d0RGNzh2b2txdHg1SWI4VkRBenJITHpDekVIOGNiODFYVGphdFVOd0ROWW5LUnY4NmZQSzVKWnk5STNOVERTQ3BfZEhKNFR6alRUclZobw?oc=5",
+      "published_at": "2026-10-16 11:05",
+      "age_hours": 15.3,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "น้ำท่วมยังรอเยียวยา! ปภ.เผยโอนแล้ว 5.3 แสนครัวเรือน แต่ประชาชนโอดลงทะเบียนนาน สถานะไม่ขยับ . แม้เงินเยียวยาน้ำท่วมจะทยอยโอนเข้าบัญชีประชาชนอย่างต่อเนื่อง แต่คนที่ยังรอเงินก็ยังสะท้",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMi5gdBVV95cUxNSW1qWlM3SXJGSnl0TVd4Y2JQdTNuX1RlMThTYy1idGdUd2o0LWdWaWh4Szd2MmEyVXNSZHZ5dXJLemM0S21BbjcyekIyWEk5UVpqM1UzTUJVdF9HLVMyTElONzE5ZWo1VkxaYnEwS09pWGQ4MXE0d0dpdmpwOUtQR2dIYk9DTWNYREVIalh1aE9ZZnEwank4b3BLR2xmbWl3NUUzLUdNMGtkT1RGVlRGbTFhY2dKeVBVRWdhVFFWR3U0RU9YNzE1cFJZYUZieGpfTkVxMnhsbG1QSllUUW9PbzJ1c2NxeFc0OHBFQjhPamo4M2FRR2g4dG5wUnJ3UUg4blN0Zkhoc3cwLUNCS0ZZUU10aFg0WmE2Tjk0X0E0djRqbGlJYnBqd3RkWFVmd1dRc29hSE8yODFTQUpCVndpS1dKT2RqZWFIeWhCSjRFaTdva2o5SU5iX0lpYmY5cXJaT01YOUFkdjhva292MlBmTXdkcy1FVnVhQTVaTDNUbFJ5WnBTQlgzUjRqOVIzVVAzT2Y2ZjV1YnVtMDB0SFZjekZpZzVPemk2OGh5M1NLUnVNZUFvYTdvWG1JTTZjbjZrZTJzYk9vVW1Fc1NzMmN6ZWVkeDhtU2toS2dZRGdkUUdhS0tJbS1YTG51dF9WRVV3SWpzLVRLT2ZCZUEzYi0zbDJrcDdUaUZVMW8tWi1NdzI5aGhVOFR5NndaaTg4Tmp5Qlc5Y3hOOU91NlJNREx4R000RUhEdmdpVUxkNU1uZWEtLVhEN0ZiSDVrdXZyN0Fibi1fa3dzNE9lNkc1Y1FMZ3c0VS1PU1JLZENmOC1VYzIya1VYTjJTOE1DeEpzUzN1S2ViQUhjSGNPNURURmVQNFVIZkJFVFNweHFOR1V5dUE3WTNJMXBBMGV0cExFZ21PYXBQS1JGVXJ0R3gtM2NNa29IaWVwN0QtUUNjXzJBcDhuSWxUS0ZKd3JzM2JZRXdxNGl0Z0g0aUl1ZHM0YnJ4WVdvS1FlUmM4WEZGVzVEY1hvZ1FpNGhMamg5aThMWjduQklXaC1nVUliSEd3cUFUM0lfU28zYkNjT19RbTkwZHUwSEg1NnpwdTNtTldJWUhFSGE4ZGJpbVNIYzJpeFlzRUZqdmtEOUxnYzdxeENMWnNnb1pkS3lkQVZuUnAwNXRya1BWNDBmVkVMQ2VwVGhpR0Z4ZGdoVzhDTTdhUGE4X3lQNl81dFFIMUh4UnJaS0hhZ2o2b2JrMUlKT2FjMTdZZ2Y4YXNUYmNRbmdyQjVYbDBFR19RQm5sYUpmc1QyNUpGcE0wYXRGOTdXNlpCYmVSWTdCVFVMQQ?oc=5",
+      "published_at": "2026-10-16 13:52",
+      "age_hours": 12.5,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ปลัดกทม.ขอ 1 เดือน ฟื้น 15 เขตจมน้ำ - เปิดสาเหตุบางกะปิท่วมนาน คลองแสนแสบน้ำสูง - สำนักข่าวอิศรา",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBVYnlGNTB2WnE1SDZmMnZGVzhUa0Z1dGdTVzRaaW9JZUs3NlhEZWpGT0dZQU1VcmpxSnd1QkhTX3RLaTdoWko5YnNSYy12TnlVbHVTSy1SWTc0WlNqdW5tdEJGa3Biay1DY3RLb2d3?oc=5",
+      "published_at": "2026-10-16 17:42",
+      "age_hours": 8.7,
+      "urgency": "critical",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "เร่งเดินหน้าแก้ท่วม-ดับกลิ่นเหม็น! กรมชลฯ เดินเครื่องสูบน้ำเต็มสูบ พร้อมเร่งระบายน้ำท่วมขังลงเจ้าพระยา - แนวหน้า",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1HaXFYbXdWU25MazZSb1NyNmVvbTI3UlpWZjJVRnNvaVlpeXRWU1FadlZ1YmpWdHcwY3lsaWR5WUE5NGYyaWM0SkIxVEZscjViWjFzODJYQ1o0dw?oc=5",
+      "published_at": "2026-10-16 22:10",
+      "age_hours": 4.2,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กรี๊ดเลย! สาวเชื่อ Map บอกน้ำไม่ท่วม ขับถึงบางน้ำเปรี้ยว เจอถนนกลายเป็นทะเล กลายเป็นเรื่องราวที่ได้รับความสนใจบนโลกออนไลน์ เมื่อหญิงสาวรายหนึ่งโพสต์ภาพและคลิปเหตุการณ์สุดระทึกเมื่อ",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMi1AdBVV95cUxPZUN6T1Fqd09UVmxkUGI1cG42VENtblJUMU15Ri02YXRIMGx4UnZxM0dTYmtORzAxejFLbzlEcXNoeUEzZy1yaTRPUTRtWmNLSVJoYzBYejBTN25GRWdGaEU3bHdyRU1kQThDdTdaRDhTeVRjOE95dXZuMUxUTVEyeFlRdW1MZ3BEdHR0Q0lCUFpIWHJzQ2RkNDU5Zk5mczA2Y3pCc0oyTWV6cWplUmw0cFFVZkhIU2V4RkpsZkZiRUhwYXlOTVFheTVuVmN3WGdiT0Zwd1MzS2ZWSm8yZDNBeFhUeVFMQUJxalpfa2VDVVM1NXYxY2dvODQxZjRQQm1kQ1Y2UnpOOEVNWEp3eEptUFV0WGsyc3prRFVFY0xLUTdiWU1jUk9TTFJqbHhBUTVpTTdMR3pER3d0MkJfQ0k2d0FuczFFLXZUQ3cxc05WSGlEQ3ludlRITlVrUXZoc1RqdGVvaUhsN3JCblE4S0poS0tLNkZTalAxeU1XNy1UN3BJMVVIb1pUMWFROTRqMXFydzgyTG55WnhYRlVlb2dtOGlJYVRDZFVmcUJ6R3JZc09HTXRNVHlDczF2SktXNHh1Sy1HY1NSaW1OMEx3VlZSOXpkZGJlX2w1Z2ZIaU5iQmZNUmFJYUVxRW5xSXVJQllvdG11TjBWWnNvN0dpUElESC1OeTVBUWpWNnVQSUpsbDZMXzJTWk9mWGJSa0lJeUgwY2VENVZvTDdNeVJpSFJ3dWpfZXkwMXgyOFkxLVdvc3hGSTdhSXRweVBKTlgxSzVlb0tVbm5sUkJSMHFUakxNTW9fRFR0dU8ybTBYNjZHTFBoa1l5RV9kZ1A2MVE5d0NtdjRvZW1MUi1kYXl1QlRmemg1TldZdWRNdEt4TWUyZDVib00wOHZCU3k2UzFPaGtwLXBILWpRZER3UzJoZXZjV1A4RUxaeGpqSnlTd0F3Sm42YUFpamxyV2pGTm1CTEV5aURTQVFoLWlBalBSOWVROXBwbXN6Tm04UC1TT1BiOGFmU2VwMElKRUZKRUZmNUlXMWxSUU9kN3JUbmdsQXVES3gyMG9fOTMyQmN3Mk5YY1NxMzUwUUJkMGFEOFBxMW15RDJIWUxVc1A4RWdmajJDb21oVjJ6NElYVnFNMnJRTnBXTHNPdy1DYlYySVloM2RscXB5Q3pxN3VvV1RyRjFTRGxldF8yejVKcjM5Z1M3enhqVTN5UEpCRzhWcnNSZ3RIT2NnTHhpWjdKZUpyRS1rcG1PaUV2anpoWmtBUDdJRG1Tb01hMWlFWk5mUkZXazdFLTh1MQ?oc=5",
+      "published_at": "2026-10-16 08:00",
+      "age_hours": 18.4,
+      "urgency": "warning",
+      "province": "เลย"
+    },
+    {
+      "title": "“ในยามที่พี่น้องประชาชนต้องเผชิญกับอุทกภัย ทหาร ร่วมแรงร่วมใจกันลงพื้นที่บรรเทาความเดือดร้อนอย่างเต็มกำลัง” กรมทหารราบที่ 2 รักษาพระองค์ จัดกำลังพลจิตอาสาพระราชทานของหน่วย ร่วมกับฝ",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMinwhBVV95cUxNbkVReTV4Yl90WV82R0NNY0VvdkNEQWtyQXFHTk43bjlpNGZtUmxSV1JtNHNhSzdTaFpJeUVieTR4aFQ0LXZBZUVsYlg3Qy1nSExzU2JtMWxHOVNxdnIyZlB1NHFRT2NyaXpBRjVzeDNaczBkc1BvLTI3YVdIRENwbDJCX1diS0NOaEhLeTBwTm5FNmxpVXdPNDhqY3IxcldpcTNTcjdNQTRJc25MZXQ5Vjc3WDJvTFkwSldDRjJXZXZmRk0tdjBvRHdfUDBhYzRrODNlcDVXdFA4UzlsVEpDTzVsY01UelFtQ0lfM1E4d0hzakVmZHNvSnZuYmVtQjhUZ0E3MnFfb3RuWUdlclhZaWZaM1pocVJDelQxWG1ESmd4ZGNQQXgzRXJwMkNzdHlhNk5pb0tCclFUa2V3V2YyUmpEN3I3Y085N1NRT29lZkNfUFFpNGR4elgydko4RlY5SjVadElDOFhoTXVsajRSYWJvbXlyTGNGVERVWTJBSmp0SGwtWXU5VEt6Wi1ZYlh0Zm8tejFUOF9EQ0lWeGdLTnAyOWR1eEJ6S3VVYnYxb29LbFRrUVQ1dzVPaDZmaXpRZkMyUnQ4c0ZnOEVfcWNJYndfLS1EejgwaGdFRkxKWFBSb0REaGV2emt6b3pEZk5aZGZMQ2ZLR1RsUUZrcGxOdVFlODdZRV80UnladG50NUpzWDFVczBRMnB0QlFEdWt1cmZwbEUwaUJVd2xMOFZIallROVoxNmlLamc2d2dFeG1lVEZGUC1kQzQzdU5WN2daaEs2OXZyRW8zVXJnRmhpcFVlbk5FZi10YjVKVFM2QWhKS3U2djFXTV9lVEdZZU5Db0wwLUMzdjk0RDNORC1qaXg4dHJZQ1ZISzFLaVp3TkU2VldGUHZGUDFCYk1nSF9qRXhQR3cxWFM2bXAxZHJqNi0wZU4xd2YtUkJ5dGh0bVRJWHBlT3JHMmhXek9SQkRKZlh3RUxQdjNndC1lRkxvNGNERTI2OFgtT0puajgxbi1yS1A4U25Qa09HeEp0WjlLdWtEcUJRSWZURlhjZW92S01xc3RHQ3FOeVlsOVR0VV9jZ2JYcFNwY3RVWWF0SWszSWVsMmhYbWljUFZlcGJlcGo0X2pEam05OW5xT3MtU3NuQmxIXzR0R1J5ZHBoR0hwU3Z4TkdVWF85b3VJMWEzejBpLVk4bHNuaVVfTDFaT0drRmVxNGw0cXlON3dYLVNvcVpFT2E1aXh0RlVydzJjTHcyODNKN21jVHdqUEZzMndsODVPT1Z1QmJMbnNTc2FGbkp0bGZ3T1ptdVFKUU9vVm5kOGhRdmlDcWcwU29DeHRqTlhYUnItZ2xtcFh2Z2ZpVW5JamM3VHZZWXdIeEZkUXVxdlREbV9aV3BBTUs3UQ?oc=5",
+      "published_at": "2026-10-16 13:00",
+      "age_hours": 13.4,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ยกเครื่องกุ้งไทย พิษน้ำท่วมซ้ำ EMS-มาเลย์แบน ดันเสียหายพุ่ง 2 หมื่นล้าน - bangkokbiznews",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE50WHQ5UFk2aGtqcFE2VS1laUxYbDcxTzgzUFhsbmRyN3d2THFxdmRuYU0yb2JQekplXzhxN1dCRFQ3amM4QWtiNWJIaDBoWTBOZ0hCWEdhdm1fMS1W?oc=5",
+      "published_at": "2026-10-17 01:03",
+      "age_hours": 1.3,
+      "urgency": "warning",
+      "province": "เลย"
+    },
+    {
+      "title": "ถ.พระราม2 น้ำท่วมขังลดระดับ หลังแขวงทางหลวงสมุทรสาครเพิ่มเครื่องสูบน้ำระบายลงคลองสุนัขหอน - สว พ. FM 91",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBvRkxSb0FKeVJhbXhZS1VLYTdzUjFzcVJlcHNBLUdSM2xuc290R3QxckhsSkR4Wk5mOGt6RzAtdXFmSTlNWWxtc1kzSGI2YmFwLVpB?oc=5",
+      "published_at": "2026-10-16 15:10",
+      "age_hours": 11.2,
+      "urgency": "warning",
+      "province": "สมุทรสาคร"
+    },
+    {
+      "title": "BEM ตามหาเจ้าของป้ายทะเบียนรถ จากเหตุการณ์น้ำท่วม - สว พ. FM 91",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE16U0ZvLUFpMU1MZG9ldFp4b2VnT2hLM0ZtZHd3OWxTdWctaWNjWGdLUE9yLUY0LXh3bHJ1S3RyalB3bEM2MjhnVDg5R0Rja1gzYnVJ?oc=5",
+      "published_at": "2026-10-16 16:25",
+      "age_hours": 10.0,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กรุงเทพฯ เย็นวันศุกร์ สภาพอากาศ และการจราจรเป็นอย่างไรบ้าง แบ่งปันข้อมูลกันได้ ล่าสุด เวลา 17.00 น. ศูนย์ป้องกันน้ำท่วม กรุงเทพมหานคร รายงาน ไม่พบกลุ่มฝนในพื้นที่ กทม. ไจตนย์ : เที",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMi_AdBVV95cUxPQlM5bWhVRGl4QUJ2blowM25zUGhrZGRibnduRkx0V0dSOTAxNDBRRmVLS0w1QXRobl9weGFrLW9GYXhkRGtJNkdfbXJwQ3lzQ01kR0hkSXhTV05rMFJ5d3JuYjNTM25IYWxGcFlyUFZzaFAzbm4ydkxFRUladTAwVDMtSkVIZTdkSGZ3OS1qb0lnSENwOTZ4dmRLdGpLak4yczhUbEdKMkN4a0hWaHJvV3N4enRoLTB2eDkzaFhEenppTExQd00ySmx0WkM0bXUxcEhHYWlBTkRQaWFRQVAxQzNQVXE2Sm4tcDlmRHZ4ZjRVRTdjWlhvN2tEZ2d6ZV9tUlA2aUNnVksxZUhSeV81TDZwVWo1MC1wcjVNMHE5QTNmRUlzbWUxY2dySHdUUjl6WkdqWWpLUlVsOWc2enVDWE1tcWxuRDJfd3E1Qlh6LTVDVDdDd3F3NE5rLVcxRHBfVTUya3Jqd09sWi1YNzY4TTY0LTEyblNMSld6LTdhY0VHUU0wMlZWZEMxUkczbzIzVVB4OHN6V3NoeHljMXhPeFlsVHYzUFNNM0VlNEp6Wmt6VmcwWmZ3dE1tcGtjLWNwRXdaUERBdGI0Y1FMQ1JWTWVDZmNrZE16OTY5OUxET2I2UUlidGkzY3Z3aVZGWHBrVlRLREJhZXFVY3BLZFpfOWFuVklfcTVGS2QxekJHZ0pwUG91dnAybnJNTGcyNnVRc1JOWDU5R0poNFMwck81bUxfZDN0MjFzNjkzcVF5RjU4QmJTUnBZa1BNd0FoajdvYjVHNE1hRWRXZFFEQmxjRVRGLUJfdTNPLXBZbFZBMDluT0ZHejUzb3lNNXhOSUJVVHg0ZVN3RHdiekhYLUxKRFN1SXJ2VHU0TUlrWWZiazJLMFczRnlKMXVnWU9aUlFvNWNHNlhDRTU5MHRYaVlNREVPUGV4TVQ4Y2Q3aGdOdEVZTC16bmIzcUNuaEVHMEZqMXJSOEZlUlRwRWwxZmhoSnZUVlRTM3plcDJldnk1WENIdURNYm5MSi0wd3BjYTJwd3RLNjJHTGFMRUNuSktSVDZsLVBFZnFFTTlGZDZDU01IOWQ5T0Q5bmdMM216OXgyUjVkamJMTjdyY3Z6SURpVURLM0NPc2VnWmdGUGFNbVlvSEtRZi0wTXRIVm9QQjFaUzNaZWhRMXRxZlh0Z3BwU3FvMGVLcGxaYW1vQW9iRG5kcWxHajV3ck5kNmhJT09BR05NUVhGTXptZWZ3OWpLbERlTkdiTlJLZkd3dnZKOU9JT1Z1Q1FJUHlmZjhtamxXbXRJNTFZNGt5dlRyWHRkMHJUY1hWaTVGeE1Zbzg2RldJN09JSTRvMmluVHI?oc=5",
+      "published_at": "2026-10-16 17:00",
+      "age_hours": 9.4,
+      "urgency": "warning",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "ฟาร์มกุ้ง โอดเจอ น้ำท่วม 5 จังหวัด เสียหายแล้ว 2 หมื่นล้าน หวั่นสูญส่งออกระยะยาว - ข่าวสด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1YMHVjUDFSX0tTMDVZX2c2WVlKRWZPd2ZLMDBjSUszb1paclNRemNSeU1HejN2RHFOTWV5eFNFVkEyd0NPbWFKb3dxc3k4bjJuSl95dUl5M2J0UTJiWjBhMy1Td0RyZw?oc=5",
+      "published_at": "2026-10-16 11:45",
+      "age_hours": 14.7,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ภูเก็ตประชุมติดตามสถานการณ์อุทกภัย เตรียมพร้อมรับมือพื้นที่เสี่ยง บูรณาการ 7 มาตรการดูแลประชาชน วันที่ 16 ตุลาคม 2569 เวลา 10.00 น. ณ ห้องประชุมเจ้าฟ้า ชั้น 5 ศาลากลางจังหวัดภูเก็ต",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMi-gdBVV95cUxORFRsdjV2akN2NFlZNnRFamlSRXhKZ3Izd1pmR25NNmpBSDR2MEdzNTRZZG5Pc3pCQVBYcERsenplR2I3NkoweGlGeFFabGt5U1pHUDlzZXZ4X2FfdDFFdENsb0tfbmZoZDRmX2xCSGdwOWZkc0dDa196aXhtTldacDZXR3hjbGxHdmVSQkJ0X0hCMHFnMlZydkxNNUZHbG9KOGQxTm44bDM3S2pLN3g5cnl3X3RfOWNxTjZXS0RXZHNGV2YxNTVBdUtPbWY2R3NXb1Q0OE11OEtURWtrT3RJTVhCOXFtaFFkblpvbGxsemNrZ0VZQVpwdWdTYkNuSmVxSkxlN1UxYjJpRmZLLTlmeXpKeDhGT2ZneFRHaUFwVklkWUhYOEg0aHJrSkpNVmF6TkJYOFNjc0tKRlBPTEphNDRBYU9xUWxiSTB3NXRGSlhBcWN1QkJNY3R4WjBRY3dIbVN3Uko4VEVCaE54V3NwbW81X0JySFgyd3AyYzV5TGV6RHgybXM3Q1ktRDhGUnVhbkcycUhEZjJxYk5pSWl1dGlXWm5hVDNDQVIybW1xWlpyZFZIV1dCRHRGbVRNaVJyc3BCM2tGald5UnhaZy1RVEtaeHZwWlM0VHFYVHJrVFVmWXZUbmZhT2s3TXZjaHhqdEZhN3hXLXBpYUhqQ2g0VDZSVjN3SmFLRGNTdFY0QVVUc2xPVTRjRE02ZFBhcG9wYXFid2gtUUdMb05XY2JrY0k1azVEdS01X2hySE5CSmhiazk0Z25JdW12ZjZLa0xOYWhjY2NqM3N2Q0g0NlNBdFJWbUdFd2E5NzFhcGI3anFzZE04TzA0WjhDamhFZzYwVHd1alQ2SlZ5ZHZtaWdQSTE0OWF3S2syT2xVZFhldG9xN2MwdEhNbk0tbUFSUTZsT2ZjOXV1MThzUkRJQnB0eUdnTVl2UEJpUVRBcGNQbl9MQVlNTkJlLWtRQXBObXEtUUZyMFozQktuakdocE12SVdFT0pkWFpwZmxTY1RNa2RURWxpalZ2N040M1FOa3FpREY3YlV6QmlxcjRVSENRdUR0eWdsUHd1YXd2T1BuZEhZd3RjQXdDYUp0WXh5WjM5TTNXSmwtX05DaWRTU0N0UG5VZUE2cTFQT2ZucVJRVm55VDJIUW5mZ1gxTlJYTUZiY3B5MF9GdE1UbHVBTy1EUkNGLVdndTJycHYyT2Y4b2Q0b1RKQVZ4TmNBbkQ5MTBMLUpTdU02Z1oyOXp6V2k1Zk5Cd08yOEpDX25qV3gxM3FzRDU0UThFX1VUdFZ6UzBmZHFFUHNTWDg5ZnhjTExoLS11NmF1MUFQbkl5U0o5X25tWFk1VmR1ZzlB?oc=5",
+      "published_at": "2026-10-16 12:53",
+      "age_hours": 13.5,
+      "urgency": "warning",
+      "province": "ภูเก็ต"
+    },
+    {
+      "title": "รัฐบาลแก้น้ำท่วมระยะยาว ผนึกกำลัง ADB หนุนโครงการบริหารจัดการน้ำชัยนาท-ป่าสัก-อ่าวไทย ลดผลกระทบ ปชช. - ผู้จัดการออนไลน์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBmTzNOWWExVklfbWtSb3o3VjlJV24zRjFoN3NQLXBNeGYtUWx5aEc4SUo1RWtaLTZ1ZmlmOHM0UEVscFJXN2o2ZG1pNzY3NTZYQVoydDRtUGx2NUoyUndMRQ?oc=5",
+      "published_at": "2026-10-16 14:06",
+      "age_hours": 12.3,
+      "urgency": "warning",
+      "province": "ชัยนาท"
+    },
+    {
+      "title": "สภาพอากาศวันนี้ -22 ต.ค.กลาง ตะวันออก ใต้ ฝนตกสะสม ระวังน้ำท่วมฉับพลัน - thansettakij",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5SYlNVM3ZrWGk4TGx0TG51djQzSkFwZF9RS2JLWFBDVEwxVV9aMFgySTQ0T2R1Y1EyQlQ5LUwxaHQ2d0xyM2Zmb1BFQUxhLWpKZEdYcGFNU0J3NzRZ?oc=5",
+      "published_at": "2026-10-17 00:30",
+      "age_hours": 1.9,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ตำรวจสอบสวนกลาง (CIB) โดย บก.ทล. ส.ทล.2 กก.2 บก.ทล. ช่วยเหลือประชาชนผู้ประสบอุทกภัย เพื่อบรรเทาความเดือดร้อนและช่วยเหลือประชาชนที่ได้รับผลกระทบจากสถานการณ์อุทกภัยในพื้นที่ ต.หนองปล",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMipwdBVV95cUxNeWlfUXdIaWlsNjZvb1hMaVlPWEFaWGdjanpKTnpWSExmT1poaG5xdWRuTHA4NU91RW5KclJFMUNwSlhxcUJtbTRRcUg3TTFhZEpyWVJYOXpGMURJXzdleHRONDlqOE1sSUVTTmR5ZmRvejUtbWd6ZE11cU50S0lmODRUX1lLejNWa2J0ZmpTTFItVi13Z29mMFJHQm92MnV1UnFoejFzeUtUTXFzLTlnMmNLZHNEZC1MWUloQXdIOE9jem9YMDV5N2tuM0xZRGt3emdNWHhJQnhFdXlVY1Z2aDRidDJidGp6aFJ2UG9IUlRDNnhCbGROa0pKV2RMWU5JejlHYTlfc3JUWVZaeUVldXI1YlRYUDRoVWpaZVdSNnMzaTFDcGxNUDB6Y3pKTFpPTzgwMlFEMTcyTHBkLTJzUW1ueUhtUDZraWR4ckVhTUZiRlF5WFA1SjVaRUR3X0psdFBLdkgwYlJJM0xzdW5GQ3g2VUpVYTViRGpKdEtIU2JnX3YzWkhkb3M0WlgyMkllTlA5WV90Q1N0OEdNZnMtaURJZkt0U0JIWk5JTVpUaGU0YWxzZDBfeVdFMi1tYmFtNnZwTTNxU2NDRmc3TGF0elRTYTh0WHZwakZpdGdWSjdwenQ4VVRwWWMyOG1aaUFBMExKVXM3YUIxN1NlNm1DTjBpZ25KeUpPLW1semxuSERvby1YbWdFMk9faFpzb0pBUkZvVXZSZ0JkV05GcXoxMGgwT0R2NmxFYUNURFVCNTBQVHN4TWRaYW5NSUVOa1lZSmxjSGkwMUQ1SE5pQnVfdlVUZ2hRTkN6bzU5MjVOZ0ozMkxsT0M3Y3pFT2llY25wWmFGTTVLcWsxdkQya1ptakltemRQam9QckF1VGNOaDYyM1Y1MkdHM1M5UlVuSERIVWJxYjhVYzlOVmhaOEYteHljaWJ0YkJVcllrQ3cyVGFveG8wck9zSlFMVDdGb3FPRmZ6d0dBdC1jWHJsOU16MGJxNjBHUkptUy1IVkNHSlNkRy1KcDJzbGNIMzRwR0x6TmM0X0I4cFF5N2JwdUZianpKZ0xZaXJyQkZoTzItSHYwckJxMW1ITmJQU2diTkotWjhvcDgzWnBZbTA3RUtHeFV3bEZzeU1vMEdsOWdSLVdCbDlObzR4RHBQX3pxR2M2T28tUzRRNDdrdkpEXzE5cGdVNnZsVVJNRlV4bWhhczFiaFAyVFBON21iWEswMDUyRk5kc241QQ?oc=5",
+      "published_at": "2026-10-16 17:55",
+      "age_hours": 8.5,
+      "urgency": "recovery",
+      "province": "เพชรบุรี"
+    },
+    {
+      "title": "Double A ส่งความห่วงใย ช่วยเหลือและฟื้นฟูหลังน้ำท่วม เคียงข้างคนไทย - มิติหุ้น",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFByc0ZKUlBNQl9HQnY5ekpHNzFqaVlEai1SM2N1VUY5Q0dTVmFDTTFoRE1tYmZwRFdzYzR2VXd2bWZBS3dHZ3ZUdk5tYl9XU1I4YjFITEl3?oc=5",
+      "published_at": "2026-10-16 18:26",
+      "age_hours": 8.0,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "“ฟื้นฟูหลังน้ำลด” ศบภ.พัน.ปจว. จัดกำลังพลจิตอาสาพระราชทานของหน่วย ลงพื้นที่เข้าปฏิบัติภารกิจฟื้นฟูและพัฒนาพื้นที่ภายหลังสถานการณ์อุทกภัย ณ โรงเรียนวัดหนองเมือง ต.หนองเมือง อ.บ้านหม",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMinwhBVV95cUxPTk93WEhhNG9HVFNyenlYdlE1dzAxdnFXOVJZSWVsZGhucnFHbVRuWkp3c2xCcnFud2NnOUhoazlGUlpYanFKczRYTl9kM1B1a0xRQUhvU2tvZTRpZzdVbDl4d09sQS1ONC1XMW03cFZ6YXZZcWtVYXRzbFQyUWE3TWZjWjBIZEt2S2RZSkJhOVNLVHpLTWNMY01wVUNDbkpsMHlWZEI4OVhpYzdoZ3AxYk9kVEZaVDctQVRBenFzMUl3WmZrNmpwV3JYbnlhRWR3OWQ2TnRjN01CV2w4V0swT0dNRi1JdVZiU3BnTnpock9nc29PZkZ0TGNON3RvbnpIQU1rNEpiSmxrVjRWOWI2dXl1b0JPbWJXaW1ONXl4Zzh3N3ZDNFA4dTh5UVRydFNYZDdCTGgtRWM2SGYxcEp4Mkk5VGVNSXBvVVlsdVlBbFdTYlZyMmlOZ2sxdmhHdWh5Rm9BNDJpUm1pc0lsdUNiOE15N1JEVmF1RGgwSmswdnVMTUJqMzlYZkdyWTIxQzVGOXl4OFdXaXg4d2JLMlo0MmpvdnJxWlJiUWRRTl93ZjFPS1NWVjRIdU1nWlZGc0NCeDYzTFdFRXQ1TjZnQWwyNUNKbTVGaWJTMlVLckJlNjFCeGNMSDZYRmdnN0RDWlpJc3lrMXFndHhFaGtZUTZMZlE3NC1QWG8wNk5aZ1piTGtfTDF1eWhMNHRCaFNwNTQ3OXpBZ09wb0ZJby1GdTMxaUt1LTVVX2hiMW5XaHd3Nlh6TVowb2wwMnBzMlVoX1RiODg0ajlraGZPaWE2dFdPeXV5S1ptZDN5QWdUYTdBbzBlNFNNaUVLX211MUJ6QlJtLVM0R25FM29YVHRaamZUTnVENjItcTl5QjJkcHhCN2o2U205WjYzTURHNFNyV09jMkFQUEN2ZGMySEZHNE5YVXo2WmRuUnpQYVBnbnJXR1k2OXEyTHRmd2VBdnJvdThvQjJjLXY4WmRKTllXZEluRHVGdl95bmVVXzBJMjB4MFRxNDNJc1JpNVpmRFBsc3JqSTcySFJRM1ZuTE8wUnpHNExHZDR4QnFYemZ2bG1uQ29ESVQ3ckVDU3JvVmhFcTB0cjZzbjF1NGVLNkVzdDc2b2poeWFuc2hfenVQS0xGZnlQR0x3a2JnR2lGY1pMNlM0VkxYblVlMVZSMkVyOHQxUDh0NUp4QWhwMmNEMHNsVDVUTXZxTHQzb0VmeG1TVlhWbm13aGItZXFnNVRPZlBGS1UzSmJlM1FvRThLSWpzN3Bjdk5OTk8zUjlaQjBIT1o4am9ybWdhRzhxYmd0dTZtUG1HU3AwTXZ3cXBsUGpEQ1VuOE9qLXFZTFh1VWtWcEo4TGNtNU96dUd0QjJPanA5Ujg5cEFodG0waW83TURfcw?oc=5",
+      "published_at": "2026-10-16 15:01",
+      "age_hours": 11.4,
+      "urgency": "recovery",
+      "province": "ลพบุรี"
+    },
+    {
+      "title": "วิกฤตหลังน้ำท่วม! วัดจมน้ำ 1.5 เมตร คลองเน่า-ปลาตายเกลื่อน - TNN Thailand",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE16MlVoVWtPMWFySUVCQWd0dXFVc3Iwc2RxZFNNX1NSUXpPeGNuSXl0MDBVNmdzdGdlaTJ1ODBmR2tuWDFoZFdBM25DMks0ek9wbmQw?oc=5",
+      "published_at": "2026-10-16 12:17",
+      "age_hours": 14.1,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "“พาณิชย์” เปิดโครงการ “ไทยช่วยไทย ธงฟ้าลดค่าครองชีพ” กว่า 3,000 จุดทั่วประเทศ ลดราคาสินค้าฟื้นฟูหลังน้ำท่วมสูงสุด 78% - LINE TODAY",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1YZ1VlVTJPa0FvR0lJQnNlVWtrUnZrZTluU1Z6aUdYeWU2WFJYNXpFZW1qT2I0RjdiOTNOUDVFS3Q1T3JrMnRSZjBwaER6aDRVMy1IcnJn?oc=5",
+      "published_at": "2026-10-16 17:22",
+      "age_hours": 9.0,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กทม.ดูแลคน-สัตว์ ฟื้นฟูสุขภาพหลังน้ำท่วม ส่งหน่วยแพทย์ 10 จุด สัตว์อีก 5 เขต - มติชนออนไลน์",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1nV09reWpMelluLTU0S2dmdjROWk1qSHFNbTl5b2RHY05oc2hLUVk0UU9lcG9ka2FZX1VZTHhONnNDa1NCMXlPYWpncXhGbHptS1VCLXNHUnQ?oc=5",
+      "published_at": "2026-10-16 17:45",
+      "age_hours": 8.7,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "CPAXT ผนึกภาครัฐ-เอกชน เดินหน้าฟื้นฟูชุมชนหลังน้ำท่วม นำร่อง จ.สิงห์บุรี - ข่าวหุ้นธุรกิจออนไลน์",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1LZUp2eFFlWWJpX0tpTS1qS0hnZ1d0UzRJYXZFNWUyV2xkYUhuQ0tvSVlQTWRNUFpRaV8tN2k4c0xYaVUtSmRTTg?oc=5",
+      "published_at": "2026-10-16 11:12",
+      "age_hours": 15.2,
+      "urgency": "recovery",
+      "province": "สิงห์บุรี"
+    },
+    {
+      "title": "เร่งล่าปลาอัลลิเกเตอร์ หลุดบ่อกว่า 300 ตัว หลังน้ำท่วมบึงสำราญ บ่อตกปลาขนาดใหญ่ ใน อ.บางน้ำเปรี้ยว จ.ฉะเชิงเทรา - สว พ. FM 91",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBnZWxqSFNiTE1HOFFZcnFseTR0NXRuUlh1UXpPYU1UZXJtdFdXeVZOUUI0bThwUVZrX0xzYVpOeFhWTnhNblk0TUJJcUM5YlhrZDBF?oc=5",
+      "published_at": "2026-10-16 12:11",
+      "age_hours": 14.2,
+      "urgency": "warning",
+      "province": "ฉะเชิงเทรา"
+    },
+    {
+      "title": "“เคลียร์ซอย” จุลินทรีย์ฟื้นฟูดินย่อยสลายโลหะหนักหลังน้ำท่วม - ข่าวสด",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOMVU1UzBJdWpwTWtxSUxHMXdJbDhLRkJTVE1HbVRtS00zMm42cXZZa3BmbEY3OUQxNzlOT0k5NmstY2Y2NVdXMzdwX0FVV0I5cmxUR0RVczQ1aGctQ2pvLUdhdDdZQnJTZ3dHdWF3V3YzcUZEbWgzbVdPTGxWUm9aVG5B?oc=5",
+      "published_at": "2026-10-16 20:05",
+      "age_hours": 6.3,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ปภ. เปิด 3 แนวทางเยียวยาน้ำท่วม ซ่อมบ้านรับ 8 หมื่น เสียชีวิตรับสูงสุด 2 ล้านบาท | The Bangkok Insight - LINE TODAY",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5qTVpZZF8zWEJvcXhDOTlCNFdVN2dLbnlRVldhLVdWSVR3SmpJM1g2ZUd3X0d5b2lzZmlnUDNpaGwzaWF5d2NEZTZSdEl1b3VOX1RWU25n?oc=5",
+      "published_at": "2026-10-16 10:51",
+      "age_hours": 15.5,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กรมประมงชี้ เหตุ ปลานิลลอยตายเกลื่อนคลองส่งน้ำ ปม ช็อคน้ำ ขาดออกซิเจน หลังน้ำท่วมหนัก - จส. 100",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIaDFjVGRRallCVGJpbzdGX2l0U3JqZHRJT01WMm41ZTBobGpMQ0ZTOUpidjFxdEY1c2EtdTgya04tRGl3aDYzUi1nTjB1ckhCZlJuMmFyWE1nZw?oc=5",
+      "published_at": "2026-10-16 17:42",
+      "age_hours": 8.7,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "“บอย ปกรณ์” เล่าเรื่องสุดสะเทือนใจ หลังลงพื้นที่ช่วยผู้ประสบภัยน้ำท่วม - TNN Thailand",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE80NGlIWElwa0IybE44ZlFHeDkyLU8xMm9DX1RGeEhyT2l6WGlQbmlrblczMzJPZmstbmxFLWpHOFdtRm5DUEQ1bjg3bF9IWEVlT2xSWklqNEZmTGppRXc?oc=5",
+      "published_at": "2026-10-16 21:36",
+      "age_hours": 4.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "FIT Auto ส่งต่อความห่วงใยผู้ใช้รถ EV ชวนตรวจเช็กสภาพรถหลังน้ำท่วมฟรี 35 รายการ - สำนักข่าวบางกอกทูเดย์",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiyAJBVV95cUxPdUZrQVlRdGhtcHVmTlM5NUVCanFaamdhTUJUdThLTkdmVFh6TmFJaXZZNDBYVHFGS0c1QU41cDZGOG9qVkJjRVBtSldacGJqTHpReUxUaEpOZU1xZk9UYXN2aHVobjlpUHdyVnRKQk9tOGxlSGtuMGllRml4MEtYcnM0R3E5bTdtVUJDNWJXbjc0TVZxQk1mcWt5THdxc09ncHRBQ1pYSzNidGpWemJvUDVpZVNWZE9VRUYwMmNBYWwtbUU5dFJ6clFVZDFzMDZ5Mk1ZQTBEeVFIS0UwQV9aR08yVWMyRThvT3ZjWjBIZGpXMFJKTWhsczNvdDAwUjVTemhpT0tzOWNKQ3pVa1k4S3dWOERlZjNWRmxwZFhIOGMzQVB2QWpseV8tTW9HSkJ1djJVSjJqZHljTDdEYTN6Q3l6ZHJoc3RX?oc=5",
+      "published_at": "2026-10-16 23:55",
+      "age_hours": 2.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "แม็คโครผนึกกำลังภาครัฐ-เอกชน-ท้องถิ่น ร่วมขับเคลื่อนฟื้นฟูชุมชนหลังน้ำลด เริ่มที่สิงห์บุรี ก่อนขยายสู่จังหวัดอื่น [PR] - Brand Buffet",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQV280T1ltcFBYUEtFVlJiS3FnbGZxeHYybjF6cGVIREZlODBMcW9jbjNQSHgwbFlMV2JfdDlfRjBrd3ZXaUwxdXJjUkx0VjRoSXV1OGFmLWxzTTA5aEdRVC0tcU9KZlo0cUxiYU9NRXJkTmZKSzlCRUFGNzBaQ04wQVdoOGhIR2c1RWdLT3hoM3N4eUt6QTJFWEV2ckZ0bHNidHZLRHlRSXMtQjZacWx1SktxMA?oc=5",
+      "published_at": "2026-10-16 11:32",
+      "age_hours": 14.9,
+      "urgency": "recovery",
+      "province": "สิงห์บุรี"
+    },
+    {
+      "title": "'พาณิชย์'ผนึกเอกชนจัด ไทยช่วยไทยสู้วิกฤตน้ำท่วม ลดราคาสินค้า 78% - Head Topics",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5tdnRISEU4RHFLd3A2YlhUWXZNaE5VLVdTMV9qTlVaZ3laWkh3UzlBXy1tcXdBR01SRkgyWE1Ib2R5cEhWSEZkSGFxS1c0a1ZqTGNaUFZ5cm1RbjF0dW1oNFFfWW8wZ3ZhZnE1cXFB?oc=5",
+      "published_at": "2026-10-16 15:37",
+      "age_hours": 10.8,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กทม. โอนเงินเยียวยาน้ำท่วม ช่วยเหลือผู้ประสบอุทกภัยสำเร็จแล้ว 165,045 ครัวเรือน - Thairath.co.th",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE51MThKSHRKZmk3QldBVlJqNWRDaEw0cXI2ak1QZHAxaWY3ZGRHVmNYLWhrb0lZSU5PNjlaNC1PaWN0XzBTYjgyOTRzMUxCT2xfc0dPM2thUHdGbWs?oc=5",
+      "published_at": "2026-10-15 21:11",
+      "age_hours": 29.2,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "‘อธิบดีเซมเบ้’ เผย 3 แนวทาง รัฐเยียวยาผู้ประสบอุทกภัยปี 69 แจ้งความเดือดร้อน 4 ทาง - เดลินิวส์",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBHc1RWRXM1dUNxcGhheElrcTlVQmVVRERVdS0tdTlhMVVOWUxwX1gtX3BCdWVsaVFuQWJSakJTa2ZlbnF4YUh2dlRHa0dXZy1jdk5J?oc=5",
+      "published_at": "2026-10-16 10:58",
+      "age_hours": 15.4,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "OR ห่วงใยชุมชน ลงพื้นที่ อ.บางคล้า มอบถุงยังชีพ บรรเทาความเดือนร้อนผู้ประสบอุทกภัย | The Bangkok Insight - LINE TODAY",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9yQ0RXMGR6cUJpSVJyRDRqSGNyMjFSWDRMRXd3NkhYYU82NjhtT1FlRHNmcVh2WG9aaE1NV3Q3T05EX2cxWWRTZ2FQMGRLblRWdERjbl9n?oc=5",
+      "published_at": "2026-10-16 11:49",
+      "age_hours": 14.6,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ในหลวง พระราชินี พระราชทานถุงยังชีพแก่ราษฎรประสบอุทกภัย จ.กาญจนบุรี - เดลินิวส์",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9OSFFxSHdPR01hY0ZpM2ZtelNJQXprT2kyczB3R3lKTFRKY3liVGFyWnJkeVFnM2ZEVURDcUJMbnIybGdpVThVQlNJTmpZOGN4UzlN?oc=5",
+      "published_at": "2026-10-16 21:30",
+      "age_hours": 4.9,
+      "urgency": "recovery",
+      "province": "กาญจนบุรี"
+    },
+    {
+      "title": "‘เยาวชน ISVClub’ จัดวิ่งการกุศล ช่วยเหลือผู้ประสบอุทกภัยไทย - ข่าวสด",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE52TFFGTVY0NU9oNnBkaFZOdHZuWWluR2M3OG9BWTQzZk1ZTVhCRTJ6Mld6VzR2NzliRHVNdEwyV2RFdzlaSVNKOERXVWNOVHpUSTFHb25lWWhuU1VoVkF6bXJB?oc=5",
+      "published_at": "2026-10-16 08:56",
+      "age_hours": 17.5,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "\"พิพัฒน์\" มอบ “สาโรจน์” นำคณะแก้ปัญหาพื้นที่เสี่ยงอุทกภัย จ.ระนอง - TrueID",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0zZDZvaG81a253N1Ytb2lQNXVkZ3FLMXlmWnFiMXBXcU9tODhYcEVYZUJyb0JSV0RhajZlLThiWGdlZHQxZDVZQlh2U2JScEdFMTFMcjh3?oc=5",
+      "published_at": "2026-10-16 17:07",
+      "age_hours": 9.3,
+      "urgency": "warning",
+      "province": "ระนอง"
+    },
+    {
+      "title": "จ.สมุทรสงคราม ประชุมคณะกรรมการให้ความช่วยเหลือผู้ประสบภัยพิบัติจังหวัด (ก.ช.ภ.จ.) กรณีอุทกภัย ครั้งที่ 3/2559 - สำนักงานประชาสัมพันธ์จังหวัดสมุทรสงคราม",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPZnBlTnhxVjhpRWVHOTgxbnFveVRFRWpGb1NxcTF5X0s3VXk5WFE3MTJpRGhCTi1SVnhrVE93c2h0WnBGdno3R21OVHBqeTREZnFMRHBOendQN1doSzVDcVRzVzd5MFEtNkd0VmNYSGJ0aGtnZlBQd19WUGlPQ0FCTE9KWEs?oc=5",
+      "published_at": "2026-10-16 11:25",
+      "age_hours": 15.0,
+      "urgency": "recovery",
+      "province": "สมุทรสงคราม"
+    },
+    {
+      "title": "จ.เพชรบุรี ประกาศพื้นที่ภัยพิบัติครอบคลุม 24 ตำบล อ.เมืองเพชรบุรี - Thai PBS",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9RdkRaUlZOVzc1Vk42MEU2eWVNLXZFNHQ0UmJVME5IOUFPRU9tdnpNd0NvWlh2dTdoM2Z3TTdacnpYcUZQcFlvT0llS3M0WkVEZlVGZVd1MzQ?oc=5",
+      "published_at": "2026-10-16 12:23",
+      "age_hours": 14.0,
+      "urgency": "warning",
+      "province": "เพชรบุรี"
+    },
+    {
+      "title": "SPRC ร่วมกับ คาลเท็กซ์ เดินหน้าช่วยเหลือผู้ประสบอุทกภัย ต่อเนื่อง - มิติหุ้น",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBrYUJqWC00dWNKV0s4aGtlVmQ3QV9GMG5MQzJHTGJuNWJVclRVTGh0cjlILUdYZFpnRFJBeVFNNHpWanpQYUp2SlB5ZXZQdlRndnkydGVB?oc=5",
+      "published_at": "2026-10-16 15:15",
+      "age_hours": 11.2,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "มท.3 กำชับทุกหน่วยงานบูรณาการช่วยเหลือ-เยียวยาผู้ประสบภัย กปภ. ระดมสนับสนุนน้ำประปา-น้ำดื่ม บรรเทาความเดือดร้อนต่อเนื่อง - js100.com",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9tS1RKTElHOEdnaldOdzFoWjNuMXF5X0haYUM5VThGelRSdEFMaExVY2ZCVzhPUG5hbk1adWg2ekRMcHRTcnVWUHl1Z2pPd3pxbWU5cFFNMzNLVi1tYUZ5cXBR?oc=5",
+      "published_at": "2026-10-16 15:24",
+      "age_hours": 11.0,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "\"สส.เชาวลิตร\" จับมือ \"สนธยา คุณปลื้ม\" มอบถุงปันน้ำใจ บรรเทาทุกข์ผู้ประสบอุทกภัย อ.บางละมุง. - ภูมิใจ ไทย",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFAwVXU5SlNjTVpoTnpLVEZidkVtdWQ0Wjk2TWNJLW9mU1RUdFlfZVQ5b1RzNngzZE1MSTgyMVJteXRSdHNWdy1ZQUktYw?oc=5",
+      "published_at": "2026-10-16 15:23",
+      "age_hours": 11.0,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "\"มูลนิธิ ดร.เทียม\" ส่งน้ำใจช่วยผู้ประสบอุทกภัย - www.topnews.co.th",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5JOGpJMlg5SnVITnIwWS1jUkVJYXVmNU1tODVvNU5lc29uRlJ2ajdwejE3bWxoaUFyTGo5LUFqb3BkRmREV3hwZlJnTVpRYVVFeGwteWR3?oc=5",
+      "published_at": "2026-10-16 21:17",
+      "age_hours": 5.1,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เงินเยียวยาน้ำท่วม มีกี่แบบ รัฐจ่ายกี่บาท เช็กเงินช่วยเหลือผู้ประสบอุทกภัยปี 69 - thansettakij",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBLMURDZVBySnVCRFptLXgtcnZzdUlwb2t2b25sODRYZVYtMFFjU2dDMWNfbVdZZkNXZ2JXajYtRHBDZ3pCekVEZ0hsUkpOWVZKeFExcEFBTEd5ek1w?oc=5",
+      "published_at": "2026-10-16 10:32",
+      "age_hours": 15.9,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ปภ. ชี้ ใครรับเงินเยียวยาน้ำท่วม แต่พบว่าไม่เข้าเกณฑ์ ให้ดำเนินการคืนเงินด่วน! . กองช่วยเหลือผู้ประสบภัย กรมป้องกันและบรรเทาสาธารณภัย (ปภ.) แจ้งแนวทางสำหรับประชาชนที่ได้รับเงินช่วย",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMihghBVV95cUxOWWZRR254T2pQMkhzejVDUlV0ek5HcWJiMnUxTFFIUEtuaEZQWjNOckFpTWFJVWF6N096ZHFxNmdId3FKLXc1cVQ2bld3SElNUjZETlNFQ193bnZtRUhVN0J4WVBjSXkxX0lwRU41aFBDR1dtbXZiTXhSUUgweEVObUNESHNfclNfTlN1bW15Tm9iQ2dsU0R4VjVvSW9tSUdOYU5rWnAzT3g5LTh1RUdENGZ4QllrVnc0YXVfWVFPcnN5eE80eXgzLXR5M3NvYkRJYzRJQnE1N01JaDEyeUt1UzNPZkNMeG9hR2FfWjM5Q3gtcDBidC11LW5QUkFBQ2tPY2puMUVfazctTWctY1o4dzRRQnBMenZPVnFzdjNUd285RWwycmQtaEgzS3M2WWcwdUZwUmhrOUFjT1dYWkJzZmNZRTFuQ0JWYll3bjNzWklBdm5JOVFOVnNRS3B3SUphNFl3U25INHRBQXlnamM4Rm9QUmJLWHJKT3k0cE5RbDVUV2NTZU1Nc21qV1B6YVVYZXRqQkdWZDdWeTZsdkhqWWtzNmJISE9maFMxejhjcW01M0ZjRER4eXphb0EzbmJBenVfZGtiRXVUOC1NV242THBTOC1lYkJULUxpb1F3Q3NBR0h6OGZ0aHdsWEYxN1pJSmx2Wndidkc4LVR0YmxQSEhUVzQyTFg3YjAwSXlKQlVqNGZVWTIxU21yMllCMG8xSHZWbW5LdjdRQzlKNnFWNk5MYV9sZjh6WXo4WmFNLWpYTm1SZ3NVU3RoRVZ2VXJ6WDNvLVJzRVdEZkNwWmw4bGR4SW5Bd1FmZ0RfMWhtQmVfY2VMMXM4bjNMYjBQNkdWZXJ6TmFnckpoUlJwdWZzMk5ybjFLNl84YUd4dUdNaFZOTDZtT1FJNzQwS0pEN3N2QTRPNVBGMjBiZWYwSlhjc0xXWFJzLVJNakwxNXRpN29fQ2Zia1VGRzFUVzZzOXFoR0VoX2tZR001aXlDZkdjNlp6S210UUNjU24zSDlJQ1djOVJnZWRxbEVCUU5hcmNmRzhUT1M2SHF4NDJ6MGR0aUptSjMyNE9sb0pnWHJ6aVZpVVRjTWpCRC0wLXZCVTJhUkJsREJtU0l0RWNPZTJZRGc0Wk5mZkdtRHRlMHNWVWdWY2VnQW5LTHVLRnlSejF0dGxWQm1TOXhUWUh4VDJDN2FORXdKWUktbTVXZTBaSk9YcHZKSTZzREJsVWRMZlVveFl3YTYtWXdESkRTeGFJbGtvaE4zSWRqd0ZTcDhrckQtRWZxQmVPcVkzSlV2SnpWUXZzSklzQkRNQmV1M1JReG5xLXVITk5EME5VWFpoc21xUE1vcWJGZ3hFWEdrdTlPLWVyVnhR?oc=5",
+      "published_at": "2026-10-16 17:17",
+      "age_hours": 9.1,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "นายกฯ หารือประธาน ADB เห็นพ้องขยายความร่วมมือด้านการรับมือภัยพิบัติหนุนโครงการบริหารจัดการน้ำชัยนาท–ป่าสัก–อ่าวไทย ลดผลกระทบต่อประชาชน แก้ไขปัญหาน้ำในระยะยาว . วันนี้ (16 ต.ค.69) เ",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMi9AdBVV95cUxOWVFtRVRYUE91U21paHVZVThCSnVPUGRYWG5OYm1zRnU4YjZqUzV2bHFreHJiejVscEtnaVZDTmRzdHhFd25kRmt2ajBrNFRxMFZOQ3ZvdXpDVjl3ak80VTkzMlVoUk1uNGh6cUpJbzloaFFtYnVGbnpoTl9YVTNCVmJ3NjNVTVlYeXBObzlzSTBzRXk3T19aekRhZFhhcGlHSUtLZlY1MFdQS3c4WHJXc2Z5X24wM2JQc2JtNkNDN2JOSFlqd3RZN21jVGZ3djlkbXhsV2NtalE5eldzZ2k4ZW1EMDlLcWdJUkdRYU5rc2N2LWZQUGNyWnA2emJiZ21DRzhmXzZPYy1UV3RNZzkzNS1uZzRpS3A4dVMyRlNqTTZxRUJBdnVrdEN0TzY4QUQtSXFsaml3RFg1ejIxUEtUN3B3MWRGb1oxZ3lwNjFReE84aTRnLUF6TkxfRWVpODJLS1Z0ZUdqZlQ0S0pRZFNVanJXa2t1Z19kT054eUVlcTl4Rk56cW94MUZWY3puOXdValE2d3poOUdBNjctU0dRWkRDLUZ3aWlROG1Db29ZaWd0TEpLQkx4SFNJRlFzRHBCbERqVHY1MWFVTnJMVXp6YXJ2UTQwaFZoVk1UdGlOTTlUcVlfN0xBMkhyUmdLU0V0S2tqODdWYWJBaE40M3RjdUlRZ2EwaG01ZW5tbEdiZ21QWTRxMjQ2MVdtdF8xTUc0Zl9aQnF1TEp4RnVHbTdnUHdOX1JjTFFPbVBpZlRJTzdiVDZHLUFtQ1Z0QmtHWHZxYmtZdkFHQ1BQWlcyNFJGZFBDWXlFekJhWHVsOXBRWkc1Y05ZaVB3cGlwQ0Y0V09nNDZfMWhfX1FrVG5XZENRQ25SR2NXVTkyWW9wb3pGek9WcUoxc3hZR0RjeTZ3OHAxclVOV2trNGNNQ3FIQnZKNElTdVBHSnQ5djRSc1hsUGNIWmwxZ205SkVZT1JSZFVuc2hRcjdremZmNEEtcE1zbTh6M3JqODNoOTJCcXlwNTJlWkJxeXhUWWZ0RkF2emJvTGZIVExRMW9FLWg5S01kQ1RsbTdUcjY3VElvTWdHV2ltU09USGY5bUltWjV2V19QM3ZoV1I4YllzeThTNzd1TEdNSXdaNWxUV3BOTzh3MVZYaWpzb0VOWTlzLUZtVmltSy1UNXM1Z1FSWGVLUGlTYi1ZMWJyNmFwczNJZTJqSjJRNW5ZZXU1dFV2b3VLeEtPLUtTM1lXbEZDNFpPNHJiQlhhMEk4UTh6cU1zZVZ5SlZpeUtGMXFLd1lGaUJHRlFyZWVvSnNtdWZrTjQxNEdVeWd2NEpRUU1ocHRaTDd1aUtBemsz?oc=5",
+      "published_at": "2026-10-16 14:12",
+      "age_hours": 12.2,
+      "urgency": "warning",
+      "province": "ชัยนาท"
+    },
+    {
+      "title": "\"รมช.สิริพงศ์\" พร้อม \"สส.อัครเดช\" ลงพื้นที่บ้านโป่ง มอบถุงยังชีพผู้ประสบอุทกภัย พร้อมลุยแก้จราจรแยกหัวโป่ง สั่งเร่งออกแบบสะพานข้ามแยกแก้รถติด - พรรคภูมิใจไทย : พูดแล้วทำ - ภูมิใจ ไ",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9SOGEybjVIek1lRUFCdTAxbFZZSWdMTzJCZlBPQnN5aEJmdDZZRGV4TUhFNHpaZXFZUUVWcnZXTXZUT1BnWlZwLXVBOA?oc=5",
+      "published_at": "2026-10-16 11:10",
+      "age_hours": 15.2,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "\"สส.มารุต\" เยี่ยมชาวสายลำโพง มอบสิ่งของอุปโภคบริโภค เติมกำลังใจผู้ประสบอุทกภัย ท่าตะโก นครสวรรค์ - พรรคภูมิใจไทย : พูดแล้วทำ - ภูมิใจ ไทย",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9HdkdnMU9qOGhERE5pWk5ERzFHUHdxbjYwTnRqRXRTU0pmQ3FPdEFZNWVOdTNtR0l4YlVBc1BVWWp1elg1V29YMkgtQQ?oc=5",
+      "published_at": "2026-10-16 13:47",
+      "age_hours": 12.6,
+      "urgency": "warning",
+      "province": "นครสวรรค์"
+    },
+    {
+      "title": "สส.คงกฤช\" ลงพื้นที่เยี่ยมกลุ่มเปราะบางบางไทร มอบความช่วยเหลือบรรเทาทุกข์ผู้ประสบอุทกภัยอย่างต่อเนื่อง - ภูมิใจ ไทย",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5hdXBHc3BWeHhEVENUNXdRVERaZVpuZS15NGh3Vi1GNVk5MEZCNnRBeUtQWTZTOUt3MW5pb0d5UHNUY2s1QUZEa054dw?oc=5",
+      "published_at": "2026-10-16 13:07",
+      "age_hours": 13.3,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "มูลนิธิอาสาเพื่อนพึ่ง (ภาฯ) ยามยาก สภากาชาดไทย เชิญถุงยังชีพพระราชทานไปมอบแก่ผู้ประสบอุทกภัยในพื้นที่จังหวัดนครนายก ปราจีนบุรี ฉะเชิงเทรา และสระแก้ว | CH7ON ช่อง 7HD - ch7.com",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1sckZpeS1rWGItTF9nLUg4dndNV1hhM0hQZG91d204WWlYdFJmMEI5WXlJSlQ1V0dnTHNUQ1g5S3RXN29mSVFkT1ZYUQ?oc=5",
+      "published_at": "2026-10-16 20:48",
+      "age_hours": 5.6,
+      "urgency": "recovery",
+      "province": "นครนายก"
+    },
+    {
+      "title": "กรมประมงเร่งสำรวจความเสียหายจากอุทกภัย 47 จังหวัด เยียวยาตามหลักเกณฑ์ใหม่ - จส. 100",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1MeUphNUxHNm5TcmFDOEdRSmc4eTF5TjVqUUJKc1NBbXlFcmJ3Q3FTcG5hS0JUWllwVzdIdTlrWHFTamVrUVZ1MjMzdUpvWElJZ1hxdFhSSjVfZw?oc=5",
+      "published_at": "2026-10-16 09:47",
+      "age_hours": 16.6,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "OR ห่วงใยชุมชน ลงพื้นที่ อ.บางคล้า จ.ฉะเชิงเทรามอบถุงยังชีพ บรรเทาความเดือนร้อนประชาชนผู้ประสบอุทกภัย - ไทยโพสต์",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1EeEtLWXRLcDktZ0tjN05oRUZoSnM5MENPQkhZWWFIZE5lMG9TYS03N2JNN3JLck5CemZLWlJzOUFxYTMzcFhrMzJCYloyeEFfdEFESGoycTNlenBRNGpGRkgzbHlWZw?oc=5",
+      "published_at": "2026-10-16 16:45",
+      "age_hours": 9.7,
+      "urgency": "recovery",
+      "province": "ฉะเชิงเทรา"
+    },
+    {
+      "title": "อุทกภัยปราจีนบุรีเสียหาย 7 อำเภอ 26 ศพ - Head Topics",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9tOEdsbXZiMFNJQ3dHZVplUS02VUVkVFlZcHRCN0s2S21CQnZDNG5GQlVUU1VJdVpRRGJpTThrSy0tRGd5RmpHSmRmRU91SlV0ek9UTzBzd2NjRFA2UW5GMDI1aXNwS19UUGc3bHNB?oc=5",
+      "published_at": "2026-10-16 23:18",
+      "age_hours": 3.1,
+      "urgency": "warning",
+      "province": "ปราจีนบุรี"
+    },
+    {
+      "title": "เปิดรายชื่อ 20 จังหวัด 'น้ำท่วม' กระทบ 7 แสนครัวเรือน ปภ. เร่งช่วยเหลือ-ฟื้นฟู - bangkokbiznews",
+      "source": "\"ฟื้นฟู น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBWWUZQZGlZWkxhY1lKdXk1SnE3OFRoMUpCdGlBb3owckRXa0JUcFVvQ2ZqYzM1b092WFJoUl9jX0JCWEtyaTB1TGtydmlHUlF3RkxEblZLWXRYcGtLVFZQbnNLVjllQQ?oc=5",
+      "published_at": "2026-10-16 16:40",
+      "age_hours": 9.7,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "‘ชัชชาติ’ เผยน้ำท่วมกรุงคลี่คลาย 90% สั่งลุยฟื้นฟูเมือง-เร่งระบายน้ำ 6 เขตฝั่งตะวันออก - thestandard.co",
+      "source": "\"ฟื้นฟู น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBReVRqdXR3MUZIMkdldnptdHNZbkFTVW5DU3MwZWpjVy1oSThxeFlJNTRSRnNkby0yN1VIeDQyVGhINGNyZmpNcUEtRmlOcG5tNzh4dlZtdUFyRTdzZzZSMG1NUmtlal9WSXpmbFpERkdXbTA?oc=5",
+      "published_at": "2026-10-16 07:59",
+      "age_hours": 18.4,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "TFM เคียงข้างเกษตรกรและชุมชน ฝ่าวิกฤตน้ำท่วม เดินหน้าเยียวยาและฟื้นฟู เสริมความเข้มแข็งห่วงโซ่การเพาะเลี้ยงสัตว์น้ำ - เทคโนโลยีชาวบ้าน - ข่าวสด",
+      "source": "\"ฟื้นฟู น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9wbmJjbHdueXVDb2RXYXJ2ZHBUSzRhUU0wSmcyYnNHQy1SUXZSelU4UkphRlFTNGthZVlwV3ZPeTdOeFpxN1BhZUd5czdRdU1ESnJhTVBDY05OQW9qeHl2a3k0TTR5MjFGNUh1SHBrSEl1V2lzbDRyOA?oc=5",
+      "published_at": "2026-10-16 13:56",
+      "age_hours": 12.5,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ค้าปลีก-ผู้ผลิตยันสินค้าพอ ไม่ขึ้นราคา รับน้ำท่วม เหลือ 29 สาขาปิดชั่วคราว เร่งฟื้นฟู-เติมสต็อก - มติชนออนไลน์",
+      "source": "\"ฟื้นฟู น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9FRmI2WmdmZHZubXV0cXdqV1VRV0luR3FSbjE1S2lqTmJXOWt0QjRGdjItYkFicnRBVW1pY2xDZkthUWtOdndXeV95OW96Nzc5X0tBMVd2S0M5bU0?oc=5",
+      "published_at": "2026-10-16 10:23",
+      "age_hours": 16.0,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กุ้งไทยอ่วม น้ำท่วมเสียหาย 2 หมื่นล้าน ร้องรัฐขยายเพดานชดเชย - ข่าวสด",
+      "source": "\"ฟื้นฟู น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1vQm4ybVMzbVVwNERFaXVEWWxoZzk0eVlmTGNJclBBQVpuakRFMU1pMEpXb3JEaEtxdWdWb2Zsa2lxNXRodThOQkNLRjM5ZkxvckhyVFlCWW1DNE5Nenc?oc=5",
+      "published_at": "2026-10-16 11:34",
+      "age_hours": 14.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "An eerie trip inside Thailand’s oldest amusement park, deserted after flooding - The Guardian",
+      "source": "\"flood Thailand\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOWkJaVEtjMGM3cmJRMVlYSjlfaXh0VC1acm5rSnQta1dUZnZobUJ2Ty1HN2JsRGJZT2w5TGpGRVFJY2tEeDhRV3dSd0VwTHQ2cTQwWldZS1dlWmVpNHFLelpoNlBWMEpTYmUxblVVaWl0Y1dvaEp6ZXhteG5DQXZETXhta3lMYUVXa2gyUzE3bjlQR25WVGh1bFRSY0NfbnVrZjJrbXF2Yzctc29zQzRXNldwTUtOanVB?oc=5",
+      "published_at": "2026-10-16 08:46",
+      "age_hours": 17.6,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ส.ส่งเสริมผู้ลงทุนไทย ชี้ IMF-World Bank 2026 เปิดโอกาสฟื้นเชื่อมั่นโลก เผยศก.ไทยโตต่ำกว่าศักยภาพ 3 เท่า จับตาเงินเฟ้อพุ่ง-หนี้ท่วม",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/economy/news_5936196",
+      "published_at": "2026-10-16 21:28",
+      "age_hours": 4.9,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กทม.เล็งปรับถนนบางเส้น เป็น ‘แนวป้องกันน้ำ’ โกยเจ้าหน้าที่ 500 ชีวิต ลุยฟื้นฟู 15 เขตให้จบในเดือนเดียว",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/local/news_5935972",
+      "published_at": "2026-10-16 17:35",
+      "age_hours": 8.8,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    }
+  ]
+}
