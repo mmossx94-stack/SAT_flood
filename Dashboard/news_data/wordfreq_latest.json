@@ -1,90 +1,111 @@
 {
   "date": "2026-11-04",
-  "article_count": 46,
-  "updated_at": "2026-11-03 19:14:01",
+  "article_count": 44,
+  "updated_at": "2026-11-04 00:27:18",
   "method": "tfidf",
   "note": "คำในข้อมูลนี้ผ่านการคัดกรองด้วย TF-IDF และเพิ่มน้ำหนักคำกลุ่มเฝ้าระวังน้ำท่วม",
   "word_categories": {
     "ฝนตกหนัก": "monitoring",
-    "ผู้ประสบภัย": "relief",
-    "เงินเยียวยา": "general",
     "ครัวเรือน": "general",
+    "เงินเยียวยา": "general",
+    "ผู้ประสบภัย": "relief",
+    "ผู้ประสบอุทกภัย": "relief",
     "ถุงยังชีพ": "relief",
     "ทอล์คนิวส์": "general",
-    "ผู้ประสบอุทกภัย": "relief",
     "ออมสิน": "general",
     "ธนชาตประกันภัย": "general",
     "เผยลูกค้ากว่า": "general",
     "จุด": "general",
-    "บุ๋ม": "general",
-    "จี้": "general"
+    "ฝนถล่ม": "general",
+    "ลอกท่อ": "general",
+    "ขุดลอกคลอง": "general",
+    "ประกาศกรมอุตุฯ": "general",
+    "วราวุธ": "general"
   },
   "word_freq": {
     "th": {
       "ฝนตกหนัก": 5,
-      "ผู้ประสบภัย": 3,
+      "ครัวเรือน": 7,
       "เงินเยียวยา": 5,
-      "ครัวเรือน": 5,
+      "ผู้ประสบภัย": 2,
+      "ผู้ประสบอุทกภัย": 3,
       "ถุงยังชีพ": 2,
       "ทอล์คนิวส์": 2,
-      "ผู้ประสบอุทกภัย": 2,
       "ออมสิน": 2,
       "ธนชาตประกันภัย": 2,
       "เผยลูกค้ากว่า": 2,
       "จุด": 3,
-      "บุ๋ม": 2,
-      "จี้": 2
+      "ฝนถล่ม": 3,
+      "ลอกท่อ": 2,
+      "ขุดลอกคลอง": 2,
+      "ประกาศกรมอุตุฯ": 3,
+      "วราวุธ": 2
     },
     "en": {
       "thansettakij": 2,
       "claim": 2
     },
     "combined": {
-      "ฝนตกหนัก": 100,
-      "ผู้ประสบภัย": 60,
-      "เงินเยียวยา": 100,
+      "ฝนตกหนัก": 71,
       "ครัวเรือน": 100,
-      "ถุงยังชีพ": 40,
-      "ทอล์คนิวส์": 40,
-      "ผู้ประสบอุทกภัย": 40,
-      "ออมสิน": 40,
-      "ธนชาตประกันภัย": 40,
-      "เผยลูกค้ากว่า": 40,
-      "จุด": 60,
-      "บุ๋ม": 40,
-      "จี้": 40,
+      "เงินเยียวยา": 71,
+      "ผู้ประสบภัย": 29,
+      "ผู้ประสบอุทกภัย": 43,
+      "ถุงยังชีพ": 29,
+      "ทอล์คนิวส์": 29,
+      "ออมสิน": 29,
+      "ธนชาตประกันภัย": 29,
+      "เผยลูกค้ากว่า": 29,
+      "จุด": 43,
+      "ฝนถล่ม": 43,
+      "ลอกท่อ": 29,
+      "ขุดลอกคลอง": 29,
+      "ประกาศกรมอุตุฯ": 43,
+      "วราวุธ": 29,
       "thansettakij": 60,
       "claim": 60
     }
   },
   "tfidf_scores": {
     "th": {
-      "ฝนตกหนัก": 5.6288,
-      "ผู้ประสบภัย": 3.637,
-      "เงินเยียวยา": 3.1867,
-      "ครัวเรือน": 2.5116,
-      "ถุงยังชีพ": 1.9294,
-      "ทอล์คนิวส์": 1.7195,
-      "ผู้ประสบอุทกภัย": 1.6413,
-      "ออมสิน": 1.5006,
-      "ธนชาตประกันภัย": 1.2862,
-      "เผยลูกค้ากว่า": 1.2862,
-      "จุด": 1.2862,
-      "บุ๋ม": 1.0942,
-      "จี้": 0.7369
+      "ฝนตกหนัก": 4.5605,
+      "ครัวเรือน": 3.4885,
+      "เงินเยียวยา": 3.1439,
+      "ผู้ประสบภัย": 2.9664,
+      "ผู้ประสบอุทกภัย": 2.0665,
+      "ถุงยังชีพ": 2.0394,
+      "ทอล์คนิวส์": 1.6995,
+      "ออมสิน": 1.4832,
+      "ธนชาตประกันภัย": 1.2713,
+      "เผยลูกค้ากว่า": 1.2713,
+      "จุด": 1.2713,
+      "ฝนถล่ม": 1.236,
+      "ลอกท่อ": 1.236,
+      "ขุดลอกคลอง": 1.236,
+      "ประกาศกรมอุตุฯ": 1.236,
+      "วราวุธ": 0.9888
     },
     "en": {
-      "thansettakij": 7.5031,
-      "claim": 1.7864
+      "thansettakij": 7.4161,
+      "claim": 1.7657
     }
   },
   "articles_preview": [
+    {
+      "title": "ถนนพระราม 2 ในพื้นที่สมุทรสาคร มีน้ำท่วมขังเล็กน้อย ช่องทางหลัก | สวพ.FM91 - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9QODJaaC02bW1sbXNzRzVaMWJJOG5VakdvdERMYmdYUm5WZEFHN0pBNWxsOWFucVA2a0lYdXd2ODRLZndwRktKT19HVzZTSVpZYTJIME5R?oc=5",
+      "published_at": "2026-11-04 07:06",
+      "age_hours": 0.3,
+      "urgency": "warning",
+      "province": "สมุทรสาคร"
+    },
     {
       "title": "ปภ.เตือน 61 จังหวัดฝนฟ้าคะนอง ภาคใต้เสี่ยงน้ำท่วม 5-9 พ.ย.นี้ - Thai PBS",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9oU0RaNTZ0ZmdZT1M2M18yRmlfaXhURjVNVFMtZmpicHRBaDBMOWVUOFJ0Y2ZNMHdjRGVGWHlOOHZpYVpsNlVSb2tZLVdDZmMxa2V3eVNXR0c?oc=5",
       "published_at": "2026-11-03 16:07",
-      "age_hours": 10.1,
+      "age_hours": 15.3,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -93,25 +114,25 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBMd3dhSHdjd0VaUlBzN1BhNDhmQzg3aGJzTVladjVNRkpEaVA0eEpsZDZPb043NXJBbEVjaXVTUjRiQThiQTR0RC03a1I5VDZhczhiT2U5dk1CdUNk?oc=5",
       "published_at": "2026-11-03 21:26",
-      "age_hours": 4.8,
+      "age_hours": 10.0,
       "urgency": "critical",
       "province": "ภาพรวมประเทศ"
     },
     {
-      "title": "ฝนถล่มหนัก 2 ชั่วโมง น้ำป่าทะลักท่วม อ.กะทู้-เมืองภูเก็ต สัญจรลำบาก - Thaipost.net",
+      "title": "ประกาศฉบับ 4 อากาศแปรปรวนทั่วไทย! ฝนถล่ม ลมแรง ลูกเห็บตก ภาคใต้เสี่ยงน้ำท่วมฉับพลัน - pptvhd36.com",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9KYmZ3ZGZxZnZjNHFCcHRCQV9aVnRvN0pTZy05VHRRUjRRdmtfN3EwS1pMUjZBb210TjhaWExlUGxYUzFSb2xOWnlaN2dWVzB3amdMWUliMEtlaGc?oc=5",
-      "published_at": "2026-11-02 20:46",
-      "age_hours": 29.5,
-      "urgency": "critical",
-      "province": "ภูเก็ต"
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOS3Q3OFJMdDRVX2dPdmtJM0NFMzE3c3JOWllSTnhkV1phY1F4MVBURXVfU0p3NDZGUldrN1JjM0x5dllXWG5WWGt3UVl5ZHhrUmx1M1FFYnZFYUIxVVhlQlQ4OU95bHZsVk90aG0xYVRpOHoyLWJrVk9GR3lFcGozSVFHMnpSUGdweUE?oc=5",
+      "published_at": "2026-11-03 07:08",
+      "age_hours": 24.3,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
     },
     {
       "title": "น้ำท่วมเพิ่งลด! พายุถล่มอยุธยาซ้ำ บ้านไม้เก่าหลังคาปลิวครึ่งหลัง ยายวัย 79 ท่องคาถาสู้ลมพายุ - ผู้จัดการออนไลน์",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBvQlRLUnRIbDFidnp2dWZobnR2MGtvczRabllXR2lnSDY5bTNvZVI5UUg2clZmM0Y2bEJEV2toZ3lIUDFPNXlzUnlReTVzOWEtSDZOZ1ZRaDNjLU9T?oc=5",
       "published_at": "2026-11-03 18:38",
-      "age_hours": 7.6,
+      "age_hours": 12.8,
       "urgency": "warning",
       "province": "อยุธยา"
     },
@@ -120,26 +141,8 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE50dmNVVEJyQkRBVDVMX1VoeEY2dnpzUnlnZUVpNmZRM1h4RjJWaXllQ1BXTFE1MHU1R2J0SXA0cWJwdDZLeXB5bTNqN3Bpc0JqNzY1ejczQm5iWlVpTjNYNk1HdEZxWjhNeFE?oc=5",
       "published_at": "2026-11-03 16:00",
-      "age_hours": 10.2,
+      "age_hours": 15.4,
       "urgency": "critical",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "“หนุ่ม กรรชัย” เผยบริจาค 1 ล้านช่วยน้ำท่วมแม่สาย รับช็อกข้อมูลขัดกัน “บุ๋มไม่รู้เรื่องสร้างบ้าน” สวนทางคำพูดช่างเอ๋ | THE ROOM 44 CHANNEL - LINE TODAY",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9VUW0wZm9LRVlLLWxiYTlIVkVwN0gtcFZuUlBjUFRhcDgtb2VacUZINTU1bmlSMFp6QWo3SUlORDhtNzkxY3pabFhTN1Y4WEJqMjYyNHpn?oc=5",
-      "published_at": "2026-11-03 16:56",
-      "age_hours": 9.3,
-      "urgency": "recovery",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "เงินเยียวยาน้ำท่วม 2569 โอนจ่ายสำเร็จแล้ว 73.31% วันนี้โอนอีก 9,290 ครัวเรือน - Thairath.co.th",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9VN2tRSVNHZGJaZUhrWmUwUkVIZjF2QkVzUEEyV0g3LThFOXZhTFI4RnFYMl9SNmV5a1dYVTBZNTF6QktCNVNybFVXdC1WOHNzZm04VWdiMFU?oc=5",
-      "published_at": "2026-11-03 12:46",
-      "age_hours": 13.5,
-      "urgency": "recovery",
       "province": "ภาพรวมประเทศ"
     },
     {
@@ -147,7 +150,7 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5fS0VaQXRDdDU2bDdtQUU4QVRvVk1zWllxbmdNTHZsX3piek9DNzkzQkhoQ0l4VElGeWdBOWRfMl8zVzNBSzNYS3JzS3E?oc=5",
       "published_at": "2026-11-03 15:02",
-      "age_hours": 11.2,
+      "age_hours": 16.4,
       "urgency": "recovery",
       "province": "ภาพรวมประเทศ"
     },
@@ -156,7 +159,7 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1lWjhWX1dUb2V4Nm9NYzNwemRXMS1wNmRadlFlR2hVc3dKV3EtRzEtb1JWOTVWU1lxT25CSml4RkdPRUhjMXZxQVBBQUN3YUpVSVhEUDFwbUx3bjA?oc=5",
       "published_at": "2026-11-03 17:22",
-      "age_hours": 8.9,
+      "age_hours": 14.1,
       "urgency": "critical",
       "province": "ภาพรวมประเทศ"
     },
@@ -165,7 +168,7 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5BVGFtZU5vOU1ZNWtjbzNYRVFWai12TUZVUE1TODZJMl96eXl6ZVB0VUVGV2RwZmNpYmM2YV9UeVZaYl96bW1xSTh4TktURkx3T0U1NWs4N3VuZWNJclE?oc=5",
       "published_at": "2026-11-03 14:10",
-      "age_hours": 12.1,
+      "age_hours": 17.3,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -174,7 +177,7 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1udVlwRjhlUVphMENPRVRMUjB0U1dSVGF4QkJJdVlKaHJSRjc2SzI1YUtreG5Tdnp0Q3p4Nk9WS2ZEMmxEeHpNUXFucmtlZzJQX29nTFg5WkoxNnREQ1lYamRR?oc=5",
       "published_at": "2026-11-03 19:10",
-      "age_hours": 7.1,
+      "age_hours": 12.3,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -183,16 +186,16 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1Yd1VTbHNMekU5RUN2NVNMXzQzMzR6N3JYUmVydjMzZF9mSkFtbDBkVFVMQTlNLTFyRkpIb3lKdkp4TS03OFRKaXA5aS1HSHZPeHRpUkd6WQ?oc=5",
       "published_at": "2026-11-03 09:35",
-      "age_hours": 16.6,
+      "age_hours": 21.9,
       "urgency": "recovery",
       "province": "ภาพรวมประเทศ"
     },
     {
-      "title": "POLITICS: ‘ศุภณัฐ’ จี้ กทม.รื้อตารางประเมินค่าวัสดุซ่อมบ้านน้ำท่วม ซัดอาคารราชการเบิกหลักหมื่น แต่กดราคาซ่อมบ้าน ปชช.เหลือหลักร้อย ใช้เรทต่ำ ไม่ครอบคลุมความเสียหายจริง วันนี้ (2 พ.",
+      "title": "🚜เคลียร์ทางน้ำตลอดปี! กทม. ลอกท่อ–ขุดลอกคลองต่อเนื่อง เพิ่มประสิทธิภาพระบายน้ำ (3 พ.ย. 69) นายเอกวรัญญู อัมระปาล ที่ปรึกษาของผู้ว่าราชการกรุงเทพมหานคร เปิดเผยถึงการดำเนินงานลอกท่อแ",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMisgdBVV95cUxOMk5GUDNPSjdVZElldndRQzFFbWVxOW96cFFBbHNVRHplTlJRd2RaSVBka1YyXzMzcDhFbnJCT1hZb1pnai1KUVpqTEVkQlJWejZyZ1R1aXE0cDgtZ052WWlCd01Nd282UTBfMTlkOWxLMnlFN1hDMnN0OWotY3hWMno1MkxkTDhOYmxDb0VGbGtral9PQUhMeExJT3BSelpGdHF2RnZrcjIyRlN0bWdGU2l6dUM3LTRsMEVHMzNDRHppRDk1eTZzcjNnWTdlXzBXdXY4QVppTEJTSXhnZjlCNnFoa0ZxblVIN2tVeWtieVFwTmNyTWxTYlhsZjhuV1RmdUUtX2xXdS1JYlFLQk1qSjZaYnIzVERKV0VtanB1bWZLN1kzT1R3eXNRZnpGMVR4a0JyWXFhdW51VkpCeWNhNXlLWlVvWm1KZDRhNVl6Qnhva0szNlU1bWhBaWpiS2xDRDU4cU9tblRmY1FyYld1UXZpVDRtb2ZINmt4V1VxVjlzLV85QVRaMURaWTZnRk0wNzB2MUFXTlRpbEJMN1JKMmV6YjQxU21qcDkyMndQZFJRUXlWTkxtaGhmTTB1ZlFodjRUS2lBS2RERjNfZFNlZDRoODRKUU1jSUZEa3dZalNsVFZiVGpZWFJLa1pqY2FoSnJ6QllRLTZfUzN1cHE5TkNhYk1adVozNm1lbVRSeEh4ZU1PWDVtQjRuU1AzZ2tQZVo3Ri1wRzhjNXlpREs1V2lSMWFZeUZtSGdyR1VqOVZoWU9felVWWkdwejlUXzg2N1dVQzBuODdPamlFQ0EwbEY2VVVfODloR05ndW1MSzdWNm9HVE5fNlBTYklwNkUyWXV1VWFQT1FVeVN4aFpWWjBnTnFGbHkzMm9kS2lieHFUcDVSNjZzNlNvTk04d2xiNmFVQVV4ZnVmdGNPXzU1VUlFd0tDNXJaNEwxQ3I5QzA4QmdFLXFrRHdxVWVWeU9nNlR2MVktUTBVSERiVWhXRW9ZdGJOcU5ZUGgySEt2dVAzeGhheXBQY2FTemxxbi1pdlZ3Y0R2cjZHd1FhUVhaSlAtZHFmXzlzMkowTWJmMVpZRVUwUDZPdmtJRDBPeU02bkZwWG01ZmljcE04enNJR09ZbXoweFFNcDBvUGwzTVlvY25HckprT1hwVlVGdVFPQ0lVYUVLN2Z3eWgtOVh6Z1lleVZGdzBsMlFocVZEVUpKeFZWc2wxTzZ5cVpIOXpjTEhjZzhVdmF0b1lCcFJQNWZ3?oc=5",
-      "published_at": "2026-11-03 09:09",
-      "age_hours": 17.1,
+      "url": "https://news.google.com/rss/articles/CBMi4gdBVV95cUxNUnA2TXBYd3JoVUk4NmRHcFNsVVptSkg3UGxFaFBpa2lnM2NRaFkyNkVKZkJtOXJGOFF3d29pRWlPUTNMeTRyMmFDODFVLTVmSk9McU1KbjVuOWotTWZ4QktaMnliWTRaaXZYTnpnblFZbG5ReHZlNFZVa1ZsQkwta2VnY3drNzZ0TUtVQ2xiZEpOSVpRZXFQY3lXOHlSaUtOVDNaeFB4ejFndjBSRGtVdkNJWnFWRTlIeHpta25DbkZ0UXZvUW1hWUxMQUV1dVZ1ZEI3eDB2UWQ2VkxzU1J3WmMtTXRNZVBaOHNBdEdQSlY1U05kQXF5YkVVZnJjTFI2TEhWcG5qY1ZYbFVYZzNFMDR4T21xX25BSS1nWFdCVnlMMFZQbm9nZlBWd0hxLXNucHh2TGROMGNpMUNDcy1yUFdFRHR6TGZ3c0ktSHpiNXgwcm5tY0gzNDRHNTF6WkVLU2FibmtpWHVpTjBRNGNxeURKUkVDdFVNemQ2eGlGWHFiNDZDQ0ZLZjNUU2FVekp1eUV1TW95S3hDN3Y0cTJfZjEyV29tV1BXQ19rRTFFM2UwQzhYcW04ejZOSFQ5NkFSZWtvOUU3ODZuTFl6U29nam9pOEkzZlZJR3AybjBqUS1mTjloTEJiVUFMaW5pc0Z1STdsbHFVYU5MeW53d0k5c2g2ZzdQa2R3UmVkN280LTJXc1dNZjV5eDJVS0tOTUFjZXUxTWpmZi0wMGlIMXJDWWJsNkotUm1JNmQzUWpPRm5oS01HTEROZUQ4V0xCbmNGZDhweEw2LWZ0dkZjTUw1djM4UEozWjlCdi14MWpla1VOaDVIRWJtRy02dXFuNkJBNlZYRFhWc3JJR2F4MFFlbzdkTUt5OGppSl8waHFqVVpZOXZha2ZhNS11YVFYYUU5bHNYdGs1WVZIZ3pJVFJ1TGNYcXNORU5FX04tNmlGbk1CZFBndnNZQV9rajNJTmNPbTlWSXhYakpQejJKQ21ZQXprUWhlQ21PR0p4Zlg0c3dKeFdxV2NYbjRsdm5aNWNOOUhia0hWdGx4bl9DM2EwT0tUbFdxNUNsdGNxNkY2TkhKVUpIYUhBb0kwb1pKWXhkZ3RNN01kYldXQ0VxRkFGeDB3UVNUY1lmSEVhYVNPRVhxRm5DTUtObXFLWkp0RFJJWTFGWlpHT1NVTTRYbWJJdEdERDJGQkxtSWlkeG1fZlNPZktmdWlGbEkzQjk5aTRla1RIZG9RRjdsUk1YZGhHdklSeHFQbEJyNzdCQWhWUHh2WWoxTDJYNlNjSTZULVF4akkzTVZ4NU1EVEppcVhKV2VB?oc=5",
+      "published_at": "2026-11-04 04:10",
+      "age_hours": 3.3,
       "urgency": "warning",
       "province": "กรุงเทพฯ"
     },
@@ -201,34 +204,43 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBtQzdWRlFpd0JqbHpaM18tS21paU40TjgwZDVxOWdYdUd3M21DeE40dlFsZXhNekpFSnZKVzEtU08tUzR5eEdybDMzUTBNMDhnZU80bUd3?oc=5",
       "published_at": "2026-11-03 14:14",
-      "age_hours": 12.0,
+      "age_hours": 17.2,
       "urgency": "warning",
       "province": "นครนายก"
-    },
-    {
-      "title": "ครูวอนช่วย รร.คลองหลุมลึก 146 ชีวิต ขาดแคลนตู้น้ำดื่ม สื่อการเรียน หลังโดนน้ำท่วมยับ - ข่าวสด",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE84TXdfTzRrZThpZFRZNDViTDF3aVJtakpORERlUDdGUmItNHh4eWVXdTJkVW9raHRzbkNIeFRwV2pkT2JDX0F1MmttUnNRRU5wOVMyUndKR0ZMMnZnc0dtODY3MnFrUQ?oc=5",
-      "published_at": "2026-11-04 01:02",
-      "age_hours": 1.2,
-      "urgency": "warning",
-      "province": "ภาพรวมประเทศ"
     },
     {
       "title": "ธนชาตประกันภัย เผยลูกค้ากว่า 70% เลือกใช้บริการ Photo Claim ช่วงน้ำท่วม ชู Tech-driven Customer Experience ยกระดับบริการเคลมรถยนต์ให้ง่ายในภาวะวิกฤต - Marketing Oops!",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1wLU9xT2RaVEh4elc1Nk1BRnEtR3BHemx6X1lVWEJXeWZ1YzJPS2xidl9sUmxiSlRpYk9kVjhhbHhkZ3NqekJic0h5SWRwdEIxRy1hZVhnd0U4YVlSM2sydzlfR3lXZDdGcjBnZ3BvTUFJZ00?oc=5",
       "published_at": "2026-11-03 16:04",
-      "age_hours": 10.2,
+      "age_hours": 15.4,
       "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เงินเยียวยาน้ำท่วม 2569 โอนจ่ายสำเร็จแล้ว 73.31% วันนี้โอนอีก 9,290 ครัวเรือน - Thairath.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9VN2tRSVNHZGJaZUhrWmUwUkVIZjF2QkVzUEEyV0g3LThFOXZhTFI4RnFYMl9SNmV5a1dYVTBZNTF6QktCNVNybFVXdC1WOHNzZm04VWdiMFU?oc=5",
+      "published_at": "2026-11-03 12:46",
+      "age_hours": 18.7,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ครูวอนช่วย รร.คลองหลุมลึก 146 ชีวิต ขาดแคลนตู้น้ำดื่ม สื่อการเรียน หลังโดนน้ำท่วมยับ - ข่าวสด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE84TXdfTzRrZThpZFRZNDViTDF3aVJtakpORERlUDdGUmItNHh4eWVXdTJkVW9raHRzbkNIeFRwV2pkT2JDX0F1MmttUnNRRU5wOVMyUndKR0ZMMnZnc0dtODY3MnFrUQ?oc=5",
+      "published_at": "2026-11-04 01:02",
+      "age_hours": 6.4,
+      "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
     {
       "title": "‘หนี้ท่วม-น้ำท่วม-ผู้นำเมินตัวเลขจีดีพี แล้วใครจะพาไทยพ้นวิกฤติ?’ - bangkokbiznews",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBrMUhoeGlETlFsVU05RmNWanFUVnR1NDlZem5qTnk4U3drRnBjSm9zcnJFRzl5MG11OGRPc21ZVWhialVEQ3lyRnBQVUQtaWpPR092UGgxV2NMWEp3UzJkaUYtVl9VY1Z1d3dzRkVXZw?oc=5",
-      "published_at": "2026-11-03 16:33",
-      "age_hours": 9.7,
+      "published_at": "2026-11-03 19:32",
+      "age_hours": 11.9,
       "urgency": "critical",
       "province": "ภาพรวมประเทศ"
     },
@@ -236,17 +248,53 @@
       "title": "กทม.เผยเคลียร์ทางน้ำตลอดปี ลอกท่อ–ขุดลอกคลองต่อเนื่องเพิ่มประสิทธิภาพระบายน้ำ - จส. 100",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBkY2I4LUdtY0dWc1p4TVhsUk1nVHBkeUtEdDVlaTJCek1hU19wU1VONGM1VEU0aDVfOEN0aUFEbFZfeU53WUg3Q19jZ0theGtLdVU2RF92NzNYQQ?oc=5",
-      "published_at": "2026-11-03 20:44",
-      "age_hours": 5.5,
+      "published_at": "2026-11-03 20:37",
+      "age_hours": 10.8,
       "urgency": "warning",
       "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "💚 สรุปยอดลงทะเบียนและจ่ายเงินช่วยเหลือผู้ประสบอุทกภัยในพื้นที่กรุงเทพมหานครผ่านแอปพลิเคชันทางรัฐ และเว็บไซต์ https://claim.bangkok.go.th 📌 ข้อมูล ณ วันที่ 3 พฤศจิกายน 2569 🟦 ผ่านแอ",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMirAhBVV95cUxPczd6cUR3cTFDWlhJMHZaSG1mZ1dxaEFOdHRPYWJtS2hJVnFVRWxKUG1ZcVduRmNBdkVJYVUwUWhaWkJPWk9ZVFVmbGVDX2t5MUNrS2J0cEUxbURISmdjZFUwZ0ZnRG9naEtlaE01Zm0xWmd3RFMtQzhMeTRpUWl6b1lXY0xqd1g0TEx4TTdpSklwWWxlcGlaV3FoWlNTM2hUMFhTeFVJM3VVM19DcFVGYlFpX1d6Y1dJLVMzdjdSX2ljXy1oNGphUTlkazlmazZZbktMdUV0eDJNLWVxOUREOEF1VHpqWmVpVXJ3NDAybkRhRlc4b1JZRmVRd21yekJVX1A1bDhyZG5mVlh4OVdBSThBUmRkdEtudkxKTnRpS1ZoN19VYk1ITURHQVJicGdUN1JINkV6WC1sNDcwcFNEVVUwNlNteTFIMlN2WHNtVDdYempIX0c5V0M5VmtjbDhSTm9KY09abm9OYUNiSF9ibVVLekJQU2ZZTVBJYndFZnN2S2RiMTNrTVYzajEtNjRkRlR6N2hFX1U1b2J6Q1c5dHdsWXZ4eU9TbEluTFFQc1YzMVFGb1JpQnhBdGF5T3B4NUtMNFNaTzJxS21jYWw3endzNEdTd050ajRmLVdNcmdhalNfTXd4cW9WN3FucFRiWnpEOEp6SFVfdVFYQUxlVTFlSldDN1hndGlBX2dXSU55U05lNEJJZE5HZm95SXdsVEotVFpMaFMwRnNnQk1hX2VPc1dmLTBWOWdUcnJPemFVOS1yVU5SVUJjakpFM2x2WkRwSTBZbGQ5bWUtMDRBSzFxc0Z4US1qZmR0NnRxUjRsLWJjYXZsSk4yNVhtZ1dYSWlSUjN4QmlSVUxfRUxxS2t3VnZyWWlwbmpLVXlxWFBlWUdXTHhYRkp1cnF1QUpnUk9UX3IwNFdqZXZmMWdGLTllY3lsOW1Hb1QzcUFKaHhHajJrY2c0NnU3QUxzUWxXUnUzc3FsYVc1M0lwXzB4QVB4MldPR2Y4Zm1ZVm1hdEdBTmtHMldhWDZLNFZsUTdPa3FWN0lrSDdOUU9PTFBQaDZiM2RibXp0ZGhBc2tMd2JKdjhMNkZxX0lkaDFyYmtDMC1EREkwRVVLUXo4aDQwMU1JcUptRXVPcFBVMzdnZU54QnBzUThPbDAwNFVidjVKNnlqcEtVMXNoVW5sdTJmZVN2b3BteVhnb3daYzdMdEZlQl9GLTN1ZFNWT2VqcC1JV2gzWlNIN2locDJHLTNBTXFWbnRFdUgyTUdMbzQ1ZldySW1LaWl4Y01EX3ltRUpHOHBiWXpJak9zRF9uWUo1Y2YyRTFpdm50Umd6cGN6Z1hVVUZnSHJHZ1pOMEtjT1gzdnVuaUYwRWRsLW5PQ1NTZ1l0WnNfZU1IWi1iQUpUc3pkQXN1YThTV0JwMjE?oc=5",
+      "published_at": "2026-11-03 18:18",
+      "age_hours": 13.1,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "อ้างคลิปฝูงอูฐถูกน้ำพัด จากเหตุน้ำท่วมทะเลทรายในอียิปต์ ตรวจสอบแล้วพบว่า เป็นคลิปเก่าเกิดขึ้นที่ซาอุดีอาระเบีย เมื่อปี 2018 - Thai PBS Verify - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFB6ZXFaN3BTeVpFcTV0ZTliTnJ0dlpETk9KbGJkWkQ2TmdLaEZCd0R1T2RXZUppUGZ5a2Rxek9RR0w4ZDlVdnZnWXRzX2RtaDN4Vk1vSUYwZFZ3QQ?oc=5",
+      "published_at": "2026-11-03 19:21",
+      "age_hours": 12.1,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "🌧️ 5–9 พ.ย. 69 เตรียมรับมืออากาศแปรปรวน! ไทยตอนบนระวังฝนฟ้าคะนอง ลมกระโชกแรง และลูกเห็บตก ส่วนภาคใต้ฝนเพิ่มขึ้น เสี่ยงน้ำท่วมฉับพลัน น้ำป่าไหลหลาก 📢 ประกาศกรมอุตุฯ ฉ. 5 | 3 พ.ย. 25",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMitgdBVV95cUxOTENoZlp0TEp2S1JDM1Y1NW5uTHRwY2pfZFUweVEwWEVsOHh2THlkSmFoODh1UVFlNjhNUUZIVDJnazhCdlRvaUt2T2E0TlQwTDB4VXdvaEljZnFROU5qcE50Mmdmdzd3aDQ3MVRkVUZOaXhSeGNsRWVZNlBBUlhtQjc1OVowUm92aTJrT2tqYmdpNDR3ejlNbUdKcnE0a3VfNHhfSnBIbTJ5bWxVTGx4UDNqc0NkUDBYcnUtNDhKZlFua0s3ejh0eG1yVUxCRVktVG9TenU5Unc4RVQ1emtGVHVSbV9vRC01MFJtOFNMb1ZlQUJPTW1fYjBrR0o3d1Y3aV9SYk5XLWlJendqNnZ1SUEyQXRTRFFCSHM5TzNHSXlSaFcxQm83TDBmUElMR2V3SXZkbmdiWE9yT3FoNnJxVG1rQ3c0LU56aVd5Zjl1dXNENkNyRzdGSEloVVIwNFRtdEFvcnhsd3pYUEg3RjhoUlBQZ3RNTlBySTRfYWl3TFlSX1dnSlhVV1FNUnkwYXlZc3dqV0hXZ1owc0t3OERrLU5vM25wdWNwNG5lYi15M2Z1a3NWSENGYVExZ0htVXV4MWNkQThkamJOZ21yREo1REgxcjh1X3lxVk00dUxVYmtEWjdabHNYaVVfWEM5THVwOEcwS1ZUZjI1Y2NsdG1mS20tMEVaY0JXM3dnNktTTmtZbURaTE1lMWFLQ29yVkdxUm5wblJYZjRzNFMyeDBVTUdmdEhYaXJXNFQ2djJ6dHlOSE1fMzd2NVpPblBXaW83dER6QTNpaUxQLVB0YV9zelFRd21lTURVWnMwMERia2JIekdXQlp4Z1FsaXBCS2ZFUWR2VjBzbmVIeG54ZzNLNU8wNk9uZ3dBUmxqMThldXBtUmtvd3ppd0M5ZVpCdTJjNlNqQ1MxR3hNeVFIWjdvZUQtREkwS1B2YWZ4ZnRhNmNLbWZRVllwUlBqU29RN2Zmam1jYlNRaF9obk5wOVFEa2V0MUFnSG5wQlFXNVc3Z1k0N2NxMWxsRldVNExiVDRGSEFDdkVFX3RDdmwtMGZjQVBGN2dvVjVGQTA5Q3ZxMk5UNzFCYTdremU4aUt1VkUtTXp3ajhDY2FRNTMtUl9XM2xzdTJPUmt4ZTlqSG05ck9TWHYxX2RYc2dsUEU1c2JiU0JobDdhWXZ3QzlvUGlySUtrdmdEMUFLWXBtZXpyUmdLWlo4RlI4YXladHR2TEdsbmRvLVN6TTFOTUdyTjB1OU5xLXVYUQ?oc=5",
+      "published_at": "2026-11-03 17:34",
+      "age_hours": 13.9,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ทำดีต่อเนื่องไม่มีพัก! พี่เต๋า อินฟลูเอนเซอร์ชาวต่างชาติ ที่เคยช่วยคนฝ่าน้ำท่วม ล่าสุดร่วมแจกโรงทานวัดดังภูเก็ต ชาวเน็ตเห็นแล้วแห่ชื่นชม! #News1 #Newsstory #ข่าว #Gattouz0 #พี่เต๋า",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiighBVV95cUxPRU9Eai1TTDVtb1BieTh3LXVtTzRwd1poX3AzUlBWVTJGcGNlU0FlYTFSTWJCYVdVcFZXYlJzb3hRVERrV2ZkbVJsOW9SQzB1dFdaa2pLM2t3Y3ZwOU1xd0VsemRQblVHUTM2SUxzQV9mNVFjZ3FmWS1ScnlJWGxwcEtMdU1WZmlFOVNIVjVmRUNHanRKRjFiVDBwcmxPMHlDSmFXMlhSWFlJRG1WclhJWlNLMDdFX1hFaVFKRmVyVkVwdEhRNVo2SWp2bWc3TUJqMXBnTGpRa0dINk1BQ3FjQ1BCUDQ4bEFxdXV5ZWNVTzV0S1NheWlHZUI3cUE4dFZoU1FVdWZYZWhPUHE2Sld4TE5tX2lGUFh5TWVUV0Mwbng4UGhMOGZYT0RWbWRrSGR5QVhlTjNIOXU5eFF2cjh5aHpYNnlNeG5tdjhlN3dUYW9LZGhUTXFYbGtWWV9jM1drQlJwQk9DSFJQR0h4ZTNUUHN4c2VILW9aaTAybV82WHZsR2tzRnhQWUdoRDRnX0FTQ2xLd1JYUzJreVZuNXM3TlZJdUNvZ1RRd3dDVkV6MjNVZXgyMDNSZW9yOTVvNndhMXdBc2xnVEh2bExyQXFGbEVaRUs4aW10RVJzdDBWVVZad19wOU1YRkJuTHdxUmhRRlJiVHc0a1EwLU5sSlNBaktMRTRUT2lIYUFnRXc0aGtMZjlweFRXYzRQblBoOXFtX2dmOW5WS3BCQmxWTm54NXNvVXlyeno1MnotOXc3TUNDcS1YbTR0TEc1dHA2ZmgxNW5UU1F5eml4RjZnbHByb0VsVTV5Q2laOGctU3N4eUhuMFE3YTRteEl4OWVYSGdWQ2VVVS1MR0trN0YxRWkySS1kLVpoRXJMWHRORW5ldUlSSDBaYm4yeUxob0llRVNpRzg5VWNpSW1OZkotVFVGTWZ4eVJZdXpuSnk0LUVRSlNibDRxSHVmbF9YVVBrbW9IZHRVMXRUdEhSVjBNaEJrZXBqdFQ1eFVjREd5YkZWQ25nOW85S09NcTYzTGNvbmpPRDV1MGhtNmhsVnVYbVJuM1RZeWxQLWVRN1RGMnRWYllTN2hvWEswTTlKMlVnbFliSTZXS01zUUVBaHVkTkc1RHpKZFBHeDRFQWp3R3N0Tk14eUVZS0NvVW1DbGJ1U0l5ck5LVjhEZFVsLW8tRVg4RDktZFFETkR2bThOZWQwQVhvVDVKVW84R3hqVmxod1lZSlpXZUVOVU1VNlZwcEF6cHAwRExwVTRFanR4R3QzbnJyMkJSNjFTQ1h1bE1lY3p2Z1hKOWVIOGRQMjh6OWVTdFdGa0I5eGJ5b2xhSml1UUhic0tvTVE5bHppdUJoanRnVnU4V3ZEa3Njdw?oc=5",
+      "published_at": "2026-11-03 16:55",
+      "age_hours": 14.5,
+      "urgency": "recovery",
+      "province": "ภูเก็ต"
     },
     {
       "title": "ปราจีนบุรี ร่วมด้วยช่วยกันบริจาคช่วยน้ำท่วมบ้านสร้าง - ทอล์คนิวส์ ออนไลน์",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFA1ME0zMGR3MC03OG9MNGRjSURHZmtzX1FObmRIMjM5dXZoYVZfWFA5UEJuQmlnV1pWQ1dPcDdtVDhzRjJfbHZ1dWc5bU9WT2ZTbmJUVA?oc=5",
       "published_at": "2026-11-03 17:12",
-      "age_hours": 9.0,
+      "age_hours": 14.2,
       "urgency": "recovery",
       "province": "ปราจีนบุรี"
     },
@@ -255,34 +303,34 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE85RDRBZUNDUkV1VHV5VlFVS0JWMGxlcHFVb2s1Nnc3OVFPbXpLNnp6VXhhNG1xQkk3ay1SODFlRGhXNXhPSUl0d21pT0J1eHFHRDVN?oc=5",
       "published_at": "2026-11-03 13:39",
-      "age_hours": 12.6,
+      "age_hours": 17.8,
       "urgency": "recovery",
       "province": "ภาพรวมประเทศ"
     },
     {
-      "title": "นับถอยหลัง 3 วัน กรมอุตุ ประกาศฉบับ 2 ฝนตกครั้งใหญ่ เสี่ยงน้ำท่วมรอบใหม่ - bangkokbiznews",
+      "title": "'เยียวยาน้ำท่วม' ล่าสุด วันนี้โอนเพิ่ม 13 จังหวัด 9,290 ครัวเรือน - bangkokbiznews",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE13THpDeDlUNG1BMERoYXBoN21EemFpNlFQRVJXckRkR1JBejhLRHZKRzkyUFBoNnd5NXJJQTYtcHdYMF9fLVNBVWR1VDFUZ2NHQ1hCamFaSGFwZ0szTE8wanhCNkhDQQ?oc=5",
-      "published_at": "2026-11-03 19:11",
-      "age_hours": 7.0,
-      "urgency": "warning",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBGeERjTDhOcUtIZER4NnVfLTFETFRSV0hpbldSVmRtV2ZScmJWR1FhRUQ0SURuMzZzaDdWUHlMY25rbmFjNDdkVDZRc0d3Rkl5TlpMWWFZcjducUM4TUozclVEWk5zUQ?oc=5",
+      "published_at": "2026-11-03 17:05",
+      "age_hours": 14.4,
+      "urgency": "recovery",
       "province": "ภาพรวมประเทศ"
     },
     {
-      "title": "อ้างคลิปฝูงอูฐถูกน้ำพัด จากเหตุน้ำท่วมทะเลทรายในอียิปต์ ตรวจสอบแล้วพบว่า เป็นคลิปเก่าเกิดขึ้นที่ซาอุดีอาระเบีย เมื่อปี 2018 - Thai PBS Verify - Thai PBS",
+      "title": "ปภ.-กรมอุตุฯเตือน 61 จว.-กทม.ฝนฟ้าคะนอง ระวังน้ำท่วมฉับพลัน 5-9 พ.ย.69 - Thansettakij",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFB6ZXFaN3BTeVpFcTV0ZTliTnJ0dlpETk9KbGJkWkQ2TmdLaEZCd0R1T2RXZUppUGZ5a2Rxek9RR0w4ZDlVdnZnWXRzX2RtaDN4Vk1vSUYwZFZ3QQ?oc=5",
-      "published_at": "2026-11-03 19:21",
-      "age_hours": 6.9,
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBHOC10TVBYZkVfdWZaYk5tZEhTUDdFN21BZlRNbFFfTlNNb0tSZmxuLVpjX2pCRzJUWUxiWUp6cTR0cDN2ZzlJWmw2Y2VYT0gzWnhHVE45aDFBUll0?oc=5",
+      "published_at": "2026-11-03 17:16",
+      "age_hours": 14.2,
       "urgency": "warning",
-      "province": "ภาพรวมประเทศ"
+      "province": "กรุงเทพฯ"
     },
     {
       "title": "น้ำท่วมขัง! แจ้งวัฒนะ เช็กจราจร กับ เจาะ จุด แจม : 2 พฤศจิกายน 2569 | สวพ.FM91 - LINE TODAY",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9FOFd5bmhKRHFtZjRuWFB4c3JPa096X0tPeGdFQThWdGR3Z0U0VWMxN2dXVGM1bXZDMzRGcmFORWxGZVctTlpLYzBJdHRnV3ZCbDcwY2JB?oc=5",
       "published_at": "2026-11-03 11:33",
-      "age_hours": 14.7,
+      "age_hours": 19.9,
       "urgency": "critical",
       "province": "ภาพรวมประเทศ"
     },
@@ -291,34 +339,25 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9oRUcwRlNwMERpN1h0bkFLRHBfV1haMUpDdGhqVHEtOU95cHNBcjhvSHBocklZUk9wZG9BcHhpMWdSZkFKaG5iNl96YThyczBaUmoxVVJENA?oc=5",
       "published_at": "2026-11-03 12:49",
-      "age_hours": 13.4,
+      "age_hours": 18.6,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "ปภ.-กรมอุตุฯเตือน 61 จว.-กทม.ฝนฟ้าคะนอง ระวังน้ำท่วมฉับพลัน 5-9 พ.ย.69 - thansettakij",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBHOC10TVBYZkVfdWZaYk5tZEhTUDdFN21BZlRNbFFfTlNNb0tSZmxuLVpjX2pCRzJUWUxiWUp6cTR0cDN2ZzlJWmw2Y2VYT0gzWnhHVE45aDFBUll0?oc=5",
-      "published_at": "2026-11-03 17:16",
-      "age_hours": 9.0,
-      "urgency": "warning",
-      "province": "กรุงเทพฯ"
     },
     {
       "title": "Rocket Media Lab : การหายไปของ สข. ในกรุงเทพฯ กับปัญหาการช่วยเหลือประชาชนในช่วงน้ำท่วมที่ไม่ทั่วถึง - ประชาไท Prachatai.com",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1PbHJTZmRiRGxHWGZvbFN0ekVQY2REYTJoMW1EcEVuQ25rZWNITzZhcUhEN1lwY1VnUUJvNVVKMmRYbW0xZG1MZ2ljdjdKWVlsTVZYa01jaw?oc=5",
       "published_at": "2026-11-03 19:41",
-      "age_hours": 6.5,
+      "age_hours": 11.8,
       "urgency": "recovery",
       "province": "กรุงเทพฯ"
     },
     {
-      "title": "กทม.-12 จว.เช็กด่วน ออมสิน-ปภ.โอนเงินเยียวยาน้ำท่วมล่าสุด 9,290 ครัวเรือน - thansettakij",
+      "title": "กทม.-12 จว.เช็กด่วน ออมสิน-ปภ.โอนเงินเยียวยาน้ำท่วมล่าสุด 9,290 ครัวเรือน - Thansettakij",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFAxa2xOa1Z1YWY5cEZOTExLU0ZZd2JGQjdRenhZYzJwOEpNSFJ3bE8ycGVfOUlfSGdlN0U2b1R4UzhZQzRKaEE3cXpaRkV6dkVhODZRbEZWMU02VkFN?oc=5",
       "published_at": "2026-11-03 12:43",
-      "age_hours": 13.5,
+      "age_hours": 18.7,
       "urgency": "critical",
       "province": "กรุงเทพฯ"
     },
@@ -327,43 +366,25 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9kZnhqa1JMYTY0TDl6M3pjY1ROLWtMSGJZLTR0d0NzNVVDekJlcVI2VFR6RTlqbi1wVVhVVzhCazNIM2k0Zy14bmhSTENtSVFFM0VOcmd3QnExcm5SdGpPUw?oc=5",
       "published_at": "2026-11-03 14:39",
-      "age_hours": 11.6,
+      "age_hours": 16.8,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "มูลนิธิมิราเคิล ออฟไลฟ์ ผนึกสภาสังคมสงเคราะห์ฯ ลุยช่วยน้ำท่วมนครปฐม มอบถุงยังชีพถึงมือประชาชน - สยามรัฐ",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9lamdZT0ZEWk0zaG1sMGVFdFY5LTgzcmNvTGJKVXdYc3lKUkxsclZRblI3eGlDZzVQdjJDXzNTYW1DdUktVUNSQkU5OElRSms?oc=5",
+      "published_at": "2026-11-04 06:32",
+      "age_hours": 0.9,
+      "urgency": "recovery",
+      "province": "นครปฐม"
     },
     {
       "title": "'พุทธ' ยันบริจาค 8 แสนช่วยน้ำท่วม ไว้ใจเห็น\"บุ๋ม\"ลงพื้นที่จริง! จี้ ตร.ทำข้อเท็จจริงให้ปรากฏ - ผู้จัดการออนไลน์",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1ObXdNRTVPRW1HWGsyVFhIVDNnTjFrN0UxWFBKa1dPUE5ZcnhhRXFUcGpXeHkzbldOTU9rOXBXV2JEeE1NZkF1dzBoZVNpV3MtRFlQM21MaFBsYTNK?oc=5",
       "published_at": "2026-11-03 14:46",
-      "age_hours": 11.5,
-      "urgency": "recovery",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "เอกชัย จี้รัฐถอดบทเรียน รับมือน้ำท่วม-ให้กำลังใจ บุ๋ม ผิดถูกว่าตามกฎหมาย - ข่าวสด",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE4wQlF6TnJodWh1dFE0STRaU3hPUUxSdW5Yc0NQTDg0Z0M1RVhVSnJNUUNveDdlQlJQLUxLUmFtQS1PV2xLaWxFT0IxcnBJSS1DcUdDc01CRTk1RXJjNTR3U0ViMA?oc=5",
-      "published_at": "2026-11-03 11:44",
-      "age_hours": 14.5,
-      "urgency": "warning",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "ประกาศกรมอุตุฯ ฉบับที่ 5 อัปเดตพื้นที่เสี่ยงฝนตกหนัก น้ำท่วม 5-9 พ.ย. - Thaipost.net",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9tZ204Q2EwU01ucC1pLTFUQ1ZEZ09Hb3MwNmpObDJtVjdaMXpCQ2JjSnp6RHR3TlJ5bE1veWNQVVl5Y3VUdzRobVJuVXJYVC1kZ3AzdUdWME9kdw?oc=5",
-      "published_at": "2026-11-03 17:45",
-      "age_hours": 8.5,
-      "urgency": "warning",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "BTS จับมือ “เนชั่นทีวี” มอบถุงยังชีพช่วยผู้ประสบภัยน้ำท่วม “หนองจอก” - ข่าวหุ้นธุรกิจออนไลน์",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBxNzRSZGVBbTVEOEFfZnhkc19KSVpON1l3MGNaMWgwd0NqY3RMUHk4clNEbVpVQjY3b01wNkVTQm43SF8zTE5YUQ?oc=5",
-      "published_at": "2026-11-03 20:13",
-      "age_hours": 6.0,
+      "age_hours": 16.7,
       "urgency": "recovery",
       "province": "ภาพรวมประเทศ"
     },
@@ -372,61 +393,43 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE8zMllNZVptYVB4R2pUazJPVThBMjJIbmI0aE5zOGlBd3FWX19KVU1nUDlMQmRwWHdFdkM3cW9xRS1YcUlQMS1lZ2JrSDlVWTVQRG9LZVVPSFN4aDRjLUE?oc=5",
       "published_at": "2026-11-03 17:00",
-      "age_hours": 9.2,
+      "age_hours": 14.4,
       "urgency": "critical",
       "province": "ภาพรวมประเทศ"
     },
     {
-      "title": "น้ำท่วมตอผุด \"ชำนัญ\" เปิดแผลทุนจีนเทา ซุกขยะอิเล็กทรอนิกส์ล้างบางโรงงานเถื่อนปราจีนฯ - www.topnews.co.th",
+      "title": "ประกาศกรมอุตุฯ ฉบับที่ 5 อัปเดตพื้นที่เสี่ยงฝนตกหนัก น้ำท่วม 5-9 พ.ย. - Thaipost.net",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE56VEFWN05ndUdVblZiVWF0QmI3alBvcWR1VUNfMk1IZWFFaERMeWt2aE1Yd2V0WktOd0t3WDE3MG5seDgwejI5TkRrU200NE5aY0hyNkRB?oc=5",
-      "published_at": "2026-11-03 16:57",
-      "age_hours": 9.3,
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9tZ204Q2EwU01ucC1pLTFUQ1ZEZ09Hb3MwNmpObDJtVjdaMXpCQ2JjSnp6RHR3TlJ5bE1veWNQVVl5Y3VUdzRobVJuVXJYVC1kZ3AzdUdWME9kdw?oc=5",
+      "published_at": "2026-11-03 17:45",
+      "age_hours": 13.7,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
     {
-      "title": "กรมอุตุฯ เตือนฉบับ 4 อัปเดตพื้นที่ฝนตกหนักถึงหนักมาก 5-9 พ.ย.69 - Thai PBS",
+      "title": "BTS จับมือ “เนชั่นทีวี” มอบถุงยังชีพช่วยผู้ประสบภัยน้ำท่วม “หนองจอก” - ข่าวหุ้นธุรกิจออนไลน์",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1hTmJzd3ZWemVHWks2UDB0QTR2ZlJ3YVpZSFEyMXFsNzBnRFYwZ19LMloxNm1NVUtfLXE0SnY3UC1jV3YzRjhkaDI5c1h1bE15RnBIeGk2cng?oc=5",
-      "published_at": "2026-11-03 05:57",
-      "age_hours": 20.3,
-      "urgency": "warning",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "พี่เต๋า ครีเอเตอร์ดัง ร่วมแจกโรงทาน งานบุญกฐินวัดดังภูเก็ต หลังช่วยเข็นรถฝ่าน้ำท่วม จนฮือฮา - ข่าวสด",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5lQUM2Ny0wdXc1dzU4TlpicW9ha0kwd1VLbjFhdnUxajZBYXdTOGNCblVTbFQ4SnNDeGRXYWhiRjdzbWh4bDFqbmRjaWY5SHUzT0duYkdlUXp1NVZ4SzBIODUwLWFYQQ?oc=5",
-      "published_at": "2026-11-03 13:34",
-      "age_hours": 12.7,
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBxNzRSZGVBbTVEOEFfZnhkc19KSVpON1l3MGNaMWgwd0NqY3RMUHk4clNEbVpVQjY3b01wNkVTQm43SF8zTE5YUQ?oc=5",
+      "published_at": "2026-11-03 20:13",
+      "age_hours": 11.2,
       "urgency": "recovery",
-      "province": "ภูเก็ต"
+      "province": "ภาพรวมประเทศ"
     },
     {
       "title": "‘ภัทรพงศ์’ ลงพื้นที่กาญจนบุรี เร่งซ่อมถนนหลังน้ำท่วม กระทบทางหลวง 85 จุด เตรียมรับท่องเที่ยวไฮซีซั่น - thestandard.co",
       "source": "\"หลังน้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPbV92elhFVExwMk82UENmMUJWN0FEMmtnWHh6MUpYMmpNNkoyTzFmeS1FYjFoY3FpTWg5czUtS0tBRURCODhWT2tBZlg1MUF0WnRseXctTjlQOE8yc2VEYTVjNjZ3TFZBVG5QM3ozb25DRGtWOEdyZ2haczBkMkRsc3VUa0c?oc=5",
-      "published_at": "2026-11-03 00:03",
-      "age_hours": 26.2,
+      "published_at": "2026-11-03 10:11",
+      "age_hours": 21.3,
       "urgency": "warning",
       "province": "กาญจนบุรี"
-    },
-    {
-      "title": "ไทวัสดุ เร่งซัพพลายเชนรับฟื้นฟูบ้านหลังน้ำลด ผนึกกรมการค้าภายใน มอบอุปกรณ์ 100,000 บาท เคียงข้างผู้ประสบภัย - ผู้จัดการออนไลน์",
-      "source": "\"หลังน้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB1VHJIN2lmRENEaFVPN1k2eW1rVHR2UjNwMFdlZ0dVdTJNOVIzZGFRYks0UVdiODBtUjNZZGltTUpldTcwSUlkV05uMU95cDgyLWpHdmhXUzJTNWJGWDhpZzl0YUZocS1QbGc?oc=5",
-      "published_at": "2026-11-02 23:00",
-      "age_hours": 27.2,
-      "urgency": "recovery",
-      "province": "ภาพรวมประเทศ"
     },
     {
       "title": "กาญจนบุรี : เดินหน้าพิจารณาให้ความช่วยเหลือพี่น้องประชาชนผู้ประสบอุทกภัยในพื้นที่อำเภอท่ามะกา รวมกว่า 253 ครัวเรือน ตามมติคณะรัฐมนตรี - ทอล์คนิวส์ ออนไลน์",
       "source": "\"อุทกภัย\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9wcUJKb2dBQWl2OFFjb1NnRG8wN201UzY0SW1hNFFhcndDUnkzWlFSaU9abzFzOEpTdHhuSEFna0VsU0FhdVpoSmFWYTdydUdlZzhDUA?oc=5",
       "published_at": "2026-11-03 15:57",
-      "age_hours": 10.3,
+      "age_hours": 15.5,
       "urgency": "recovery",
       "province": "กาญจนบุรี"
     },
@@ -435,7 +438,7 @@
       "source": "\"อุทกภัย\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4tcF96QVhmakF2ejd0VURPdWZOMkRmTVdNbGNYUXEzTGR2ZU5lN0RYcm9qekZ4cmt0QmNvWHBCcEI2QjhnT1MwbnpjcnBSbUhRSFFpSDBqWndYVW8?oc=5",
       "published_at": "2026-11-03 16:57",
-      "age_hours": 9.3,
+      "age_hours": 14.5,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -444,7 +447,7 @@
       "source": "\"อุทกภัย\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5FVVRRam1kdjhaNnVRMDBBQXZvMEt4WTFBeUFLZ0VtNVFxR3FKaFhndTl2UVM4RWI4Y2QxYVFySlc4eEt1c2o1Y090UnN5d28?oc=5",
       "published_at": "2026-11-03 14:44",
-      "age_hours": 11.5,
+      "age_hours": 16.7,
       "urgency": "warning",
       "province": "นราธิวาส"
     },
@@ -453,34 +456,16 @@
       "source": "\"อุทกภัย\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9BamFyejJIYXlUZEFUdkpmTnp6OU1hOS1IRk5LTnlRQ0pSX2RCN2J1cUtEMlRERUN4WEF4d0dvVDlqV0VqVTBnR3RVWm9HNG91VU1qM3lNUkFzRlE0NURTVkctSmRjTy1qT1VmSTdR?oc=5",
       "published_at": "2026-11-03 19:12",
-      "age_hours": 7.0,
+      "age_hours": 12.3,
       "urgency": "warning",
       "province": "ยะลา"
-    },
-    {
-      "title": "น้ำท่วมบางบาล กองทัพอากาศ แจกถุงยังชีพ 500 ถุง ต.น้ำเต้า อยุธยา - ไทยแทบลอยด์",
-      "source": "\"อุทกภัย\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBoS2Y1c1RJTGsxcG9PZ19nTFdxOUlPNDZzNmFUSEpGcVZGQmF3UGdpOU1RYnVDZ3UzcDVGeDJKYW5NVWZaQmtJalVYLTRrcU92?oc=5",
-      "published_at": "2026-11-03 09:28",
-      "age_hours": 16.8,
-      "urgency": "recovery",
-      "province": "อยุธยา"
-    },
-    {
-      "title": "ปภ. เตือน 61 จังหวัด-กทม. รับมือฝนกระหน่ำลมแรง ภาคใต้ระวังน้ำท่วม 5-9 พ.ย. 69 - Thairath.co.th",
-      "source": "\"อุทกภัย\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9vNnBGZ1l1a1JuaF9yMnJraVpJNDF6QlV2VDJnSFRVQUVHN0N0TEQ0Y0xNcWZwdTg1VXFkOENsbkJOV3JISG8tMDVoQ3N6T3NqRUlmTjl1elU?oc=5",
-      "published_at": "2026-11-03 16:33",
-      "age_hours": 9.7,
-      "urgency": "warning",
-      "province": "กรุงเทพฯ"
     },
     {
       "title": "Thailand floods test market resilience 15 years after record loss - theinsurer.com",
       "source": "\"flood Thailand\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNaV9XbFRIWk5xUHNZNG5Nd1pDX1BnZU1MRkROZ3ZrODktU2xNdHdMUDFuMllFbUFwbkFkTDYtZDV3VlI2RFBiSWtkRDRUSjA4elY2Tm5SOFFqZjlzZHVDaG9WNktMaG1xN1BBYkZpek9qUFhKZDU0eDI0YUI2SkdYNXVlZU1CbXFtSm1TNERBa3FObTNyNDFFTjllNEpveDc3cXlfUnNQMUZSbDlKYlF4dy13?oc=5",
       "published_at": "2026-11-03 04:15",
-      "age_hours": 22.0,
+      "age_hours": 27.2,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -489,9 +474,18 @@
       "source": "\"flood Thailand\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1mN2xvclZwUVZmSm1BS1pvY0pMZ0laQ0ttbFFsTXdfc3dXQzNsNzlzSjRUa0VhSUNZQVNMYTdLb2lJT09TZE4wc3k3N0d4QnNZLVVMaldHdXlUUUdtSjk3UFRB?oc=5",
       "published_at": "2026-11-03 17:23",
-      "age_hours": 8.8,
+      "age_hours": 14.1,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ลุยตรวจ 80 รง.ขยะสั่งปิด 1 ให้เร่งปรับปรุง 63 แห่ง ‘วราวุธ’ จี้เยียวยาปชช. ‘ปภ.’จ่ายท่วมหมื่นล. แพร่อ่วมพายุถล่ม 3 อ.",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/economy/news_5960084",
+      "published_at": "2026-11-04 06:00",
+      "age_hours": 1.5,
+      "urgency": "warning",
+      "province": "แพร่"
     }
   ]
 }
