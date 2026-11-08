@@ -1,0 +1,602 @@
+{
+  "date": "2026-11-09",
+  "article_count": 55,
+  "updated_at": "2026-11-08 18:42:09",
+  "method": "tfidf",
+  "note": "คำในข้อมูลนี้ผ่านการคัดกรองด้วย TF-IDF และเพิ่มน้ำหนักคำกลุ่มเฝ้าระวังน้ำท่วม",
+  "word_categories": {
+    "ฝนตกหนัก": "monitoring",
+    "เสี่ยงน้ำท่วมฉับพลัน": "general",
+    "กรมอุตุฯ": "general",
+    "น้ำป่าไหลหลาก": "general",
+    "เร่งเดินหน้าแผนป้องกันน้ำท่วมลาดกระบัง": "general",
+    "ยกระดับระบบระบายน้ำ": "general",
+    "ระวังน้ำท่วมฉับพลัน": "general",
+    "ภาคใต้": "general",
+    "นิด้าโพล": "general",
+    "ล้านบาท": "general",
+    "อมรินทร์ทีวี": "general",
+    "วารสารการเงินธนาคาร": "general",
+    "ททบ": "general",
+    "พันกร": "general",
+    "ปนัดดา": "general",
+    "สงขลา": "general",
+    "ถึงหนักมาก": "general",
+    "รัฐบาลเตือน": "general",
+    "น้ำท่วมฉับพลัน": "general"
+  },
+  "word_freq": {
+    "th": {
+      "ฝนตกหนัก": 13,
+      "เสี่ยงน้ำท่วมฉับพลัน": 3,
+      "กรมอุตุฯ": 4,
+      "น้ำป่าไหลหลาก": 3,
+      "เร่งเดินหน้าแผนป้องกันน้ำท่วมลาดกระบัง": 2,
+      "ยกระดับระบบระบายน้ำ": 2,
+      "ระวังน้ำท่วมฉับพลัน": 3,
+      "ภาคใต้": 3,
+      "นิด้าโพล": 3,
+      "ล้านบาท": 2,
+      "อมรินทร์ทีวี": 2,
+      "วารสารการเงินธนาคาร": 2,
+      "ททบ": 2,
+      "พันกร": 2,
+      "ปนัดดา": 2,
+      "สงขลา": 2,
+      "ถึงหนักมาก": 2,
+      "รัฐบาลเตือน": 2,
+      "น้ำท่วมฉับพลัน": 2
+    },
+    "en": {
+      "vietnam": 4,
+      "thansettakij": 2
+    },
+    "combined": {
+      "ฝนตกหนัก": 100,
+      "เสี่ยงน้ำท่วมฉับพลัน": 23,
+      "กรมอุตุฯ": 31,
+      "น้ำป่าไหลหลาก": 23,
+      "เร่งเดินหน้าแผนป้องกันน้ำท่วมลาดกระบัง": 15,
+      "ยกระดับระบบระบายน้ำ": 15,
+      "ระวังน้ำท่วมฉับพลัน": 23,
+      "ภาคใต้": 23,
+      "นิด้าโพล": 23,
+      "ล้านบาท": 15,
+      "อมรินทร์ทีวี": 15,
+      "วารสารการเงินธนาคาร": 15,
+      "ททบ": 15,
+      "พันกร": 15,
+      "ปนัดดา": 15,
+      "สงขลา": 15,
+      "ถึงหนักมาก": 15,
+      "รัฐบาลเตือน": 15,
+      "น้ำท่วมฉับพลัน": 15,
+      "vietnam": 60,
+      "thansettakij": 30
+    }
+  },
+  "tfidf_scores": {
+    "th": {
+      "ฝนตกหนัก": 13.9101,
+      "เสี่ยงน้ำท่วมฉับพลัน": 2.6426,
+      "กรมอุตุฯ": 2.5473,
+      "น้ำป่าไหลหลาก": 2.3394,
+      "เร่งเดินหน้าแผนป้องกันน้ำท่วมลาดกระบัง": 2.2654,
+      "ยกระดับระบบระบายน้ำ": 2.2654,
+      "ระวังน้ำท่วมฉับพลัน": 1.8516,
+      "ภาคใต้": 1.6697,
+      "นิด้าโพล": 1.6361,
+      "ล้านบาท": 1.6361,
+      "อมรินทร์ทีวี": 1.5707,
+      "วารสารการเงินธนาคาร": 1.5707,
+      "ททบ": 1.5426,
+      "พันกร": 1.3463,
+      "ปนัดดา": 1.3463,
+      "สงขลา": 1.2127,
+      "ถึงหนักมาก": 1.178,
+      "รัฐบาลเตือน": 1.0163,
+      "น้ำท่วมฉับพลัน": 1.0163
+    },
+    "en": {
+      "vietnam": 13.6637,
+      "thansettakij": 7.8535
+    }
+  },
+  "articles_preview": [
+    {
+      "title": "รัฐบาลเตือน 11 จ. ภาคใต้ รับมือฝนตกหนัก-น้ำท่วมฉับพลัน 8-13 พ.ย. 69 | การเงินธนาคาร - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB1MzBEYk5mOW1HajZZc1NSMFF0aUI5X0VvT2x1Z21IeVBsMWdVeUY5M1gwMktUaUZhTWh1S05oREh0YlQzdjJpb0E4RGtNOTk4TnR1TnpR?oc=5",
+      "published_at": "2026-11-08 13:13",
+      "age_hours": 12.5,
+      "urgency": "critical",
+      "province": "ฉะเชิงเทรา"
+    },
+    {
+      "title": "กทม. เร่งเดินหน้าแผนป้องกันน้ำท่วมลาดกระบัง 3 ระยะ ยกระดับระบบระบายน้ำ - www.thairath.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1XOURHclMzQnU1Q1BBM1Ffcjk2ZUhiMVJwM2ZOM3BvNkRyYlM5X2E1SF9kc2Z1ME9Ndl9HTk5lYzFHQ0g0SU1kdEJoeHR3cnpiaEIzdDk4UXBJeGs?oc=5",
+      "published_at": "2026-11-08 17:13",
+      "age_hours": 8.5,
+      "urgency": "warning",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "นิด้าโพลไม่กังวลเลยหลายชาติประกาศให้ตุนเสบียง ควรรอชัดเจนค่อยประกาศเตือน หวั่นน้ำท่วมที่สุด - ผู้จัดการออนไลน์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9qcS1ydUZwSlMwOEl5WDNvQlJpSVBvRXl2WS1PLWtnT3M4Qkk3YlhhdmhxVjV4SzRfbnN1aWFXbzFhYmozZFdUa2MyS3c5Z2pSTVcyRUZrLVVKNVlmRVpmTA?oc=5",
+      "published_at": "2026-11-08 12:53",
+      "age_hours": 12.8,
+      "urgency": "warning",
+      "province": "เลย"
+    },
+    {
+      "title": "ปชป.ช่วยชาวแฟลตคลองจั่น เตรียมยื่นฟ้อง กทม. เร่งเยียวยาน้ำท่วม - เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBpeS1tWmxud2ZjTDBvYmFuRHJ5VDhHazgtVERhclRsWDNGcENlX2VwYW5MeWpHMU9MZ0l2b1hqbVI0UkZ1a1hnU1FLU3J1TmNTSE4zeG9VOHJ3ZWdTMzJfdFpR?oc=5",
+      "published_at": "2026-11-08 22:36",
+      "age_hours": 3.1,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "เมื่อ ‘โลกรวน’ เปิดทางโรคอุบัติใหม่ น้ำท่วม-ไฟป่าซ้ำเติมสุขภาพ ปรับตัวอย่างไรให้รอด? - อมรินทร์ทีวี ช่อง 34",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1fR2VmNVRfNUlyNXFyNF8tMlBKX2ZLOThsVE9uQjdjTk8zU2FWdkRGSGVLZW1kYXVjaTFyUUhESzRDZ1NYeDVFUklVcEJGdXN1VFdEdWM1eW9ONzRua2tzaWxDcFoyUVU?oc=5",
+      "published_at": "2026-11-08 16:26",
+      "age_hours": 9.3,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ฝนซ้ำเติมกาซ่า! น้ำท่วมเต็นท์ผู้พลัดถิ่นหลายหมื่นหลัง-ยิวยังจำกัดความช่วยเหลือ - ข่าวสด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5pZEh6ZzQzLXVVcGthYmFiaEl3VE5ER3VvTzVBZzk2dUpWX256d2M3RWVsM09XY3V4TWhEMHNsZm9USkg0bS1UekNIUXNlXzFETGhBMzdudjZxMGpuOWhUckNIUkpSU0tDWDhUUmd3?oc=5",
+      "published_at": "2026-11-08 07:39",
+      "age_hours": 18.1,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "‘นักวิชาการ’ ชี้สิ่งน่ากลัวจากน้ำท่วมขยะผุดปราจีนฯ ย้ำ ‘สารหนู-สไตรีน’ อ่วมกระทบสุขภาพประชาชน - เดลินิวส์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBLcVNHTmZwcUNLQ1NXTTVUTklvejBoT0dFMTEydExiQjE1cDVjWW9xWGxvc2dySGdDdnNUVFFQWlRHTjFNYUFSNnpLc3Nyc216VnM0?oc=5",
+      "published_at": "2026-11-08 11:07",
+      "age_hours": 14.6,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กทม. อัปเดตสถิติเยียวยาน้ำท่วม อนุมัติเงินผ่าน \"ทางรัฐ\" ทะลุ 4.6 พันล้าน-ยื่นออนไลน์ทะลุ 1.5 แสนคำร้อง - ประชาชาติธุรกิจ",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE85WGpTZDZpWUp5WG1iOVZsZU9iUnB0b01KXzU0dVE4YkZqdExRVHJ3eC1UNDVaTW4wSV9VOVd0OVplc0taRk1KWWpJazFfLUhEUTlUOUp6QQ?oc=5",
+      "published_at": "2026-11-08 20:18",
+      "age_hours": 5.4,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "ดัง พันกร หายคาใจ หลังส่งหมูทอดช่วยน้ำท่วมผ่านมูลนิธิบุ๋ม ปนัดดา ล่าสุดมีคำตอบแล้ว - แนวหน้า",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBZekdUSVJkR19zT0lXRWNSeDMtd3BhUENHRS00LUZBNDlqX1Z5LVNrTnNWdDBrSFdHalV1NFdXaHp4bjVfWm9CNHhIY0U0ZDF6MXExb1ZJVQ?oc=5",
+      "published_at": "2026-11-08 15:54",
+      "age_hours": 9.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "BANGKOK: กทม. เร่งเดินหน้าแผนป้องกันน้ำท่วมลาดกระบัง 3 ระยะ ยกระดับระบบระบายน้ำ ปิดจุดอ่อนน้ำท่วมรับมือฤดูฝนปีหน้า วันนี้ (8 พ.ย. 69) นายชัชชาติ สิทธิพันธุ์ ผู้ว่าราชการกรุงเทพมหาน",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMinAdBVV95cUxQUkhGS09QeG93TmpFSWxIRE9xWWdiYll0VmlycVh5NWNaX2duMDV5ZnE0ODZycnFZc2JCRl9qcFBtRXk3V19FRTh1c1I2M0NqVEJWbkxPNG5HbHZXTDh0UW12cTlVM1hpTzFaa0VEYm1VUmZ6enJ3SVFzeGZoRm1zSVJjV3NUcGU4T0dwMXZDRWxsM1ltWHJwRl9RUVpuNmlVVVhyWS1kbjByaEdCNFlheV83LXFhdUU5UGRRWENSRy1mbXNYM2ppTnJySEFNTVQ3eTBsNk5mdzhTZXNrWGZabkdqVTZfOEgtSm82NVFFWmR5a0xzUlJOVk5RYkFSbXVTMDd0b1Ztay1YNkxtNUoxblJsTVVqdXRjMThqR1MtemRrZ0VRVDkxNnU5Qm9iN056TmhYQXZqTF9fa1ZUb2dQYnpIcXVDME9nSlVuQVRwZHJobE1aU0hTTFVGUGQ0dmczalZpeUpsWS1WNGI0emRQOEdFdENsbFVWd3BWWUtEZVgxaXEyTVZxUkgxUHNQb2tITy1SeWgtRGdjV2JsaGRRalFxd2hJMTVMdUJNX3VFNU0wWHl6dEdDM1lFUlRyUTJTU2VDdkFublpidGFTNC1ZdmlqeEhjeU5jazlqTWVWdW9MR0J2dzVlUWJtM01EUEJsaDdVMm9qNWJGSmlLQi1heHY3Ym55VDRSYklCalFEYzFKczNNSU5oU1Z0NVZ3Zk9ndjRhUkFYM3VDdnhIMUJSX29ZUFhmQUR0d1QtXzd1ZWx1SG1fN1NTaHhLNURzQ2piZ1ZhWWh6S0ZwdkR2bENmUkJkWlNCdkhLd1lNUEF5Nm5UYjliYnJYd21ZZTN6QlpXXy1PUE0tSU03ekxjY0dxbEozSkZnUS00TURBMDA1QThHYmp3dUQ0X2tPVjEtY3pVUWNCZWt5dG9sZG9nSmFUeDAxNlVTWmJZb0pLU2JyT1V2ZHcyNkZMTFlweUM1QXBlWVRhVzNvMjV6emwzLWJMVExfT0RFUXBScU4xMDNTTWU0clJMZHNZcGhkNlEyU2JwS1AteFJDb0hLb2s5NXcyZDQ1RF8tYXZXbzc3LXJHeGVXalRJNXBiQWV6RE5sbTR6WXJUNEtBRFVIM19xVDNjSDRxYms0TTFUcG13OUJiMnA5enhlY1Z6MkVmU1NpUXYzYWZxbVY5M0tBMF9jYTFMOUgyQzdhNUhlV2lwVXJ0WFFVY1JEbGlPMDFlQ0w?oc=5",
+      "published_at": "2026-11-08 16:24",
+      "age_hours": 9.3,
+      "urgency": "warning",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "สงขลา เตือนด่วน! ฝนตกหนัก 9–13 พ.ย. 69 สั่งเฝ้าระวังน้ำท่วม 24 ชม. - bangkokbiznews",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9pdnNoZlR3V1hNenZTdjZNMXhJc0RtQ3hSaWx6eHFwVTUzNHFSZ3pJRjVhX084d19FU0FRVjZoakFOdmFrWWk2YXBPMnlHMWZXRUtqUU1ialRuQVR2dVVzU19GUW83QQ?oc=5",
+      "published_at": "2026-11-08 21:46",
+      "age_hours": 3.9,
+      "urgency": "critical",
+      "province": "สงขลา"
+    },
+    {
+      "title": "กรมอุตุฯ เตือนภาคใต้ฝนหนัก 9-13 พ.ย. เสี่ยงน้ำท่วมฉับพลัน-น้ำป่าไหลหลาก - Thansettakij",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBUU2NYTFh0WFJXeHBYcUdISHdoZnFGa0VmTTFwaTM0M0QxOHpfTC1Id2pGU2J3RHBQeGZ1UmEzZU8tbzdYM1d4Sy0zQkh6bUNLNl9JMmlkN3ctMF9Y?oc=5",
+      "published_at": "2026-11-08 20:06",
+      "age_hours": 5.6,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "รัฐบาลเตือนพี่น้องภาคใต้เตรียมรับมือฝนตกต่อเนื่องและฝนสะสม เสี่ยงน้ำท่วมฉับพลัน น้ำป่าไหลหลาก และดินโคลนถล่ม ช่วงวันที่ 8 - 13 พ.ย. 69 กำชับเจ้าหน้าที่รัฐเฝ้าระวังและช่วยเหลือประชา",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiohFBVV95cUxOdHNkN3dOejB1LUNRbU9DcVk0RzktQVZIRTROc0c2S1NTdE1FWjNwdXR0ZjVwVUp5N2lvNWVZUUFUSm5lNnF5c211UzV6empHbFZnSkxRUWxyNHhsdHBtaEVEZU1IZFFLTk9IRkpZTUNxbnh4QzlPa0ZLOVFHcS15MmVXcndDRjF5V1BWRzBvTXlHTWJUa2pVdXdOakNpVVUzQUR0QjZocEVHWWpzYklnYTJJVEMyNE92d3o1TlpGem9vUTBEWXBETWVXVzk5Zl9OczVhQUtEcmlhQ1hBUHNHaldyejRsYm50d0JsUkZTLWtpTVlpbHljZXlHbjhyWnVSZUhqb0hqeUFtVXhUYXRuQ28yWUdXeWltUFFHNHFPNEFFSVU0N1Q5aDRTblJOYldfTjBxTjJPWXpGUnF5YjdkQllTOU5WYjZvWTk1TlRfenYyUXA4M1JuTF9sWGdVcWY3elVhZXZHSGZNV2p4azUwam1DT2NIbHBYa0N3Wk8xSUtYY0lLM193cTBjUnJ4dGdXMHBYRzF2VTREWFhlYjU5aThVXy1pMWxyVHRUbC1pY2lMcGQtamp3Y3BGYkVkdFhHdkFDVDlybmVHRUVuRGJCU2J3UDc3VTEwVXJfcWJPdktFbHNaTFNxSGRCMjlIMHpET1BvbDI5Vnk1a05xRDFoM2IwUm9DbkRwTlRBU2t3djlZZ0tqOFhLaUhOU1RjYzZwdjgyX09Xb1JxRmx0eVVFNF9qd3QtVlVIVXJPLTU5UEpLTmljR0x2OVUwTnBrS0NoOVhOMTdxc0pQblZPbHpDRDBZVVdaNlJnbVlXOC1FdWVGSEs2TWJQM0VKd0d1Z2d1S1lxTDdheXFrMVRVUkxzUW9hZWVZOHBjb3BrUFRlZ0RQQlBqTEZESlVJU3BRc2gtMWV3X3RKSi1kNzJqZHpZNlFQTF9yVE9jc0hvVEZOZEVqanl6V3Q5a0pMRzFmeFQ1Tm4zczl3dHZtQ3lES2NRMUZhRnNrM1pFMTg2Ykd0dkZXUzE3d3NLQkw2dEo0VjE3dWlVS2J0aS1OeDA3djVBd3p3WVZHS1lBdjdJQThISmRJazJkdno5SS1OTW9OSENxT1lkSFlIZzVHTk55bUhzdE16SVhxRi1XM0JXcllYc2ZLaUJxT3NnWlh1NnNwUS1JMFZiMGZ4NWZyeTdsU3F4Xy1vQzNXMUpibXdIcF9ZMDZydGVDVHFCVnd1QU4xOGxGMTVXejFqTHNiVkdTdHd3NWxXZE9oazQwNTRPbFBTU3hOY0haSkZiN1czVmludjVhVlVxUHhJeDNHNkhSYXZ5NUxtOWZNZkZ0ZnNwUTFuS01lU3VrT3JFN2JrNkxWcW9TUGwydU1VVEtmMmx2WWtfR2hGbTdPTlZaX1gzS2R0LUxKb2pMcG13d1E5cTNiRXc4ZnFnV1JXMlhxSC1vX1VlRm5lczRMSmFmVXB0eVVUdE1RazRZcEw5NlFQaGpuUVhCU0h0ZWtXV2d4d25yNlZkam43a2lSRHNzenNKSFR3NGlrcEJqT2ZtaVVna1FyNnREdVl0RW4yYTEtaDhzWkloSkpaTUg4TG1UT0VLdXhTN2xYck95cFdLUEJvcFN3OXlXRTNXbVVYNXd4RTZZcXNFbGFzY3FBQ0VFbHZRVk1RN3RUR242WGdBRnlmOWMxUFZPdEd1UkRiWHpTZXRJZFMxQ2RLYmIwaEt2ZXJ5dVd6WGpDSklGSDdaVXFmbVcwUmJ1RHV4QWtsdmxOZjZieFh4R3N2UmtxV09aTU43ckFNYlFyVjU5TENTdkN4Tjd4MG5RNDFzLWZZRDBqNzU0RU9lU2diQnlwM004Qlg2OU81ckZEbkJpc1RJbE82a0RYVWVZNE9uemJzbG9VWkxlc0JvYjhWNTViY2Y4SUppb1JzSTN1dG9CR0VraURubXVESWphcU1weFl1aDE0WER3SFAzdmlwYU16VmF0bDVfR3JCU1VRdHpBR2hxU3VjcDBDdzJxUV9VNk1CVUFhbEZxSlN4S2NodVdwLTNPbXVTUHlFZUt0OUpmb081RGM5czFhZkZ3aXRyWTE5ZExZUVhfTGlOSTFVbDh3a3VQVVc0ZTAtT3FIeDhFaFg1bGg4LWpZX2VEZjFISmVlN2hHaHUyb21BMzN3bkJLakFfeXpBWGhFSmFjaDBOSUpiY0ZzcU1IaDNmUFRpQmo3Q1FCWUdMbXVsVTBzRUV1aDQ0MmRfcElabUN3ZHNkSl8yQ0hjUkdtTmJobFVDTVJZbW1QaGQxdFFwOVdqd2lxUWlGUmtxME9PMmJYcjhUelNiLVpoWEM0NDZHcjBMX0gyR0toZ0tsbFJ0Y1p2ejRRTklLVENQUHhhNUE4TlliT001eTVVYl9SUlJCN0VwSmtrLTF0dEVHMUJaR2otYjhzYzRWOXlDSGtHSWZfSEREclNEbkNBSGp5al9mSW9qc3hURmRTQ0JBZ3hWcjZuSEFwb1U3ek5PeUl1WFJkR3NvdHprRWZEbWdLeE1rMklqZUtkTUpsYS1PSzk1dUNXbnpZcDJNUUlaby1KVS1kcXE2VjNjZDBHQmxkaU1mQU5LZjV2OFgwcmhXODNCbWdHTjdjcXNMb2dSWnRvSnBaNm0yWW82ckEzekwxRnJ6bHE3N0xEdWlrZFRFZUtXZTVXZGdKeXhtcm1VR05lLVFiSzFDV2VLSmItbEo2bUJkeWxXOEotdWZYSDVpZDNiUE05eGhCUDVlRWpLNjI5ZVhTRk83MDNDU0Ftdy1Qb0VBb3BMMUt6VEh4dEpPalRaSXZPYlVNR05kVklrblJzNGlySEJOenc1N1JqTnM4QjBpNVAwbV9EWm9Cb1Q2U3VLRWhMNExvZmJ1dW1FUXg5VTc0QkhWdWtiQWFjR29DRjVtNjhNWlQ4bk1jdHdkYVRmZFZtTFcwNUU5OUEzUElyY0JIQQ?oc=5",
+      "published_at": "2026-11-08 18:52",
+      "age_hours": 6.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "รัฐบาล เตือนภาคใต้รับมือฝนตกต่อเนื่อง เสี่ยงน้ำท่วมฉับพลัน กำชับเจ้าหน้าที่เฝ้าระวังใกล้ชิด - Matichon Online",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFAwZnlVZFpiTHdISmlXTXdURTdCbmhoWWttclRtVTZEWk5nUEdtbkhfUExqb0FVcFE2Qi1kOTJjYkNucVpDQ0hmZEdKSFhGTnNTcm9hOHZDNmFjZmR3?oc=5",
+      "published_at": "2026-11-08 12:16",
+      "age_hours": 13.4,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "“วราวุธ” มอบถุงยังชีพ ช่วยน้ำท่วมอ.สองพี่น้อง เร่งวางแผนทำแก้มลิงสุพรรณฯ ตอนบน - www.thairath.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA5TVVUeGR0c0FXQWhmdjJoMzlvQW45NUd4aVBWZ0pJMnNycVJYMkdZdWNyeWZMcFB1YWVIMVV4OHFZZXJpYUJzVEF6eTQ0eWxnTXZIOWdDNWtvRTA?oc=5",
+      "published_at": "2026-11-08 18:00",
+      "age_hours": 7.7,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "พยากรณ์ฝนตกหนักถึงหนักมาก (1-3 ชั่วโมงข้างหน้า) วันที่ 8 พฤศจิกายน 2569 เวลา 13:00 - 16:00 น พื้นที่เสี่ยงน้ำท่วมฉับพลัน - Facebook",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMizAZBVV95cUxNaXVaamFxSTYtUWpxclJIc1dYSHdxVXBNUVVnMW8xNnpWVGxVUmM4RUtxcmRVTTlRdnFZcmhDSTNUR2FwS0N2REdKemtrUlhWWEE0bkt2eDBXek5hOWdBS2xfbWVSUlVsNjBuQzVIS3FPd1Zjd2RJVHBIeGtLdkpIbVY3cE01WFlTamhtUWw5TEhvX0RnSnBodGxkWFNXV0dkZDZWVUlVamdnUFl3aEk2eUU3c3FRaU54aXQ3dXhTN3lJMG1OWG9DbHpPV1hEWEJDZkFWblN2MmdUcFZpZU05TWdKSzlwdlVMRTlZZjBMOUJZQnJyd2JUWThoVng4TVVLNWxVN2FVZ1JubFdUTkc0b0IwNmVNU19uZllXRmNESEZFckFkTzJBck55c2ptNVlEQ0VobmdYLXN6dkRIZWpkSXJwcS1zRWhETXc2TkNLX0U2Q19GaTN6ZEQ0XzhzUFh2N2c0bmpmUFFGdkRvZGlnZ3ZBeTlObGFLOFpNZUJ4czhtU3B1Y1l1Z2JtZGpfa3luazZXQmJwU09QMjUtS21IeTJSM0U3dFhYbUkzbjlmVnVBSzgyeXQzT2hxMUxTeElkT05MQThSQm5KcEVDcGVKTEdubVNONENZOHUxOFRuMVJLbVU0NDJtb2Yyb0RhRHRySEEtRHQyMDQ4d1pEc2RqTkxNZDVvcUlaMjV1TnNzTTJ3OUhhWm80ejRNMkEtelRhajhPVDRfYUJjM0puVHhWcm5KOHlZRzVyOFZkNU5meFAwUkRxNWc2Y0gzdWw1NDhpRkZwMWpseEZ6dmRrMm4ycUtpQkhkdW8ycFNIcU5JcS1GLUk0RV8wMDlaM3lzNDlVMldNSU9QX0xwNWxLWEc5MHNlTy1UOUtOSHdHczVrR01adVlVWnBiTV9ncy1WSlNieDFKR0JuaUk3MF9WUkJjVkJQTzFWa3Rqa3o1MkpqaEkwcmw3eUdXTVRUSnRZYXBmVTl4UDRWdmRVOGg4dFc0VmFwRThreGN6azJlczZoSjEzRGgtTi1FMTk5Wlk1djdpY1BrMGZacGFjMmZ3WlNMTnl5ei0td0k2cURnVEFjMXV5RS1zOXlKN19Zal9wQ0t2eHBrUlVxQnVjV3h6?oc=5",
+      "published_at": "2026-11-08 14:03",
+      "age_hours": 11.7,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กทม.เร่งแก้น้ำท่วมลาดกระบัง 3 ระยะ ตั้งเป้าลดเสียหาย 80% - Thansettakij",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5GNlpROFFtelhFTEhidkx6c0p0Ykc1czJrcDRrYXNvVTlDVVBLNnZsWlhHd0l0bG04V0MyOWdzLVl4MS1KR2M3eXBjTEZ4Tk9wa3lodzlGVTN3ZXlo?oc=5",
+      "published_at": "2026-11-08 17:22",
+      "age_hours": 8.3,
+      "urgency": "warning",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "โพลเผย คนไทยห่วงน้ำท่วมใหญ่ มากกว่าวิกฤตสงครามโลก - ททบ. 5",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMihAVBVV95cUxNNHJ2YlQ2NWFMbWdmUzVPLXhaMVROS3NpNkJKNGVhWjBRYWZYVjJ0eGl1TVc4dk1CV1pvMHpUWnpMc09lbm1kRy10d2VhbzVVd0d2ZmIzRXdZeWlSbTJGdFlVVV9sMThDNXpUUnRCVTJ3czN4RGU5NzFkcnR4d3VGN0lEZ0lUb1h4c0NaaUNPUGl0azRXaDM5aDc2aU5nR1JEZmlQZ0psTEdVcVItOUNEdjF5UkhReGU5TEFaSVVZS2pUSGJKTmV2VHphMFp6LUlWUjY5OWk2blZfRDlsb1R2X0VwSkV6ZzBQME5MejU5WDczVWxsMVM3ejdheWFrV1hYSHlXT1JsYVFJSGhkWGJtOEY2aThUWGVrdFFOOE5Pc2xIUURncENoZ3J4ZUwyQTVhbWsxR1d1UHJ2RlprTmcwNll5aVk5MElMQV9fZ1E5bEtiRFFJeF9NZTRObl9HRDEwRHdzQ20xeEtmcUdoU0M3MWdqVHp6XzBOR0QtZFJVai1qMzdmZUNLSTV3X2hpN0NRdFVacDNYNE5lWFZWQ2QxQmNEb0VqRGF5NllpTlI0dG53U1FvNHlGS19KTWQwVmxJcVA1XzZhdjhfYWxRaHFPZWVfUmVjenFKQ0FPZ2lrZnVqS1JQZllQYjN5dkd2aXdwaGFhcE9ZZ2ppUWFjbnJQWTEyS3I4dnlZRmdkXzBXZGVKVE9td1NLQVVQRmprQkVnQl9wTWhnYmJmblpmdE1ueUpCc1EtV253RV9nRHprZUlzbExsZS1DSGZlREFNYmtsMHpselNnSHhEbkpIWlZkTGszNk1FdTVMcjh0b255YVd3ODNMXzgxZGtDLTFiVGRxLTRBRg?oc=5",
+      "published_at": "2026-11-08 10:04",
+      "age_hours": 15.6,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "น้ำท่วมจนทำงานไม่ได้ ผู้ประกันตน ม.33 เช็กสิทธิ ‘เงินว่างงาน’ กรณีเหตุสุดวิสัย - bangkokbiznews",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9KTldDTDkxQk9EekZfRm56aDR5aGh6bUxyYjNWWGdpLVM5WnBBT3BUdWRLc0pxSFJvdzV2Y0p4NV9Kb0l6OU1HUzQtaDdVWDR0OWQ3MVh0ZUdFQQ?oc=5",
+      "published_at": "2026-11-08 19:30",
+      "age_hours": 6.2,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "นิด้าโพล เผย คนไทยไม่กังวล ทั่วโลกเตือนกักตุนอาหาร ห่วงน้ำท่วมใหญ่ที่สุด - ข่าวสด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1uWTBqVWM0dlkxdmw0SXh0Y2lQVW5qbHBtZjh6SC1MSG5feVI3T1MyZ2RIX05iN2xlaHY4dFBmZVlzcVRQM285VnVDRXBlcXBla05YUUFzcllzRnFn?oc=5",
+      "published_at": "2026-11-08 11:10",
+      "age_hours": 14.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "UPDATE: ‘นิด้าโพล’ เผยคนไทยส่วนใหญ่ไม่กังวลข่าวเตือนสำรองอาหาร-ยา-น้ำดื่ม ชี้รัฐบาลควรรอสถานการณ์ชัดก่อนประกาศ หวั่นน้ำท่วมใหญ่สูงสุด วันนี้ (8 พฤศจิกายน) ศูนย์สำรวจความคิดเห็น ‘นิ",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiuwdBVV95cUxQRW81aExDUllrcGQweFZoLUl1cE9aMUJBeENIQmlzcDAwOVlYdnU4cVREMUtMWW1nbTI0am81Tm0tUVotTE4tallJQnZpc3NTeXU0RkVVMmp3cTNGVGpjeU9MczNoam9xTVBsWnVuNGZXR29HTEJuSENmS3NBUUtoOWN4WmtBNXF5VFY3c2FndUx1Z0owZEdfWVlteG9BdGZ2b3llMUtmQkNKY2RCbkZMNEMyX3RnUEkzaTFmbDZjbXltYkdCMXBPS0ViLXo0Mk80SEtsdHhQQ3oxTEtnSERqSXVtN0FLX0hmYW1mUVdmNVV6Y3BSOHZBRy1mWGNVeHc4NTUxMDlxNElCOXFJa1JlcWE5Zk96bWpFNGxSTW1lVjJSZm9DWXkyRXlpSTJrbXEzbERCMmZTTElFYmRBQlhTb0RvSW05TGJmZUkzbC1XN2FRR1owY0QxSGdnTTBWWS1UbGpycXZub2ZpOWx4cGV3ampIT29neXNQZDZNZGVjSmduY1lXVlNaM1p6bkVESUUwUEU1UlVUem55aklWc3JDTnBzQS10LU5CdzNUd2tjb3g5YVhjdkdOa0k5WkVHUkN1czJ0OE5VQWk4QlRneW1wbUtTZWZiZFMzcWhqaC1nNWhzRWdoc2VLbDl4aFlqUUt1VW8yblhndlJSajUtS05BZDlSWGtTSDJ1dEpZaHAzLWpELWlpWkxiSU9keEs4bzlNaUR0alF2VWFESldzM1ptWWxCbWRSQXYwaVFmNDRrWXA2UC1mVDBPZzNVM2ZTNGlVVGdqelgxOW02VmNsZmN1eGduMUMyZEdzWWtKMVBRVTNvcnc0dFF1aHNCWVBzRy1oYS1oc0lEUjVqeV9zSkp5cnFkTUtyRWNSWHlwZUJsb0p4S3NRWUk4OTVJWFNLUktZTkZ6MlMtNW80NWZ5eC14MlNCNldqQ3VoSnRMcDhsY2VGbUhqRG5mYnFQOHpNaGxRenhQM2dzendKelA2YlhaUnBNWTB3eWJoVnNWRkR6a0g3NnhxYS1ZeHJkTEdZR0ZvN2V2cWE0bVV4bTZrMGdCQ3hlRndGZnlraFMwQ01JQkNLb090Z2xZZWo4SDRsLUZfU21ZY3JMWXl2YXh1WDh3OFVJZ041VTZEZjI3WUFuenBubXdaUTRCMHZmSmp3UTFzNmVtRDE1amNhMUlZZFNhbFlBZFdLMElNWGJpNEhGRTQxOFl5dU9meThxcmJmY2hrcmdxXzBqTlNDTEhDamVPU3ZNUzg5YlkxaGxN?oc=5",
+      "published_at": "2026-11-08 10:09",
+      "age_hours": 15.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เจาะ 5 เหตุผล ทำไมน้ำท่วมกรุงเทพฯ ระบายยาก? เปิดแผน BMA รับมืออนาคต - bangkokbiznews",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5uNEtUTEplRldReDBvWmJFaEpUYS1jVXJPN0tmZU53andRblg2MXFGcXlRU0ZzcVhYODFjRVNtTDVYMWNIcUN1WE5RcFJ2TmNkaHNMcVh5SF9zeEx2ZjFEeWExdV9wZw?oc=5",
+      "published_at": "2026-11-08 18:13",
+      "age_hours": 7.5,
+      "urgency": "warning",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "# ชาวจันท์แฉ! 3 อ่างเดิมกักน้ำป้อนโรงงานจนเต็ม? น้ำท่วม 8 อำเภอ ยังคิดสร้างอ่างใหม่ 7.2 พันล.อีก! ชาวจันทบุรีเดือด! ตัวแทนประชาชนผู้คัดค้านโครงการก่อสร้างอ่างเก็บน้ำคลองวังโตนด จัง",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiygdBVV95cUxPeFdlNU40cVVTcVZLenRaY2x2bTJycUNOWGNxVEVHNmhKMVROQjNkMVc5WUU4NkZhcFR4bFJvZldpcE9KOWIxV2FMazR6OS1yUEt6T1FEV3dRS3hQYkFCUmgtd0ZIcTgzWkRoNUpVWnNKYmVxS1FTWl9pSjR2NkkzLWRRam9ET0R6M2lnYkJwYm5nZWdxd3RGN2ZoeWxoT3poT3ZpQXE3XzI1YUtmcGw4bFlYbm1hRUQyeUZMQ3ZhazFITmllSWdiZHk1dkRlQ01NRE1IZWs3NUVTQ3dTR3JqQmxWNUpCczY5dm5iejZJR25HS2UzdHg5aTZCRmJhaUxHbGlMTG5jcDNIalRVb0cwYXNpSWFpWFFCMmVPMk93SnZVcVFCMGl4NUYtY1d0OThWSldwR3M4dXZadEozdmxUaXExN21lcHdaYnBSTnJFNjZxMFpJLTR2Q3NHMlZNeldvVHVPR0lFd2F2MDVQZWxEd19qUVFtb1Z6RjhkVHM5alJEVjZrUHdoRlZubE84cW80ZEVCZWwzbWFWRTZUcGVyUWVuQlYwYmFaNEs4VDI0WkY1djdpWFFwc19mdFVlaGs1eExiMkxWei05M2UtTWpUSWM1QkNUd29oMmlEdDktYnltLW9ZRFRPc2FielpyWU1JM19LNDVpcXQ1azQ5QkFZV3FZNHl6Z0RReVYybWoxWTBsZVFvMURNMjFtRUJJQ0piaG9fbFpPeVNoV25VS1F6WHNLemFObnRkWUxtZnFkQTQ4Vy1aR1dEZVBYOVYzSVBraTJBanFibi02ZHluNzFFOURnMC1BZHdqcW4tN2lteW1Ta1dKX0JSV2k4dC1TUC1MM2tQNGM4UGdnRkg2NjNaUU9WSmZkSS1KdHFBMTBoQlVmNkd3RFhOdmxTUlhCbmpxSlZOZk1Gc25vbW1hZlZucnJMNk5YVEZLbi1OLWhGY1Rvd04tMEVqaFlRZ24wUTR2QmgyQXo5WUoxZHNEYWp3MjdpM2lmSVVUNUxtbTRZWERwRTJrN0x2eWktQVBqN1Q5T1NvdDRHeVViY2JfQkJxdlRSWjN0STJFczk4dkE0c21hR1JqeU1nUzNtOXhBa0hIcmQyUEhHYnBOMEwweWZQYkF1SF9tWHB0VGdrSmp1Szd5RXVwVmNEYVRNWnRZTHREamVFbHBqeXk2OVp2R1p0bkVvRllyUEpMT0twcVBobXNlSUcwdVdYZXotWlBIOWxMX1NpRGZXd2pvLWlNZTdybFlIZ3dyNkFRLXJ6VldTZnZkLVk0V0JWQnVR?oc=5",
+      "published_at": "2026-11-08 15:12",
+      "age_hours": 10.5,
+      "urgency": "warning",
+      "province": "จันทบุรี"
+    },
+    {
+      "title": "“กรมอุตุ” เตือนภาคใต้ รับมือฝนตกหนัก 8-9 พ.ย.นี้ ระวังน้ำท่วมฉับพลัน - ข่าวหุ้นธุรกิจออนไลน์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1wYkd3aEVMMFlTVnVVOFI2R0hDSWY1T0J5ak5IbFNkanpVYnF4X1BiclFHaGM0WmlqM1p4cndtMjY1SWd6YlNzRWw1OA?oc=5",
+      "published_at": "2026-11-08 09:14",
+      "age_hours": 16.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "รัฐบาลเตือน 11 จ. ภาคใต้ รับมือฝนตกหนัก-น้ำท่วมฉับพลัน 8-13 พ.ย. 69 - วารสารการเงินธนาคาร",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9faHhUVXNRSW1XeTE3RkFyTlM3a0paV01SX3VSVTh2dFlmTHQzRlpFc1FkOW5TQVpSMzZsLVVpZlBlMDJGUlVLd2t1VHhKYXZtM1NKcA?oc=5",
+      "published_at": "2026-11-08 13:00",
+      "age_hours": 12.7,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ชาวเน็ตแห่เห็นใจ เจนี่ ปมดราม่าเงินบริจาคให้บุ๋ม ช่วยน้ำท่วม ทั้งที่เพิ่งถูกเพื่อนสนิทโกง เหมือนถูกหักหลังซ้ำสอง | News In Thailand - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9JWENvZVpaR3ZVYXBub29VaUNDZmlqVkxZU01obm81SmdEcFNIVzNDMkR6WG8yX2JXSzhmdVpmRnFQVjFtZGlydUhzY2tXS21uN1B4bUh3?oc=5",
+      "published_at": "2026-11-08 21:14",
+      "age_hours": 4.5,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ฝนตกหนัก! เขื่อนทับเสลาน้ำล้นสปิลเวย์ ทะลักท่วมอุทัยธานีกลางดึก | 8 พ.ย. 69 | ไทยรัฐนิวส์โชว์ - www.thairath.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNOHVleVR5em05TDdaNWxDWGpvMzhXSl9JMVJxMFhhSUJmMi00QnRockMyTHk3aDlhMXRqR3JCLWhiSHF1UktQaElvOXZHSUl4b0JNbDBHWEw0TUlaQ2Nqc2lNc3VnZnNzNTc2cFVVRWRWbHREdkc4MXNBdVhTaUFWT3AyX3lsb2Yw?oc=5",
+      "published_at": "2026-11-08 20:11",
+      "age_hours": 5.5,
+      "urgency": "critical",
+      "province": "อุทัยธานี"
+    },
+    {
+      "title": "“พิพัฒน์” เปิดทางลอดบางกล่ำ เดินหน้าวงแหวนหาดใหญ่ 61 กม. ย้ำพัฒนาถนนต้องไม่ซ้ำเติมปัญหาน้ำท่วม - www.topnews.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE0yYXFVOGhKWEZFdzdpaVVoRjdFYUI0bk1KZG0yUHl1VElrQmNOTEVpR25SR1dPWFB5QjJ6SEs4cV9LQk9IN1VmVTB6aDlzX0E?oc=5",
+      "published_at": "2026-11-08 20:39",
+      "age_hours": 5.0,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ฝนถล่มฉนวนกาซา น้ำท่วมเต็นท์ผู้อพยพ - TrueID",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9KbHhlRnVzN1VEazZadXVwcGFoQU9wX2dia1BKU1F5My1nZHh6S1BJZWlSRjc4b3RqQ3RNOVdxVFk1cUxWX1NUSGNFZ184ZUs5UXlLMTFn?oc=5",
+      "published_at": "2026-11-08 11:14",
+      "age_hours": 14.5,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กรมอุตุฯ เตือน 11 จังหวัดฝนหนัก เสี่ยงน้ำท่วม ไทยจ่อเข้าฤดูหนาว - TNN Thailand",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9HYThBMUtvMDIxOC1uNXc5WUxfMVFJdEd1cWhUMHEwZ0MxSmpLOHdJcFYwWERKQ2djbGd0Z216THV0eUZpYUg3cUhQWi1pdXdRRTJ2TA?oc=5",
+      "published_at": "2026-11-08 13:32",
+      "age_hours": 12.2,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "น้ำป่าห้วยขาแข้งทะลักท่วมอุทัยธานี เตือนใต้ฝนหนัก 8-9 พ.ย. - TNN Thailand",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1Ba2JvTXg4Nm9nWjhVbXNUV3E4ZkphT0dCTi1EY1F6Y21JWDh1OGJuTGd1REl1d3BMVHZtM1VfTk9BM1NGczR6UGQ0NnpzXzlCMXdyXw?oc=5",
+      "published_at": "2026-11-08 21:34",
+      "age_hours": 4.1,
+      "urgency": "critical",
+      "province": "อุทัยธานี"
+    },
+    {
+      "title": "นิด้าโพลเผยคนไทย 77% รู้ข่าวเตือนสำรองอาหาร ห่วงน้ำท่วมใหญ่-พลังงานล่ม - อมรินทร์ทีวี ช่อง 34",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE4tMS05RU9KbF9LaXptQWxRUnRfT0JZRnBnV1hTUWwtMVptd1M1ZV9ib21xM1VrRlczQW1FTTF0MmNXS285eVNERHN0MExFM3FLUEwyR2Jn?oc=5",
+      "published_at": "2026-11-08 09:27",
+      "age_hours": 16.3,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เตรียมเสบียงล่วงหน้า 72 ชั่วโมงเพื่ออะไร ?' สงคราม 'หรือ 'ภัยพิบัติ ' - Thaipost.net",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9hZzI0R0hUODU5WXdGT0dUcC1pdmxyanJvYkVaSndKOVl1dGdUUGthTHRKdUxxQTBZaUdMenFHelVLUS1MVk5NZk5MSEs0bFI4RzBXMTdacHU?oc=5",
+      "published_at": "2026-11-08 16:10",
+      "age_hours": 9.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กทม. ทำแผน 3 ระยะ ปิดจุดอ่อนรับมือน้ำท่วมลาดกระบังปีหน้า - ช่อง 7",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBWaEtPSzVyaC1hYk5ESFFIY0NnZG1LM0VoRjlibUJ2WE03MFFnM1hPU1d2ckpkYUoyODkwNTZ6aEY2WHJUOW04QzlVMA?oc=5",
+      "published_at": "2026-11-08 18:43",
+      "age_hours": 7.0,
+      "urgency": "warning",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "เปิดพื้นที่เสี่ยง! อุตุฯ เตือน ฉบับ 1 ภาคใต้ ฝนตกหนัก 9-13 พ.ย. 69 - bangkokbiznews",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBuTmtCb2tBejdZYmFDV29kTjlGVzVacno5MG9HZzY0Zm1oajI2N2w3cmt5SzFLMm1zM1dPNzF1QmgzZHZNWHNzbEpNc216UVQwa3dBRmQ3QVRzQ2pxcGU5UTJ2RzFFUQ?oc=5",
+      "published_at": "2026-11-08 20:18",
+      "age_hours": 5.4,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "รายงานพิเศษ : ‘MIDL WEEK 2026’หาดใหญ่ ย้อนมองปัญหาสื่อสารช่วงน้ำท่วม - แนวหน้า",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5YWjM0VlRjc1l1OE9tb2xOOGFoeHAzVi1VMGpobGQwSlFIMkZucFdFeXhIbWxXVXA0amZBaWt3WDVyRHFPaURRNzNTVlVZek04RW51bmgtbkFZYWJEUlFYQmxQNUYybUpvVUE?oc=5",
+      "published_at": "2026-11-08 06:01",
+      "age_hours": 19.7,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เสิร์ฟกล้วยจากฟ้า! เจ้าหน้าที่ใช้โดรนส่งอาหารให้ชิมแปนซีติดน้ำท่วมในฟลอริดา - ข่าวสด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1jdWlFMjMxbDZQUzJTNzJKVnM0b2Mwd3ZGYzFtTjdJQWZDM2VnUGpRV2lvbkY3Ul95Sm51R25fcndJNzh0bG1tUWIzZXQyTERIS1RhLUw3R1VYcVRIQVFYOGRNR1lKTlNHSVVwVFBB?oc=5",
+      "published_at": "2026-11-08 13:43",
+      "age_hours": 12.0,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ฝนถล่มกาซาหนัก! เต็นท์ผู้อพยพจมน้ำกว่า 7 หมื่นหลัง หลายแสนคนไร้ที่พักพิง - แนวหน้า",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE4tbnF5ZEJtVnBuLXg5bHRJdmVLbEYzb0dKb3JGZ0FyWG8yY1d2V1dQUFBVRnVuMlJNZmZyRkZjZkNnMTI1RVhYQmVmTkFVem9yVXhUNURidw?oc=5",
+      "published_at": "2026-11-08 16:45",
+      "age_hours": 8.9,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ยังค้างคาใจ! ดัง พันกร โพสต์ตามหาคนได้กิน 'หมูแม่นาย' หลังส่งช่วยน้ำท่วมมูลนิธิบุ๋ม ปนัดดา หวั่นของบริจาคไม่ถึงมือ - แนวหน้า",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE41eFN0eU9XT3BfQWo2aVdkWEUtTTliSlBadkk5SUctQlRHOVY5Y3g0VmlaY1JPRF9wSzJnVTFpR0VJZnR6LVVrMV9zMEhIenJ0bUxCa0Jn?oc=5",
+      "published_at": "2026-11-08 10:46",
+      "age_hours": 14.9,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "โพลเผยคนไทยไม่กังวลข่าวเตือนกักตุนอาหาร ห่วง “น้ำท่วมใหญ่-ขาดพลังงาน” มากที่สุด - วารสารการเงินธนาคาร",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE45WWVmYTN3NGlVMElYRWYyejV3Q0ExUHc5ZTRUR0Q0Qzl5eS1iSldnSkhkZmFfZmthX0ZBSkd0UHVQLXhRSVQ0MTFyNkdEWU5pVU9Zeg?oc=5",
+      "published_at": "2026-11-08 13:00",
+      "age_hours": 12.7,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "สภาพอากาศวันนี้ 8 พ.ย. ภาคใต้เจอฝนถล่มหนัก ระวังน้ำท่วมฉับพลัน-น้ำป่าไหลหลาก | The Bangkok Insight - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB6MWp0RkpSZW9KWkRGNlBheHl0dnFuZjJxNTRqczA4cERfbHpOaTFQSTlWcnZ1dVE0TWdPbUltWUVfbXVpVUx1TjFDeTd3TTVSbEpsT3pn?oc=5",
+      "published_at": "2026-11-08 07:53",
+      "age_hours": 17.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "‘กุลวลี’ขอรัฐเร่งเยียวยาราชบุรีเร่งฟื้นฟูหลังน้ำลดปลาหมอคางดำระบาด-สวนมะพร้าวน้ำหอมพัง - เดลินิวส์",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9DbF9QYjhMV09pQ2R3QmdWSEI5V1RvSlFBdkhjVlA3VFU5TXBCc3RjWlp2LUdyM1dFOVgtbmZiMlczaURVY2ptZnNERnJoUnIxUmhF?oc=5",
+      "published_at": "2026-11-08 22:05",
+      "age_hours": 3.6,
+      "urgency": "recovery",
+      "province": "ราชบุรี"
+    },
+    {
+      "title": "‘มท.3’ ส่ง ‘มนัญญา’ พร้อม ปภ. เร่งลงพื้นที่ช่วยผู้ประสบอุทกภัย จ.อุทัยธานี​ - เดลินิวส์",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE0wcWFvZkF3bjRRdnNOZC1uZ2F5NldJdTZ2dDQ1LXN3YkhPVl8zd1c3TWo0SVZydWhvT1l6T083WGM5aTc2OXhnZDY4RzQwU1JZUUJF?oc=5",
+      "published_at": "2026-11-08 16:31",
+      "age_hours": 9.2,
+      "urgency": "warning",
+      "province": "อุทัยธานี"
+    },
+    {
+      "title": "รัฐบาลเตือนภาคใต้เตรียมรับมือฝนตกต่อเนื่องและฝนสะสม เสี่ยงอุทกภัย 8-13 พ.ย. 69 สั่ง จนท.เฝ้าระวัง - ผู้จัดการออนไลน์",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE8tVEZmSDZxMlhHTGdMRlJLZlNpMDNvQUdFSHlIdS1IVEFxbmhUbW5PR2lwQll2Ti1RZV9jc09DZFF6M2ROOVVSXy1GMGdQVkE3T0J0czJQMURJZ3pad2RqbQ?oc=5",
+      "published_at": "2026-11-08 12:49",
+      "age_hours": 12.9,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ดำเนินการเชิงรุกเพื่อป้องกันและควบคุมอุทกภัยโดยยึดหลัก \"สี่ประการ ณ จุดเกิดเหตุ\" - Vietnam.vn",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQRU9veVJoVUppR0dvTFlvemJkOFVRb041Rm9lMG9XUVh3Z05kaDQ2aUJLblRfaGNOelRScmhqZ3ZjcEFtMFJfVFFnV3pmaWNxV2JHLUp1bzFycWJNODlEX3paRl9zbkhCN0Q5S01CRmNwdmlYWUpCQ0ZKUzIxV09aNHNiZlVLdnkzUWNEclhQQ180a2hNbmhhbllDNFNYdzNuc1I0Q1BGR2U?oc=5",
+      "published_at": "2026-11-08 19:14",
+      "age_hours": 6.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เปิดยอดเคลมประกันภัยพิบัติ 69 จ่ายสินไหมแล้ว 4,820 ราย รวม 56 ล้านบาท - bangkokbiznews",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFB3QnlOSXVEZWUzRUJ1blJCdkl1bi1OUjl1ZmJNWUtHa0Z1OFlJRkFZREtoMFQxMVp4RFo0elQwTXE3QlVIR2xpVzdLMkFRdExKZDhsbFVyZTNIcWp4TEwtVDQ3MG5uUQ?oc=5",
+      "published_at": "2026-11-08 18:41",
+      "age_hours": 7.0,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "การตอบสนองเชิงรุกต่อฝนตกหนักเป็นวงกว้าง ความเสี่ยงจากน้ำท่วม และดินถล่ม - Vietnam.vn",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQYjBXSWljMkcxeHlIZUpVUzVxQXh6VDBoTF8ybHZpNk9ybjhUc1FUQ21hT2RtUUxLUUk3T0dla2RodWkwMmZLdGhEQmRsQTBTTXBGTjZVWVZOQTZMREdrYVNrOVdNajdpOXlmazM3M1kzQnE1UllvTHBLZGR3TFg5dG0tVVJuMTNaWmhqQ1hUMWtaZzhZMmhuTGNjOA?oc=5",
+      "published_at": "2026-11-08 21:38",
+      "age_hours": 4.1,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "จังหวัดเกียลายคาดการณ์ปริมาณฝนตกหนักถึง 400 มิลลิเมตร และกำลังประเมินพื้นที่เสี่ยงต่ออุทกภัยฉับพลัน - Vietnam.vn",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPbUhaMWtCTERCcXBiYzBxc3JKNURMcEFSMkFHajRaRmdHTHBIc1JMU05QOE95N1dfcUhtMU0wT1pUZ3daaFJxdHFZY2VwV25GdEJHaFpwNkZvdDFRcEpobU9wd0F0bUZ0aFRKYzlzUWxQS0N5YlhacXFKbzRJcVdtV3NOWDFlU0l0V3QtY1NHSnFGa1NR?oc=5",
+      "published_at": "2026-11-08 20:49",
+      "age_hours": 4.9,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กวางงาย: การรับมือเชิงรุกต่อฝนและน้ำท่วม - Vietnam.vn",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1wLWVaMmtRa01qVkFsbnUxZUkzNkljUnVXSkRtanh6eElVamVvdmI1V0NzRldTT2pwOW93Nm9RazBUeUZuWVJ6cXF2U1FIQ0JVc2h0QWE0U013ajlGUzE1R0thRWxsZTRlbWJuQklqQVF3QQ?oc=5",
+      "published_at": "2026-11-08 14:05",
+      "age_hours": 11.6,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "Thailand alerts 11 southern provinces to heavy rain and floods - Nation Thailand",
+      "source": "\"flood Thailand\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1ldFZXa3ZaaHNlaml0ZkJJd3AtTEE1cmNwV3kyYlRUTUdqVnpLa1JfNFV1QVJDeWxmak5DUDI3bTcwNC12djZtY3ItcjNhLU85QTBzcWJPREgtd2RhMnYxNTR3?oc=5",
+      "published_at": "2026-11-08 16:16",
+      "age_hours": 9.4,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "Shaking up the old flood model - Bangkok Post",
+      "source": "\"flood Thailand\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPN1hFTGFXSXNoX3d5azMtYU5WS19nRElTQy1VZWRYLVFKR0c4WklfSkNENFdMd3UxYmhwLXdKZl9DQVZ1WUM1bVdkbEpmRTRaalJqRnp1NDJfdDh2MHI5XzU3RUpJM1A0TTROOGt0dFpydHRReHNBZVM2WktKdzFfaHA1MzNMc204YWVr?oc=5",
+      "published_at": "2026-11-08 05:13",
+      "age_hours": 20.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "‘BIGBANG’ ประกาศยกเลิกคอนเสิร์ตกลางคัน หลังฝนตกหนัก ชี้เพื่อความปลอดภัยของทุกคน",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/entertainment/interstars/news_5967209",
+      "published_at": "2026-11-08 20:52",
+      "age_hours": 4.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กรมอุตุฯ เตือนฉบับที่ 1 ไทยตอนบนจะมีอากาศเย็นลง ใต้ฝนตกหนักถึงหนักมาก 9-13 พ.ย.",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/local/news_5967161",
+      "published_at": "2026-11-08 19:51",
+      "age_hours": 5.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ปภ. เผยประกันภัยพิบัติแห่งชาติ อนุมัติสินไหมกว่า 56 ล้าน ช่วยเหลือประชาชนแล้ว 4,820 ครัวเรือน",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/politics/news_5967126",
+      "published_at": "2026-11-08 19:10",
+      "age_hours": 6.5,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ประชาธิปัตย์ จับมือแฟลตคลองจั่น เตรียมยื่นศาลปกครองฟ้อง’กทม. – ชัชชาติ’ เร่งชดใช้เยียวยาน้ำท่วม",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/politics/news_5967033",
+      "published_at": "2026-11-08 18:21",
+      "age_hours": 7.3,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    }
+  ]
+}
