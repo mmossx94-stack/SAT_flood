@@ -1,0 +1,446 @@
+{
+  "date": "2026-11-15",
+  "article_count": 36,
+  "updated_at": "2026-11-14 22:03:57",
+  "method": "tfidf",
+  "note": "คำในข้อมูลนี้ผ่านการคัดกรองด้วย TF-IDF และเพิ่มน้ำหนักคำกลุ่มเฝ้าระวังน้ำท่วม",
+  "word_categories": {
+    "ฝนตกหนัก": "monitoring",
+    "ผู้ประสบอุทกภัย": "relief",
+    "ฝน": "monitoring",
+    "ยันไม่ได้เปิดบัญชีรับเงิน": "general",
+    "แจงปมเปิดรับบริจาคช่วยน้ำท่วม": "general",
+    "เพื่อไทย": "general",
+    "เยียวยาน้ำท่วม": "general",
+    "ผู้ประสบภัย": "relief",
+    "ชุมพร": "general",
+    "กรมอุตุฯ": "general",
+    "ประกาศแล้ว": "general",
+    "สกลธี": "general",
+    "นำทีม": "general",
+    "ปชป": "general",
+    "จังหวัดภาคใต้ฝนหนัก": "general",
+    "เสี่ยงน้ำท่วมฉับพลัน": "general",
+    "อ่าวไทยคลื่นสูง": "general",
+    "เมตร": "general",
+    "ฝนถล่มใต้": "general",
+    "ชุมพรจมบาดาล": "general",
+    "น้ำป่าไหลหลาก": "general",
+    "ไทยรัฐนิวส์โชว์": "general"
+  },
+  "word_freq": {
+    "th": {
+      "ฝนตกหนัก": 5,
+      "ผู้ประสบอุทกภัย": 2,
+      "ฝน": 2,
+      "ยันไม่ได้เปิดบัญชีรับเงิน": 4,
+      "แจงปมเปิดรับบริจาคช่วยน้ำท่วม": 2,
+      "เพื่อไทย": 2,
+      "เยียวยาน้ำท่วม": 2,
+      "ผู้ประสบภัย": 2,
+      "ชุมพร": 4,
+      "กรมอุตุฯ": 4,
+      "ประกาศแล้ว": 2,
+      "สกลธี": 2,
+      "นำทีม": 2,
+      "ปชป": 2,
+      "จังหวัดภาคใต้ฝนหนัก": 2,
+      "เสี่ยงน้ำท่วมฉับพลัน": 2,
+      "อ่าวไทยคลื่นสูง": 2,
+      "เมตร": 2,
+      "ฝนถล่มใต้": 2,
+      "ชุมพรจมบาดาล": 2,
+      "น้ำป่าไหลหลาก": 2,
+      "ไทยรัฐนิวส์โชว์": 2
+    },
+    "en": {
+      "insight": 2,
+      "topnews": 4,
+      "vietnam": 2
+    },
+    "combined": {
+      "ฝนตกหนัก": 100,
+      "ผู้ประสบอุทกภัย": 40,
+      "ฝน": 40,
+      "ยันไม่ได้เปิดบัญชีรับเงิน": 80,
+      "แจงปมเปิดรับบริจาคช่วยน้ำท่วม": 40,
+      "เพื่อไทย": 40,
+      "เยียวยาน้ำท่วม": 40,
+      "ผู้ประสบภัย": 40,
+      "ชุมพร": 80,
+      "กรมอุตุฯ": 80,
+      "ประกาศแล้ว": 40,
+      "สกลธี": 40,
+      "นำทีม": 40,
+      "ปชป": 40,
+      "จังหวัดภาคใต้ฝนหนัก": 40,
+      "เสี่ยงน้ำท่วมฉับพลัน": 40,
+      "อ่าวไทยคลื่นสูง": 40,
+      "เมตร": 40,
+      "ฝนถล่มใต้": 40,
+      "ชุมพรจมบาดาล": 40,
+      "น้ำป่าไหลหลาก": 40,
+      "ไทยรัฐนิวส์โชว์": 40,
+      "insight": 30,
+      "topnews": 60,
+      "vietnam": 30
+    }
+  },
+  "tfidf_scores": {
+    "th": {
+      "ฝนตกหนัก": 5.5394,
+      "ผู้ประสบอุทกภัย": 2.8098,
+      "ฝน": 2.7318,
+      "ยันไม่ได้เปิดบัญชีรับเงิน": 2.6872,
+      "แจงปมเปิดรับบริจาคช่วยน้ำท่วม": 2.0488,
+      "เพื่อไทย": 1.7562,
+      "เยียวยาน้ำท่วม": 1.7562,
+      "ผู้ประสบภัย": 1.7122,
+      "ชุมพร": 1.3973,
+      "กรมอุตุฯ": 1.257,
+      "ประกาศแล้ว": 1.1415,
+      "สกลธี": 1.0871,
+      "นำทีม": 1.0871,
+      "ปชป": 1.0871,
+      "จังหวัดภาคใต้ฝนหนัก": 0.8873,
+      "เสี่ยงน้ำท่วมฉับพลัน": 0.8873,
+      "อ่าวไทยคลื่นสูง": 0.8873,
+      "เมตร": 0.8873,
+      "ฝนถล่มใต้": 0.8873,
+      "ชุมพรจมบาดาล": 0.8873,
+      "น้ำป่าไหลหลาก": 0.8873,
+      "ไทยรัฐนิวส์โชว์": 0.8873
+    },
+    "en": {
+      "insight": 7.0246,
+      "topnews": 7.0246,
+      "vietnam": 7.0246
+    }
+  },
+  "articles_preview": [
+    {
+      "title": "กรมอุตุฯ เตือนใต้ฝนหนัก ระวังน้ำท่วมฉับพลัน 18-22 พ.ย. ฝนถล่มหลายพื้นที่ - Thaipost.net",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE16N1RZLWt5OTE2Um9Kb0tFc2s2cEp0SWxrMFBJS0phOW0ycTBmbFJTT2JsaGE5S05nN29oODl6UFhIWjdKa0xxeWpUNTRLeEpjaVVvYg?oc=5",
+      "published_at": "2026-11-14 06:21",
+      "age_hours": 22.7,
+      "urgency": "critical",
+      "province": "ชุมพร"
+    },
+    {
+      "title": "ราชกิจจาฯ ประกาศแล้ว! ลดหย่อนภาษีผู้ประสบภัยน้ำท่วม ซ่อมบ้านสูงสุด 1 แสน - ซ่อมรถ 3 หมื่นบาท - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1uVU9rVDc4dTlGSUFVTXp0bll3SllUWWk3NlNBTEhQZE05bHJEc0I0a1lwMmxqcWt6LVJoZVRyT2haVGdDcXp2R0JoSUF6RzNteTRZSTV3?oc=5",
+      "published_at": "2026-11-14 17:27",
+      "age_hours": 11.6,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "\"เพื่อไทย” แจงปมรับบริจาคช่วยน้ำท่วม! ยันไม่ได้เปิดบัญชีรับเงิน - เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4wS3ZlLVppbmRFcHMtTW1WNC0ta2pEWlZqYV9jT1pPSl82LVctYTRzSmQ0bTZfOWZfUkxjMWhVeHlSb1ZkMGFEWWRlS09qbXhlWk1tRThBcF9aejA?oc=5",
+      "published_at": "2026-11-14 16:52",
+      "age_hours": 12.2,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เพื่อไทยแจงปมรับบริจาคช่วยน้ำท่วม ยันไม่ได้เปิดบัญชีรับเงิน-ตั้งแค่ศูนย์รวมสิ่งของ ปัดผิดกฎหมายพรรคการเมือง - thestandard.co",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE95RXllOVhFWS1yTGxJZERkeHZOSG9LOEZWSlVxMVNQVzVnOVpCRGhfZHgwT1hLc0dUdWRxWWlhY2E3cWxyR2U1dGd2M3BzazVRYjVZMFBjbUxMS0VBTVE0aWlIelcyZVlOV0F3?oc=5",
+      "published_at": "2026-11-14 12:44",
+      "age_hours": 16.3,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "อัปเดตล่าสุด 14 พ.ย. 2569 ยอดลงทะเบียนช่วยเหลือผู้ประสบอุทกภัย \"น้ำท่วม กทม.\" - www.thairath.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5KakJZbjloT1lTRnpGSWxXMFFxUlN1RVMycElOb211Y3MzMmRiZTMyN0hRbjgxaF9Cb0wybUpnUU1US1FCdUF3Uy16ZU5nN0RvNmFIdEljRHFGRDQ?oc=5",
+      "published_at": "2026-11-14 19:55",
+      "age_hours": 9.1,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "เยียวยาน้ำท่วม กทม. เดินหน้าโอนค่าซ่อมบ้าน ตั้งเป้าประเมินครบภายใน ธ.ค.นี้ - TNN Thailand",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE12cUszeWIzSkRlaXNNSDNzZmhjR3V2Yzl0V3N5Z013R1hQQlhOWU5Wa2hOVHRfRGp1bmdndzdtNDJpUTNKcE8yVXN6Mm9qeVE4OFNXZQ?oc=5",
+      "published_at": "2026-11-14 16:59",
+      "age_hours": 12.1,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "น้ำท่วมบางปะกงซ้ำซาก! เกษตรกรฉะเชิงเทราโค่นมะม่วง GI กว่า 85% เสียหาย คันดินสูง 3 เมตรยังเอาไม่อยู่ สูญรายได้กว่า 1 ล้าน - ผู้จัดการออนไลน์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE4tbW44alpqN1NHeENIRTFzdTQxWDBCaDZJU3Uyd3dMQnNscTZUN0hEOTZ2YjBJNDBiX0tyWTZuR2F0dlJSU216V3JWZTg3SXZWZE9MbHQxWEVFYXJj?oc=5",
+      "published_at": "2026-11-14 17:43",
+      "age_hours": 11.3,
+      "urgency": "warning",
+      "province": "ฉะเชิงเทรา"
+    },
+    {
+      "title": "“นักวิชาการ” ชี้ถึงเวลายกระดับรับมือภัยพิบัติ-น้ำท่วม แนะรัฐถอดบทเรียนจริงจัง - เดลินิวส์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1DdGlsam1kT1oteVFLbVYydGI3R3BlM0F4MHk5R1dISmlDMHVPUkt2SS1pQllhdm5EcGdoX3RGSnlWdUF6MmhZS0RxNnJaY0tSazZJ?oc=5",
+      "published_at": "2026-11-14 19:12",
+      "age_hours": 9.9,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "สกลธี นำทีม ปชป. เตรียมฟ้องศาลปกครอง จี้กทม. เยียวยาน้ำท่วม - ข่าวสด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE05Rkg3azBqWHZTUWw1X3k5OU1ETXNBZnhweXVfWlBnUXRzNk10WnJDQUlnX0ZuMm9YOHh4MDFQQ1hhZmdEQ2tIdmJOTk9GYzlSZk8yejYxSl9hNVhT?oc=5",
+      "published_at": "2026-11-14 20:31",
+      "age_hours": 8.5,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "MIT เตือนไทย ฝน 100 ปีอาจกลายเป็นฝน 5 ปี เหลือเวลา 15 ปี เร่งปรับตัวรับมือน้ำท่วม - bangkokbiznews",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5QRkx5OG1FWmdIMERtVEVINWQ3MVd6OERaakpZNnZBVDVqRm5JQ3JCandjVWZxRzdrYVJqVlJpVElsNmFtSHFXNC10aEcxaGFKYlNQVk1wTm1LT3pYMTJPTU1ZYXJ2ckp1SU4zNWx6WnRVa1E?oc=5",
+      "published_at": "2026-11-15 01:36",
+      "age_hours": 3.4,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "จุฬาฯ จัดกันก่อนท่วม รับมือ “ฝนสุดขั้ว” เชื่อมความเสี่ยงด้านน้ำสู่การเตรียมพร้อมระดับประเทศ - ThaiPublica",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE0wU2E3QWFYQUF3dHZfWVoteXEyaldkQi16SzdwQ3Fhd0E2M3h2dTMzTEJjaUlmcE80Y2M4YjlLaHVwcEtsS0xrZU56YXBZaWIwWDBreHJwb0oyNHR0aUhsV0YweGZLbDY1ZGlUelZuRQ?oc=5",
+      "published_at": "2026-11-14 19:29",
+      "age_hours": 9.6,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "MIT เตือนไทยฝนสุดขั้วถี่ขึ้น 5–10 เท่า ฝน 100 ปีอาจเกิดทุก 5–20 ปี ชี้เหลือเวลา 10–15 ปี เร่งปรับโครงสร้างพื้นฐานรับมือน้ำท่วม . โลกร้อนไม่ได้แค่ทำให้อุณหภูมิสูงขึ้น แต่กำลังเปลี่ย",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMisgZBVV95cUxQYW9EOERWdmVWVTBXcEV6aWxmaGlGRzYtUG9vSHpZcnZSRWJqaE9zbWFlcjVsd3NWV2pQVlgxX0xKWnA0aW02anJzVDI3OTNmNVNQTXAybWNvSjh1VHFTV19hb0txTTdObnk2dHVrWmxFUG5QUjlHbjhDNjVfWDcwRmlyMzFCVkdkaEZyVG5JTmF5bW1kbWxZa2ZsWDNTcVNGVWktXzNVZWpOUmtrdmdVOVBqVDBuX2ctU3BtZ2tUWldUcmQtVEFwQXJGSkR5OWtFVjFpVDBrRXJfclNDZmp6Tm5COWFfYkw1TWEtbmxJZkJkUVZ0WW9ZZ3JUem5oRm43VlpMRnhZUDUyX0xWNGRCX1JpNUs2QnU2bDZxOWJXLTk5c3NmVjR5aTV0VTlKY3BjUnkyWXJTYTM3SnNZNHhvNmJDRk9qdFBEVUZiX2xSeF9OZW81MlVSVFJjSHBKVkZNaUJUcnhLY2pqam50QWw1ZDZZNHc3Y0VvcDhxMTRYbkVBbl91WnJMc3JlbFFDOFh1N29ZMUxmQlZaSUNZTEJ0Smh2enhOUUJJelQwdzRBNGQ5Nmh5elotX3hBTkhDSkFaRzgxX3k5SW5TT1R6V3hIcmlQeWpYTElZUDE3VlZpcWpNWE5OOUx5TDlBbDNUbWg1cHI4LWg0OURFSXBSa0h0aVJTQmxZTmZzSTl5Yzl1bV9PMFktWmpCX0dhQkp1YTBUZU10NF9GUHhGN1NINkNaOW43QnBhZGxyTk8tY0Y1UXItSG9qVGZxbGxhZU5RN2RFM3ZwSVdiY0RVM0JuWlB5T1RUVFQ0WXA0MEppTUFDSVZEUGxFemNZdUI3SFNmdHVJbE9qRUU4ckV2Y1lnMjZYcGlyUFBBazRGQTA5T1pDbjA1ZkI1RkVmcWNhRndRM19TbWdmbFRHQ2F3Nk53WUljUDlmby1mU2U2Ykw1ejJsSW5zZUZSYy02NGVXNEJ1M1lMZWNGR2V1Vm8xckRxa0FhZDBJMmVXRE5EVnByOVlIUVVNWl9LRVZIS3U2cGMzZjR6dmVQSjZYWVFqMXVvbkVKQVp1QjFlazZfYVZod2lSUWFZdw?oc=5",
+      "published_at": "2026-11-14 16:06",
+      "age_hours": 13.0,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ชุมพรวิกฤต! ฝนตกหนัก ทำน้ำท่วมสูง 30-40 ซม. บริเวณแยก รพ.ชุมพร-หน้าโรงเรียนศรียาภัย | The Bangkok Insight - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBsbnJlRkRyZ0JPQnN6TUNpV2RTVmtQWGdCd180dGowLVpqVlpYMWpZRHRvMFEtV2NjNnZBeVRKRk5GbXZTdVZRb0lGRmwxSkZKVE5SaUF3?oc=5",
+      "published_at": "2026-11-14 20:58",
+      "age_hours": 8.1,
+      "urgency": "critical",
+      "province": "ชุมพร"
+    },
+    {
+      "title": "สภากทม. ไฟเขียวตั้งวิสามัญฯ ศึกษาแผน BCP 120 วัน ถอดบทเรียนน้ำท่วม-ระบบล่ม หวังอุดช่องโหว่การจัดการทรัพยากรรับมือวิกฤต - thestandard.co",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9FVVUxbzZzN2JPMFZxQW1JMXdMZmh4OXpmRk5OVGk1MG9wYWt1REJPbUdsSDNzN1k4WGZsZ2VGMVBoU2s5OURYc2lDMk9rQ0pHNl92R1JDNDRfRXRtZDZoZnV1Wm1zWWR1ekE?oc=5",
+      "published_at": "2026-11-14 22:53",
+      "age_hours": 6.2,
+      "urgency": "critical",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "สกลธี นำทีม ปชป. ลุย ร่มเกล้า จี้ กทม. เร่งเยียวยาน้ำท่วม พร้อมจับมือชาวบ้านฟ้องศาลปกครอง - Matichon Online",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9tQm54N2JKbkl6ODFWQkc2bWZOcFRqa3N3MDQ5MFdmTG9FbEsyeGRFT0w0UnZxdElmVzVRYVZ3QnkybHVHWFBnZHVwd1MxeFk2Yk1NQlFrSkxYOXRB?oc=5",
+      "published_at": "2026-11-14 20:44",
+      "age_hours": 8.3,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "เพื่อไทยแจงปมบริจาคน้ำท่วม ยันไม่รับเงิน-บัญชีปิดตั้งแต่ปี 62 - ไทยโพสต์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5QcFFPTlZCRHdMSC11ZlBLakN2R0M4eHBzNjFId2s2VE5iNXZ5SnBUdE1BXzNwRXNyTGQwOUo4eFdNaXlpclhHWVRDbFIwYmJOaUtUTWoxcWNBU0E?oc=5",
+      "published_at": "2026-11-14 09:59",
+      "age_hours": 19.1,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ผู้ว่าฯ ชุมพร ลงพื้นที่หลังสวน ติดตามน้ำท่วม มอบถุงยังชีพ–อาหารกล่อง เร่งช่วยประชาชน - www.topnews.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5HRlc2djhwb1dsYWZBYVRPeDhTTHkwaEprbG5LVDRPWllfeFhtUlJ6WktQYmx0c2tkX0NXYllMRUhQWlpPa0p1QVRlNE9WRUk?oc=5",
+      "published_at": "2026-11-14 19:05",
+      "age_hours": 10.0,
+      "urgency": "recovery",
+      "province": "ชุมพร"
+    },
+    {
+      "title": "อุโมงค์ระบายน้ำคลองทวีวัฒนา 2 กม. แก้น้ำท่วมฝั่งธนบุรี เปิดใช้ เม.ย.2570 - Thansettakij",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5pQlYwMHZRaDl3QURESnFKYXBMd0RjVVc1dTBtbGtHVTVtRmw1Z1lwNE1mY2JQd0s1aGIwQ2dMdENPUEEzNGJBQXViU1ZtTmtvV0p4Q19SV3p4anhC?oc=5",
+      "published_at": "2026-11-14 16:15",
+      "age_hours": 12.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ลงพื้นที่ช่วยเหลือเหตุอุทกภัย อ.หลังสวน จ.ชุมพร โดย ป.5 พัน.25 🏅เมื่อ 13 พ.ย. 69 เวลา 1700 พ.ท. ชัชชล ฤทธิมนตรี ผบ.ป.5 พัน.25 มอบหมายให้ ฝกร.ฯ จัดชุดประเมินสถานการณ์ป้องกัน เเละชุด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMi6gZBVV95cUxQVzlPNXIxTHN1aFdtWWFESjF1N1RiTHRJME5wOTV0cGQ5QWpyUEgzQjBZTjlSZEt3S256MWVMY3NlaHZ1eWZaWG5mRkpLQW5QZTFIbkpNekk3SnJCTGdFQjlZSHhHd2RRajJQTXE4ZVNFNVRjcnBZUC14cS00YlRUWjY4RXd4dkdLM0Y2Zlhma1ZCVC1xS1VOdHdZWHYwY3JxdVZSSVNOWEVJRjBtZVROMHRwdEV4QWxwTDBueUlCWVJrdDZDYURtUHpqajh3ekNaa01DdDgybUp6SkFBYl9rU0JlRDdMUVB0d01MeVlBVWNMVTdtYWNwYWp4NFpRVGpXajBvSzU3SkNHWjA5YUFhNU5lT3Y5ZUNhS2N4TnkxcF90MUlqLUl1aVBKbzZpSm1RaUdhYndZZGZJN3ZZUFBDVVZfdnoteVNlS0dKTHpYNkMwTUVJbGU2ZV85czRpRHpMNW1rWW9RaVRsOVRYVUhOZTBWbF92N3l1LVBrMnZTTkJNUnVUTFBZTXFfOGUtX3pZX2NmV1dmbTJvdmV2SlRjbzV6bjM3LTFQWFpwUXFQNjVaemdkNVVZNzd3c2R1T2x0UzdMRk41LUdBTUdYRmctU0JzTE1neXZmbndyeDFCZ19PSEx0cW1SOTVpZHU0cE1DeUpZVGw0LXdMekJTTk56MUFCWkVTR1pLSjllckNGTF90eWFrTkg0Uk1jZ1F5eXk0UVMzNzFoWktrcWFIeU5RQkN3ckJXTlpzWlV3bC1WWVhEY051WFhHZERzeWVqNnppS1NKUHRGd3E3X0Fnbkk5alRIa2F3LTZ6cmJPWUVYN1c0VlRKV056blJ1X2o3LWVQUDIybkh0OFREaG55LXFQZ1pWNzRaMFp3VlNSUlY5dy00eWwwejJic01ZUm0tWXhkVGdlUWlLT1kwekYzT3pzUkkzUTRSUXF6dDJQaXNFRDY2ZGlJeXlKVWxxWElrZW1qWTBtMDBNM3JFb1lLSUFhQUxTTUlpdWdsenA4SWpxRl9FYThSeHU3ekUtTGZFdUw4YWl3b1NTSF9Zd0ZrOV93bkpMb0NlQ3J4NEs5VkE1dExxVWEwWW9DLWNmUXR2a3RiV2N5RmU5YTB1UFBxR0hjVU0zQ3VOcmhZOEFDNUpNMl9aLTVHX3diUzJB?oc=5",
+      "published_at": "2026-11-14 09:00",
+      "age_hours": 20.1,
+      "urgency": "recovery",
+      "province": "ชุมพร"
+    },
+    {
+      "title": "เพื่อไทย แจงปมเปิดรับบริจาคช่วยน้ำท่วม ยันไม่เปิดบัญชีรับเงินพรรค บัญชีที่ถูกอ้างปิดไปแล้วตั้งแต่ปี 62 - แนวหน้า",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9BQWJ5T25HX21hd2lsb1lUcGpWZzRUcGJXNWxvaU8wTjJCYXFpLUNSZVJpZlVSc3pLZW5NRnBVRmpTUlZSRXFIREwwOEF0bVc5NXJF?oc=5",
+      "published_at": "2026-11-14 11:14",
+      "age_hours": 17.8,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "สภาพอากาศวันนี้ \"เหนือ-อีสาน\" อากาศอุ่นขึ้นและมีฝนบางพื้นที่ ขณะที่ภาคใต้ฝนตกหนัก - Thai PBS",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5RVHpOc3lVSEVmMnNsekpPV0JhSWpvRzhSOG5abXEwU1B3ekIzZVFrbHpKd3c1b2wtS05mUjZPcUxjNm9BMndfa3lnTGlWZVRkSGlmaHRlbzc?oc=5",
+      "published_at": "2026-11-14 07:56",
+      "age_hours": 21.1,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กรมอุตุฯ เตือน 13 จังหวัดภาคใต้ฝนหนัก เสี่ยงน้ำท่วมฉับพลัน อ่าวไทยคลื่นสูง 2 เมตร - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9PTHA1bTF5SDh0OW8yd2ctY2V0OHczeXJhRDQ4bGY1V1Zsb1h5anV5SkdiaVZJWGkzWkoxZ3AwRXNObzVyVkZjc0RpeHRib012V3dyeEhR?oc=5",
+      "published_at": "2026-11-14 10:10",
+      "age_hours": 18.9,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "พรรคเพื่อไทย แจงปมเปิดรับบริจาคช่วยน้ำท่วม ยันไม่ได้เปิดบัญชีรับเงิน แค่รวบรวมสิ่งของ - ข่าวสด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5KQ04xbC1tNjhSYXl4dzM0NlhqSDdlTG1uUGFnX01UNWZocWw3U3NWOXB1bEVfeFpNV3JobzA0c2tHNEFBcmdfV2VYeC1KU0lia0dlNk8xeTg1V3c0?oc=5",
+      "published_at": "2026-11-14 12:14",
+      "age_hours": 16.8,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "อดีตกกต. ชี้ไม่ถึงขั้นยุบพรรค เปิดรับบริจาค ช่วยน้ำท่วม มองปชป.ปลอดภัยสุด ทำผ่านมูลนิธิ - Matichon Online",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5aME5EUzltbC1zNHJyUTlqSWVGYmVzR09DREdHTGd4VzNrZzVvSVJvT1pFRExYSzA4RXFCWkZiREVSeDBCcVgwekYySU9qZmtieEZfOUN6NTIxRl9k?oc=5",
+      "published_at": "2026-11-14 12:32",
+      "age_hours": 16.5,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เตือนภาคใต้ฝนหนัก 18-22 พ.ย. สุราษฎร์ฯ น้ำป่าหลากท่วมกาญจนดิษฐ์ - TNN Thailand",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5KaFp2TUdhVWRhcXdGblp3U01GdzNkZ3lLRFBnaVdXVGY3cTFrVWIwZndaUUoyWmlUOWpVbnBlYWFIMkF0S09xR1RrY1ZNX1JfclU4bw?oc=5",
+      "published_at": "2026-11-14 17:19",
+      "age_hours": 11.7,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ฝนถล่มใต้! ชุมพรจมบาดาล ปภ.เตือนฝนตกหนัก น้ำป่าไหลหลาก | 14 พ.ย. 69 | ไทยรัฐนิวส์โชว์ - www.thairath.co.th",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBKcVdzdE8zSGtJbGNiUWxseUd3S2IwSEhweFFVVld3NUNMVmhXMW5GQzNOQWlvaDRVaXpFdEtIUjJDVVh5SjJybTc2N3oteXd2b1VJTkFqV0p5eUtLYXJXXzhseFQ?oc=5",
+      "published_at": "2026-11-14 20:24",
+      "age_hours": 8.7,
+      "urgency": "critical",
+      "province": "ชุมพร"
+    },
+    {
+      "title": "ใต้ฝนตกหนัก 10 จว.เสี่ยงท่วม เตือน 18-22 พ.ย. ไทยตอนบนมีฝนลมแรง ก่อนอุณหภูมิลดฮวบ - bangkokbiznews",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBGbjFjUlVuWFZMeEpiWG5wRmVHZ0tXckJ2cTRqZ1paMF9HUkIwb3g2ZFdISWJiWFJlX3hyY0lWMXNQQnpETVFObXRaNlRWRmlqdnZZaE5pZ3hmaC1SODRnU2xCdll4dw?oc=5",
+      "published_at": "2026-11-14 17:31",
+      "age_hours": 11.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "คู่รักดัง ยกเชฟเสิร์ฟอาหารฝรั่งครั้งแรกในชีวิต มอบทุนฟื้นฟู รร.หลังน้ำท่วม | The Bangkok Insight - LINE TODAY",
+      "source": "\"หลังน้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1Da1VLUk1tbnoxUHlmT0tVT05RNDAyeVdSMDlnWnM4YUZlbUNxWVoyQXFLaGRKU09OZkE1b3BkZGdwMFRKZkNyVXR4MGdTSVlUdi1wcEdn?oc=5",
+      "published_at": "2026-11-14 13:39",
+      "age_hours": 15.4,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ประกาศแล้ว ลดหย่อนภาษีซ่อมบ้าน-รถ ผู้ประสบภัยน้ำท่วมสูงสุด 1 แสนบาท - posttoday",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5POUJvcUEwM1NaVm5jT2tjZkZqRzZJcUNyMmd4M1pfVWtXM0MyQURHMlRRdEgzY3dtSXhSVUpDWHpfZFpFMkhUaENfcUFsVWExai1IdlRBT28?oc=5",
+      "published_at": "2026-11-14 08:53",
+      "age_hours": 20.2,
+      "urgency": "critical",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กทม. เตรียมทยอยจ่ายเงินเยียวยา \"ค่าซ่อมบ้าน\" ให้ผู้ประสบอุทกภัยสัปดาห์หน้า - www.thairath.co.th",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBCbF9lWEVLWkFpX0xDb09oalZnZ2RpRlIxNVRSU2NnckxVNVJvSmFpVnFZMU4tUUp5YVNrQkZzUkwxWlRzS3lUbFZRT0taLVZaMHJUS1dzSWJreUp3VW1OZXoyWQ?oc=5",
+      "published_at": "2026-11-14 16:56",
+      "age_hours": 12.1,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "โครงการควบคุมอุทกภัยมูลค่ากว่า 10 ล้านล้านดอง: คาดว่าจะเปิดใช้งานประตูระบายน้ำ 6 บานในวันที่ 30 พฤศจิกายนนี้ - Vietnam.vn",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOMXlNVXVpWWY5MU1qcjU3YXBRTDBLcURuUHNtZGpKdnVKck9iRW44NVFrSUc1dzNTa1hYb1JlLTJ2cUFiUzNvelptTmlSU1RuOTEwZTVmTW5rMXhuS1BqLTdkM0ppOGJjVFBMeVdwWWFfRFhxUFZ0YXJNOHJkWTBsMXdwSDllNWVrU2J0UVNPajY0V0h6cjV3V29wVTUwSGxkRUJjbnlqZDU2SFE?oc=5",
+      "published_at": "2026-11-14 21:07",
+      "age_hours": 7.9,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "อธิบดีกรมชลฯ ลุยเมืองคอน สั่งเร่งระบายน้ำ เตรียมรับมืออุทกภัย - www.topnews.co.th",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1PbVFueUdrVnlTVEFHVTBEMnhub0VobjJCeGxDM2YtNHFOcmZ4TWdUVmoyM3g0ZU1BQkdoVlRfMzFTemY3eFhuZXFZYTNJWjA?oc=5",
+      "published_at": "2026-11-14 00:01",
+      "age_hours": 29.0,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "มีการจัดสรรงบประมาณกว่า 30,000 ล้านดอง เพื่อช่วยเหลือประชาชนในเมืองกาเมาในการฟื้นฟูการผลิตหลังเกิดอุทกภัย - Vietnam.vn",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPYU9tc1hSZGN3dFNSR3Y4RHVERUVJbFNpTzJMX2RZSFlaSldCZUZRS2U0OGFfc3VrLVdYSzdfUVJLMm1HbjNRalhjOEpXOVpRNkoybDZHRklVdmhMMktXLU9wUVFIZ2JiWU4zNzg0MHFvbFh0ZE0yRWhWYVE4aHY5aWFVLTlPVDdUS1NkdGJQb2tUT29nLUIzeWdB?oc=5",
+      "published_at": "2026-11-14 21:25",
+      "age_hours": 7.6,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "ฮัดสัน พอใจฟอร์มแข้งช้างศึก เร่งฟื้นฟูร่างกาย เตรียมดวลทาจิฯ นัดชิงศึกคิงส์คัพ",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/sport/footballlocal/news_5976033",
+      "published_at": "2026-11-14 22:32",
+      "age_hours": 6.5,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "อุทยานฯ ศรีพังงา เผยความสำเร็จ 8 ปี ฟื้นฟู “พลับพลึงธาร” ราชินีแห่งสายน้ำ ชูกลยุทธ์คืนความสมบูรณ์สู่ระบบนิเวศต้นน้ำระนอง-พังงา",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/local/news_5976011",
+      "published_at": "2026-11-14 21:09",
+      "age_hours": 7.9,
+      "urgency": "recovery",
+      "province": "พังงา"
+    },
+    {
+      "title": "ดร.เสรี เตือนปี 70 ‘ร้อนจัด’ ที่สุดในรอบ 5 ปี ชี้ กทม. เสี่ยงท่วมสูง แนะจัด ‘ยา 3 ชุด’ รับมือพหุภัย",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/economy/news_5975886",
+      "published_at": "2026-11-14 20:04",
+      "age_hours": 9.0,
+      "urgency": "critical",
+      "province": "กรุงเทพฯ"
+    }
+  ]
+}
