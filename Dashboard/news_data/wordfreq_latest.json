@@ -1,114 +1,70 @@
 {
   "date": "2026-11-19",
-  "article_count": 24,
-  "updated_at": "2026-11-18 21:43:48",
+  "article_count": 23,
+  "updated_at": "2026-11-19 02:57:43",
   "method": "tfidf",
   "note": "คำในข้อมูลนี้ผ่านการคัดกรองด้วย TF-IDF และเพิ่มน้ำหนักคำกลุ่มเฝ้าระวังน้ำท่วม",
   "word_categories": {
     "ฝนตกหนัก": "monitoring",
     "เงินเยียวยา": "general",
-    "ครัวเรือน": "general"
+    "ครัวเรือน": "general",
+    "ผู้ประสบอุทกภัย": "relief"
   },
   "word_freq": {
     "th": {
-      "ฝนตกหนัก": 4,
-      "เงินเยียวยา": 5,
-      "ครัวเรือน": 4
+      "ฝนตกหนัก": 2,
+      "เงินเยียวยา": 4,
+      "ครัวเรือน": 4,
+      "ผู้ประสบอุทกภัย": 2
     },
     "en": {
-      "vietnam": 3,
-      "thansettakij": 2
+      "block": 2
     },
     "combined": {
-      "ฝนตกหนัก": 80,
+      "ฝนตกหนัก": 50,
       "เงินเยียวยา": 100,
-      "ครัวเรือน": 80,
-      "vietnam": 60,
-      "thansettakij": 40
+      "ครัวเรือน": 100,
+      "ผู้ประสบอุทกภัย": 50,
+      "block": 60
     }
   },
   "tfidf_scores": {
     "th": {
-      "ฝนตกหนัก": 4.9177,
-      "เงินเยียวยา": 2.927,
-      "ครัวเรือน": 1.6641
+      "ฝนตกหนัก": 4.1059,
+      "เงินเยียวยา": 2.8848,
+      "ครัวเรือน": 1.7681,
+      "ผู้ประสบอุทกภัย": 1.3857
     },
     "en": {
-      "vietnam": 8.4977,
-      "thansettakij": 6.2405
+      "block": 4.6192
     }
   },
   "articles_preview": [
     {
-      "title": "9 จังหวัด รับเงินเยียวยาน้ำท่วม 5,000-9,000 บาท เพิ่มอีก 2,481 ครัวเรือน วันนี้ - Sanook.com",
+      "title": "เพลิงไหม้บ้านไม้ กลางน้ำท่วมขัง อ.เสนา และลุกลามหลังข้างเคียงเสียหายวอด เคราะห์ดีขณะเกิดเหตุไม่มีผู้บาดเจ็บหรือเสียชีวิต จ.พระนครศรีอยุธยา | สวพ.FM91 - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9ONXBrbFZpTWRjU01HZVlfRldPRHJGLUhuM2FmeTlHY2ZqVVMyT1VkRUtGa3MzNWxELW02Y3pZTjlNQ05nMmotamdkR3lUZlpFcTROMmhn?oc=5",
+      "published_at": "2026-11-19 05:10",
+      "age_hours": 4.8,
+      "urgency": "critical",
+      "province": "อยุธยา"
+    },
+    {
+      "title": "9 จังหวัด รับเงินเยียวยาน้ำท่วม 5,000-9,000 บาท เพิ่มอีก 2,481 ครัวเรือน วันนี้ - Sanook",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9PeURYbC15aF9KeFlSeFNBQ3FkNktEdFBlY0ZMWnhFVWNoZGx0M2Y0aVFfNGFUenVFRDNnRTBDY1BPWjdoR0V6TUZFTUo?oc=5",
       "published_at": "2026-11-18 22:24",
-      "age_hours": 6.3,
+      "age_hours": 11.6,
       "urgency": "recovery",
       "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "พาณิชย์ยะลา บุกตรวจสต็อกน้ำดื่ม - ไข่ไก่ เตรียมความพร้อมรับมือน้ำท่วม มั่นใจสินค้าเพียงพอไม่ขาดแคลน จ.ยะลา - LINE TODAY",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1hYzZaSklzU01ya2N1WjA2WDV1RTZ1R0ZfUWprUF9iSEJYS0g0Vm1jX3ZLZ0ZWUHlocXFvUWotRnJoY21Bc2hVYlE4S0dPMnVFb3Y3MnRR?oc=5",
-      "published_at": "2026-11-18 04:36",
-      "age_hours": 24.1,
-      "urgency": "warning",
-      "province": "ยะลา"
-    },
-    {
-      "title": "สาวฉะเชิงเทราสุดชิล! กักน้ำท่วมขังบ้านเกือบ 2 เดือน หวังเลี้ยงกุ้ง-ปลาจับขาย กลัวปล่อยน้ำแล้วลาภหาย - ผู้จัดการออนไลน์",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFA3XzBpV2FrZWIyRmJVaXFYYXlQcktsVnFCallhS2doT0labEs0T3JjY3BxS0dMYXdWZWh0RWFpUzdvNml6RFNwNmNhbUhLMFNpRmJfYlcxckV6WVRR?oc=5",
-      "published_at": "2026-11-18 18:41",
-      "age_hours": 10.0,
-      "urgency": "warning",
-      "province": "ฉะเชิงเทรา"
     },
     {
       "title": "ปภ. โอนเงินเยียวยาน้ำท่วม สำเร็จแล้ว 13,382 ล้านบาท วันนี้โอนอีก 2,481 ครัวเรือน - thairath.co.th",
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5SejYxSUV0aDMtLUhlbmc1b0JPMlFDdS12UTVDN185NXNWRVlMSnJyVTh0ejlnamJzZlRuVVM5N2Nycm5KUngxMUFmYThSd3BzcTM0dUd2cHI?oc=5",
       "published_at": "2026-11-18 16:35",
-      "age_hours": 12.1,
+      "age_hours": 17.4,
       "urgency": "recovery",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "เดอะโฮปสงขลา วอนเทศบาลหาดใหญ่ เร่งช่วยถมที่สูงให้ศูนย์พักพิงสุนัข หวั่นน้ำท่วมซ้ำรอย - ไทยโพสต์",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1IWW43NkhmWW4wQ0Z2bjI3WmxwWXdGV2FUSURNMXFWY25sTUpJOUxfN2lZQnFTZTRDbVItUWx2NUFCUmtxc0dkeWtfaWprZDRHaGtyenlGUjdlVWc?oc=5",
-      "published_at": "2026-11-18 14:58",
-      "age_hours": 13.7,
-      "urgency": "warning",
-      "province": "สงขลา"
-    },
-    {
-      "title": "เปิดข้อสั่งการ ‘นายกรัฐมนตรี’ เตรียมรับมือน้ำท่วม ดูแลคุณภาพน้ำประปาเชียงราย | The Bangkok Insight - LINE TODAY",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0yaEo0VV95Z3pSbUlHNmt5ekxqamhMM0JBcm55c1RzQjAta3BxZUdxMXFHdk5aczgxZ1dmVTZoeUkzeU9XX21QclRBdk8zblpJeU1nWDNB?oc=5",
-      "published_at": "2026-11-18 23:48",
-      "age_hours": 4.9,
-      "urgency": "warning",
-      "province": "เชียงราย"
-    },
-    {
-      "title": "10 อันดับ Social Trends เดือนตุลาคม 69 จากน้ำท่วมถึงเงินบริจาค โซเชียลตั้งคำถามเรื่องความโปร่งใส - dataxet:infoquest",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBHM3EtQmkxR3dhS2l4YjlyUmRPczV6NXpPYTJlYm42OURoZXdueVNQTXJReVlzbjNrd2VObUZiVV9NMjR3R1RKanZuNWlKM0lKS3Bz?oc=5",
-      "published_at": "2026-11-18 10:19",
-      "age_hours": 18.4,
-      "urgency": "recovery",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "DRT แนะ DIY แนวกั้นน้ำหน้าบ้านด้วยอิฐมวลเบา MAX BLOCK รับมือน้ำท่วม - ข่าวหุ้นธุรกิจออนไลน์",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE56ckdLRDB3V0o5NDNiUm0xUUVaQzhyX1g2QndzcjZiUFdZM2xmR1dqRG9ES0pKdkNGTHJHTTIySHZpNVhKSjUzWg?oc=5",
-      "published_at": "2026-11-18 12:49",
-      "age_hours": 15.9,
-      "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
     {
@@ -116,8 +72,89 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFA0Ump4SWVCN2pSSTBRUEtfMkY5cDd0LU5nUDVKalNkZ1VuSWRiUkZpbkJsd1B0WnZfOUtWanhxTUJYTVZZYm1UY0VSbmJkcWM?oc=5",
       "published_at": "2026-11-18 18:34",
-      "age_hours": 10.2,
+      "age_hours": 15.4,
       "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "เดอะโฮปสงขลา วอนเทศบาลหาดใหญ่ เร่งช่วยถมที่สูงให้ศูนย์พักพิงสุนัข หวั่นน้ำท่วมซ้ำรอย - ไทยโพสต์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1IWW43NkhmWW4wQ0Z2bjI3WmxwWXdGV2FUSURNMXFWY25sTUpJOUxfN2lZQnFTZTRDbVItUWx2NUFCUmtxc0dkeWtfaWprZDRHaGtyenlGUjdlVWc?oc=5",
+      "published_at": "2026-11-18 14:58",
+      "age_hours": 19.0,
+      "urgency": "warning",
+      "province": "สงขลา"
+    },
+    {
+      "title": "เงินเยียวยาน้ำท่วม 2569 ล่าสุด ปภ. โอนเพิ่มวันนี้ 9 จังหวัด 17.6 ล้าน - bangkokbiznews",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1GRlhfSTg1OTNqTVhfcVdUeUdleUw1VWE3U1VzTzk3M3BqcnV4VUNnOUw5YWlTSEZ1R0lneWlONUcxbExJTEFKZFdWV0JyaVdDQ05PNmxmTHJCVEZxNTRGY2hkTWVZdw?oc=5",
+      "published_at": "2026-11-18 16:42",
+      "age_hours": 17.3,
+      "urgency": "recovery",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "สาวฉะเชิงเทราสุดชิล! กักน้ำท่วมขังบ้านเกือบ 2 เดือน หวังเลี้ยงกุ้ง-ปลาจับขาย กลัวปล่อยน้ำแล้วลาภหาย - ผู้จัดการออนไลน์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFA3XzBpV2FrZWIyRmJVaXFYYXlQcktsVnFCallhS2doT0labEs0T3JjY3BxS0dMYXdWZWh0RWFpUzdvNml6RFNwNmNhbUhLMFNpRmJfYlcxckV6WVRR?oc=5",
+      "published_at": "2026-11-18 18:41",
+      "age_hours": 15.3,
+      "urgency": "warning",
+      "province": "ฉะเชิงเทรา"
+    },
+    {
+      "title": "DRT แนะ DIY แนวกั้นน้ำหน้าบ้านด้วยอิฐมวลเบา MAX BLOCK รับมือน้ำท่วม | ข่าวหุ้นธุรกิจ - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1JcXE2LUd2NEJ3UTFBZjRxTXZWVTFoLTRnTmRadHRlTVFQeUx5bFptcEU5OXAwLW5SZ3VDVjFmUFdPTDg0WTVqOG0zMDlJaW5lYUZuTlFR?oc=5",
+      "published_at": "2026-11-18 12:55",
+      "age_hours": 21.0,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "💚 สรุปยอดลงทะเบียนและจ่ายเงินช่วยเหลือผู้ประสบอุทกภัยในพื้นที่กรุงเทพมหานคร ผ่านแอปพลิเคชันทางรัฐ และเว็บไซต์ https://claim.bangkok.go.th 📌 ข้อมูล ณ วันที่ 18 พฤศจิกายน 2569 🟦 ผ่าน",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMilwhBVV95cUxPRFZsUEpYMmV3Nmp2NFR0djk1cFcxdTJ3R3NSV3FtM3JsVTRzeldqYVdmWVdnQ0Nic3YtNGRmNXU1c28xcTVqaTVJVHM0UEFhSE1nNzF5SmdNeUVpRVNhZThJbG9obDlSQzB3Sm9XcHlqenEzanZPMUd1ZHRrb0xobXl6ZnJ1dW1neVU5cjBDWEdyUVBYRkxMM2E3Yk1vazNNNy1SWTF2bUdFTWxlMVFBUmNtLU9NMHpaRTI3Z0RaZXA3SWdXRVJfTnk1U0RENDNjck9FclNWc3d0ZnQ4cU9XRTROeDBBZjAwWnlzenNadlpjbjNfbDZHY2RmWHhUekJGOENld0Nsd1VnOWNCUGpnSE5Dc3B2RDB0WGI0SFppSGlIX3BOVDJYQ2k2MFVXazd5ckJDTmN4UU95UHpKLXh0MmVCZ0ZJRmJmRE5RTmJaWnZGd0FKbE1hWGZ5VGt1TmFFYmV1eDV4c05zTnhVLU1CUGNZNmxjU3IzSlVFeVR5VXl5QXk3ckxrNzRvSzNpdXVQYmxFR3dRMGFvay1Bd29wTkJkd3JSRFdNT0J0eEpmbEpPbTJHeWZKamF3MkNYWHNKNzFoNS12Nzg3cm5Ld1NlQXFkVmhyWm9lZF9HZWZtUDNrOFVuQVZGMzF3OXRKOGMweTJPYkxjMkNidEpNazNpOVZkcmNFa0N3LXBheFBhMXNhc3pWMzZaYzYxQlFlMlJGcTVJZjRNWG1OSkNZampZVHM1aEhqWnQyaU9ta0JWeG5Ca3NobVlYWURVRjBrQkpnVVF6RG5VT3ZoQWlBaDF0TDF5UHNVTWQ1dE9NVDhqSF9qb1daOXBBNWdUSDNIanhsZ3RyNi1zanVyLXpVM1pzbzlEU0tma0wwck5qUmRVaUdKelFnMGlsSDFXM0tmMEVkdkFCMUdFWDdBbVowLW9GaWw1aUYzRXZnMUdWaTYyNUEzNi1uMDM4dmJHQ2xCdU1lRTVKeWNjTldpaFZpanRVbG1rbWZzX1pTemRrRjdNRThQeUdlVDB5bjJkZDlyblhSUzEzWjVBR1AtN1k2ZFV3ak5qY1NzT29SQkhfbjc0eUllNkd1V2tMZF9pWWxRSHVGd2d1V25vZTVYQXpWOEJMUnpqTFREMkpvTkUtUU8xTlhJUXpqVlFzRWFNMnBtZjF2THZpMy1aWXZCcjdIRXZSUmZQNlYyVXhIOVp1MkhHM2wxVS15T1ZRNEhrRUREWm5seDJBbTdoNzAyT0VYN0wySFpHeWpFa3c1dHZUTGdwV1h3T1Buc3R0c0hMdU9PVkpoVmt3WFIxYW1mTnRyV0xQLXJXekp3dDdYdzY4U1NqM2MzWFdISG9CSnlqQjRqRG1mcl94bkZsdEhHMGR5bWJ2c25MWGJUWVE?oc=5",
+      "published_at": "2026-11-19 07:40",
+      "age_hours": 2.3,
+      "urgency": "recovery",
+      "province": "กรุงเทพฯ"
+    },
+    {
+      "title": "สภาพอากาศวันนี้ กรมอุตุฯ เปิดชื่อ 18 จังหวัด เจอฝนตกหนัก น้ำท่วม - ข่าวสด",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBqMDQtQkc3anNtRW5GdGlHMTNsd29uWnA3TzN4U19RUFFFTHFqZzRSZ19aM2dHSllobUFKbmRkV18xM1c4dERWeGtmTU5Jc1ZSblV0Nk00RXJJRW5XUnNXZDhvQQ?oc=5",
+      "published_at": "2026-11-19 06:30",
+      "age_hours": 3.5,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "กันไว้ก่อนท่วม DIY แนวกั้นน้ำหน้าบ้านด้วย ‘อิฐมวลเบา MAX BLOCK’ ตราเพชร - workpointTODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFByUmZtUWMtaUZsUVdZR0UzbklqNDBmOUN0YmtkQW95NTVBUGpCdHhWU3VDMDFPOXBJYkZ3ak5lZWEyN0NEQ2JaTHJPdHBlTXhDRmFaMkNR?oc=5",
+      "published_at": "2026-11-19 09:09",
+      "age_hours": 0.8,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "Top 10 กำไรบิ๊กอสังหาฯ Q3/69 แสนสิริยืนหนึ่ง-เอพีตามติด พฤกษา-ศุภาลัยอ่วมพิษน้ำท่วม | การเงินธนาคาร - LINE TODAY",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zOWNHTkNUUDgzYWRzV3lsQ215dnlCbjBIZUVqRXg0SFFoelZPN1NlM0xHaVNBMGdHdHNpdzRpYmRVbllrcExnNEtGNGR0QzVfMGNjdzJB?oc=5",
+      "published_at": "2026-11-18 17:35",
+      "age_hours": 16.4,
+      "urgency": "warning",
+      "province": "ภาพรวมประเทศ"
+    },
+    {
+      "title": "10 อันดับ Social Trends เดือนตุลาคม 69 จากน้ำท่วมถึงเงินบริจาค โซเชียลตั้งคำถามเรื่องความโปร่งใส - dataxet:infoquest",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBHM3EtQmkxR3dhS2l4YjlyUmRPczV6NXpPYTJlYm42OURoZXdueVNQTXJReVlzbjNrd2VObUZiVV9NMjR3R1RKanZuNWlKM0lKS3Bz?oc=5",
+      "published_at": "2026-11-18 10:19",
+      "age_hours": 23.6,
+      "urgency": "recovery",
       "province": "ภาพรวมประเทศ"
     },
     {
@@ -125,7 +162,7 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxPMzdBSDFvdXFLRnhJaFlEdlZIaWk4WE9IZTVJa2hBRndSSTJ1VE8wZHUwYlQ4dmIzczFhTlUyZ05iMGpSeDNOdDdqZjVEN1R0b29IUDZjTV9XdHhyZTlXdUpDTzROYWdnaUtFMUl4M0FIbWVPZy0zWWcteUg4WGw1WFpGX0dyWVd3VnBCYzFlTlFnZ3pwWXpZdUlHMjcxbXVzeVpmU3JkZzNHbE4zYkIyVzVwM1RsMFFEUEZ0dTlLZGcyblphSHpKSF82bWFQMEx4Z1lxeHJmamp0aUJkYUpWdlhzZXdDenhoSzhyZ1ZpTWJISmFoMWZDMGtzVFFRdXBFdnlSenBmT3hLaEtieVZMZ0JBakp2QQ?oc=5",
       "published_at": "2026-11-18 12:08",
-      "age_hours": 16.6,
+      "age_hours": 21.8,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -134,16 +171,16 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5uamRhMDhDZ0oxc21kREdjelEtTDNTRTFoM1NZamd6ekZHYmdWU2pjVzF1UXlCODRqVWkwamFqU01FYjdjaTJxU3ppWEtzTnhqYUtuZw?oc=5",
       "published_at": "2026-11-18 09:33",
-      "age_hours": 19.2,
+      "age_hours": 24.4,
       "urgency": "critical",
       "province": "สงขลา"
     },
     {
-      "title": "Top 10 กำไรบิ๊กอสังหาฯ Q3/69 แสนสิริยืนหนึ่ง-เอพีตามติด พฤกษา-ศุภาลัยอ่วมพิษน้ำท่วม | การเงินธนาคาร - LINE TODAY",
+      "title": "เตือนใต้ฝนหนักระวังน้ำท่วมฉับพลัน ไทยตอนบนรอรับลมหนาว - THE BETTER",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zOWNHTkNUUDgzYWRzV3lsQ215dnlCbjBIZUVqRXg0SFFoelZPN1NlM0xHaVNBMGdHdHNpdzRpYmRVbllrcExnNEtGNGR0QzVfMGNjdzJB?oc=5",
-      "published_at": "2026-11-18 23:36",
-      "age_hours": 5.1,
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE95WWtPQ185ZnNXVF9UaGtESVlBeWVPYzdvU3h4cE9JNGdjUDJnaFNUdE1uSm15MzBWbExHNnlldHNjOWFBYXN0WUktYm1OUjdZb210Z2Z3?oc=5",
+      "published_at": "2026-11-18 08:32",
+      "age_hours": 25.4,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -152,16 +189,7 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9jS2dKSlpuVHdKTUlqOGZjeXQwTlptR1hvUHFad1lFQ2F2aWVGNE8xV2tjSEFGajN3UVdDUEN3U0RLa3pTc0R5a1FYX3d5Yy1nUmhrREQ1ejNLYzE0?oc=5",
       "published_at": "2026-11-18 09:30",
-      "age_hours": 19.2,
-      "urgency": "warning",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "เตือนใต้ฝนหนักระวังน้ำท่วมฉับพลัน ไทยตอนบนรอรับลมหนาว - THE BETTER",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE95WWtPQ185ZnNXVF9UaGtESVlBeWVPYzdvU3h4cE9JNGdjUDJnaFNUdE1uSm15MzBWbExHNnlldHNjOWFBYXN0WUktYm1OUjdZb210Z2Z3?oc=5",
-      "published_at": "2026-11-18 08:32",
-      "age_hours": 20.2,
+      "age_hours": 24.5,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -170,61 +198,34 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5zZEFCZ1VpLTlnckdtTTR1VXg4WEttczlVajZ3dmt5SlRackhZaUh6VkdJVFN2a3k1ck5MMjdiVE56S0c0a2U1ZHJpdElHS3lSeHdVOTljN21ja3lEOWc?oc=5",
       "published_at": "2026-11-18 11:19",
-      "age_hours": 17.4,
+      "age_hours": 22.6,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
     {
-      "title": "เงินเยียวยาน้ำท่วม 2569 ล่าสุด ปภ. โอนเพิ่มวันนี้ 9 จังหวัด 17.6 ล้าน - bangkokbiznews",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1GRlhfSTg1OTNqTVhfcVdUeUdleUw1VWE3U1VzTzk3M3BqcnV4VUNnOUw5YWlTSEZ1R0lneWlONUcxbExJTEFKZFdWV0JyaVdDQ05PNmxmTHJCVEZxNTRGY2hkTWVZdw?oc=5",
-      "published_at": "2026-11-18 16:42",
-      "age_hours": 12.0,
-      "urgency": "recovery",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "“กรมอุตุฯ” ประกาศฉบับที่ 7 เตือนไทยฝนตกหนัก 18-22 พ.ย. ระวังลมแรง คลื่นสูงกว่า 3 เมตร เสี่ยงน้ำท่วม-น้ำป่า - www.topnews.co.th",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBTcERwOC1FbkdaTzhqc0tNU3NPYUVDbndSZ2xLQkhFaTYxSGpHQVZ6RG5SbUpVVnAxVU9LSmY2R3h6RGhodEYyN2w2cUpxSGM?oc=5",
-      "published_at": "2026-11-18 08:56",
-      "age_hours": 19.8,
-      "urgency": "warning",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "ประกาศกรมอุตุฯเตือน 6 จว.ภาคใต้ พรุ่งนี้ 19 พ.ย.69 ฝนตกหนัก - Thansettakij",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE55b2pyQjkyYk1IWWs4cFZNeEVJTnAtel9KZjlPelJGXzR6NkNuMUVpLVNJVGQ2azJMRFkzSWdkLUdxa2IyMTJ0TW5weW9BUGhVdjBYN3ZobUQyTnh1?oc=5",
-      "published_at": "2026-11-18 17:35",
-      "age_hours": 11.1,
-      "urgency": "warning",
-      "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "ภายใน 'สมอง' ของโครงการควบคุมอุทกภัยมูลค่า 10 ล้านล้านดองในนครโฮจิมินห์ - Vietnam.vn",
+      "title": "ครม. ไฟเขียวลดหย่อนภาษีเงินได้ ค่าซ่อมบ้าน-ซ่อมรถ ช่วยผู้ประสบอุทกภัย | The Bangkok Insight - LINE TODAY",
       "source": "\"อุทกภัย\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQS3Q5cEZxT19XUmIyN0YwbXRLRXpZeHVPZjd5dlJWMkN4U3FDVWctNThYeVlmdm1oRWdJVUJTdHd6T0VDWExrcDcyZ25rVXhuSUxuVlAwOTdCZU45Q0puYTJZRVU0UTh0a2llZ19Vdm5PcXZTVzM3M2l6YnJNUmZZSVMzLXlrb1RBRTJENg?oc=5",
-      "published_at": "2026-11-18 16:05",
-      "age_hours": 12.6,
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFA5ZmdRN19udFNPbV8yclI4MG5CRWo2YjljS3VBU0tXS1JTaF9KenZGWjdBdG5yd1J3ZG1VbkNEbjVIZkJ0LVhZZDhBLUF0Y2FUdjg1UDhB?oc=5",
+      "published_at": "2026-11-18 17:09",
+      "age_hours": 16.8,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
     {
-      "title": "นครโฮจิมินห์จะถ่ายทอดสดการทดลองใช้งานโครงการขนาดใหญ่ มูลค่า 10 ล้านล้านดอง เพื่อต่อสู้กับอุทกภัย ในเร็วๆ นี้ - Vietnam.vn",
+      "title": "พาณิชย์ยะลา บุกตรวจสต็อกน้ำดื่ม - ไข่ไก่ เตรียมความพร้อมรับมือน้ำท่วม มั่นใจสินค้าเพียงพอไม่ขาดแคลน จ.ยะลา - LINE TODAY",
       "source": "\"อุทกภัย\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNQVU1SVNZbDlFb0l0cnhndWU5dkdfUjZDRTlLUmJuUHBMZGh6Vy0xaUJuSDZWTVVHNmljVXRLa29NX3k0RnRPSHZXWTRrdXhMV1BaRHlDSjNWWVJLcEVXN3R5TzB1SVFpbElHV2pwUl9vVXhFSHMwbGd1S0NkVkFnZVNZVzhjdFdka05FNW9keU1NQ2JkRXVKZW1IeVRYVWY0NFVzUEFn?oc=5",
-      "published_at": "2026-11-18 15:14",
-      "age_hours": 13.5,
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1hYzZaSklzU01ya2N1WjA2WDV1RTZ1R0ZfUWprUF9iSEJYS0g0Vm1jX3ZLZ0ZWUHlocXFvUWotRnJoY21Bc2hVYlE4S0dPMnVFb3Y3MnRR?oc=5",
+      "published_at": "2026-11-18 04:36",
+      "age_hours": 29.4,
       "urgency": "warning",
-      "province": "ภาพรวมประเทศ"
+      "province": "ยะลา"
     },
     {
-      "title": "ประตูระบายน้ำเมืองจั่วหยกำลังเตรียมเปิดใช้งาน ซึ่งคาดว่าจะช่วยเพิ่มประสิทธิภาพในการควบคุมน้ำท่วมของเมืองโฮจิมินห์ - Vietnam.vn",
+      "title": "คณะกรรมการประจำสภาประชาชนเมืองบั๊กนิญได้จัดการประชุมรับฟังความคิดเห็นเกี่ยวกับการจัดการที่ดิน การลงทุนด้านการก่อสร้าง และการดำเนินงานในภาคการศึกษา นอกจากนี้ยังได้หารือเกี่ยวกับประเ",
       "source": "\"อุทกภัย\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPaXN2QTIwanZPZGU3M1d5dTREaVljWTZWNjFiU3NNbHRBVkFmd0d3ZGhnOXpfVFcwSUJsbzVqUXVFRFRXVEJxNnkyT1NFX3NkMUI1eEJsRGtrenl1ZWZUVHllRTdNVldnTGRveGl6R1RhbGdWdFpVbThGbnVRSkR4QzZINjJoNThjZ2NEM3YwbXcyV1RWOHo1UXdfZGJ5bTNKWlhaZU1tMA?oc=5",
-      "published_at": "2026-11-18 23:48",
-      "age_hours": 4.9,
+      "url": "https://news.google.com/rss/articles/CBMi3wJBVV95cUxNRzBQQ3Z2ajJIVGV6V0FKWlMwWGZJUlNha09fVlA1V3RodC1oekE5ZUw3VlJMSk52NldYV3JaZnMyZE5US1FBejRYOGVadEJadlJ1VDdsclRqMVMwQk5lREZjODBqd2FEam5Db3AxYXJOY2xCUjZJX2swUk5mXzRKYWpzdnRCX3FtNnByNzMyS3Frc1Q0NlhoQmlwN0RlQWN0SWhWcE9TeDR5VVF3N3VLb0sxbTZxZFFVbEQ2RGlzNllTdDNzcmU3amF0SUQ5a2hnVFZJRm5yNkowRkVucTg2d1NoSWM1MVU5RFFLc2dueTFnb2RwY3VTd0tpdXlKMHhfanptalJGSEo0aXBreGcza2QzMHVxNUVWTHlHWl8tRURUZXMwVHp4NDBmeEJuQ04wSFZ6eWtqWEM4RXpjTzU1bVhHd0d2RDJFQXM4bUJkY0diZTNmc0tWekxCdGpucTA?oc=5",
+      "published_at": "2026-11-19 09:56",
+      "age_hours": 0.0,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -233,7 +234,7 @@
       "source": "\"flood Thailand\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPT0FnSEhrZWY3V3JZMFBDcXVjd3p2cTBwdVVtTTVZNDZzQTJXNTc4bUdtd0NZU2JhMjUwc1dZMmVqVlJCZDFaa3BVdExPYzRycUQtYk1JZXBrUkhYV2N1cDFnSFdYSUgyVHlFUk1kYVhmRUhWNk42SE5kdzUteXNzc2REa013cDRDTVZTUFhnVVVLTUJrbmNFdUlteFJJTzR6UGp0dHJicDRDU292TEhGcmhCMFZHZ3d0d0ZDc0llYkQzWkdfRUdZWEZCUFMzOFQ5aFpEYWtSUEY4WWlsTWFoYnRWNjQ?oc=5",
       "published_at": "2026-11-18 13:18",
-      "age_hours": 15.4,
+      "age_hours": 20.7,
       "urgency": "warning",
       "province": "ภาพรวมประเทศ"
     },
@@ -242,18 +243,9 @@
       "source": "มติชนออนไลน์",
       "url": "https://www.matichon.co.th/region/news_5981281",
       "published_at": "2026-11-18 20:25",
-      "age_hours": 8.3,
+      "age_hours": 13.5,
       "urgency": "critical",
       "province": "ภาพรวมประเทศ"
-    },
-    {
-      "title": "กทม. ถกเข้ม ปม ‘บ้านมั่นคง’ กังวล สร้างบ้านก่อนเขื่อน ต้นทุนเพิ่มหลายเท่า แถมเสี่ยงดินสไลด์ น้ำเน่า",
-      "source": "มติชนออนไลน์",
-      "url": "https://www.matichon.co.th/local/news_5980978",
-      "published_at": "2026-11-18 18:18",
-      "age_hours": 10.4,
-      "urgency": "warning",
-      "province": "กรุงเทพฯ"
     }
   ]
 }
