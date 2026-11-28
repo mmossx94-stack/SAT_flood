@@ -1,7 +1,17 @@
 {
   "date": "2026-11-28",
-  "count": 41,
+  "count": 35,
   "articles": [
+    {
+      "title": "เช็กพิกัด! จังหวัดเสี่ยงน้ำท่วม น้ำล้นตลิ่ง อ่างเก็บน้ำเกิน 80% ช่วง 28 พ.ย. - 1 ธ.ค. - TNN Thailand",
+      "title_clean": "เช็กพิกัด จังหวัดเสี่ยงน้ำท่วม น้ำล้นตลิ่ง อ่างเก็บน้ำเกิน ช่วง พ ย ธ ค TNN Thailand",
+      "text_clean": "เช็กพิกัด จังหวัดเสี่ยงน้ำท่วม น้ำล้นตลิ่ง อ่างเก็บน้ำเกิน ช่วง พ ย ธ ค TNN Thailand   เตือนฉบับ เฝ้าระวัง พ ย ภาคใต้ฝนตกหนักถึงหนักมาก เสี่ยงน้ำท่วมฉับพลัน pptvhd สหรัฐฯ เผชิญสภาพอากาศรุนแรง รับวันขอบคุณพระเจ้า ช่อง",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE0yZTRYZ1JYc0xENFpyZ21GRVRRT0JxT0tTd204TE1HZmlQemtDWWhHS0ZZNzZHX0lQbm05SmJKVFlObnVhM002aEs3MzVIcUphU0Qw?oc=5",
+      "published_at": "2026-11-27 19:48",
+      "age_hours": 12.4,
+      "date": "2026-11-28"
+    },
     {
       "title": "14 จังหวัด รับเงินเยียวยาน้ำท่วม 2569 เข้าบัญชี 27 พ.ย. 69 ครอบคลุม 30,445 ครัวเรือน - Sanook",
       "title_clean": "จังหวัด รับเงินเยียวยาน้ำท่วม เข้าบัญชี พ ย ครอบคลุม ครัวเรือน Sanook",
@@ -9,76 +19,6 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBwcmVVajZURnhvVE4tcjFpa3EtVzRacVowRC1kNFg5bkxvd0d5TjFsMWtGNXVubXRyODIwbFMwS1ZKb21WZ0c2ZS0wQmY?oc=5",
       "published_at": "2026-11-27 16:35",
-      "age_hours": 8.3,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "ประกาศฉบับ 8 เตือนฝนตกหนักถึงหนักมากภาคใต้ อาจเกิดน้ำท่วมฉับพลัน-น้ำป่าไหลหลาก - thairath.co.th",
-      "title_clean": "ประกาศฉบับ เตือนฝนตกหนักถึงหนักมากภาคใต้ อาจเกิดน้ำท่วมฉับพลัน น้ำป่าไหลหลาก co th",
-      "text_clean": "ประกาศฉบับ เตือนฝนตกหนักถึงหนักมากภาคใต้ อาจเกิดน้ำท่วมฉับพลัน น้ำป่าไหลหลาก co th ประกาศฉบับ เตือนฝนตกหนักถึงหนักมากภาคใต้ อาจเกิดน้ำท่วมฉับพลัน น้ำป่าไหลหลาก กรมอุตุฯ ออกประกาศ ฉ เตือนภาคใต้ฝนตกหนักถึงหนักมาก ช่วง พ ย เสี่ยงน้ำท่วมฉับพลัน เนชั่นทีวี สถานีข่าว ชั่วโมง เช็กพิกัด จังหวัดเสี่ยงน้ำท่วม น้ำล้นตลิ่ง อ่างเก็บน้ำเกิน ช่วง พ ย ธ ค TNN Thailand",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFB6bTZqUHBNVF9IVUFlZ2ZXOXNsS1R4aE1obHg2Y1BDLTJlZGdfQnV1T1lfZzQ1TlM3a0pJam9LQ2NKT0JpT3dMWUx4dnVfU1h0N0FYNUpmYUo?oc=5",
-      "published_at": "2026-11-27 17:10",
-      "age_hours": 7.7,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "สหรัฐฯ เจอพายุยักษ์ วันขอบคุณพระเจ้า ไฟดับ น้ำท่วม เที่ยวบินยกเลิก - อมรินทร์ทีวี ช่อง 34",
-      "title_clean": "สหรัฐฯ เจอพายุยักษ์ วันขอบคุณพระเจ้า ไฟดับ น้ำท่วม เที่ยวบินยกเลิก อมรินทร์ทีวี ช่อง",
-      "text_clean": "สหรัฐฯ เจอพายุยักษ์ วันขอบคุณพระเจ้า ไฟดับ น้ำท่วม เที่ยวบินยกเลิก อมรินทร์ทีวี ช่อง",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1nUDB4bGZGRjdDZUc0azhsMnN0T2ZoZHRfU0xWZUg5aFowNWdrMlZjM2JPbjRvWWxmQWRoWVJxSnRoSzFyTzdXamdDRTNWbUdGdXhIMHNzWFVRVDA?oc=5",
-      "published_at": "2026-11-27 17:01",
-      "age_hours": 7.9,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "โผล่อีก ! หอพักเก็บเงินซ่อมตู้ถูกน้ำท่วม จ.ฉะเชิงเทรา - ช่อง 7",
-      "title_clean": "โผล่อีก หอพักเก็บเงินซ่อมตู้ถูกน้ำท่วม จ ฉะเชิงเทรา ช่อง",
-      "text_clean": "โผล่อีก หอพักเก็บเงินซ่อมตู้ถูกน้ำท่วม จ ฉะเชิงเทรา ช่อง",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5RLVRVZGRITThfVHJCQ1drT0wwTS1kT2o2QmY0OVluYVZvM1FFLW81cUY3YUNNWUg0dlRuQVE4ZW9IOGxnSE5ySklRbw?oc=5",
-      "published_at": "2026-11-27 08:38",
-      "age_hours": 16.3,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "สลดอินโดนีเซีย! ฝนถล่มน้ำท่วมเหมืองเถื่อน ลึก 100 เมตร พบคนเสียชีวิตอีกมาก | มุมข่าว - LINE TODAY",
-      "title_clean": "สลดอินโดนีเซีย ฝนถล่มน้ำท่วมเหมืองเถื่อน ลึก เมตร พบคนเสียชีวิตอีกมาก มุมข่าว",
-      "text_clean": "สลดอินโดนีเซีย ฝนถล่มน้ำท่วมเหมืองเถื่อน ลึก เมตร พบคนเสียชีวิตอีกมาก มุมข่าว",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBTUi13c1czUG9XTkRXNlVfOURzYXRDbnFHWTFWZ1RzWXh4ZFNwU0k1M0RncHFvdThKZVhPbDBTM0t3Um45QzRmb3M3dFo3TWQ2c2hPY3F3?oc=5",
-      "published_at": "2026-11-26 20:10",
-      "age_hours": 28.7,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "สหรัฐฯ อ่วม! พายุใหญ่ถล่มหลายรัฐในวันขอบคุณพระเจ้า เที่ยวบินยกเลิกนับร้อย - แนวหน้า",
-      "title_clean": "สหรัฐฯ อ่วม พายุใหญ่ถล่มหลายรัฐในวันขอบคุณพระเจ้า เที่ยวบินยกเลิกนับร้อย แนวหน้า",
-      "text_clean": "สหรัฐฯ อ่วม พายุใหญ่ถล่มหลายรัฐในวันขอบคุณพระเจ้า เที่ยวบินยกเลิกนับร้อย แนวหน้า",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE55dFRROFpLd1RaZlFPMG0tZE1JSFR4T2tiVGJnOWdSOVB5UXBoMEhFTzE0dTFZeWRuLVBzTnNFR2p2ajUteTBKTUFKaHlhM3l5bGJyd0NMOA?oc=5",
-      "published_at": "2026-11-27 09:33",
-      "age_hours": 15.4,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "ครบ 1 ปี มหาอุทกภัย น้ำต้องไม่ท่วมหาดใหญ่ซ้ำรอยเดิม - The Momentum",
-      "title_clean": "ครบ ปี มหาอุทกภัย น้ำต้องไม่ท่วมหาดใหญ่ซ้ำรอยเดิม The Momentum",
-      "text_clean": "ครบ ปี มหาอุทกภัย น้ำต้องไม่ท่วมหาดใหญ่ซ้ำรอยเดิม The Momentum",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1VODNqTEFEN1AzUXFudG5tLXAyek5QbEU2YVpOcnY0ZGg1cy0ta09zZEQtSjdTSlBTcjNWZm1kc3BFSWFjaXpNTVd5dk9JUDJGdS05eEpPeldFaTllOTBpU1RvNjkwQVJvM1E?oc=5",
-      "published_at": "2026-11-27 17:01",
-      "age_hours": 7.9,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "📅ช่วงวันที่ 27-30 พ.ย. ประเทศไทยตอนบนจะมีอากาศเย็นลงกับมีลมแรง เพราะมวลอากาศเย็นระลอกใหม่จะแผ่เสริมลงมาปกคลุมประเทศไทยตอนบน 📌แต่ภาคใต้จะมีฝนเพิ่มขึ้น และมีฝนตกหนักถึงหนักมาก ระวังน้ำท่วมฉับพลัน ขอให้เตรียมการรับมือไว้ด้วยนะคะ โดยฉพาะอย่างยิ่งในวันที่ 28-30 พ - Facebook",
-      "title_clean": "ช่วงวันที่ พ ย ประเทศไทยตอนบนจะมีอากาศเย็นลงกับมีลมแรง เพราะมวลอากาศเย็นระลอกใหม่จะแผ่เสริมลงมาปกคลุมประเทศไทยตอนบน แต่ภาคใต้จะมีฝนเพิ่มขึ้น และมีฝนตกหนักถึงหนักมาก ระวังน้ำท่วมฉับพลัน ขอให้เตรียมการรับมือไว้ด้วยนะคะ โดยฉพาะอย่างยิ่งในวันที่ พ Facebook",
-      "text_clean": "ช่วงวันที่ พ ย ประเทศไทยตอนบนจะมีอากาศเย็นลงกับมีลมแรง เพราะมวลอากาศเย็นระลอกใหม่จะแผ่เสริมลงมาปกคลุมประเทศไทยตอนบน แต่ภาคใต้จะมีฝนเพิ่มขึ้น และมีฝนตกหนักถึงหนักมาก ระวังน้ำท่วมฉับพลัน ขอให้เตรียมการรับมือไว้ด้วยนะคะ โดยฉพาะอย่างยิ่งในวันที่ พ Facebook",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiywdBVV95cUxPYXc4dW9lTWZOLXFTa012TC0wY0NaT050U1BjSVlsLXpUV04tcUdmR012UzRKby1NSTFyRjAxUURCQ2h2Vm5YU1ZSMDhpcFlHdWFuczdaVnBTZGR4bV9vNmJOQ2s2LVJVZW9WNTFYZDR4QmpGa3F6elVOQmlZY1NtdFJna0N3a1dOTzJ5NUpkbzJIMUhYMEdLeTlnTmxWR3ZyR2xNNHY4LVJyeS1jR1BTbHE1YnY4YUdLRWxyS1FzUUJnM0RkNEZDd3Z6U1NnN25fcV9henItekMtTXVEVFdEX3VsYTRaeHlCend4eHg4RWFaMG0ybndHNVJWUlE5Z1lURlVTMFVaZk9RdEpacnhIM0NSTlZNdm1RNktkWGg0Y3JUZXJlR3h3NnlIY21RbHRUQ2xNbk9maU43d0NvcEIzTG94Mk1JakRpTWxqYTU4UDRjSTE2SGdwWkEwZWo2bE50dzlEMHA4djdab0tuV2V4UkltNm5mck1CMkp4N2xnNC12M1AySVA5Y0FEV0pvSDFsT0traTNlQXFXeHhWcHZCVmIwS05tc3BRQWdRYlhKOHlIck43Nkc0bHh6Zm5SeWdiWnZCTHo0cEpQbkJzMzh6bmppT1ljVTJTbFRhbWhVZkxjNjB5RE51Yzc4NlJGWmNhR0xYRWNrVkpQRlVpel95T1BHWVZEcWNORUtVWmotek5SYUUxb3EtUUQ2bU5YemNEcXJCNnBqVHdwVlo5NkpBU3VNOV9CX1JnRFdFcUE5blk2c2tHRmFpTERIQzJaWWUtZ0RKdGJOb2sxRGl0S0JPTkVYUlhRcEwtRjBjdFo2Wk1UTVJrTG1IMGxXR1lubnZrV0EzSHVjXzU3Mzl3NjVZMUp2YnhHcURlRzN6ajh3UWJ1OUgwTzlaZHZFbWhHeEFUaEk1dlpuWlZmVExsczQ3RHpXd3lJVjZ3Z3dCQWppeTcwTjlnVVJqNHF4amhuUGcyRld1SVpHNkE5NXVteTc3NUdLcV8zSzRfbGJ2ekhVQnFFSWZ5TC02UXpZaW1QcnJUT1BDVGk4QVJZdGd0eU9pYjlRbDNmajljYWJ3Yk16elN1cHFTY0RzcGdFSXNFdVF6aWFkSEZmSUNKYVNOSWJRTEJRd3hHVWJ5TXp4cm5TUzExZnZyVXNhYkp4ZDFfSVJ4M0VtM1hMQktPUk8zTFpBNWliMmJWZ2thRDl3NDh4cWNFM3Jsa09kdDZXM3k2RG55RFpsSDZqaU5lSmZSQmxnU21lQk9YMExITy1oNTIzQW9pXzBJeG54bXNsZw?oc=5",
-      "published_at": "2026-11-27 09:18",
       "age_hours": 15.6,
       "date": "2026-11-28"
     },
@@ -89,7 +29,127 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9hbXliRnAzRGNJS2RTN1JFWm5hUmZfbXEtbEhTUEgtcmZFbmsxa1FtN0ZiSllxU19JVGEwLWc2TXJ4UUV3aE8yNnlSUUs1UG5PTFktZ0RKVEhUYVU?oc=5",
       "published_at": "2026-11-27 13:35",
-      "age_hours": 11.3,
+      "age_hours": 18.6,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "สหรัฐฯ เจอพายุยักษ์ วันขอบคุณพระเจ้า ไฟดับ น้ำท่วม เที่ยวบินยกเลิก - อมรินทร์ทีวี ช่อง 34",
+      "title_clean": "สหรัฐฯ เจอพายุยักษ์ วันขอบคุณพระเจ้า ไฟดับ น้ำท่วม เที่ยวบินยกเลิก อมรินทร์ทีวี ช่อง",
+      "text_clean": "สหรัฐฯ เจอพายุยักษ์ วันขอบคุณพระเจ้า ไฟดับ น้ำท่วม เที่ยวบินยกเลิก อมรินทร์ทีวี ช่อง",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1nUDB4bGZGRjdDZUc0azhsMnN0T2ZoZHRfU0xWZUg5aFowNWdrMlZjM2JPbjRvWWxmQWRoWVJxSnRoSzFyTzdXamdDRTNWbUdGdXhIMHNzWFVRVDA?oc=5",
+      "published_at": "2026-11-27 17:01",
+      "age_hours": 15.2,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "อินโดนีเซีย เดินหน้าค้นหาผู้สูญหาย เหตุน้ำท่วมเหมือง - ช่อง 7",
+      "title_clean": "อินโดนีเซีย เดินหน้าค้นหาผู้สูญหาย เหตุน้ำท่วมเหมือง ช่อง",
+      "text_clean": "อินโดนีเซีย เดินหน้าค้นหาผู้สูญหาย เหตุน้ำท่วมเหมือง ช่อง",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1rMVJuRU95UkUxX1FxTjU1Nm9JdDVDd3h5anBtU21NTE9DbXo4bkJzMmtkcGhKNUcwbXg3Nk9najB2Y0s5dV83SGIxZw?oc=5",
+      "published_at": "2026-11-28 01:06",
+      "age_hours": 7.1,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "อุตุฯ เตือนใต้ฝนถล่ม 14 จังหวัด ระวังน้ำท่วมฉับพลัน ไทยตอนบนเย็นลง - thaipost.net",
+      "title_clean": "อุตุฯ เตือนใต้ฝนถล่ม จังหวัด ระวังน้ำท่วมฉับพลัน ไทยตอนบนเย็นลง net",
+      "text_clean": "อุตุฯ เตือนใต้ฝนถล่ม จังหวัด ระวังน้ำท่วมฉับพลัน ไทยตอนบนเย็นลง net อุตุฯ เตือนใต้ฝนถล่ม จังหวัด ระวังน้ำท่วมฉับพลัน ไทยตอนบนเย็นลง thaipost net",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE53ZG5oMGRSUUVHamMtQnJhSDVLVDNFMDlfTTVUalhZMjNLZ3VLYkRBbWpVWkJjTzlFZGNjSXdBdHJvbDZMeFdDd1FnaUcxN0JxdkRLTw?oc=5",
+      "published_at": "2026-11-28 06:40",
+      "age_hours": 1.6,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "เอกวาดอร์ประกาศภาวะฉุกเฉิน 90 วัน น้ำท่วมหนักหลังแม่น้ำล้นตลิ่ง ดินถล่มดับ 2 ศพ - thairath.co.th",
+      "title_clean": "เอกวาดอร์ประกาศภาวะฉุกเฉิน วัน น้ำท่วมหนักหลังแม่น้ำล้นตลิ่ง ดินถล่มดับ ศพ co th",
+      "text_clean": "เอกวาดอร์ประกาศภาวะฉุกเฉิน วัน น้ำท่วมหนักหลังแม่น้ำล้นตลิ่ง ดินถล่มดับ ศพ co th เอกวาดอร์ประกาศภาวะฉุกเฉิน วัน น้ำท่วมหนักหลังแม่น้ำล้นตลิ่ง ดินถล่มดับ ศพ",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB3TUF6N3NfaUFNT1ZqQmFuYjRhc2Z6YjdNUXpsM3RFWklOX1ZManh5RnhLaEc4OXdxbDZOSnNsYlVrTHpmOUJKMmxHWmw3eXhPa3JnUDM3R0daZ2M?oc=5",
+      "published_at": "2026-11-28 06:07",
+      "age_hours": 2.1,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "อุตุฯ เตือน ใต้ฝนถล่มหนักมาก ระวังน้ำท่วมฉับพลัน-น้ำป่าไหลหลาก - แนวหน้า",
+      "title_clean": "อุตุฯ เตือน ใต้ฝนถล่มหนักมาก ระวังน้ำท่วมฉับพลัน น้ำป่าไหลหลาก แนวหน้า",
+      "text_clean": "อุตุฯ เตือน ใต้ฝนถล่มหนักมาก ระวังน้ำท่วมฉับพลัน น้ำป่าไหลหลาก แนวหน้า",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBtUHAybWRtQVMxSmItLXdHeUd4NkxYYzRaU2tyUThJdGd3Q0kxbHBlMllxUElOWXVxN2xIZ2l4SmRWcmRVTEY4T0lxWXRUQVZFQ2VTMWhxdG1zbWs?oc=5",
+      "published_at": "2026-11-28 07:22",
+      "age_hours": 0.8,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "ครบ 1 ปี มหาอุทกภัย น้ำต้องไม่ท่วมหาดใหญ่ซ้ำรอยเดิม - The Momentum",
+      "title_clean": "ครบ ปี มหาอุทกภัย น้ำต้องไม่ท่วมหาดใหญ่ซ้ำรอยเดิม The Momentum",
+      "text_clean": "ครบ ปี มหาอุทกภัย น้ำต้องไม่ท่วมหาดใหญ่ซ้ำรอยเดิม The Momentum",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1VODNqTEFEN1AzUXFudG5tLXAyek5QbEU2YVpOcnY0ZGg1cy0ta09zZEQtSjdTSlBTcjNWZm1kc3BFSWFjaXpNTVd5dk9JUDJGdS05eEpPeldFaTllOTBpU1RvNjkwQVJvM1E?oc=5",
+      "published_at": "2026-11-27 17:01",
+      "age_hours": 15.2,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "🇹🇭 ด้วยสำนึกในพระมหากรุณาธิคุณของพระบาทสมเด็จพระเจ้าอยู่หัว ที่ทรงพระราชทานโครงการจิตอาสาพระราชทาน เพื่อส่งเสริมให้ประชาชนร่วมทำความดี บำเพ็ญสาธารณประโยชน์เพื่อส่วนรวม\n\n💛🩵 กองทัพภาคที่ 4 ผนึกกำลังเจ้าหน้าที่สาธารณสุข เร่งจัดทำแนวกระสอบทราย ป้องกันน้ำท่วมโรงพยาบาลส่งเสริมสุขภาพตำบลบ้านชะรัด จ.พัทลุง\n\nกองพันทหารช่างที่ 402 กรมทหารช่าง กองพลพัฒนาที่ 4 และ ผู้แทนแม่ทัพภาคที่ 4 ในฐานะผู้ประสานงานฝ่ายทหารประจำจังหวัดพัทลุง นำกำลังพลร่วมกับเจ้าหน้าที่โรงพยาบาลส่งเสริมสุขภาพตำบลบ้านชะรัด ดำเนินการบรรจุกระสอบทรายและจัดทำแนวป้องกันน้ำท่วมบริเวณโรงพยาบาลส่งเสริมสุขภาพตำบลบ้านชะรัด ตำบลชะรัด อำเภอกงหรา จังหวัดพัทลุง\n\nการดำเนินการดังกล่าวมีวัตถุประสงค์เพื่อเตรียมความพร้อมรับมือสถานการณ์ฝนตกหนัก และป้องกันน้ำท่วมที่อาจเกิดขึ้น ลดผลกระทบต่อสถานพยาบาล ตลอดจนสร้างความมั่นใจให้แก่บุคลากรทางการแพทย์และประชาชนที่เข้ามารับบริการ\n\nกองทัพภาคที่ 4 พร้อมเคียงข้างประชาชนในทุกสถานการณ์ ร่วมบูรณาการความร่วมมือกับทุกภาคส่วน เตรียมพร้อมรับมือภัยพิบัติ และช่วยเหลือประชาชนอย่างเต็มกำลัง\n\n#ศูนย์ประชาสัมพันธ์กองทัพภาคท - Facebook",
+      "title_clean": "ด้วยสำนึกในพระมหากรุณาธิคุณของพระบาทสมเด็จพระเจ้าอยู่หัว ที่ทรงพระราชทานโครงการจิตอาสาพระราชทาน เพื่อส่งเสริมให้ประชาชนร่วมทำความดี บำเพ็ญสาธารณประโยชน์เพื่อส่วนรวม กองทัพภาคที่ ผนึกกำลังเจ้าหน้าที่สาธารณสุข เร่งจัดทำแนวกระสอบทราย ป้องกันน้ำท่วมโรงพยาบาลส่งเสริมสุขภาพตำบลบ้านชะรัด จ พัทลุง กองพันทหารช่างที่ กรมทหารช่าง กองพลพัฒนาที่ และ ผู้แทนแม่ทัพภาคที่ ในฐานะผู้ประสานงานฝ่ายทหารประจำจังหวัดพัทลุง นำกำลังพลร่วมกับเจ้าหน้าที่โรงพยาบาลส่งเสริมสุขภาพตำบลบ้านชะรัด ดำเนินการบรรจุกระสอบทรายและจัดทำแนวป้องกันน้ำท่วมบริเวณโรงพยาบาลส่งเสริมสุขภาพตำบลบ้านชะรัด ตำบลชะรัด อำเภอกงหรา จังหวัดพัทลุง การดำเนินการดังกล่าวมีวัตถุประสงค์เพื่อเตรียมความพร้อมรับมือสถานการณ์ฝนตกหนัก และป้องกันน้ำท่วมที่อาจเกิดขึ้น ลดผลกระทบต่อสถานพยาบาล ตลอดจนสร้างความมั่นใจให้แก่บุคลากรทางการแพทย์และประชาชนที่เข้ามารับบริการ กองทัพภาคที่ พร้อมเคียงข้างประชาชนในทุกสถานการณ์ ร่วมบูรณาการความร่วมมือกับทุกภาคส่วน เตรียมพร้อมรับมือภัยพิบัติ และช่วยเหลือประชาชนอย่างเต็มกำลัง ศูนย์ประชาสัมพันธ์กองทัพภาคท Facebook",
+      "text_clean": "ด้วยสำนึกในพระมหากรุณาธิคุณของพระบาทสมเด็จพระเจ้าอยู่หัว ที่ทรงพระราชทานโครงการจิตอาสาพระราชทาน เพื่อส่งเสริมให้ประชาชนร่วมทำความดี บำเพ็ญสาธารณประโยชน์เพื่อส่วนรวม กองทัพภาคที่ ผนึกกำลังเจ้าหน้าที่สาธารณสุข เร่งจัดทำแนวกระสอบทราย ป้องกันน้ำท่วมโรงพยาบาลส่งเสริมสุขภาพตำบลบ้านชะรัด จ พัทลุง กองพันทหารช่างที่ กรมทหารช่าง กองพลพัฒนาที่ และ ผู้แทนแม่ทัพภาคที่ ในฐานะผู้ประสานงานฝ่ายทหารประจำจังหวัดพัทลุง นำกำลังพลร่วมกับเจ้าหน้าที่โรงพยาบาลส่งเสริมสุขภาพตำบลบ้านชะรัด ดำเนินการบรรจุกระสอบทรายและจัดทำแนวป้องกันน้ำท่วมบริเวณโรงพยาบาลส่งเสริมสุขภาพตำบลบ้านชะรัด ตำบลชะรัด อำเภอกงหรา จังหวัดพัทลุง การดำเนินการดังกล่าวมีวัตถุประสงค์เพื่อเตรียมความพร้อมรับมือสถานการณ์ฝนตกหนัก และป้องกันน้ำท่วมที่อาจเกิดขึ้น ลดผลกระทบต่อสถานพยาบาล ตลอดจนสร้างความมั่นใจให้แก่บุคลากรทางการแพทย์และประชาชนที่เข้ามารับบริการ กองทัพภาคที่ พร้อมเคียงข้างประชาชนในทุกสถานการณ์ ร่วมบูรณาการความร่วมมือกับทุกภาคส่วน เตรียมพร้อมรับมือภัยพิบัติ และช่วยเหลือประชาชนอย่างเต็มกำลัง ศูนย์ประชาสัมพันธ์กองทัพภาคท Facebook",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiqghBVV95cUxQZFR3V29tQnBjRFVzYVE3OGM4WmltTHR1U0ZJQlRpMmlYZVhPQUU5SUkwLW04REFabENKZlYtWVZ3VGdVc1RsTmlaTEJrZWtPV2QzVkJ2eER4M1ZHUUtfZVpuYlJjYUdwN191TzdSUDJsTExHU2luUGNjc1lGNlhhMXplcTM4N3NyMzlDcThNTl9aUk9NeE5mdWowdVJBeGZOVWJhVUtVVTJ6TU9vdEJLc05SNGtWdzI0ZFcySHBVS2ZPYTNSemEzeXhWazllc0VMUmlER0R2UzBWckF2VUk0V016Mk9QMWp4Uk9LcklNaG95Mks5Z2d2YmUtamhTUGFHa1praDNjRDFyQnhhYS0weGdXMU9wZlJxaUZMaTVXT0xZaV9IWWFnekh2WFpvcG1ydmVfMzR4U0tBUkJxOGxpVHFnbUxyMzN2WkExOTI5dmxMX0FCZEZwSEJ4eXJESF9LdUhvX19QdExjUnpZOWRnZjhjQm42dFE1ajQ4Z2tUTzZvbmtsLXhHRThMRFdOd20yd1Q4eUg4NEhyZFgtbzZrcnNvMUFFSGVVNGNwUFRQWk5Fc2JOR25kWWIzcWtzY1lFZjhqTHk2M2cwZm1haHdnZkdMTWY1eTlleko0WFBuZVlRWFhOWFlJalRmOUQ1Ry1EaW9jZjNUaVptN2thVXJqam11V0VSMVBFS01iRUxibDdfTUx1WFkxX0xPbkR1U1doMVd4ODNWSUhWT1lFTTJfcDlmdnVkdG1taEY3cDFndzFoRE0ybm1jYm1VUEhfMG00MkFqbnIwZUhfWHpMcXBEYzczcFluSG9NZWYxSWZ2ZWFZakhaUHBxREl0aUJJVGQtV283SVUyTUtkRFhnZkRtQXJ1UGU4ZTJZN3l2OFVaRTJGSXBSdlVhS04xRENxS05qaDlLa0Rsdmhfc1IwUG9sdUkxUkRHSlo2cW1STVhsN0htdzVCcElUdmxPVUU0clFvOU1nSVFIdDdOQWl2cHNldEFQdlg0MXpHVEJDc0pCREs1cFI5U0laNjFwakVqQW1Xc2dpbUg1ekRQQkltQWJGNFYtY0RlbkhMTzNwVWVzMDUxQk1IUnlFdmdGekt4ZXhZc2JKZk1vbThGcU1UUVg1NWRaMTV2THVDNUdwUHV2VUlOSjI3QTcxa2pMRWluTkpZWVRxZ1NUWXExLVJya1hHY0pUTElFMHVCVGU4N1VvblpqcGd6X1hGYi1abG8zQnRlYzkzeWxBdTlCVHpNVUU1SUc4eDR5dmhyTWtkdlF6RXRVRWdwbWNRWlJkRnZpalVrN0NYS1ZROGRnSkdYX01jOERVMkE4NVlSSVV3Tk1BUlVPa21ndVhoYW5TWTgyMEw3aDZnejZVX3ZfVnJBTTdITXdYVkFjTlJ1YjZfRmtPZGhlb0cxbTA4TWJn?oc=5",
+      "published_at": "2026-11-27 14:00",
+      "age_hours": 18.2,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "กรมอุตุฯ ออกประกาศ ฉ.8 เตือนภาคใต้ฝนตกหนักถึงหนักมาก ช่วง 27–30 พ.ย. 69 เสี่ยงน้ำท่วมฉับพลัน - เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
+      "title_clean": "กรมอุตุฯ ออกประกาศ ฉ เตือนภาคใต้ฝนตกหนักถึงหนักมาก ช่วง พ ย เสี่ยงน้ำท่วมฉับพลัน เนชั่นทีวี สถานีข่าว ชั่วโมง",
+      "text_clean": "กรมอุตุฯ ออกประกาศ ฉ เตือนภาคใต้ฝนตกหนักถึงหนักมาก ช่วง พ ย เสี่ยงน้ำท่วมฉับพลัน เนชั่นทีวี สถานีข่าว ชั่วโมง",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBGbFd3X1lMN3U3eXdtdjZVMmVLUXZ1b3NEU01oYktmQ1F2ZEo5cHpmSVdsV0ZpTlRhS2F4VGpKei1JRi1FbFZmdlZNV3ZDSGFNZU5GQnlqNDc?oc=5",
+      "published_at": "2026-11-27 19:20",
+      "age_hours": 12.9,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "📅ช่วงวันที่ 27-30 พ.ย. ประเทศไทยตอนบนจะมีอากาศเย็นลงกับมีลมแรง เพราะมวลอากาศเย็นระลอกใหม่จะแผ่เสริมลงมาปกคลุมประเทศไทยตอนบน\n\n📌แต่ภาคใต้จะมีฝนเพิ่มขึ้น และมีฝนตกหนักถึงหนักมาก ระวังน้ำท่วมฉับพลัน ขอให้เตรียมการรับมือไว้ด้วยนะคะ โดยฉพาะอย่างยิ่งในวันที่ 28-30 พ.ย.\n\n#กรมอุตุนิยมวิทยา #ดิจิทัลเพื่อเศรษฐกิจและสังคม - Facebook",
+      "title_clean": "ช่วงวันที่ พ ย ประเทศไทยตอนบนจะมีอากาศเย็นลงกับมีลมแรง เพราะมวลอากาศเย็นระลอกใหม่จะแผ่เสริมลงมาปกคลุมประเทศไทยตอนบน แต่ภาคใต้จะมีฝนเพิ่มขึ้น และมีฝนตกหนักถึงหนักมาก ระวังน้ำท่วมฉับพลัน ขอให้เตรียมการรับมือไว้ด้วยนะคะ โดยฉพาะอย่างยิ่งในวันที่ พ ย กรมอุตุนิยมวิทยา ดิจิทัลเพื่อเศรษฐกิจและสังคม Facebook",
+      "text_clean": "ช่วงวันที่ พ ย ประเทศไทยตอนบนจะมีอากาศเย็นลงกับมีลมแรง เพราะมวลอากาศเย็นระลอกใหม่จะแผ่เสริมลงมาปกคลุมประเทศไทยตอนบน แต่ภาคใต้จะมีฝนเพิ่มขึ้น และมีฝนตกหนักถึงหนักมาก ระวังน้ำท่วมฉับพลัน ขอให้เตรียมการรับมือไว้ด้วยนะคะ โดยฉพาะอย่างยิ่งในวันที่ พ ย กรมอุตุนิยมวิทยา ดิจิทัลเพื่อเศรษฐกิจและสังคม Facebook",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiywdBVV95cUxPYXc4dW9lTWZOLXFTa012TC0wY0NaT050U1BjSVlsLXpUV04tcUdmR012UzRKby1NSTFyRjAxUURCQ2h2Vm5YU1ZSMDhpcFlHdWFuczdaVnBTZGR4bV9vNmJOQ2s2LVJVZW9WNTFYZDR4QmpGa3F6elVOQmlZY1NtdFJna0N3a1dOTzJ5NUpkbzJIMUhYMEdLeTlnTmxWR3ZyR2xNNHY4LVJyeS1jR1BTbHE1YnY4YUdLRWxyS1FzUUJnM0RkNEZDd3Z6U1NnN25fcV9henItekMtTXVEVFdEX3VsYTRaeHlCend4eHg4RWFaMG0ybndHNVJWUlE5Z1lURlVTMFVaZk9RdEpacnhIM0NSTlZNdm1RNktkWGg0Y3JUZXJlR3h3NnlIY21RbHRUQ2xNbk9maU43d0NvcEIzTG94Mk1JakRpTWxqYTU4UDRjSTE2SGdwWkEwZWo2bE50dzlEMHA4djdab0tuV2V4UkltNm5mck1CMkp4N2xnNC12M1AySVA5Y0FEV0pvSDFsT0traTNlQXFXeHhWcHZCVmIwS05tc3BRQWdRYlhKOHlIck43Nkc0bHh6Zm5SeWdiWnZCTHo0cEpQbkJzMzh6bmppT1ljVTJTbFRhbWhVZkxjNjB5RE51Yzc4NlJGWmNhR0xYRWNrVkpQRlVpel95T1BHWVZEcWNORUtVWmotek5SYUUxb3EtUUQ2bU5YemNEcXJCNnBqVHdwVlo5NkpBU3VNOV9CX1JnRFdFcUE5blk2c2tHRmFpTERIQzJaWWUtZ0RKdGJOb2sxRGl0S0JPTkVYUlhRcEwtRjBjdFo2Wk1UTVJrTG1IMGxXR1lubnZrV0EzSHVjXzU3Mzl3NjVZMUp2YnhHcURlRzN6ajh3UWJ1OUgwTzlaZHZFbWhHeEFUaEk1dlpuWlZmVExsczQ3RHpXd3lJVjZ3Z3dCQWppeTcwTjlnVVJqNHF4amhuUGcyRld1SVpHNkE5NXVteTc3NUdLcV8zSzRfbGJ2ekhVQnFFSWZ5TC02UXpZaW1QcnJUT1BDVGk4QVJZdGd0eU9pYjlRbDNmajljYWJ3Yk16elN1cHFTY0RzcGdFSXNFdVF6aWFkSEZmSUNKYVNOSWJRTEJRd3hHVWJ5TXp4cm5TUzExZnZyVXNhYkp4ZDFfSVJ4M0VtM1hMQktPUk8zTFpBNWliMmJWZ2thRDl3NDh4cWNFM3Jsa09kdDZXM3k2RG55RFpsSDZqaU5lSmZSQmxnU21lQk9YMExITy1oNTIzQW9pXzBJeG54bXNsZw?oc=5",
+      "published_at": "2026-11-27 09:18",
+      "age_hours": 22.9,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "คนซื้อรถมือสองอย่าชะล่าใจ! จับตารถน้ำท่วมกว่าแสนคันจ่อเข้าตลาด เต็นท์รถ–ไฟแนนซ์ยกระดับตรวจสอบ!\n\nเพจเฟซบุ๊ก “กันณ์ เรสซิ่ง” เปิดเผยประเด็นที่น่าจับตามองในวงการรถยนต์มือสอง หลังมีรถยนต์ที่ได้รับผลกระทบจากน้ำท่วมกว่าแสนคัน ท่ามกลางความกังวลว่ารถเหล่านี้อาจถูกนำมาซ่อมแซม ปรับสภาพ และทยอยเข้าสู่ตลาดรถยนต์มือสอง\n\nขณะที่ผู้ประกอบการเต็นท์รถเตรียมตั้งรับอย่างเต็มที่ ส่วนบริษัทไฟแนนซ์เพิ่มความเข้มงวดในการตรวจสอบสภาพรถ โดยว่าจ้างบริษัทภายนอกเข้ามาตรวจสอบ เพื่อสร้างความมั่นใจให้กับผู้ซื้อและลดความเสี่ยงในการรับจัดสินเชื่อรถยนต์ที่เคยผ่านน้ำท่วม\n\nสำหรับผู้ที่กำลังวางแผนซื้อรถมือสองในช่วงนี้ ควรเพิ่มความระมัดระวังเป็นพิเศษ เนื่องจากรถที่ผ่านน้ำท่วมอาจถูกปรับสภาพภายนอกจนดูเหมือนรถปกติ แต่ยังมีความเสียหายแฝงอยู่ในระบบไฟฟ้า กล่องควบคุมเครื่องยนต์ ระบบเกียร์ และชิ้นส่วนต่าง ๆ ซึ่งอาจกลายเป็นภาระค่าซ่อมมหาศาลในอนาคต\n\nก่อนตัดสินใจซื้อจึงควรตรวจสอบประวัติรถ ร่องรอยคราบโคลน สนิมใต้เบาะและพรมปูพื้น รวมถึงให้ช่างผู้เชี่ยวชาญที่เป็นอิสระตรวจสอบสภาพรถอย่างละเอียด\n\n#NEWS1 รายงาน - Facebook",
+      "title_clean": "คนซื้อรถมือสองอย่าชะล่าใจ จับตารถน้ำท่วมกว่าแสนคันจ่อเข้าตลาด เต็นท์รถ ไฟแนนซ์ยกระดับตรวจสอบ เพจเฟซบุ๊ก กันณ์ เรสซิ่ง เปิดเผยประเด็นที่น่าจับตามองในวงการรถยนต์มือสอง หลังมีรถยนต์ที่ได้รับผลกระทบจากน้ำท่วมกว่าแสนคัน ท่ามกลางความกังวลว่ารถเหล่านี้อาจถูกนำมาซ่อมแซม ปรับสภาพ และทยอยเข้าสู่ตลาดรถยนต์มือสอง ขณะที่ผู้ประกอบการเต็นท์รถเตรียมตั้งรับอย่างเต็มที่ ส่วนบริษัทไฟแนนซ์เพิ่มความเข้มงวดในการตรวจสอบสภาพรถ โดยว่าจ้างบริษัทภายนอกเข้ามาตรวจสอบ เพื่อสร้างความมั่นใจให้กับผู้ซื้อและลดความเสี่ยงในการรับจัดสินเชื่อรถยนต์ที่เคยผ่านน้ำท่วม สำหรับผู้ที่กำลังวางแผนซื้อรถมือสองในช่วงนี้ ควรเพิ่มความระมัดระวังเป็นพิเศษ เนื่องจากรถที่ผ่านน้ำท่วมอาจถูกปรับสภาพภายนอกจนดูเหมือนรถปกติ แต่ยังมีความเสียหายแฝงอยู่ในระบบไฟฟ้า กล่องควบคุมเครื่องยนต์ ระบบเกียร์ และชิ้นส่วนต่าง ๆ ซึ่งอาจกลายเป็นภาระค่าซ่อมมหาศาลในอนาคต ก่อนตัดสินใจซื้อจึงควรตรวจสอบประวัติรถ ร่องรอยคราบโคลน สนิมใต้เบาะและพรมปูพื้น รวมถึงให้ช่างผู้เชี่ยวชาญที่เป็นอิสระตรวจสอบสภาพรถอย่างละเอียด NEWS รายงาน Facebook",
+      "text_clean": "คนซื้อรถมือสองอย่าชะล่าใจ จับตารถน้ำท่วมกว่าแสนคันจ่อเข้าตลาด เต็นท์รถ ไฟแนนซ์ยกระดับตรวจสอบ เพจเฟซบุ๊ก กันณ์ เรสซิ่ง เปิดเผยประเด็นที่น่าจับตามองในวงการรถยนต์มือสอง หลังมีรถยนต์ที่ได้รับผลกระทบจากน้ำท่วมกว่าแสนคัน ท่ามกลางความกังวลว่ารถเหล่านี้อาจถูกนำมาซ่อมแซม ปรับสภาพ และทยอยเข้าสู่ตลาดรถยนต์มือสอง ขณะที่ผู้ประกอบการเต็นท์รถเตรียมตั้งรับอย่างเต็มที่ ส่วนบริษัทไฟแนนซ์เพิ่มความเข้มงวดในการตรวจสอบสภาพรถ โดยว่าจ้างบริษัทภายนอกเข้ามาตรวจสอบ เพื่อสร้างความมั่นใจให้กับผู้ซื้อและลดความเสี่ยงในการรับจัดสินเชื่อรถยนต์ที่เคยผ่านน้ำท่วม สำหรับผู้ที่กำลังวางแผนซื้อรถมือสองในช่วงนี้ ควรเพิ่มความระมัดระวังเป็นพิเศษ เนื่องจากรถที่ผ่านน้ำท่วมอาจถูกปรับสภาพภายนอกจนดูเหมือนรถปกติ แต่ยังมีความเสียหายแฝงอยู่ในระบบไฟฟ้า กล่องควบคุมเครื่องยนต์ ระบบเกียร์ และชิ้นส่วนต่าง ๆ ซึ่งอาจกลายเป็นภาระค่าซ่อมมหาศาลในอนาคต ก่อนตัดสินใจซื้อจึงควรตรวจสอบประวัติรถ ร่องรอยคราบโคลน สนิมใต้เบาะและพรมปูพื้น รวมถึงให้ช่างผู้เชี่ยวชาญที่เป็นอิสระตรวจสอบสภาพรถอย่างละเอียด NEWS รายงาน Facebook",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMilAhBVV95cUxQelVWZDFzaG5oSFZ2ZFVoZTNNZmo0YjAzV3EtbnBoZ0pfNGV1NWJmaS1leGVhWWVTaGFsNWZJYUZZbVVQSnRtd0hYaEpwZzdBU21oNmdGS2pvMk1ETVNXcnBaUW0zWDU5Q3NKWUdKVzJaX1VOUzUxb0ZzeEpSZ2h3TlpNYWlaaHl3QlhMYkF2YTBFd0tHUmtGRmt1bURmbXExY0xOS2pFU1paR1REOWZUNFN1QkVmWVI1N3E4V01iU28tSzJWSnc1ODNIZTJwRFJ2NVBYOEV0d1BWbGo0REJHTVR0alYtVWl4U2ozUlpQWTk1QXRHVlZEcFZnVWxnZjFzNFp4Q0ZBcXlYaXZBNU5wODZGVlQ3Z0Q3eEIwYkJoNE5yR2Q1RExlczJRUzhNZE5ZS0lSSzJQMko0VVJNTlk4Yl9EeDYtMlNodUNPcUVQTnBIenRVQ1FSdzY0Nllva2tEWFhSSlN6V1k5VjlfelBGQWVBbGVFRno3c2RKM2ZqeS1Hei1wTjFFNzBEZDVacUlKVjNoN0tvZ29CUzAyS0YxWW05YzBZVnpOdkhOcmZDMnU0VTF1LXN6S1VJV2pKZ0NIYUdveXNVdVdmdy0wbzJMSW1wbzJIaTJscDNiX2FBaUE1N3g0Ul8zeFpFUkQwZFNEelZvclNnQUwwckxNS2IzcmhORnF1ZndFcVh0OUZLbHhlOGczWXdXc0I2RWNVS3hKNU4wbTR4SVBVNUxMbjVldGpxN0ZyUW0zQkx1S1cwN3h2bk9Ub3FNU1BkR0dYdDZ1LWl0SmEwOWV2WUl2ZzF1TXp4dHlSbmxoRHhhZDhEQVl1U1pNeF9MR0d4d3hlTXRzN0FMVEZyZmNKNDRQUHRWQVlhV0VZTTY4dVBSemhLUjV1VWNJczZrQ1lYR0xwRTlnTmlaU29QWlM3TGNNaGluSVFlelZmbTd0ODZfOURReGpYamp1LXNNYUd4MW1aWHFIdjdlc1R4Yll1bFVfSnIwRDhZRDNBcTE1WXBNNjBEZW1kclZyZ0RJLWVrcEM0RGhkRGQwQkI4N3ZmSXRMQzdwUVByMEk3SlgzUk1TSzZfa0NqSGVURDZVZDdaYzhaZFZ4c2JnLVQxRkt0eVA3ck0yNnQ1NWpNcGFmTURhLUZ1WWVlOEJydTZqTk9JNnZUTFJaeGVhRjd6a25ITXlKblBpV3VnUzY3eWtGSUxYWWsxOU9XRi14SmlyM0h2Mm93X3lnX1RHeEgxeEZrcjBMTl82QUFMSTFZT2hCWUhzZEc4Znc4UUZzTENqdkp6Y09kVVRROVcxN0RORWpZeHZ4SXlfaEpEWFJQM0p1cXpvYnJhNnhYdzU1QU5DdlVQNWR2RWtjQmF3eVNkQldVN0NNQ0JUNWtoREw?oc=5",
+      "published_at": "2026-11-27 09:30",
+      "age_hours": 22.7,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "อุตุฯ ประกาศฉบับ 9 เตือนภาคใต้ฝนเพิ่มขึ้น เสี่ยงน้ำท่วมฉับพลัน น้ำป่าไหลหลาก - thairath.co.th",
+      "title_clean": "อุตุฯ ประกาศฉบับ เตือนภาคใต้ฝนเพิ่มขึ้น เสี่ยงน้ำท่วมฉับพลัน น้ำป่าไหลหลาก co th",
+      "text_clean": "อุตุฯ ประกาศฉบับ เตือนภาคใต้ฝนเพิ่มขึ้น เสี่ยงน้ำท่วมฉับพลัน น้ำป่าไหลหลาก co th อุตุฯ ประกาศฉบับ เตือนภาคใต้ฝนเพิ่มขึ้น เสี่ยงน้ำท่วมฉับพลัน น้ำป่าไหลหลาก",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE80SjY2dl9VQzIwa2lyTTROZUZ2V0dOWUVYZDQyY0JNWjgwNWcxZUZneTRSd1RzZHVLMjhWTExxV0EyVDR5NTUyQVExYVZFSHdrRTgxWS1nbEY?oc=5",
+      "published_at": "2026-11-28 07:39",
+      "age_hours": 0.6,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "อุตุฯ เตือน 29-30 พ.ย.นี้ ภาคใต้ฝนหนักมาก ระวังน้ำท่วมฉับพลัน-น้ำป่าหลาก - เดลินิวส์",
+      "title_clean": "อุตุฯ เตือน พ ย นี้ ภาคใต้ฝนหนักมาก ระวังน้ำท่วมฉับพลัน น้ำป่าหลาก เดลินิวส์",
+      "text_clean": "อุตุฯ เตือน พ ย นี้ ภาคใต้ฝนหนักมาก ระวังน้ำท่วมฉับพลัน น้ำป่าหลาก เดลินิวส์",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9vc1ljQ01oNVFvT2RhVkl1QkhrT0pzZDFxQnhpTm5TbF9MZjRoXzN4a05lUkVFOW5fdzh4RklFTVFWTFQ3Qms2QUpVZU03OXY3ZXZ3?oc=5",
+      "published_at": "2026-11-28 06:00",
+      "age_hours": 2.2,
       "date": "2026-11-28"
     },
     {
@@ -99,7 +159,7 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5ZOGZ2WnExUDBvYl9WeWNTaDNCR1RoeXV1dHVJZ21RcnBOU1BRMWp2YTl6MF9yWlAtU2hQQ3lNV2xzSDJEOGpVc2U4cmFMcHYyMlZaT3RB?oc=5",
       "published_at": "2026-11-27 20:36",
-      "age_hours": 4.3,
+      "age_hours": 11.6,
       "date": "2026-11-28"
     },
     {
@@ -109,7 +169,17 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE51aUU0UkdSR0ZOOWJiM0NCeXd4LTNodW9UX1RhZkViZXBwRnk4NTd4TVN6Rzd1TkNMTV80TERxSUpJYU8zSElvZ3JB?oc=5",
       "published_at": "2026-11-27 13:27",
-      "age_hours": 11.4,
+      "age_hours": 18.8,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "กรมอุตุนิยมวิทยา. . 🚨 ชาวใต้ 4 จังหวัดนี้จับตาให้ดี! 28–30 พ.ย. ฝนหนักถึงหนักมาก! 🌧️\n\nเตือน!! ช่วง 28–30 พ.ย. 69 ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่\n\n📍 ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์\n\nระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ำท่วม เตรียมพร้อมและติดตามประกาศเตือนภัยอย่างใกล้ชิดนะคะ\n\n📢 แชร์เตือนคนในพื้นที่ไว้ก่อน อย่ารอให้ฝนมาแล้วค่อยเตรียมตัว!\n\n#กรมอุตุนิยมวิทยา #พยากรณ์อากาศ #ดิจิทัลเพื่อเศรษฐกิจและสังค - Facebook",
+      "title_clean": "กรมอุตุนิยมวิทยา ชาวใต้ จังหวัดนี้จับตาให้ดี พ ย ฝนหนักถึงหนักมาก เตือน ช่วง พ ย ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ำท่วม เตรียมพร้อมและติดตามประกาศเตือนภัยอย่างใกล้ชิดนะคะ แชร์เตือนคนในพื้นที่ไว้ก่อน อย่ารอให้ฝนมาแล้วค่อยเตรียมตัว กรมอุตุนิยมวิทยา พยากรณ์อากาศ ดิจิทัลเพื่อเศรษฐกิจและสังค Facebook",
+      "text_clean": "กรมอุตุนิยมวิทยา ชาวใต้ จังหวัดนี้จับตาให้ดี พ ย ฝนหนักถึงหนักมาก เตือน ช่วง พ ย ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ำท่วม เตรียมพร้อมและติดตามประกาศเตือนภัยอย่างใกล้ชิดนะคะ แชร์เตือนคนในพื้นที่ไว้ก่อน อย่ารอให้ฝนมาแล้วค่อยเตรียมตัว กรมอุตุนิยมวิทยา พยากรณ์อากาศ ดิจิทัลเพื่อเศรษฐกิจและสังค Facebook",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiwgZBVV95cUxQdllvSm9iQmZ5eVdpMGlPZk9vYnZyWmZydGd6N0JzZXpNTVlUbmJfR082MHlvdExLRG1HV3VQMmhqM21uRHhvQ3RKaHVoUmxqdFdHaF90N1RZU3VsbUE3Z1ZwNkctUWlRM0J1eWI1V2p3RHpONTBjc3ZSZTVVSFhWUXJXNHhqSkw0c3kyTDRtTW1NZVllXzVvRElORHFiMThMaEdVbzBqR1NtNzV4OG5Yd2VyX244MFVQOUhPcXlfcGtfdGQ3d25qTHRQNWVmTUZGSUZjcjNKRDE2N2xPa0FRN3J6enR3MU5NY0N0Wk9nODlQQXYwclY0N1RJX3JIU0dVTkhmZzQ1NDBScm12b25SQ3JjZkw2R25QMTU0WFd0VTJ0QTVWaHpjcy1XVWJ1dUlYeldXaFZjY2lZUDlFLXBOajRKb1k2a0JaY3ZuMFM1U1ljR2hFLXhqTms0Qmc3bURjcjFKaGQxNXhXeEhkWkc2Y0p5MFJVaHVjbkRtYmtFX0xneTdvc1h6NzF0REp0MkRHN1BiRjVxdFBaM3g0UVV1cFRnNkZkWVhCbUJ2ZXYtT3FTUUl6cmFYLWp4SDcwTmdmNG83TjFxa01hYVBGbzZYWHlOVkNrSkQ1bW85dC1YbU53V2dZQWdNbzlYd2J2Ui13Q3dsOUVyZ3NrSzdHbmtMZFdQdjd3UW51QjlCSDdrQUdsenlNNGt3dkM5UUZQOFV2X0ltYXkybGd5Y0RSTEdRWl9LeEFqaXJVSE90R1A4TFpLYkJzMUpvS3VPaTRWdDlYNm54RVNnMzBVZzdadkxXdi1ESlZwZEtHV0txQWdFU1A4WHFXeEUyU0hURWdjRHkxZWdaNW9FS1VKdVdrNEFDNTZJZWQ4c0lqS3A5a21mWTNfckRxR3RXUkVJNm50SnllYl9TcjdEUWRKYlVUWEdvN0d0cXVUeV9IZnZZcWQzUEQxM1VmV3VrM2x0R2lEbTNBblJsaE44QVhUM3lLaFFLSU11U3RxakNOdXpJV0ZUYndfYl8wb1k5NFdCb1BZdk9yTHVJVUszT2JSYVBGVEV2V3oyMVJRMnYydEh2Um5tUVhkZ3puZHFuWGNhdDRna0hpMkE?oc=5",
+      "published_at": "2026-11-27 10:07",
+      "age_hours": 22.1,
       "date": "2026-11-28"
     },
     {
@@ -119,17 +189,17 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1SZ3V4UjJJTmo2ckRETi1OUmZ4X0JpSFhOSFcxbjZBVW9aTDF3SzJNcWItcHkzMVBtY0tvYnJyTzZsaXd5S1dRdnVMSUk1YkhXWlJKUGV0ZDVVMDhY?oc=5",
       "published_at": "2026-11-27 14:15",
-      "age_hours": 10.7,
+      "age_hours": 18.0,
       "date": "2026-11-28"
     },
     {
-      "title": "คนซื้อรถมือสองอย่าชะล่าใจ! จับตารถน้ำท่วมกว่าแสนคันจ่อเข้าตลาด เต็นท์รถ–ไฟแนนซ์ยกระดับตรวจสอบ! เพจเฟซบุ๊ก “กันณ์ เรสซิ่ง” เปิดเผยประเด็นที่น่าจับตามองในวงการรถยนต์มือสอง หลังมีรถยนต์ที่ได้รับผลกระทบจากน้ำท่วมกว่าแสนคัน ท่ามกลางความกังวลว่ารถเหล่านี้อาจถูกนำมาซ่อมแ - Facebook",
-      "title_clean": "คนซื้อรถมือสองอย่าชะล่าใจ จับตารถน้ำท่วมกว่าแสนคันจ่อเข้าตลาด เต็นท์รถ ไฟแนนซ์ยกระดับตรวจสอบ เพจเฟซบุ๊ก กันณ์ เรสซิ่ง เปิดเผยประเด็นที่น่าจับตามองในวงการรถยนต์มือสอง หลังมีรถยนต์ที่ได้รับผลกระทบจากน้ำท่วมกว่าแสนคัน ท่ามกลางความกังวลว่ารถเหล่านี้อาจถูกนำมาซ่อมแ Facebook",
-      "text_clean": "คนซื้อรถมือสองอย่าชะล่าใจ จับตารถน้ำท่วมกว่าแสนคันจ่อเข้าตลาด เต็นท์รถ ไฟแนนซ์ยกระดับตรวจสอบ เพจเฟซบุ๊ก กันณ์ เรสซิ่ง เปิดเผยประเด็นที่น่าจับตามองในวงการรถยนต์มือสอง หลังมีรถยนต์ที่ได้รับผลกระทบจากน้ำท่วมกว่าแสนคัน ท่ามกลางความกังวลว่ารถเหล่านี้อาจถูกนำมาซ่อมแ Facebook",
+      "title": "🚨 ชาวใต้ 4 จังหวัดนี้จับตาให้ดี! 28–30 พ.ย. ฝนหนักถึงหนักมาก! 🌧️\n\nเตือน!! ช่วง 28–30 พ.ย. 69 ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่\n\n📍 ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์\n\nระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ำท่วม เตรียมพร้อมและติดตามประกาศเตือนภัยอย่างใกล้ชิดนะคะ\n\n📢 แชร์เตือนคนในพื้นที่ไว้ก่อน อย่ารอให้ฝนมาแล้วค่อยเตรียมตัว!\n\n#กรมอุตุนิยมวิทยา #พยากรณ์อากาศ #ดิจิทัลเพื่อเศรษฐกิจและสังค - Facebook",
+      "title_clean": "ชาวใต้ จังหวัดนี้จับตาให้ดี พ ย ฝนหนักถึงหนักมาก เตือน ช่วง พ ย ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ำท่วม เตรียมพร้อมและติดตามประกาศเตือนภัยอย่างใกล้ชิดนะคะ แชร์เตือนคนในพื้นที่ไว้ก่อน อย่ารอให้ฝนมาแล้วค่อยเตรียมตัว กรมอุตุนิยมวิทยา พยากรณ์อากาศ ดิจิทัลเพื่อเศรษฐกิจและสังค Facebook",
+      "text_clean": "ชาวใต้ จังหวัดนี้จับตาให้ดี พ ย ฝนหนักถึงหนักมาก เตือน ช่วง พ ย ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ำท่วม เตรียมพร้อมและติดตามประกาศเตือนภัยอย่างใกล้ชิดนะคะ แชร์เตือนคนในพื้นที่ไว้ก่อน อย่ารอให้ฝนมาแล้วค่อยเตรียมตัว กรมอุตุนิยมวิทยา พยากรณ์อากาศ ดิจิทัลเพื่อเศรษฐกิจและสังค Facebook",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMilAhBVV95cUxQelVWZDFzaG5oSFZ2ZFVoZTNNZmo0YjAzV3EtbnBoZ0pfNGV1NWJmaS1leGVhWWVTaGFsNWZJYUZZbVVQSnRtd0hYaEpwZzdBU21oNmdGS2pvMk1ETVNXcnBaUW0zWDU5Q3NKWUdKVzJaX1VOUzUxb0ZzeEpSZ2h3TlpNYWlaaHl3QlhMYkF2YTBFd0tHUmtGRmt1bURmbXExY0xOS2pFU1paR1REOWZUNFN1QkVmWVI1N3E4V01iU28tSzJWSnc1ODNIZTJwRFJ2NVBYOEV0d1BWbGo0REJHTVR0alYtVWl4U2ozUlpQWTk1QXRHVlZEcFZnVWxnZjFzNFp4Q0ZBcXlYaXZBNU5wODZGVlQ3Z0Q3eEIwYkJoNE5yR2Q1RExlczJRUzhNZE5ZS0lSSzJQMko0VVJNTlk4Yl9EeDYtMlNodUNPcUVQTnBIenRVQ1FSdzY0Nllva2tEWFhSSlN6V1k5VjlfelBGQWVBbGVFRno3c2RKM2ZqeS1Hei1wTjFFNzBEZDVacUlKVjNoN0tvZ29CUzAyS0YxWW05YzBZVnpOdkhOcmZDMnU0VTF1LXN6S1VJV2pKZ0NIYUdveXNVdVdmdy0wbzJMSW1wbzJIaTJscDNiX2FBaUE1N3g0Ul8zeFpFUkQwZFNEelZvclNnQUwwckxNS2IzcmhORnF1ZndFcVh0OUZLbHhlOGczWXdXc0I2RWNVS3hKNU4wbTR4SVBVNUxMbjVldGpxN0ZyUW0zQkx1S1cwN3h2bk9Ub3FNU1BkR0dYdDZ1LWl0SmEwOWV2WUl2ZzF1TXp4dHlSbmxoRHhhZDhEQVl1U1pNeF9MR0d4d3hlTXRzN0FMVEZyZmNKNDRQUHRWQVlhV0VZTTY4dVBSemhLUjV1VWNJczZrQ1lYR0xwRTlnTmlaU29QWlM3TGNNaGluSVFlelZmbTd0ODZfOURReGpYamp1LXNNYUd4MW1aWHFIdjdlc1R4Yll1bFVfSnIwRDhZRDNBcTE1WXBNNjBEZW1kclZyZ0RJLWVrcEM0RGhkRGQwQkI4N3ZmSXRMQzdwUVByMEk3SlgzUk1TSzZfa0NqSGVURDZVZDdaYzhaZFZ4c2JnLVQxRkt0eVA3ck0yNnQ1NWpNcGFmTURhLUZ1WWVlOEJydTZqTk9JNnZUTFJaeGVhRjd6a25ITXlKblBpV3VnUzY3eWtGSUxYWWsxOU9XRi14SmlyM0h2Mm93X3lnX1RHeEgxeEZrcjBMTl82QUFMSTFZT2hCWUhzZEc4Znc4UUZzTENqdkp6Y09kVVRROVcxN0RORWpZeHZ4SXlfaEpEWFJQM0p1cXpvYnJhNnhYdzU1QU5DdlVQNWR2RWtjQmF3eVNkQldVN0NNQ0JUNWtoREw?oc=5",
-      "published_at": "2026-11-27 09:30",
-      "age_hours": 15.4,
+      "url": "https://news.google.com/rss/articles/CBMiwAZBVV95cUxQWG1tVi1RMWdmLWExMXl4ZUlHSi1CTzJpbVg4LXhGeHZJQWZQdmhTek0tWXB1aUc0LVVHYlNRWFp4QkMzWlVHQ1JmV3BiVGxTTXdTSkJDNncySmppTnRaR2sybFhDd2NzdllxaGc2MUFxQU01MEVKYWRMcGZfSlVFUjI1aFpuTHptamVpM1J5OTFRYTduVmpnSXAxQ1g5ZzlOTHFGVkZNb01yMUV5WTJpemRiWDJ4dEdJNElQaHNMUUJMLVBjQzRsTGV0UDJCMnFyVTI2T3ZDSXpzUll2bncyRmhLUkNJRU5FWEpEc1FNeFJaOU5tQTRXZkRtUlJOakYzRm1Pc18yZllJNkpxSTBuRk80MkJlbDJ4UFdidmVHbXZTclpCNVp6azFQRzRKd0JialVoZE55YUZvNF9kcXRVbFlIYlB5QnJiaEhXWTJoX2ktUFBYcXA1cU84RXF6c2tvZ21UTEtteXRkd1c3ZkhCZ3VYZXVQYk85V2NfZmtsY19SbHp5V2p2UmJIaWJ0Q0pEUzhHU1ZLUTJNZFY3SUhXUEJ0Q0JKVlIwa1E0VFRJdVJrNmp4Tzd0M0hKSG9qWEtnNU1ya1BEaGExbXJsM25LdVBBUldQdmRSM3JlVkRtZkRENEdhQ2NsSFhReldsWGdQWUhjSUhLT19IMWh4dHpkb29rLXV5cndTNWVydTdzcTJnT1Q3NjVDLWlQUVFQZ1dYTzY5cEFPaW1hRzd5M2JpRzVTaUV4ekdHWTVhNUdYSk5obndKTFFTeUUwU0NpeXk3SF8waXJKOUw2QjRFR3lpOHRKVHJQVDVCZWxHanlXR1hWczZJYVpvY25TM2gwcTI0M1F4bWgyaXRWTFR5Mno3cGdTUnlOSl9uZWpzZGpTSXVIQVotUjc4WXYtYmNSWUtiaEZILXppODhkVGR0SlppdlRLbF9MeGtsM01ncFRyeTh0aEJQNnR4Q0d2aGc1VU1zSFVic2Z4R0FVbE9QdW1vSzVHM2pfSzI1WXNRRmRWZ3FKdWNkTzgtMHpPak5iblRqTS1WNjZPcFN1RHN5M21wQjlnNHdGa0NwQlEwQ2NqVHdpcGpTMFBVbWphWGYzcTdq?oc=5",
+      "published_at": "2026-11-27 10:10",
+      "age_hours": 22.0,
       "date": "2026-11-28"
     },
     {
@@ -139,27 +209,7 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE85dkE1NWhZNVRHZjh0cGdLU3YyRDUzdndZWkVlY1hyUlVIaVZPaUJBUGVRVHp1S0RCcGRSVWcxSzE1aVRVWWFKSXZybFdmanhfbjJLV0lR?oc=5",
       "published_at": "2026-11-27 20:38",
-      "age_hours": 4.3,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "กรมอุตุนิยมวิทยา. . 🚨 ชาวใต้ 4 จังหวัดนี้จับตาให้ดี! 28–30 พ.ย. ฝนหนักถึงหนักมาก! 🌧️ เตือน!! ช่วง 28–30 พ.ย. 69 ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ 📍 ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ - Facebook",
-      "title_clean": "กรมอุตุนิยมวิทยา ชาวใต้ จังหวัดนี้จับตาให้ดี พ ย ฝนหนักถึงหนักมาก เตือน ช่วง พ ย ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ Facebook",
-      "text_clean": "กรมอุตุนิยมวิทยา ชาวใต้ จังหวัดนี้จับตาให้ดี พ ย ฝนหนักถึงหนักมาก เตือน ช่วง พ ย ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ Facebook",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiwgZBVV95cUxQdllvSm9iQmZ5eVdpMGlPZk9vYnZyWmZydGd6N0JzZXpNTVlUbmJfR082MHlvdExLRG1HV3VQMmhqM21uRHhvQ3RKaHVoUmxqdFdHaF90N1RZU3VsbUE3Z1ZwNkctUWlRM0J1eWI1V2p3RHpONTBjc3ZSZTVVSFhWUXJXNHhqSkw0c3kyTDRtTW1NZVllXzVvRElORHFiMThMaEdVbzBqR1NtNzV4OG5Yd2VyX244MFVQOUhPcXlfcGtfdGQ3d25qTHRQNWVmTUZGSUZjcjNKRDE2N2xPa0FRN3J6enR3MU5NY0N0Wk9nODlQQXYwclY0N1RJX3JIU0dVTkhmZzQ1NDBScm12b25SQ3JjZkw2R25QMTU0WFd0VTJ0QTVWaHpjcy1XVWJ1dUlYeldXaFZjY2lZUDlFLXBOajRKb1k2a0JaY3ZuMFM1U1ljR2hFLXhqTms0Qmc3bURjcjFKaGQxNXhXeEhkWkc2Y0p5MFJVaHVjbkRtYmtFX0xneTdvc1h6NzF0REp0MkRHN1BiRjVxdFBaM3g0UVV1cFRnNkZkWVhCbUJ2ZXYtT3FTUUl6cmFYLWp4SDcwTmdmNG83TjFxa01hYVBGbzZYWHlOVkNrSkQ1bW85dC1YbU53V2dZQWdNbzlYd2J2Ui13Q3dsOUVyZ3NrSzdHbmtMZFdQdjd3UW51QjlCSDdrQUdsenlNNGt3dkM5UUZQOFV2X0ltYXkybGd5Y0RSTEdRWl9LeEFqaXJVSE90R1A4TFpLYkJzMUpvS3VPaTRWdDlYNm54RVNnMzBVZzdadkxXdi1ESlZwZEtHV0txQWdFU1A4WHFXeEUyU0hURWdjRHkxZWdaNW9FS1VKdVdrNEFDNTZJZWQ4c0lqS3A5a21mWTNfckRxR3RXUkVJNm50SnllYl9TcjdEUWRKYlVUWEdvN0d0cXVUeV9IZnZZcWQzUEQxM1VmV3VrM2x0R2lEbTNBblJsaE44QVhUM3lLaFFLSU11U3RxakNOdXpJV0ZUYndfYl8wb1k5NFdCb1BZdk9yTHVJVUszT2JSYVBGVEV2V3oyMVJRMnYydEh2Um5tUVhkZ3puZHFuWGNhdDRna0hpMkE?oc=5",
-      "published_at": "2026-11-27 10:07",
-      "age_hours": 14.8,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "🚨 ชาวใต้ 4 จังหวัดนี้จับตาให้ดี! 28–30 พ.ย. ฝนหนักถึงหนักมาก! 🌧️ เตือน!! ช่วง 28–30 พ.ย. 69 ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ 📍 ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ำท่วม เตรียมพร้อมแ - Facebook",
-      "title_clean": "ชาวใต้ จังหวัดนี้จับตาให้ดี พ ย ฝนหนักถึงหนักมาก เตือน ช่วง พ ย ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ำท่วม เตรียมพร้อมแ Facebook",
-      "text_clean": "ชาวใต้ จังหวัดนี้จับตาให้ดี พ ย ฝนหนักถึงหนักมาก เตือน ช่วง พ ย ภาคใต้มีพื้นที่ที่ต้องเฝ้าระวังฝนตกหนักถึงหนักมากเป็นพิเศษ ได้แก่ ชุมพร สุราษฎร์ธานี นครศรีธรรมราช และประจวบคีรีขันธ์ ระวังฝนสะสมที่อาจเพิ่มความเสี่ยงต่อสถานการณ์น้ำท่วม เตรียมพร้อมแ Facebook",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiwAZBVV95cUxQWG1tVi1RMWdmLWExMXl4ZUlHSi1CTzJpbVg4LXhGeHZJQWZQdmhTek0tWXB1aUc0LVVHYlNRWFp4QkMzWlVHQ1JmV3BiVGxTTXdTSkJDNncySmppTnRaR2sybFhDd2NzdllxaGc2MUFxQU01MEVKYWRMcGZfSlVFUjI1aFpuTHptamVpM1J5OTFRYTduVmpnSXAxQ1g5ZzlOTHFGVkZNb01yMUV5WTJpemRiWDJ4dEdJNElQaHNMUUJMLVBjQzRsTGV0UDJCMnFyVTI2T3ZDSXpzUll2bncyRmhLUkNJRU5FWEpEc1FNeFJaOU5tQTRXZkRtUlJOakYzRm1Pc18yZllJNkpxSTBuRk80MkJlbDJ4UFdidmVHbXZTclpCNVp6azFQRzRKd0JialVoZE55YUZvNF9kcXRVbFlIYlB5QnJiaEhXWTJoX2ktUFBYcXA1cU84RXF6c2tvZ21UTEtteXRkd1c3ZkhCZ3VYZXVQYk85V2NfZmtsY19SbHp5V2p2UmJIaWJ0Q0pEUzhHU1ZLUTJNZFY3SUhXUEJ0Q0JKVlIwa1E0VFRJdVJrNmp4Tzd0M0hKSG9qWEtnNU1ya1BEaGExbXJsM25LdVBBUldQdmRSM3JlVkRtZkRENEdhQ2NsSFhReldsWGdQWUhjSUhLT19IMWh4dHpkb29rLXV5cndTNWVydTdzcTJnT1Q3NjVDLWlQUVFQZ1dYTzY5cEFPaW1hRzd5M2JpRzVTaUV4ekdHWTVhNUdYSk5obndKTFFTeUUwU0NpeXk3SF8waXJKOUw2QjRFR3lpOHRKVHJQVDVCZWxHanlXR1hWczZJYVpvY25TM2gwcTI0M1F4bWgyaXRWTFR5Mno3cGdTUnlOSl9uZWpzZGpTSXVIQVotUjc4WXYtYmNSWUtiaEZILXppODhkVGR0SlppdlRLbF9MeGtsM01ncFRyeTh0aEJQNnR4Q0d2aGc1VU1zSFVic2Z4R0FVbE9QdW1vSzVHM2pfSzI1WXNRRmRWZ3FKdWNkTzgtMHpPak5iblRqTS1WNjZPcFN1RHN5M21wQjlnNHdGa0NwQlEwQ2NqVHdpcGpTMFBVbWphWGYzcTdq?oc=5",
-      "published_at": "2026-11-27 10:10",
-      "age_hours": 14.7,
+      "age_hours": 11.6,
       "date": "2026-11-28"
     },
     {
@@ -169,47 +219,7 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5BRXBFNENGQVphSVNXa096RG1Tb3NkQm1RSHM1RkhmSXVWaG5BYjNKb04taFRrdl9MSkxUVWloTzk4dnFWbEVTUVdCaUNyWldrQkJNTk5jbWJ6d29jOXpOaU93ME50dw?oc=5",
       "published_at": "2026-11-27 15:30",
-      "age_hours": 9.4,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "เตือน 14 จังหวัดภาคใต้รับมือน้ำท่วมฉับพลัน-น้ำป่าหลาก เช็กจุดเสี่ยงด่วน - Thansettakij",
-      "title_clean": "เตือน จังหวัดภาคใต้รับมือน้ำท่วมฉับพลัน น้ำป่าหลาก เช็กจุดเสี่ยงด่วน Thansettakij",
-      "text_clean": "เตือน จังหวัดภาคใต้รับมือน้ำท่วมฉับพลัน น้ำป่าหลาก เช็กจุดเสี่ยงด่วน Thansettakij",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCT1c3TGxqWF9oemk2Q3IyeG9VWFhJSUxSTDFRT0xJcWtBNjZXYkFGd0VtSXl0TjRXekhENTBsdVdkZXVJb2x6VWs3a1VmTjhES0lTQnc1TElQamFZ?oc=5",
-      "published_at": "2026-11-27 09:31",
-      "age_hours": 15.4,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "UPDATE: อธิบดีกรมชลประทาน นำทีมชลประทานพบประชาชน ลงพื้นที่บ้านแพ้ว จ.สมุทรสาคร รับฟังปัญหาน้ำท่วม-น้ำทะเลหนุน-คุณภาพน้ำจากเกษตรกรและประชาชน ผ่านเวที JMC เตรียมนำข้อเสนอปรับแผนบริหารจัดการน้ำให้สอดคล้องกับความต้องการในพื้นที่ มุ่งสร้างความมั่นคงด้านน้ำอย่ - Facebook",
-      "title_clean": "UPDATE อธิบดีกรมชลประทาน นำทีมชลประทานพบประชาชน ลงพื้นที่บ้านแพ้ว จ สมุทรสาคร รับฟังปัญหาน้ำท่วม น้ำทะเลหนุน คุณภาพน้ำจากเกษตรกรและประชาชน ผ่านเวที JMC เตรียมนำข้อเสนอปรับแผนบริหารจัดการน้ำให้สอดคล้องกับความต้องการในพื้นที่ มุ่งสร้างความมั่นคงด้านน้ำอย่ Facebook",
-      "text_clean": "UPDATE อธิบดีกรมชลประทาน นำทีมชลประทานพบประชาชน ลงพื้นที่บ้านแพ้ว จ สมุทรสาคร รับฟังปัญหาน้ำท่วม น้ำทะเลหนุน คุณภาพน้ำจากเกษตรกรและประชาชน ผ่านเวที JMC เตรียมนำข้อเสนอปรับแผนบริหารจัดการน้ำให้สอดคล้องกับความต้องการในพื้นที่ มุ่งสร้างความมั่นคงด้านน้ำอย่ Facebook",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMivAdBVV95cUxPQ3pxZUd1a00tSDRlN0FxclVNWFFXQXRyRzNRSG92RXRyd0dfNi1lT2NzVTFqVjVrdnUzTnlhWU1HMEkxT1VhYkh2RUo4QnBEb0pMUVdWWDRoQTRTWUZkOUd2b3h5WWpwczkwTWJFVVloSmV1d0FWV0lrUEk0RzJjcnpZSWNUTXl3bzFfNnhuOHNVREl2S052R0phajFLTWt6dUV6bHRJMWZTcFczUHFvaFhCMmk3aWE2TVNRQTlLLUh1Tm1CQzBudmQyT1psSndiNmI3aGJYV0NYOHVqQW5QeDcwRVhudDlDZ1lyQ3NJdzVITmZXcEt0MkdBdnlFelE0QnBJYUF6eWFkU0NmMUI5SEg4N3dHLWk3dEhVR2RvM0YtTFpGdmxmS3FadUY2MnVTdjZ3UUJsUE8ybmFIa1ZNdWlVdU1RQ19BWnotMnBYR3dEdnRNNjdySjRVQzRZZkZVRTlDOC1jTUQ2dFJPejFGMDdzS2g0akFzWEJXUndGQ2E1b1FaMmNiTnlic2NubXh6dm1GUHk4UkxSTE1NVnFmYTFlWWJYUVZ2MW5sZGZVNWd3VC1oWXEyclE1aE9xbVBXcnN5VVFEeGEzZWNNSDNNSktIckFibVBrdHkzdnlpbDFTelN1TE5VWW9Fd1RSb1FIdHBkVzFaZlVJcXBJYWlGRUx4Y3lnSnBWcl9SR3hNZmROTHIzdmNtRm1VLWd0Xzc2R2JUSnRaVnNlQ2V0UEZlb09ONjhUaUJHUmJRMjl1bkVDYm0wa21Qek5ZVHB0MlBSSGF2OGFTSWZ4M2VRRnhWMXV2VVBMWFZ4dXhCNmNCdHZuVEJzOEcwcG1SYWdNTm5COHM2cTlUR0Y1SXZTWWd5OHNON3RFcXdTOXQ4dkFMZjZha3VTaHFsVjcyUVltLVdybmF6UWR3NDdXR0ZHVGUzM1NKZWF0dUFQR0NNb3dyZkFkaFh6ZWJpN3hZV0J1aTJ6aVA3VG1wckxQbWhabkhLdFN2X3QzUVBUb1NLSzl2T1RjV29DWDBKNktsc1hWLW82MHlJZ2VwYkswcTBSODlUbUlRb3hTQkhIUWNOdnhVMnVSTzJYQzZQNDVIQmxudkFZZ01wS0d5YjhJTGtYTVNWUDh4VkJVczdnUjlBQmd2M2dsTk9fcHlIa0w4RmZHWWRmN29ka3FLR0l3RldwOWlPVUU5aHJCOGZGRGhqUEtueTBzVTdHWjRXaFFhRFdxVTFMQjNBaFRhSllLTDZmSmlvZDItM3pIdjZHeGdxRA?oc=5",
-      "published_at": "2026-11-26 19:36",
-      "age_hours": 29.3,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "กรมอุตุฯเตือน 13 จว.ภาคใต้ พรุ่งนี้ 28 พ.ย.69 ฝนถล่ม ระวังน้ำท่วมฉับพลัน - Thansettakij",
-      "title_clean": "กรมอุตุฯเตือน จว ภาคใต้ พรุ่งนี้ พ ย ฝนถล่ม ระวังน้ำท่วมฉับพลัน Thansettakij",
-      "text_clean": "กรมอุตุฯเตือน จว ภาคใต้ พรุ่งนี้ พ ย ฝนถล่ม ระวังน้ำท่วมฉับพลัน Thansettakij",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1CQTVUNXJ0dFNBNzNMeGNrMnRZZ280NEUzbDVNakFnVDFIVmdLTEZ2RllmclNDY0YyY2hLX204ZzR3Y0FyelRfRktWbUdRaU9qUWJvRnZlWml0V1Fj?oc=5",
-      "published_at": "2026-11-27 16:43",
-      "age_hours": 8.2,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "จับตาฝนตกหนักผิดปกติภาคใต้ 27-30 พ.ย. เสี่ยงน้ำท่วม-น้ำป่าไหลหลาก - TNN Thailand",
-      "title_clean": "จับตาฝนตกหนักผิดปกติภาคใต้ พ ย เสี่ยงน้ำท่วม น้ำป่าไหลหลาก TNN Thailand",
-      "text_clean": "จับตาฝนตกหนักผิดปกติภาคใต้ พ ย เสี่ยงน้ำท่วม น้ำป่าไหลหลาก TNN Thailand",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1ESUhjUXB5WkUwZWZRUnVLRWo1QndDTzFHbXdWMTBXdmRlRHB5d3lrcV9ELTZCTkpBNnRQRVVCLXlsX0lyWGNDQWc1ek16ZGpIVVB3?oc=5",
-      "published_at": "2026-11-27 13:36",
-      "age_hours": 11.3,
+      "age_hours": 16.7,
       "date": "2026-11-28"
     },
     {
@@ -219,87 +229,47 @@
       "source": "\"น้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1HcTA1MHhSaFdOSUNfSGk2UGRabGZvZUhULVNzd29GQ0FOd2UxYkVIcEpYT3AtcndJREtHZTg0bmxENVBJTGNIM09ZODRmVHc?oc=5",
       "published_at": "2026-11-27 17:22",
-      "age_hours": 7.5,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "โตโยต้าเผยยอดขาย-ยอดผลิตทั่วโลกลดลง 4 เดือนติด เหตุดีมานด์จีนซบเซา ขณะน้ำท่วมฉุดยอดผลิตในไทยดิ่ง - RYT9",
-      "title_clean": "โตโยต้าเผยยอดขาย ยอดผลิตทั่วโลกลดลง เดือนติด เหตุดีมานด์จีนซบเซา ขณะน้ำท่วมฉุดยอดผลิตในไทยดิ่ง RYT",
-      "text_clean": "โตโยต้าเผยยอดขาย ยอดผลิตทั่วโลกลดลง เดือนติด เหตุดีมานด์จีนซบเซา ขณะน้ำท่วมฉุดยอดผลิตในไทยดิ่ง RYT",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1xOHlYS09mYXNLcW5hSm1mVFEwaDlkRFBYeXJzX05LdmIwR0dnLVlxektlcjBVYTljRVNEcl9HNmQ0aEY5Q0V3emhn?oc=5",
-      "published_at": "2026-11-27 13:21",
-      "age_hours": 11.5,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "สทนช.เตือน 14 จังหวัดเฝ้าระวังน้ำท่วม 28 พ.ย.-1 ธ.ค. ฝนสะสมสูงถึง 300 มม. เร่งพร่องน้ำรับมือ - ประชาชาติธุรกิจ",
-      "title_clean": "สทนช เตือน จังหวัดเฝ้าระวังน้ำท่วม พ ย ธ ค ฝนสะสมสูงถึง มม เร่งพร่องน้ำรับมือ ประชาชาติธุรกิจ",
-      "text_clean": "สทนช เตือน จังหวัดเฝ้าระวังน้ำท่วม พ ย ธ ค ฝนสะสมสูงถึง มม เร่งพร่องน้ำรับมือ ประชาชาติธุรกิจ",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5hTWwtUVljMkd3NjdxNFRlT003YUF1d1lmNTVMRXpydHRjcDZHamVxZmRxNWhPTEVQeUZwX3I4NGF0NGtfYno5S1BjQmJ5MkNVbzNRR0FBOEMwTUpm?oc=5",
-      "published_at": "2026-11-27 11:35",
-      "age_hours": 13.3,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "“กรมอุตุฯ” ประกาศฉบับที่ 7 เตือนไทยฝนตกหนัก 27-30 พ.ย. ระวังลมแรง คลื่นสูงกว่า 3 เมตร เสี่ยงน้ำท่วมฉับพลัน-น้ำป่าไหลหลาก - TOPNEWS",
-      "title_clean": "กรมอุตุฯ ประกาศฉบับที่ เตือนไทยฝนตกหนัก พ ย ระวังลมแรง คลื่นสูงกว่า เมตร เสี่ยงน้ำท่วมฉับพลัน น้ำป่าไหลหลาก TOPNEWS",
-      "text_clean": "กรมอุตุฯ ประกาศฉบับที่ เตือนไทยฝนตกหนัก พ ย ระวังลมแรง คลื่นสูงกว่า เมตร เสี่ยงน้ำท่วมฉับพลัน น้ำป่าไหลหลาก TOPNEWS",
-      "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE4yWnlmMmVTQlUzRUR5LVZ4SVRjWEhaYTlqNU5mWjJodGZBMU9odGlsUUFFUWtoa2JLMzk2emN2QjZvQnlHVlZPMDNGTlNOUGc?oc=5",
-      "published_at": "2026-11-27 10:03",
       "age_hours": 14.9,
       "date": "2026-11-28"
     },
     {
-      "title": "วิกฤตภัยพิบัติเงียบ 3 สมุทรใกล้จมบาดาลถาวร - สำนักข่าวอิศรา",
-      "title_clean": "วิกฤตภัยพิบัติเงียบ สมุทรใกล้จมบาดาลถาวร สำนักข่าวอิศรา",
-      "text_clean": "วิกฤตภัยพิบัติเงียบ สมุทรใกล้จมบาดาลถาวร สำนักข่าวอิศรา",
+      "title": "กรมอุตุฯเตือน 13 จว.ภาคใต้ พรุ่งนี้ 28 พ.ย.69 ฝนถล่ม ระวังน้ำท่วมฉับพลัน - Thansettakij",
+      "title_clean": "กรมอุตุฯเตือน จว ภาคใต้ พรุ่งนี้ พ ย ฝนถล่ม ระวังน้ำท่วมฉับพลัน Thansettakij",
+      "text_clean": "กรมอุตุฯเตือน จว ภาคใต้ พรุ่งนี้ พ ย ฝนถล่ม ระวังน้ำท่วมฉับพลัน Thansettakij",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFA2OWNSZVNTZnNvS1pGV1pSX1lIRnBzZXMtRVE3LW5GajFOMVNUY1hSNHczVVJ1RjJYamhHcDh2MkVsaks4RmJSckZFa3lUQ3pEd1FEdTlTSEtJR2pyaHZMYkJWSXhaS2RHT0hEMlVKZFVGb1RNamlr?oc=5",
-      "published_at": "2026-11-27 12:21",
-      "age_hours": 12.5,
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1CQTVUNXJ0dFNBNzNMeGNrMnRZZ280NEUzbDVNakFnVDFIVmdLTEZ2RllmclNDY0YyY2hLX204ZzR3Y0FyelRfRktWbUdRaU9qUWJvRnZlWml0V1Fj?oc=5",
+      "published_at": "2026-11-27 16:43",
+      "age_hours": 15.5,
       "date": "2026-11-28"
     },
     {
-      "title": "ปลายปีไม่เหมือนเดิม “ฤดูหนาว” ไร้รูปแบบ เตรียมเจอฝนหลงฤดู 4-11 ธ.ค.นี้ ส่วนใต้จ่อฝนหนัก-น้ำท่วมซ้ำ - TNN Thailand",
-      "title_clean": "ปลายปีไม่เหมือนเดิม ฤดูหนาว ไร้รูปแบบ เตรียมเจอฝนหลงฤดู ธ ค นี้ ส่วนใต้จ่อฝนหนัก น้ำท่วมซ้ำ TNN Thailand",
-      "text_clean": "ปลายปีไม่เหมือนเดิม ฤดูหนาว ไร้รูปแบบ เตรียมเจอฝนหลงฤดู ธ ค นี้ ส่วนใต้จ่อฝนหนัก น้ำท่วมซ้ำ TNN Thailand",
+      "title": "จับตาฝนตกหนักผิดปกติภาคใต้ 27-30 พ.ย. เสี่ยงน้ำท่วม-น้ำป่าไหลหลาก - TNN Thailand",
+      "title_clean": "จับตาฝนตกหนักผิดปกติภาคใต้ พ ย เสี่ยงน้ำท่วม น้ำป่าไหลหลาก TNN Thailand",
+      "text_clean": "จับตาฝนตกหนักผิดปกติภาคใต้ พ ย เสี่ยงน้ำท่วม น้ำป่าไหลหลาก TNN Thailand",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBuYkdCWllhamRmSldQcmdMMHVyZElpQVJxZmxlRWxEVUM5VHFYTnZ6S09LUS0wOUF4ZUxfdy1vczBjTjN5M3JXSHpvR0JkOXhjODF3?oc=5",
-      "published_at": "2026-11-27 09:30",
-      "age_hours": 15.4,
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1ESUhjUXB5WkUwZWZRUnVLRWo1QndDTzFHbXdWMTBXdmRlRHB5d3lrcV9ELTZCTkpBNnRQRVVCLXlsX0lyWGNDQWc1ek16ZGpIVVB3?oc=5",
+      "published_at": "2026-11-27 13:36",
+      "age_hours": 18.6,
       "date": "2026-11-28"
     },
     {
-      "title": "'จุลพันธ์' มั่นใจ ‘สรวงศ์’ คว้าชัยเลือกตั้งซ่อมสระแก้วช่วยเติมเสียงในสภา มอง ใกล้ชิดลอยคออยู่กับชาวบ้านช่วงน้ำท่วม - เดลินิวส์",
-      "title_clean": "จุลพันธ์ มั่นใจ สรวงศ์ คว้าชัยเลือกตั้งซ่อมสระแก้วช่วยเติมเสียงในสภา มอง ใกล้ชิดลอยคออยู่กับชาวบ้านช่วงน้ำท่วม เดลินิวส์",
-      "text_clean": "จุลพันธ์ มั่นใจ สรวงศ์ คว้าชัยเลือกตั้งซ่อมสระแก้วช่วยเติมเสียงในสภา มอง ใกล้ชิดลอยคออยู่กับชาวบ้านช่วงน้ำท่วม เดลินิวส์",
+      "title": "กรมอุตุนิยมวิทยา. . ติดตามฝนภาคใต้ ฝนตกหนักถึงหนักมาก\nมีผลช่วงวันที่ 27–30 พ.ย. 69 \n\n📡 อัปเดตสถานการณ์และพื้นที่เสี่ยง\n\nโดย นาย ชัยชาญ สิทธิวรนันท์ ผู้อำนวยการส่วนพยากรณ์อากาศกลาง\n\nณ วันที่ 27 พ.ย. 69 - Facebook",
+      "title_clean": "กรมอุตุนิยมวิทยา ติดตามฝนภาคใต้ ฝนตกหนักถึงหนักมาก มีผลช่วงวันที่ พ ย อัปเดตสถานการณ์และพื้นที่เสี่ยง โดย นาย ชัยชาญ สิทธิวรนันท์ ผู้อำนวยการส่วนพยากรณ์อากาศกลาง ณ วันที่ พ ย Facebook",
+      "text_clean": "กรมอุตุนิยมวิทยา ติดตามฝนภาคใต้ ฝนตกหนักถึงหนักมาก มีผลช่วงวันที่ พ ย อัปเดตสถานการณ์และพื้นที่เสี่ยง โดย นาย ชัยชาญ สิทธิวรนันท์ ผู้อำนวยการส่วนพยากรณ์อากาศกลาง ณ วันที่ พ ย Facebook",
       "source": "\"น้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5iT2NyeVJrWG1jODhFN2puVHI0Q3doZTNUTkN3ZU11Y0I2cnhEVW5OZ0xkbU9VRXJsM2lvYnhFcXJqeGw5amlfd2Yzc01SeF9XdzVn?oc=5",
-      "published_at": "2026-11-27 13:32",
-      "age_hours": 11.4,
+      "url": "https://news.google.com/rss/articles/CBMirAdBVV95cUxOV0c4dkktZGxOTG9kMFRnMGtPdjJxWWFRa2xBS21Oc19YOFFBZ2E3X2VkM2Nzd2tTUWhKRmFmWEdJN0lzclZJTlhmNkF1bFlkc0VvQi1LR2xpU1JoVU5XTFphb0JmZHpjVE16OHBrWTV4RkpEdWtGREhJOXdNS3Qyamc3Tk1iOFpkeTlyMFhTS0paZkR0dVQ5RklUajNDUE5ZaGlGeDY1dVdzU3JEUDZrc2VOdU5DdnI4MzhNNVFlREhGeHVuRzB6Rzc2a1Q4OVRDV3BOaGMydzZJZjdIUnhxb3F4dmRWREthTDNQeFpvTU5tY2hJWFJMYWJmVkk5UG9BY2p2NHNjekk2ajQwNUZySkx6MzZvQ25QVzJCSmNnbmlNTHhwZzNSTFlob3dxTDVIbWxaVmZrZlFNSnVwZEVxaG9UTnhucDJEaXhpOF8tZFMxOTFQNkRpWkh3b2tPVUxLTkhncHY2RnNCaDRPRXpKLUdkRlRQUkluT2tnVHpncWxqbzV3d1pCX0FOV1FvMFk1VDh2azBMb1d0U1Z4ZUJZVkNOMFNJTmx5cWVwYi1SNy0zZmJuTkw2SzY1bUdNMXNsRUhENGR1Wkx0b2JET29nRlFSM2hIbkpLLVU0N2VDRS1odlI0MTQ4WGNZRzZKdFdlVmJZVEpTUFhLX2RLbmU1ZmcyOHZwajZpZEd0Y2xkX0pGQmdwRjgtMmp3ODEwR0JpbVkzZVJ5eVNSOTRFR3JpaHJaQk1ZQXBfRlp6LUVONVlEcHlOMFdJblFsTmlJeDJsbVdfS2loYi1HOFFkajJNWHc2eGJDUVA4aEZ2ZGREckxJSmVvQmlGb0hURHVGNXlRdjQwbDlkaHZiOGxqZTZfZlJVS2FobkUwYVV4NDBJNmFPY2hLa3BEbG9wR3V3Q1hBemRZZzBMbjdUREZzSXNyWVlDQ0MtcFR4U001emtPS1RGc3ctTEYzQWl2STZBbldkRk1aTDNpZ1FQU1psWVNRZ1M5QVROQXh3c1Y3MHh1TzJlRnowNTZrSUZyejQwRUdYVHBUWHVkUk45NW56RHV1RTFibEJ2bkdDUnRhY1lwdC1ZZEV2cHJwdlJ2b3RmTkNJQ2lpZGYwc2pCa09VRlR1T1RSeWJIWDNuMVFqc3FvZnZOX2JtcFo1Vld6a1VCNHQ2SFFjbHBnbFRZNHM1R0dSMFFZU1Q2T1dsM016TFRzZlFEQ3BQV0ppRlNCbEtMRURSU2U5NUZpcWlBSFRo?oc=5",
+      "published_at": "2026-11-27 15:10",
+      "age_hours": 17.1,
       "date": "2026-11-28"
     },
     {
-      "title": "ราชบุรีเร่งฟื้นสวนมะพร้าวน้ำหอมหลังน้ำท่วม ถ่ายทอดเทคนิคดูแลต้น–ระบบราก แจกชีวภัณฑ์ช่วยเกษตรกร - ผู้จัดการออนไลน์",
-      "title_clean": "ราชบุรีเร่งฟื้นสวนมะพร้าวน้ำหอมหลังน้ำท่วม ถ่ายทอดเทคนิคดูแลต้น ระบบราก แจกชีวภัณฑ์ช่วยเกษตรกร ผู้จัดการออนไลน์",
-      "text_clean": "ราชบุรีเร่งฟื้นสวนมะพร้าวน้ำหอมหลังน้ำท่วม ถ่ายทอดเทคนิคดูแลต้น ระบบราก แจกชีวภัณฑ์ช่วยเกษตรกร ผู้จัดการออนไลน์",
-      "source": "\"หลังน้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE05cHoxdy1PdDA2ZG90QzhDcXZHZzN0MXUxTDNFWEc2V0NvQmtObnExc21pXzhJUnJmYUxZUGVPeHRiSnlHcUFoeVRKVjBNRVhVMGZrcnpnQW8tUml0?oc=5",
-      "published_at": "2026-11-26 20:53",
-      "age_hours": 28.0,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "ฟื้นสวนมะพร้าวน้ำหอม หลังน้ำท่วม ดำเนินสะดวก ราชบุรี - banmuang.co.th",
-      "title_clean": "ฟื้นสวนมะพร้าวน้ำหอม หลังน้ำท่วม ดำเนินสะดวก ราชบุรี co th",
-      "text_clean": "ฟื้นสวนมะพร้าวน้ำหอม หลังน้ำท่วม ดำเนินสะดวก ราชบุรี co th ฟื้นสวนมะพร้าวน้ำหอม หลังน้ำท่วม ดำเนินสะดวก ราชบุรี banmuang co th",
-      "source": "\"หลังน้ำท่วม\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA1V0FRaTJKRWJKQjZOcVJZNDFBMUR6VHRjSXctX2lMUTVjTFZ5Y3ZCQjFQRjQ1LVl1N2ozR1NQTnJhS204MTBZb0F6OUZLUVRKZVR3MkhyczM?oc=5",
-      "published_at": "2026-11-26 21:49",
-      "age_hours": 27.1,
+      "title": "เตือน 14 จังหวัดภาคใต้รับมือน้ำท่วมฉับพลัน-น้ำป่าหลาก เช็กจุดเสี่ยงด่วน - Thansettakij",
+      "title_clean": "เตือน จังหวัดภาคใต้รับมือน้ำท่วมฉับพลัน น้ำป่าหลาก เช็กจุดเสี่ยงด่วน Thansettakij",
+      "text_clean": "เตือน จังหวัดภาคใต้รับมือน้ำท่วมฉับพลัน น้ำป่าหลาก เช็กจุดเสี่ยงด่วน Thansettakij",
+      "source": "\"น้ำท่วม\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCT1c3TGxqWF9oemk2Q3IyeG9VWFhJSUxSTDFRT0xJcWtBNjZXYkFGd0VtSXl0TjRXekhENTBsdVdkZXVJb2x6VWs3a1VmTjhES0lTQnc1TElQamFZ?oc=5",
+      "published_at": "2026-11-27 09:31",
+      "age_hours": 22.7,
       "date": "2026-11-28"
     },
     {
@@ -309,7 +279,7 @@
       "source": "\"หลังน้ำท่วม\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQTWMyUWdMc3dpMV8wSUh1R1VqSXk5MmNJQ3pmU2N5R1NJdUlpdktYZUNQdm1ZWVh0LTExc05abW9QLUY0cDJCRnV4QnBNcWIzd3FUOTdCUTVIVGpvLV9iSW91cXFHek5HbjdPal9zV25SV0I4MndRWXlWVmlfNjJLaGdNSQ?oc=5",
       "published_at": "2026-11-27 15:02",
-      "age_hours": 9.9,
+      "age_hours": 17.2,
       "date": "2026-11-28"
     },
     {
@@ -319,7 +289,17 @@
       "source": "\"อุทกภัย\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1DQl9neU5FNmQtZS1MTjYwQnZHcGtpQTlpUUtBVG1SS1FtMHlFX292NWNHNXc2LXNvenEzR2VjR193b1hkeVl6akQyQ2JfVDJFY0NIcA?oc=5",
       "published_at": "2026-11-27 15:45",
-      "age_hours": 9.2,
+      "age_hours": 16.5,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "พิษน้ำท่วมฉุดส่งออกรถยนต์ลด 34.38% | Thairath Money - LINE TODAY",
+      "title_clean": "พิษน้ำท่วมฉุดส่งออกรถยนต์ลด Thairath Money",
+      "text_clean": "พิษน้ำท่วมฉุดส่งออกรถยนต์ลด Thairath Money",
+      "source": "\"อุทกภัย\" - Google News",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9vWHpNY0wzN21YZzRndVFrRVp4dHdXR1JBX3lQeG5TSkZHM1FDUkVRdjVMTnRBNTlDMVBDMDQwVlhhWWlLc2YzaVRyekdteHlSQnhYNk5n?oc=5",
+      "published_at": "2026-11-28 05:33",
+      "age_hours": 2.7,
       "date": "2026-11-28"
     },
     {
@@ -329,17 +309,7 @@
       "source": "\"อุทกภัย\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1hRHBvYVY0UTMtSzFMQXBQSXF2MGlrOE9DbFZtWG5pYjBlTDBuTEVEYktvR3lGTWJ6QkJsMzZzeW1idHo2Z0FNZ2ZBLUh0b1JqUDVB?oc=5",
       "published_at": "2026-11-27 13:56",
-      "age_hours": 11.0,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "สุราษฎร์ธานี เฝ้าระวังน้ำหลาก ดินโคลนถล่ม รับมืออุทกภัยเชิงรุก - banmuang.co.th",
-      "title_clean": "สุราษฎร์ธานี เฝ้าระวังน้ำหลาก ดินโคลนถล่ม รับมืออุทกภัยเชิงรุก co th",
-      "text_clean": "สุราษฎร์ธานี เฝ้าระวังน้ำหลาก ดินโคลนถล่ม รับมืออุทกภัยเชิงรุก co th สุราษฎร์ธานี เฝ้าระวังน้ำหลาก ดินโคลนถล่ม รับมืออุทกภัยเชิงรุก banmuang co th",
-      "source": "\"อุทกภัย\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE4yRnlkY3dqbElzLVoyVnlyclJtYS03TC1mTjBYcjNFc3Uxam5HdFBRSGw2LW9DekVVLTRFREhEb0Q5UlAyMFNIYXpld3RCZm54S09oRmt6RUQ?oc=5",
-      "published_at": "2026-11-26 19:54",
-      "age_hours": 29.0,
+      "age_hours": 18.3,
       "date": "2026-11-28"
     },
     {
@@ -349,37 +319,7 @@
       "source": "\"อุทกภัย\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOb2N5MXZuWWFjeVprLV93MWEzcmI5UlNnUnFJN0VHZGZsWE9xQWM5ZkYtV20tenB3SG9ReXZFSXFFbVBDdDhHRm13YmlMcFQxeXlIVjI2VVhEY09zaXFOaDRoM3VQUjhHMzYwLWpKeWtybm5jcDlMM1NPeUItNkFOWTBwRWR6bHZkZnVTYm1rNXdPMXlza082R1BmczZqU0JG?oc=5",
       "published_at": "2026-11-27 10:01",
-      "age_hours": 14.9,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "\"พิพัฒน์\" ส่งที่ปรึกษาลงพื้นที่ติดตามสถานการณ์อุทกภัยนครศรีธรรมราช - banmuang.co.th",
-      "title_clean": "พิพัฒน์ ส่งที่ปรึกษาลงพื้นที่ติดตามสถานการณ์อุทกภัยนครศรีธรรมราช co th",
-      "text_clean": "พิพัฒน์ ส่งที่ปรึกษาลงพื้นที่ติดตามสถานการณ์อุทกภัยนครศรีธรรมราช co th พิพัฒน์ ส่งที่ปรึกษาลงพื้นที่ติดตามสถานการณ์อุทกภัยนครศรีธรรมราช banmuang co th",
-      "source": "\"อุทกภัย\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA0cXB2b19qYnQ4SjluYUhKUjB2ZnBkaERZQkhJX0ZlVTZGVUt5am5rNzdvNVNtUHUyVkczN1F0MjhTaVRZVUdzX2hZbmpFNEUtSnRMbjJzUjQ?oc=5",
-      "published_at": "2026-11-26 19:25",
-      "age_hours": 29.5,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "คำสั่งของนายกรัฐมนตรีเกี่ยวกับการรับมือกับอุทกภัยและฝนตกหนักในภาคกลางตอนใต้และภาคกลางตอนบน - Vietnam.vn",
-      "title_clean": "คำสั่งของนายกรัฐมนตรีเกี่ยวกับการรับมือกับอุทกภัยและฝนตกหนักในภาคกลางตอนใต้และภาคกลางตอนบน vn",
-      "text_clean": "คำสั่งของนายกรัฐมนตรีเกี่ยวกับการรับมือกับอุทกภัยและฝนตกหนักในภาคกลางตอนใต้และภาคกลางตอนบน vn คำสั่งของนายกรัฐมนตรีเกี่ยวกับการรับมือกับอุทกภัยและฝนตกหนักในภาคกลางตอนใต้และภาคกลางตอนบน Vietnam vn",
-      "source": "\"อุทกภัย\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQc0lkNTNPSy1TWURfemZzRTZxLUhvVWRVT1pBaDA4STBWTDVrVFZpbGdzVXBsZllhb3NzeVNuQkpvd2h1S3VncDVocTk5aTRKQ09wOGwxNGZJbXp3OFB1MmwtOU1UMVpXY1hGSUFnWFR4ekU0czRNWmt6Z2dXT05kSlRmUG9fd1ZpZ2VZNkJMTWRmOVVNOExEOHQxZ2hSZ3gyMmNGMnYxSXFtTjg?oc=5",
-      "published_at": "2026-11-26 20:04",
-      "age_hours": 28.8,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "Recurrent flooding linked to higher odds of depression, anxiety and stress among farmers in southern Thailand - The Watchers - Watching the world evolve and transform",
-      "title_clean": "Recurrent flooding linked to higher odds of depression anxiety and stress among farmers in southern Thailand The Watchers Watching the world evolve and transform",
-      "text_clean": "Recurrent flooding linked to higher odds of depression anxiety and stress among farmers in southern Thailand The Watchers Watching the world evolve and transform",
-      "source": "\"flood Thailand\" - Google News",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOOHY3LWhZU2F2M2FjMDNFUVdMblVQOG5jRGZldHJ4b1dPV3ZLVmdSUzBCUmdQVWVkcWJoUVRNaGFsTHRQLWFBVUU3TEdqVkxPeXd5b09EbWo1N0N1TGdZcThJVWVQSG9QcTRXSGxsb05mV3pWZlFmcE5Xc0p1dE5XaTlrNzhLVVNkV2l6Q3JfRXFRN3V6a19jZVRobWZNQWVka3hXbEtBYm1NQlV2ZTJnOHNZYUpfODQxZlpBVVBuUGlKYmxvQ1VOVFg4S2JVU0xMTUpHdDRsLTE?oc=5",
-      "published_at": "2026-11-26 23:06",
-      "age_hours": 25.8,
+      "age_hours": 22.2,
       "date": "2026-11-28"
     },
     {
@@ -389,7 +329,17 @@
       "source": "\"flood Thailand\" - Google News",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPSTU3Z3pUel8xVnB2MGNQbnd6V3FseVlOc3lzTFZRRkxhdUpCUFV6bjNwTXUzdllhUGNSVG5ZZUszX2hHNkpTWEFoLWpOU1dtTUFiTkxXS0JMR2J6Z1o1ckg1SjJNUDFfMElSMTZ3VnF1NW1fTW1VRi1qTmdaQ1pScmtKZDF2dFdJWFVKMnYtMVBELWd1NXJvWlJ4Z3RxVWgzaUE4TVR2YVJPb2tSSFl2bUxR?oc=5",
       "published_at": "2026-11-27 13:14",
-      "age_hours": 11.7,
+      "age_hours": 19.0,
+      "date": "2026-11-28"
+    },
+    {
+      "title": "อุตุฯ เตือน 14 จังหวัดใต้ เสี่ยงภัยฝนตกหนัก เหนืออากาศเย็น กทม.อุณหภูมิลด 1-2 องศา",
+      "title_clean": "อุตุฯ เตือน จังหวัดใต้ เสี่ยงภัยฝนตกหนัก เหนืออากาศเย็น กทม อุณหภูมิลด องศา",
+      "text_clean": "อุตุฯ เตือน จังหวัดใต้ เสี่ยงภัยฝนตกหนัก เหนืออากาศเย็น กทม อุณหภูมิลด องศา อุตุฯ เตือน จังหวัดใต้ เสี่ยงภัยฝนตกหนัก เหนืออากาศเ",
+      "source": "มติชนออนไลน์",
+      "url": "https://www.matichon.co.th/local/news_5993604",
+      "published_at": "2026-11-28 07:54",
+      "age_hours": 0.3,
       "date": "2026-11-28"
     },
     {
@@ -399,17 +349,7 @@
       "source": "มติชนออนไลน์",
       "url": "https://www.matichon.co.th/region/news_5993459",
       "published_at": "2026-11-27 19:07",
-      "age_hours": 5.8,
-      "date": "2026-11-28"
-    },
-    {
-      "title": "กรมอุตุ ประกาศฉบับที่ 8 ไทยตอนบนอากาศเย็นลง ภาคใต้ระวังฝนตกหนัก 27-30 พ.ย.",
-      "title_clean": "กรมอุตุ ประกาศฉบับที่ ไทยตอนบนอากาศเย็นลง ภาคใต้ระวังฝนตกหนัก พ ย",
-      "text_clean": "กรมอุตุ ประกาศฉบับที่ ไทยตอนบนอากาศเย็นลง ภาคใต้ระวังฝนตกหนัก พ ย กรมอุตุ ประกาศฉบับที่ ไทยตอนบนอากาศเย็นลง ภาคใต้ระวัง",
-      "source": "มติชนออนไลน์",
-      "url": "https://www.matichon.co.th/local/news_5993073",
-      "published_at": "2026-11-27 18:18",
-      "age_hours": 6.6,
+      "age_hours": 13.1,
       "date": "2026-11-28"
     }
   ]
